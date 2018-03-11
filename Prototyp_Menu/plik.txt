@@ -1,0 +1,4 @@
+1 3 0 
+2 Menu_glowne
+3 Opcje
+4 Wyjscie
