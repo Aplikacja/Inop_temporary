@@ -115,7 +115,50 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Data\data\C_id.cpp" />
+    <ClCompile Include="Data\data\C_data_base.cpp" />
+    <ClCompile Include="Data\data\C_date.cpp" />
+    <ClCompile Include="Data\menu\C_fabric_menu.cpp" />
+    <ClCompile Include="Data\menu\C_menu.cpp" />
+    <ClCompile Include="Data\menu\C_menu_base.cpp" />
+    <ClCompile Include="Data\menu\C_menu_edition.cpp" />
+    <ClCompile Include="Data\menu\C_menu_glowne.cpp" />
+    <ClCompile Include="Data\menu\C_menu_tree.cpp" />
+    <ClCompile Include="Data\person\C_fabric_person.cpp" />
+    <ClCompile Include="Data\person\C_parent.cpp" />
+    <ClCompile Include="Data\person\C_children.cpp" />
+    <ClCompile Include="Data\person\C_partner.cpp" />
+    <ClCompile Include="Data\person\C_perosn_base.cpp" />
+    <ClCompile Include="Data\person\C_perosn_null.cpp" />
+    <ClCompile Include="Data\person\C_sibling.cpp" />
+    <ClCompile Include="Data\relation\C_relation.cpp" />
+    <ClCompile Include="Data\relation\C_relationship.cpp" />
+    <ClCompile Include="Data\relation\C_relation_base.cpp" />
     <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Data\data\C_data_base.hpp" />
+    <ClInclude Include="Data\data\C_date.hpp" />
+    <ClInclude Include="Data\data\C_id.hpp" />
+    <ClInclude Include="Data\menu\C_fabric_menu.hpp" />
+    <ClInclude Include="Data\menu\C_menu.hpp" />
+    <ClInclude Include="Data\menu\C_menu_base.hpp" />
+    <ClInclude Include="Data\menu\C_menu_edition.hpp" />
+    <ClInclude Include="Data\menu\C_menu_glowne.hpp" />
+    <ClInclude Include="Data\menu\C_menu_tree.hpp" />
+    <ClInclude Include="Data\person\C_fabric_person.hpp" />
+    <ClInclude Include="Data\person\C_parent.hpp" />
+    <ClInclude Include="Data\person\C_children.hpp" />
+    <ClInclude Include="Data\person\C_partner.hpp" />
+    <ClInclude Include="Data\person\C_person_base.hpp" />
+    <ClInclude Include="Data\person\C_person_null.hpp" />
+    <ClInclude Include="Data\person\C_sibling.hpp" />
+    <ClInclude Include="Data\relation\C_relation.hpp" />
+    <ClInclude Include="Data\relation\C_relationship.hpp" />
+    <ClInclude Include="Data\relation\C_relation_base.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
