@@ -37,6 +37,12 @@
     <Filter Include="Resource Files\Data">
       <UniqueIdentifier>{91dcdf5b-fa85-42a0-bcf0-045c845b7f4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{84dace8a-339e-4620-ab80-f8535cf49fc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Engine">
+      <UniqueIdentifier>{6e325648-cfe6-4d67-b289-fdecd91c6f81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -99,6 +105,24 @@
     <ClCompile Include="Data\person\C_parent.cpp">
       <Filter>Resource Files\Person</Filter>
     </ClCompile>
+    <ClCompile Include="Data\engine\C_tree.cpp">
+      <Filter>Resource Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\engine\C_engine_tree.cpp">
+      <Filter>Resource Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\engine\C_engine_software.cpp">
+      <Filter>Resource Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\engine\C_engine_hardware.cpp">
+      <Filter>Resource Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\engine\C_db.cpp">
+      <Filter>Resource Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\engine\C_aplication.cpp">
+      <Filter>Resource Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data\person\C_children.hpp">
@@ -157,6 +181,24 @@
     </ClInclude>
     <ClInclude Include="Data\person\C_parent.hpp">
       <Filter>Header Files\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\engine\C_aplication.hpp">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\engine\C_db.hpp">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\engine\C_engine_hardware.hpp">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\engine\C_engine_software.hpp">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\engine\C_engine_tree.hpp">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\engine\C_tree.hpp">
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
