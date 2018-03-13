@@ -118,6 +118,12 @@
     <ClCompile Include="Data\data\C_id.cpp" />
     <ClCompile Include="Data\data\C_data_base.cpp" />
     <ClCompile Include="Data\data\C_date.cpp" />
+    <ClCompile Include="Data\engine\C_aplication.cpp" />
+    <ClCompile Include="Data\engine\C_db.cpp" />
+    <ClCompile Include="Data\engine\C_engine_hardware.cpp" />
+    <ClCompile Include="Data\engine\C_engine_software.cpp" />
+    <ClCompile Include="Data\engine\C_engine_tree.cpp" />
+    <ClCompile Include="Data\engine\C_tree.cpp" />
     <ClCompile Include="Data\menu\C_fabric_menu.cpp" />
     <ClCompile Include="Data\menu\C_menu.cpp" />
     <ClCompile Include="Data\menu\C_menu_base.cpp" />
@@ -140,6 +146,12 @@
     <ClInclude Include="Data\data\C_data_base.hpp" />
     <ClInclude Include="Data\data\C_date.hpp" />
     <ClInclude Include="Data\data\C_id.hpp" />
+    <ClInclude Include="Data\engine\C_aplication.hpp" />
+    <ClInclude Include="Data\engine\C_db.hpp" />
+    <ClInclude Include="Data\engine\C_engine_hardware.hpp" />
+    <ClInclude Include="Data\engine\C_engine_software.hpp" />
+    <ClInclude Include="Data\engine\C_engine_tree.hpp" />
+    <ClInclude Include="Data\engine\C_tree.hpp" />
     <ClInclude Include="Data\menu\C_fabric_menu.hpp" />
     <ClInclude Include="Data\menu\C_menu.hpp" />
     <ClInclude Include="Data\menu\C_menu_base.hpp" />
