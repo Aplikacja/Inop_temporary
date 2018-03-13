@@ -165,16 +165,33 @@ public:
 };
 
 int main() {
-	B b;
-	b.m_get(1);
-	b.m_get(13);
-	b.m_get(120);
-	A* a;
-	a = b.m_retu(1);
-	a->m_wiew();
-	a->m_update(15);
-	b.m_look_at(1).m_wiew();
-
+	std::ifstream Plik;
+	std::ofstream Plikk;
+	Plik.open("plik.txt");
+	if (Plik.good()) {
+		std::string a,b,c;
+		int i;
+		Plik >> i;
+		for (int j = 0; j < i; j++) {
+			Plik >> a;
+			b = a + ".cpp";
+			c = a + ".hpp";
+			Plikk.open(c.c_str());
+			if (Plikk.good()) {
+				Plikk << "#ifndef " << a << "\n" << "#define " << a << "\n\n" << "#endif // !" << a;
+				Plikk.close();
+			}
+			Plikk.open(b.c_str());
+			if (Plikk.good()) {
+				Plikk << "#include \"" << c << "\"" << "\n\n";
+				Plikk.close();
+			}
+		}
+		Plik.close();
+	}
+	char a[50];
+	std::cin >> a;
+	std::cout << "#infndef " << a << "\n" << "#define" << a << "\n\n" << "#endif // !" << a;
 
 	//HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	//Aplication A(plik);

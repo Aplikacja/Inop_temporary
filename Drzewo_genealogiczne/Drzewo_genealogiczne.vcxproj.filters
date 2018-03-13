@@ -13,10 +13,153 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Person">
+      <UniqueIdentifier>{63398ba5-97b0-45b9-96b3-c0787851e134}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Relation">
+      <UniqueIdentifier>{d571df18-217f-491d-8888-c69c0a2859ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Person">
+      <UniqueIdentifier>{df038124-b7f9-4b3b-ac2a-406b644d4aee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Relation">
+      <UniqueIdentifier>{a9ceb9f1-90e0-4844-8717-7b67dd580af0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menu">
+      <UniqueIdentifier>{e95f8fb8-ece1-4166-bc75-053644b99393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menu">
+      <UniqueIdentifier>{9c21bc60-9133-4d3f-a326-c47301eb210d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data">
+      <UniqueIdentifier>{3c09115e-3303-4ade-9413-d7f59b0faea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Data">
+      <UniqueIdentifier>{91dcdf5b-fa85-42a0-bcf0-045c845b7f4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Data\person\C_children.cpp">
+      <Filter>Resource Files\Person</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\person\C_partner.cpp">
+      <Filter>Resource Files\Person</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\person\C_perosn_base.cpp">
+      <Filter>Resource Files\Person</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\person\C_sibling.cpp">
+      <Filter>Resource Files\Person</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\person\C_perosn_null.cpp">
+      <Filter>Resource Files\Person</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\person\C_fabric_person.cpp">
+      <Filter>Resource Files\Person</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\relation\C_relation.cpp">
+      <Filter>Resource Files\Relation</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\relation\C_relation_base.cpp">
+      <Filter>Resource Files\Relation</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\relation\C_relationship.cpp">
+      <Filter>Resource Files\Relation</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\menu\C_fabric_menu.cpp">
+      <Filter>Resource Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\menu\C_menu.cpp">
+      <Filter>Resource Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\menu\C_menu_base.cpp">
+      <Filter>Resource Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\menu\C_menu_edition.cpp">
+      <Filter>Resource Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\menu\C_menu_glowne.cpp">
+      <Filter>Resource Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\menu\C_menu_tree.cpp">
+      <Filter>Resource Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\data\C_date.cpp">
+      <Filter>Resource Files\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\data\C_id.cpp">
+      <Filter>Resource Files\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\data\C_data_base.cpp">
+      <Filter>Resource Files\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\person\C_parent.cpp">
+      <Filter>Resource Files\Person</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Data\person\C_children.hpp">
+      <Filter>Header Files\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\person\C_fabric_person.hpp">
+      <Filter>Header Files\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\person\C_partner.hpp">
+      <Filter>Header Files\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\person\C_person_null.hpp">
+      <Filter>Header Files\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\person\C_person_base.hpp">
+      <Filter>Header Files\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\person\C_sibling.hpp">
+      <Filter>Header Files\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\relation\C_relation.hpp">
+      <Filter>Header Files\Relation</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\relation\C_relation_base.hpp">
+      <Filter>Header Files\Relation</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\relation\C_relationship.hpp">
+      <Filter>Header Files\Relation</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\menu\C_fabric_menu.hpp">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\menu\C_menu.hpp">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\menu\C_menu_base.hpp">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\menu\C_menu_edition.hpp">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\menu\C_menu_glowne.hpp">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\menu\C_menu_tree.hpp">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\data\C_data_base.hpp">
+      <Filter>Header Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\data\C_date.hpp">
+      <Filter>Header Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\data\C_id.hpp">
+      <Filter>Header Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\person\C_parent.hpp">
+      <Filter>Header Files\Person</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

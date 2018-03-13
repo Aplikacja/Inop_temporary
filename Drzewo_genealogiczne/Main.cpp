@@ -1,70 +1,106 @@
 #include <iostream>
 #include <string>
+#include <windows.h>
+#include <fstream>
 #include <vector>
+#include "Data\data\C_data_base.hpp"
+#include "Data\data\C_id.hpp"
+#include "Data\data\C_date.hpp"
+#include "Data\person\C_person_base.hpp"
+#include "Data\relation\C_relation_base.hpp"
+#include "Data\relation\C_relation.hpp"
+#include "Data\relation\C_relationship.hpp"
+#include "Data\menu\C_fabric_menu.hpp"
+#include "Data\menu\C_menu.hpp"
 //---------------------------------------------------------------------------------------------------------------------------------------
 //Przykladowe klasy do rozdzielenia na plii
-class C_data_base {
-protected:
-	long long ll_value;
-	bool b_pointer;
+
+
+typedef void(*f)(int&, int&, std::vector<int>&);
+void f_sterowanie(int& x, int& i_klucz, std::vector<int>& v_k);
+
+
+
+
+
+
+class Aplication {
+	C_menu M;
 public:
-	C_data_base() {}
-	C_data_base(const C_data_base& d);
-	void m_update(long long ll_update) { ll_value = ll_update; }
-	long long& m_return_value() { return ll_value; }
-	virtual void m_virtual() = 0;
-	bool& m_what() { return b_pointer; }
-	~C_data_base() {}
-};
-class C_id:public C_data_base {
-public:
-	C_id():C_data_base(){}
-	C_id(const C_id& id);
-	void m_virtual() {}; //klasa do rozbudowy
-	~C_id() {};
-};
-class C_date :public C_data_base {
-public:
-	C_date() :C_data_base() {};
-	C_date(const C_date& date);
-	void m_virtual() {};
-	std::string m_return_date() { std::string str; //dodanie algorytmu konwersji
-	return str;
-	}
-	~C_date() {}
-};
-class C_relation_base{
-protected:
-	C_id* id;
-	C_date* date;
-	std::vector<C_relation_base*> V;
-	bool b_value;
-public:
-	C_relation_base(C_id data) { id = new C_id;
-	*id = data;
+	Aplication(std::string what) {
+		m_load_file(what);
 	};
-	C_relation_base(C_id data, C_date Date) {
-		id = new C_id;
-		date = new C_date;
-		*id = data; *date = Date;
-	}
-	C_data_base* m_return(int i_value) {
-		switch (i_value)
+	void m_load_file(std::string s_file) {
+		std::ifstream file;
+		file.open(s_file.c_str());
+		if (file.good())
 		{
-		case 1: return id;
-		case 2: return date;
-		default: break;
+			int value, value_II, i, j, i_temp;
+			std::vector<std::vector<std::string>> V_s;
+			std::vector<std::vector<int>> v_klucze;
+			std::vector<int> v_k;
+			std::vector<bool> V_b;
+			std::vector<std::string> V_temp;
+			std::string s_temp;
+			bool b_temp;
+			file >> value;
+			for (i = 0; i < value; i++)
+			{
+				file >> value_II;
+				file >> b_temp;
+				V_b.push_back(b_temp);
+				V_temp.clear();
+				v_k.clear();
+				for (j = 0; j < value_II; j++)
+				{
+					file >> i_temp;
+					file >> s_temp;
+					v_k.push_back(i_temp);
+					V_temp.push_back(s_temp);
+				}
+				v_klucze.push_back(v_k);
+				V_s.push_back(V_temp);
+			}
+			M.m_loader(V_s, V_b, v_klucze); //ladowanie menu
+			file.close();
 		}
 	}
-	void m_set_baby(C_relation_base* relation) { V.push_back(relation); }
-	virtual void m_wiew() = 0;
-	~C_relation_base() {
-		if (id) delete id;
-		if (date) delete date;
+	void m_view() {
+		M.m_view(0);
 	}
+	~Aplication() {
+		//delete M;
+	}
+
+
 };
-
-
+class C_engine_hardware {
+public:
+	C_engine_hardware(){}
+	~C_engine_hardware(){}
+};
+class C_engine_software:public C_engine_hardware {
+public:	
+	C_engine_software(){}
+	~C_engine_software() {}
+};
+class C_engine_tree {
+public:	
+	C_engine_tree() {}
+	~C_engine_tree() {}
+};
+class C_tree {
+public:	
+	C_tree() {}
+	~C_tree() {}
+};
+class C_db {
+	std::vector<C_person_base*> V_person;
+public:
+	C_db(){}
+	~C_db() {}
+};
 int main() {
+
 	return 0;
 }
