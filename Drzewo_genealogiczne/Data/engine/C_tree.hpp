@@ -5,8 +5,8 @@
 #ifndef C_TREE_HPP
 #define C_TREE_HPP
 class C_tree {
-public:
+public: 
 	C_tree();
 	~C_tree();
 };
-#endif // !C_TREE_HPP
+#endif // !C_TREE_HPP 
