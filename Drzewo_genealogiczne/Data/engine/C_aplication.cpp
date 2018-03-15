@@ -43,7 +43,17 @@ void C_aplication::m_load_file(std::string s_file) {
 	}
 }
 void C_aplication::m_view() {
-	M.m_view(0);
+	int i_variable=0;
+	int i_klucz;
+	while (true) {
+		M.m_view(i_variable, i_klucz);
+		switch (i_klucz)
+		{
+		default:
+			i_variable = i_klucz;
+		}
+	}
+
 }
 C_aplication::~C_aplication() {
 	//delete M;

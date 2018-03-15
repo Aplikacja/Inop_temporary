@@ -9,7 +9,7 @@
 class C_Menu_glowne :public C_Menu_base {
 public:
 	C_Menu_glowne(std::vector<std::string> V, bool b, std::vector<int> v_k);
-	void m_view(int& i);
+	void m_view(int& i, int& i_klucz);
 	~C_Menu_glowne();
 };
 #endif // !C_MENU_GLOWNE_HPP

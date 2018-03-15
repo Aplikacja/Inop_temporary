@@ -11,8 +11,8 @@ class C_menu {
 	C_Menu_base** Tab_menu;
 public:
 	C_menu();
-	void m_loader(std::vector<std::vector<std::string>> v_s, std::vector<bool> v_b, std::vector<std::vector<int>> v_k);
-	void m_view(int i);
+	void m_loader(std::vector<std::vector<std::string>> v_s, std::vector<bool> v_b, std::vector<std::vector<int>> v_k); 
+	void m_view(int& i_variable, int& i_klucz);
 	~C_menu();
 };
 #endif // !C_MENU_HPP

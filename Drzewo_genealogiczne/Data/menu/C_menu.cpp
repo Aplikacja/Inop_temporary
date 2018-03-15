@@ -19,12 +19,10 @@ void C_menu::m_loader(std::vector<std::vector<std::string>> v_s, std::vector<boo
 		it++;
 	}
 }
-void C_menu::m_view(int i) {
-	for (int j = 0; j < 10; j++) { //na testy petla
-		if (i >= 0 && i < size) {
-			Tab_menu[i]->m_view(i); //do rozwoju trza zaprojektowac lejalt menu
+void C_menu::m_view(int& i_variable, int& i_klucz) {
+		if (i_variable >= 0 && i_variable < size) {
+			Tab_menu[i_variable]->m_view(i_variable, i_klucz); //do rozwoju trza zaprojektowac lejalt menu
 		}
-	}
 }
 C_menu::~C_menu() {
 	delete[]Tab_menu;

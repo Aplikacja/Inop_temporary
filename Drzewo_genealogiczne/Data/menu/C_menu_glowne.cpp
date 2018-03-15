@@ -4,23 +4,17 @@
 //**********************************************************************************************************************************************************//
 #include "C_menu_glowne.hpp"
 void f_sterowanie(int& x, int& i_klucz, std::vector<int>& v_k);
+void f_option_clear(HANDLE& h,COORD& pos,DWORD& Written);
+void f_clear(HANDLE& h, COORD& pos, DWORD& Written);
 C_Menu_glowne::C_Menu_glowne(std::vector<std::string> V, bool b, std::vector<int> v_k) :C_Menu_base(V, b, v_k) {}
-void C_Menu_glowne::m_view(int& i) {
-	int i_x=0;
-	int i_klucz=-10;
+void C_Menu_glowne::m_view(int& i, int& i_klucz) {
+	int i_x = 0;i_klucz = -10;
 	int ptr;
-	system("cls");
 	HANDLE h;
 	COORD pos = { 0,0 };
 	DWORD Written;
-	::HANDLE hConsoleOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
-	::CONSOLE_CURSOR_INFO hCCI;
-	::GetConsoleCursorInfo(hConsoleOut, &hCCI);
-	hCCI.bVisible = FALSE;
-	::SetConsoleCursorInfo(hConsoleOut, &hCCI);
-	h = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-	for (int y = 0; y < 10; y++) {
+	f_option_clear(h,pos,Written);
+	while (true) {
 		ptr = 0;
 		for (auto& x : V) {
 			if (ptr == i_x) {
@@ -34,10 +28,9 @@ void C_Menu_glowne::m_view(int& i) {
 			ptr++;
 
 		}
-		FillConsoleOutputCharacter(h, ' ', 0 * 0, pos, &Written);
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+		f_clear(h, pos, Written);
 		m_ruch(f_sterowanie, i_x, i_klucz, V_klucz); //dlaczego nie dziala
-		if (i_klucz > -1&&i_klucz<10) {
+		if (i_klucz > -1 && i_klucz<10) {
 			i = i_klucz; return;
 		}
 		else {
@@ -46,8 +39,8 @@ void C_Menu_glowne::m_view(int& i) {
 				system("cls"); //tylko na testy
 				std::cout << "wczytywanie\n";
 			}
-		}
-	}
+		};
+	};
 }
 C_Menu_glowne::~C_Menu_glowne() {};
 void f_sterowanie(int& x, int& i_klucz, std::vector<int>& v_k) {
@@ -75,4 +68,19 @@ void f_sterowanie(int& x, int& i_klucz, std::vector<int>& v_k) {
 			return;
 		}
 	}
+}
+void f_option_clear(HANDLE& h, COORD& pos, DWORD& Written) {
+	system("cls");
+
+	::HANDLE hConsoleOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
+	::CONSOLE_CURSOR_INFO hCCI;
+	::GetConsoleCursorInfo(hConsoleOut, &hCCI);
+	hCCI.bVisible = FALSE;
+	::SetConsoleCursorInfo(hConsoleOut, &hCCI);
+	h = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+}
+void f_clear(HANDLE& h, COORD& pos, DWORD& Written) {
+	FillConsoleOutputCharacter(h, ' ', 0 * 0, pos, &Written);
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }

@@ -14,7 +14,7 @@ protected:
 	bool b_dinamic;
 public:
 	C_Menu_base(std::vector<std::string> v, bool b_value, std::vector<int> v_k);
-	virtual void m_view(int& i) = 0;
+	virtual void m_view(int& i_variable,int& i_klucz) = 0;
 	void m_load(std::vector<std::string> v);
 	void m_ruch(void(*f)(int& x, int& i_klucz, std::vector<int>& v_k), int& i_klawisz, int& i_klucz, std::vector<int>& v_k);
 	virtual ~C_Menu_base();
