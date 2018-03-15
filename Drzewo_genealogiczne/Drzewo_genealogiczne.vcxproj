@@ -152,6 +152,7 @@
     <ClInclude Include="Data\engine\C_engine_software.hpp" />
     <ClInclude Include="Data\engine\C_engine_tree.hpp" />
     <ClInclude Include="Data\engine\C_tree.hpp" />
+    <ClInclude Include="Data\engine\define.hpp" />
     <ClInclude Include="Data\menu\C_fabric_menu.hpp" />
     <ClInclude Include="Data\menu\C_menu.hpp" />
     <ClInclude Include="Data\menu\C_menu_base.hpp" />

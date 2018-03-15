@@ -5,6 +5,7 @@
 //											mozliwosci wywolania metod klasy C_silnik_software. Klasa C_aplication przeladowuje klase C_menu				//
 //**********************************************************************************************************************************************************//
 #include "C_aplication.hpp"
+#include "define.hpp"
 
 C_aplication::C_aplication(std::string what) {
 	m_load_file(what);
@@ -52,6 +53,16 @@ void C_aplication::m_view() {
 		M.m_view(i_variable, i_klucz);
 		switch (i_klucz)
 		{
+		case load_files:
+			e_soft.m_load_files(); break;
+		case save_files:
+			e_soft.m_save_files();	break;
+		case add_person:
+			e_soft.m_add_person(); break;
+		case delete_person:
+			e_soft.m_delete_person(); break;
+		case update_person:
+			e_soft.m_update_person(); break;
 		default:
 			if(i_klucz<i_size) //zabezpiecza przed zawieszaniem menu
 			i_variable = i_klucz;
