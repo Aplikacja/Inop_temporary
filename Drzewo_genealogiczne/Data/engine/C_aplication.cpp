@@ -1,6 +1,8 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_aplication.cpp																									Data_utworzenia: 12-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
+// 15-03-2018				Lukasz			Dodanie petli nieskonczonej while(true) do metody m_view(). Utworzenie petli switch w celu umieszczenia w niej	//
+//											mozliwosci wywolania metod klasy C_silnik_software. Klasa C_aplication przeladowuje klase C_menu				//
 //**********************************************************************************************************************************************************//
 #include "C_aplication.hpp"
 
@@ -21,6 +23,7 @@ void C_aplication::m_load_file(std::string s_file) {
 		std::string s_temp;
 		bool b_temp;
 		file >> value;
+		i_size = value;
 		for (i = 0; i < value; i++)
 		{
 			file >> value_II;
@@ -50,6 +53,7 @@ void C_aplication::m_view() {
 		switch (i_klucz)
 		{
 		default:
+			if(i_klucz<i_size) //zabezpiecza przed zawieszaniem menu
 			i_variable = i_klucz;
 		}
 	}
