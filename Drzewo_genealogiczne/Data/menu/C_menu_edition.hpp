@@ -7,6 +7,7 @@
 #include "C_menu_base.hpp"
 class C_menu_edition :public C_Menu_base {
 	C_menu_edition(std::vector<std::string> V, bool b, std::vector<int> v_k);
+	void m_view(int& i) {}
 	~C_menu_edition();
 };
 #endif // !C_MENU_EDITION_HPP

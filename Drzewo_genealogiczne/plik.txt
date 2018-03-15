@@ -1,0 +1,14 @@
+4 3 0 
+1 Menu_glowne
+2 Opcje
+3 Wyjscie
+3 0
+4 Nowe_drezwo
+10 Wczytaj_drzewo
+0 Powrot
+1 0
+0 powrot
+3 0
+3 Czy_jestes_pewien
+9 tak
+1 Nie

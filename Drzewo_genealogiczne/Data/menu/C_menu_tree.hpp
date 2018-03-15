@@ -7,6 +7,7 @@
 #include "C_menu_base.hpp"
 class C_menu_tree :public C_Menu_base {
 	C_menu_tree(std::vector<std::string> V, bool b, std::vector<int> v_k);
+	void m_view(int& i) {}
 	~C_menu_tree();
 };
 #endif // !C_MENU_TREE_HPP
