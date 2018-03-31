@@ -139,7 +139,6 @@
     <ClCompile Include="Data\person\C_sibling.cpp" />
     <ClCompile Include="Data\relation\C_relation.cpp" />
     <ClCompile Include="Data\relation\C_relationship.cpp" />
-    <ClCompile Include="Data\relation\C_relation_base.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,10 +167,12 @@
     <ClInclude Include="Data\person\C_sibling.hpp" />
     <ClInclude Include="Data\relation\C_relation.hpp" />
     <ClInclude Include="Data\relation\C_relationship.hpp" />
-    <ClInclude Include="Data\relation\C_relation_base.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

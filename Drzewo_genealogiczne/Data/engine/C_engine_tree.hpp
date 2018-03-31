@@ -6,7 +6,7 @@
 #define C_ENGINE_TREE_HPP
 class C_engine_tree {
 public:
-	C_engine_tree();
-	~C_engine_tree();
+	C_engine_tree(); //konstruktor
+	~C_engine_tree(); //destruktor
 };
 #endif // !C_ENGINE_TREE_HPP

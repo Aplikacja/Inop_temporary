@@ -7,15 +7,19 @@
 //**********************************************************************************************************************************************************//
 #ifndef C_ENGINE_HARDWARE_HPP
 #define C_ENGINE_HARDWARE_HPP
+#include "define.hpp"
+#include "../person/C_person_base.hpp"
 #include "C_db.hpp"
 #include "C_tree.hpp"
 class C_engine_hardware {
-	C_db d_Database;
-	C_tree t_tree;
+protected:
+	C_db d_Database; //baza danych
+	C_tree t_tree; //drzewo - to cos bedzie realizowac algorytm poruszania sie po drzewie
 public:
-	C_engine_hardware();
+	C_engine_hardware(); //konstruktor
 	void m_load_files(); //metoda do przebudowy
 	void m_save_files();	//metoda do przebudowy
-	~C_engine_hardware();
+	void m_sort(bool(*F)(C_person_base* _left, C_person_base* _right)); //metoda do sortowania bazy danych
+	~C_engine_hardware(); //destruktor
 };
 #endif // !C_ENGINE_HARDWARE_HPP

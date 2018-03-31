@@ -8,6 +8,7 @@
 #include "C_menu_edition.hpp"
 #include "C_menu_glowne.hpp"
 #include "C_menu_tree.hpp"
+#include "../person/C_person_base.hpp"
 #include <vector>
 #include <string>
 class C_fabric_menu {

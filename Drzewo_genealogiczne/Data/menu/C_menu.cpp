@@ -19,10 +19,24 @@ void C_menu::m_loader(std::vector<std::vector<std::string>> v_s, std::vector<boo
 		it++;
 	}
 }
-void C_menu::m_view(int& i_variable, int& i_klucz) {
+void C_menu::m_view(int& i_variable, int& i_klucz, int i_choice) {
 		if (i_variable >= 0 && i_variable < size) {
-			Tab_menu[i_variable]->m_view(i_variable, i_klucz); //do rozwoju trza zaprojektowac lejalt menu
+			Tab_menu[i_variable]->m_view(i_variable, i_klucz, i_choice); //do rozwoju trza zaprojektowac lejalt menu
 		}
+}
+void C_menu::m_set_content(std::list<C_person_base*>& Lista) {
+	lista = Lista;
+	std::string s_data;
+	std::vector<std::string> V_content;
+	int i_iter;
+	for (auto& X : lista) {
+		s_data.clear();
+		X->m_conwert(s_data);
+		V_content.push_back(s_data);
+	}
+	for (i_iter = 0; i_iter < size; i_iter++) {
+		Tab_menu[i_iter]->m_set_content(V_content);
+	}
 }
 C_menu::~C_menu() {
 	delete[]Tab_menu;

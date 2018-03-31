@@ -1,22 +1,21 @@
-#include <iostream>
-#include <string>
-#include <windows.h>
-#include <fstream>
-#include <vector>
-#include "Data\data\C_data_base.hpp"
-#include "Data\data\C_id.hpp"
-#include "Data\data\C_date.hpp"
-#include "Data\person\C_person_base.hpp"
-#include "Data\relation\C_relation_base.hpp"
-#include "Data\relation\C_relation.hpp"
-#include "Data\relation\C_relationship.hpp"
-#include "Data\menu\C_fabric_menu.hpp"
-#include "Data\menu\C_menu.hpp"
+
 #include "Data\engine\C_aplication.hpp"
 //---------------------------------------------------------------------------------------------------------------------------------------
 //Przykladowe klasy do rozdzielenia na plii
 
 int main() {
+
+	C_date D,T;
+	D.m_active();
+	T.m_active();
+	int day = 12;
+	int month = 10;
+	int year = 0;
+	std::string str;
+	D.m_apped(day, month, year);
+	str = "dupa";
+	D.m_sidle(str);
+	D.m_sidle(day, month, year);
 	C_aplication A("plik.txt");
 	A.m_view();
 	return 0;

@@ -12,9 +12,9 @@ class C_aplication {
 	C_engine_software e_soft;
 	int i_size;
 public:
-	C_aplication(std::string what);
-	void m_load_file(std::string s_file);
-	void m_view();
-	~C_aplication();
+	C_aplication(std::string what); //konstruktor
+	void m_load_file(std::string s_file); //metoda wczytujaca dane
+	void m_view(); //metoda do wyswietlania
+	~C_aplication(); //destruktor
 };
 #endif // !C_APLICATION_HPP

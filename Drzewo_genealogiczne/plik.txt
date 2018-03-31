@@ -2,9 +2,10 @@
 1 Menu_glowne
 2 Opcje
 3 Wyjscie
-3 0
-4 Nowe_drezwo
+4 0
+70 Wyswietl
 10 Wczytaj_drzewo
+11 Zapisz_drzewo
 0 Powrot
 1 0
 0 powrot

@@ -8,10 +8,10 @@
 #include "C_data_base.hpp"
 class C_id :public C_data_base {
 public:
-	C_id();
-	C_id(long long ll_var);
-	void m_active();
+	C_id(); //konstruktor
+	C_id(long long ll_var); //konstruktor parametrowy wstawia wartosc z long long ll_var do long long ll_value
+	void m_giving(long long& ll_iterator); //metoda przepisujaca wartosc z long long ll_iterator do long long ll_value
 	void m_virtual(); //klasa do rozbudowy
-	~C_id();
+	~C_id(); //destruktor
 };
 #endif // !C_ID_HPP

@@ -6,8 +6,8 @@
 #define C_MENU_EDITION_HPP
 #include "C_menu_base.hpp"
 class C_menu_edition :public C_Menu_base {
-	C_menu_edition(std::vector<std::string> V, bool b, std::vector<int> v_k);
-	void m_view(int& i) {}
-	~C_menu_edition();
+	C_menu_edition(std::vector<std::string> V, bool b, std::vector<int> v_k); //konstruktor
+	void m_view(int& i) {} //metoda do wyswietlania
+	~C_menu_edition(); //destruktor
 };
 #endif // !C_MENU_EDITION_HPP

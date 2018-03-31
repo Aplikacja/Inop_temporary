@@ -49,23 +49,37 @@ void C_aplication::m_load_file(std::string s_file) {
 void C_aplication::m_view() {
 	int i_variable=0;
 	int i_klucz;
+	int i_choice = 1;
 	while (true) {
-		M.m_view(i_variable, i_klucz);
+		M.m_view(i_variable, i_klucz,i_choice);
 		switch (i_klucz)
 		{
-		case load_files:
-			e_soft.m_load_files(); break;
-		case save_files:
-			e_soft.m_save_files();	break;
-		case add_person:
-			e_soft.m_add_person(); break;
-		case delete_person:
-			e_soft.m_delete_person(); break;
-		case update_person:
-			e_soft.m_update_person(); break;
-		default:
-			if(i_klucz<i_size) //zabezpiecza przed zawieszaniem menu
-			i_variable = i_klucz;
+			case load_files:
+				e_soft.m_load_files();
+				break;
+			case save_files:
+				e_soft.m_save_files();	
+				break;
+			case add_person:
+			//	e_soft.m_add_person(); 
+				break;
+			case delete_person:
+			//	e_soft.m_delete_person(); 
+				break;
+			case update_person:
+			//	e_soft.m_update_person();
+				break;
+			case 70: {
+				C_id data;
+				data.m_update(2);
+				std::list<C_person_base*> lista;
+				e_soft.m_view(view_search, sort_id,data, lista);
+					M.m_set_content(lista);
+					i_choice = 2;
+			}break;
+			default:
+				if(i_klucz<i_size) //zabezpiecza przed zawieszaniem menu
+				i_variable = i_klucz;
 		}
 	}
 

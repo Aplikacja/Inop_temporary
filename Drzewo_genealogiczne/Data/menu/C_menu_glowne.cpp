@@ -10,35 +10,66 @@ void f_sterowanie(int& x, int& i_klucz, std::vector<int>& v_k);
 void f_option_clear(HANDLE& h,COORD& pos,DWORD& Written);
 void f_clear(HANDLE& h, COORD& pos, DWORD& Written);
 C_Menu_glowne::C_Menu_glowne(std::vector<std::string> V, bool b, std::vector<int> v_k) :C_Menu_base(V, b, v_k) {}
-void C_Menu_glowne::m_view(int& i, int& i_klucz) {
+void C_Menu_glowne::m_view(int& i, int& i_klucz,int i_choice) {
 	int i_x = 0;
 	int ptr;
 	HANDLE h;
 	COORD pos = { 0,0 };
 	DWORD Written;
-	i_klucz = -1;
-	f_option_clear(h,pos,Written);
-	while (true) {
-		ptr = 0;
-		for (auto& x : V) {
-			if (ptr == i_x) {
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-				printf(x.c_str()); printf("\n");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-				ptr++;
-				continue;
-			}
-			printf(x.c_str()); printf("\n");
-			ptr++;
+	switch (i_choice) {
+		case 1: {
+			i_klucz = -1;
+			f_option_clear(h, pos, Written);
+			while (true) {
+				ptr = 0;
+				for (auto& x : V) {
+					if (ptr == i_x) {
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+						printf(x.c_str()); printf("\n");
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+						ptr++;
+						continue;
+					}
+					printf(x.c_str()); printf("\n");
+					ptr++;
 
-		}
-		f_clear(h, pos, Written);
-		m_ruch(f_sterowanie, i_x, i_klucz, V_klucz); //dlaczego nie dziala
-		if (i_klucz > -1) {
-			//i = i_klucz; //tu sie zawieszalo
-			return;
-		}
-	};
+				}
+				f_clear(h, pos, Written);
+				m_ruch(f_sterowanie, i_x, i_klucz, V_klucz); //dlaczego nie dziala
+				if (i_klucz > -1) {
+					//i = i_klucz; //tu sie zawieszalo
+					return;
+				}
+			};
+		}break;
+		case 2:
+		{
+			i_klucz = -1;
+			f_option_clear(h, pos, Written);
+			while (true) {
+				ptr = 0;
+				for (auto& x : V_content) {
+					if (ptr == i_x) {
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+						printf(x.c_str()); printf("\n");
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+						ptr++;
+						continue;
+					}
+					printf(x.c_str()); printf("\n");
+					ptr++;
+
+				}
+				f_clear(h, pos, Written);
+				m_ruch(f_sterowanie, i_x, i_klucz, V_klucz); //dlaczego nie dziala
+				if (i_klucz > -1) {
+					//i = i_klucz; //tu sie zawieszalo
+					return;
+				}
+			};
+		}break;
+		default: break;
+	}
 }
 C_Menu_glowne::~C_Menu_glowne() {};
 void f_sterowanie(int& x, int& i_klucz, std::vector<int>& v_k) {

@@ -6,7 +6,7 @@
 #define C_TREE_HPP
 class C_tree {
 public: 
-	C_tree();
-	~C_tree();
+	C_tree(); //konstruktor
+	~C_tree(); //destruktor
 };
 #endif // !C_TREE_HPP 

@@ -69,9 +69,6 @@
     <ClCompile Include="Data\relation\C_relation.cpp">
       <Filter>Resource Files\Relation</Filter>
     </ClCompile>
-    <ClCompile Include="Data\relation\C_relation_base.cpp">
-      <Filter>Resource Files\Relation</Filter>
-    </ClCompile>
     <ClCompile Include="Data\relation\C_relationship.cpp">
       <Filter>Resource Files\Relation</Filter>
     </ClCompile>
@@ -146,9 +143,6 @@
     <ClInclude Include="Data\relation\C_relation.hpp">
       <Filter>Header Files\Relation</Filter>
     </ClInclude>
-    <ClInclude Include="Data\relation\C_relation_base.hpp">
-      <Filter>Header Files\Relation</Filter>
-    </ClInclude>
     <ClInclude Include="Data\relation\C_relationship.hpp">
       <Filter>Header Files\Relation</Filter>
     </ClInclude>
@@ -206,5 +200,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
 </Project>
