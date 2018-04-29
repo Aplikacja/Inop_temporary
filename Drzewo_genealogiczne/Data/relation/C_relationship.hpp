@@ -27,6 +27,7 @@ public:
 	void m_get_id(C_id& ID); //metoda pozwalajaca do pozyskiwania id z obiektów typu C_relationship
 	C_relation m_return(int i_value); //metoda zwaracajaca relacje "dziecko"
 	void m_set_baby(C_relation relation); //metoda do dodawanaia relacji typu "dziecko"
+	void m_get_baby(std::vector<C_relation>& V_baby);
 	~C_relationship(); //destruktor
 };
 #endif // !C_RELATIONSHIP_HPP

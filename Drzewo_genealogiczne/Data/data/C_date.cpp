@@ -41,7 +41,6 @@ void C_date::m_sidle(std::string& s_date) {
 	s_date.clear();
 	long long i_variable = ll_value;
 	int i_cykl;
-	int i_result;
 	int i_cykl_1 = 7;
 	for (i_cykl = 8; i_cykl > 0; i_cykl--) {
 		s_date += (char)(int)((i_variable % (int)pow(10, i_cykl)) / pow(10, i_cykl_1)) % 10 + (int)'0';

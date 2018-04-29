@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>EXAMPLE_MACRO_NAME;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,6 +130,7 @@
     <ClCompile Include="Data\menu\C_menu_base.cpp" />
     <ClCompile Include="Data\menu\C_menu_edition.cpp" />
     <ClCompile Include="Data\menu\C_menu_glowne.cpp" />
+    <ClCompile Include="Data\menu\C_menu_search.cpp" />
     <ClCompile Include="Data\menu\C_menu_tree.cpp" />
     <ClCompile Include="Data\person\C_fabric_person.cpp" />
     <ClCompile Include="Data\person\C_parent.cpp" />
@@ -157,6 +159,7 @@
     <ClInclude Include="Data\menu\C_menu_base.hpp" />
     <ClInclude Include="Data\menu\C_menu_edition.hpp" />
     <ClInclude Include="Data\menu\C_menu_glowne.hpp" />
+    <ClInclude Include="Data\menu\C_menu_search.hpp" />
     <ClInclude Include="Data\menu\C_menu_tree.hpp" />
     <ClInclude Include="Data\person\C_fabric_person.hpp" />
     <ClInclude Include="Data\person\C_parent.hpp" />
@@ -173,6 +176,7 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="ClassDiagram3.cd" />
+    <None Include="ClassDiagram4.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

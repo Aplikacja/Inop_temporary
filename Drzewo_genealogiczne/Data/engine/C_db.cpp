@@ -50,7 +50,6 @@ void C_db::m_load(std::ifstream& is) {
 			V_rs.push_back(relationship);
 		}
 		L_person.push_back(new C_person_null(id,b_SEX, s_first, s_secend, dat_first, dat_secend,V_r,V_rs));
-
 	}
 }
 C_db::~C_db() {}
@@ -527,4 +526,9 @@ int f_sprawdzanie_gora(int& i_SIZE, int& i_iterator, int& i_size) {
 		else
 			return 3;
 	}
+}
+void C_db::m_search_specjal(C_id Person, std::list<C_person_base*>& List) { //metoda do wyszukiwania specjalnego
+	//wyszukiwanie id desaktywnego!!!
+
+
 }

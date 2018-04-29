@@ -5,7 +5,7 @@
 //											mozliwosci wywolania metod klasy C_silnik_software. Klasa C_aplication przeladowuje klase C_menu				//
 //**********************************************************************************************************************************************************//
 #include "C_aplication.hpp"
-#include "define.hpp"
+
 
 C_aplication::C_aplication(std::string what) {
 	m_load_file(what);
@@ -15,72 +15,243 @@ void C_aplication::m_load_file(std::string s_file) {
 	file.open(s_file.c_str());
 	if (file.good())
 	{
-		int value, value_II, i, j, i_temp;
-		std::vector<std::vector<std::string>> V_s;
+		int value, value_II, i, j,k, i_temp;
+		std::vector<std::vector<std::string>> V_string;
 		std::vector<std::vector<int>> v_klucze;
+		std::vector<std::vector<std::vector<int>>> V_procedur;
+		std::vector<std::vector<int>> V_proces;
 		std::vector<int> v_k;
+		std::vector<int> v_proc;
 		std::vector<bool> V_b;
+		std::vector<int> V_start;
 		std::vector<std::string> V_temp;
+		std::vector<int> V_typ_menu;
 		std::string s_temp;
+		int i_temp_II;
+		int i_typ_menu;
+		int i_temp_procedur;
+		int i_size_procedur;
 		bool b_temp;
+		V_str.resize(2);
+		V_str[1].resize(1);
 		file >> value;
 		i_size = value;
 		for (i = 0; i < value; i++)
 		{
+			file >> i_typ_menu;
 			file >> value_II;
 			file >> b_temp;
+			file >> i_temp_II;
 			V_b.push_back(b_temp);
+			V_typ_menu.push_back(i_typ_menu);
 			V_temp.clear();
+			V_proces.clear();
 			v_k.clear();
 			for (j = 0; j < value_II; j++)
 			{
 				file >> i_temp;
-				file >> s_temp;
+				file >> i_size_procedur;
+				v_proc.clear();
+				for (k = 0; k < i_size_procedur; k++) {
+					file >> i_temp_procedur;
+					v_proc.push_back(i_temp_procedur);
+				}
+				s_temp.clear();
+				getline(file, s_temp);
 				v_k.push_back(i_temp);
 				V_temp.push_back(s_temp);
+				V_proces.push_back(v_proc);
 			}
+			V_procedur.push_back(V_proces);
 			v_klucze.push_back(v_k);
-			V_s.push_back(V_temp);
+			V_string.push_back(V_temp);
+			V_start.push_back(i_temp_II);
+			V_str[0] = V_string;
 		}
-		M.m_loader(V_s, V_b, v_klucze); //ladowanie menu
+		M.m_loader(V_string, V_b, v_klucze, V_procedur, V_start, V_typ_menu); //ladowanie menu
+		for (j = 0; j < value; j++) {
+			M.m_set_str(j, V_str);
+		}
 		file.close();
 	}
 }
 void C_aplication::m_view() {
 	int i_variable=0;
 	int i_klucz;
+	std::vector<int> V_proces;
 	int i_choice = 1;
 	while (true) {
-		M.m_view(i_variable, i_klucz,i_choice);
-		switch (i_klucz)
-		{
-			case load_files:
-				e_soft.m_load_files();
-				break;
-			case save_files:
-				e_soft.m_save_files();	
-				break;
-			case add_person:
-			//	e_soft.m_add_person(); 
-				break;
-			case delete_person:
-			//	e_soft.m_delete_person(); 
-				break;
-			case update_person:
-			//	e_soft.m_update_person();
-				break;
-			case 70: {
-				C_id data;
-				data.m_update(2);
-				std::list<C_person_base*> lista;
-				e_soft.m_view(view_search, sort_id,data, lista);
+		M.m_view(i_variable, i_klucz, V_proces,i_choice);
+		for (auto& X : V_proces) {
+			switch (X)
+			{
+				case 100:
+					return;
+				case load_files: {
+					e_soft.m_load_tree();
+					i_variable = 4;
+				}break;
+				case save_files:
+					e_soft.m_save_files();
+					break;
+				case add_person:
+					//	e_soft.m_add_person(); 
+					break;
+				case delete_person:
+					//	e_soft.m_delete_person(); 
+					break;
+				case update_person:
+					//	e_soft.m_update_person();
+					break;
+				case new_tree: {
+					bool b_what = true;
+					std::string s_str;
+					i_variable =2;
+					M.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
+					e_soft.m_add_tree(V_str[1][0][0], b_what);
+					if (b_what) {
+						std::cout << "Tworzenie nowego drzewa!";
+						//i_variable = ; <- przeladowanie do kolejnego menu
+						//break;
+					}
+
+				}break;
+				case search_tree: {
+					std::string s_str;
+					std::vector<std::string> V_string;
+					e_soft.m_get_tree(V_string);
+					V_str[1][0] = V_string;
+					M.m_set_str(i_klucz, V_str); //ladowanie menu nazwami drzew
+					M.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
+					s_str += ".tree";
+					e_soft.m_load_files(s_str);
+					s_str;
+				}break;
+				case delete_tree: {
+					e_soft.m_delete_tree(*(V_str[1][0].begin()));
+					i_variable = search_tree; //<- przelaczenie na odpowiednie menu
+				}break;
+				case load_content_tree: {
+					e_soft.m_load_files(*(V_str[1][0].begin()));
+					i_variable = search; //<-przelaczenie do menu wyszukiwania persona
+				}break;
+				case tree: {
+					//----------------czytanie persona----------------------------------
+					C_id data;
+					C_person_base *person;
+					std::vector<std::list<C_person_base*>> V_lista;
+					V_lista.resize(4);
+					std::list<C_person_base*> lista_temp;
+					C_fabric_person Fabric;
+					C_id ID;
+					C_id id;
+					std::string s_first_name;
+					std::string s_last_name;
+					C_date d_brith;
+					C_date d_death;
+					bool b_sex;
+					int i_typ;
+					std::vector<int> V_k;
+					std::vector<C_relation> V_relation;
+					std::vector<C_relationship> V_relationship;
+					std::vector<C_relation> V_relation_temp;
+					std::vector<C_relationship> V_relationship_temp;
+					e_soft.m_view(view_search, sort_id, data, lista_temp);
+					person = *lista_temp.begin();
+					for (auto& x : lista_temp) {
+						delete x;
+					}
+					V_lista.clear();
+					person->m_get_V_relation(V_relation);
+					person->m_get_V_relationship(V_relationship);
+					person->m_get_id(ID);
+					for (auto& x_relation : V_relation) {
+						x_relation.m_get_id(id);
+						x_relation.m_get_typ(i_typ);
+						e_soft.m_view(view_search, sort_id, id, lista_temp);
+						//rozkladanie danmych persona na poszczegolne wartosci
+						person = *lista_temp.begin();
+						person->m_get_first_name(s_first_name);
+						person->m_get_last_name(s_last_name);
+						person->m_get_date(D_brith, d_brith);
+						person->m_get_date(D_death, d_brith);
+						person->m_get_sex(b_sex);
+						person->m_get_V_relation(V_relation_temp);
+						person->m_get_V_relationship(V_relationship_temp);
+						//na razie wszystko jest do jednej listy trzeba to ulepszyc
+						if (i_typ == r_parents)
+							V_lista[0].push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
+						else
+							V_lista[1].push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
+
+					}
+					for (auto& x_relationship : V_relationship) {
+						std::list<C_person_base*> lista;
+						x_relationship.m_get_id(id);
+						x_relationship.m_get_typ(i_typ);
+						e_soft.m_view(view_search, sort_id, id, lista_temp);
+						//rozkladanie danmych persona na poszczegolne wartosci
+						person = *lista_temp.begin();
+						person->m_get_first_name(s_first_name);
+						person->m_get_last_name(s_last_name);
+						person->m_get_date(D_brith, d_brith);
+						person->m_get_date(D_death, d_brith);
+						person->m_get_sex(b_sex);
+						person->m_get_V_relation(V_relation_temp);
+						person->m_get_V_relationship(V_relationship_temp);
+						//na razie wszystko jest do jednej listy trzeba to ulepszyc
+						V_lista[3].push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
+						x_relationship.m_get_baby(V_relation_temp);
+						for (auto& x_relation : V_relation) {
+							x_relation.m_get_id(id);
+							x_relation.m_get_typ(i_typ);
+							e_soft.m_view(view_search, sort_id, id, lista_temp);
+							//rozkladanie danmych persona na poszczegolne wartosci
+							person = *lista_temp.begin();
+							person->m_get_first_name(s_first_name);
+							person->m_get_last_name(s_last_name);
+							person->m_get_date(D_brith, d_brith);
+							person->m_get_date(D_death, d_brith);
+							person->m_get_sex(b_sex);
+							person->m_get_V_relation(V_relation_temp);
+							person->m_get_V_relationship(V_relationship_temp);
+							//na razie wszystko jest do jednej listy trzeba to ulepszyc
+							lista.push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
+						}
+						V_lista.push_back(lista);
+					}
+					M.m_set_content_person(0, V_lista); // numer wskazuje na odpowiednie menu!!!
+				}break;
+				case 70: {
+					//	case search: {
+					C_id data;
+					std::string s_str;
+					std::string s_temp;
+					//int i;
+					data.m_update(2);
+					std::list<C_person_base*> lista;
+					e_soft.m_get_list_person_orginal(lista);
+				//	e_soft.m_view(view_search, sort_id, data, lista);
 					M.m_set_content(lista);
+					i_choice = 3;
+					M.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
+					C_id ID(atoi(s_str.c_str()));
+					e_soft.m_view(view_search, sort_id, ID, lista);  //do tego momentu jest dobrze
+					std::cin >> s_temp;
 					i_choice = 2;
-			}break;
-			default:
-				if(i_klucz<i_size) //zabezpiecza przed zawieszaniem menu
-				i_variable = i_klucz;
+					//-----wrazie czego------
+					//for (auto& x : lista) {
+					//	delete x;
+				//	}
+				//	lista.clear();
+					//----------------------
+				}break;
+				default:
+					break;
+				}
 		}
+		if (i_klucz < i_size) //zabezpiecza przed zawieszaniem menu
+			i_variable = i_klucz;
 	}
 
 }

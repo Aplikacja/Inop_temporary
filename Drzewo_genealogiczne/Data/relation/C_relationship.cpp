@@ -47,4 +47,9 @@ C_relation C_relationship::m_return(int i_value) {
 		return relation;
 	}
 }
-void C_relationship::m_set_baby(C_relation relation) {}
+void C_relationship::m_set_baby(C_relation relation) {
+	V.push_back(relation);
+}
+void C_relationship::m_get_baby(std::vector<C_relation>& relation) {
+	relation = V;
+}

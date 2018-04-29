@@ -120,6 +120,9 @@
     <ClCompile Include="Data\engine\C_aplication.cpp">
       <Filter>Resource Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Data\menu\C_menu_search.cpp">
+      <Filter>Resource Files\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data\person\C_children.hpp">
@@ -197,11 +200,15 @@
     <ClInclude Include="Data\engine\define.hpp">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Data\menu\C_menu_search.hpp">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="ClassDiagram3.cd" />
+    <None Include="ClassDiagram4.cd" />
   </ItemGroup>
 </Project>

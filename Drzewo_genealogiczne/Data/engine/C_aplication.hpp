@@ -6,10 +6,13 @@
 #define C_APLICATION_HPP
 #include "../menu/C_menu.hpp"
 #include "C_engine_software.hpp"
+#include "define.hpp"
 #include <fstream>
+#include <cstdio>
 class C_aplication {
 	C_menu M;
 	C_engine_software e_soft;
+	std::vector<std::vector<std::vector<std::string>>> V_str; //vector vectorow stringow pomocniczy
 	int i_size;
 public:
 	C_aplication(std::string what); //konstruktor

@@ -116,3 +116,6 @@ void C_engine_software::m_view(int i_typ, int i_var, std::string Person, std::li
 	}
 
 }
+void C_engine_software::m_get_list_person_orginal(std::list<C_person_base*>& list) {
+	d_Database.m_get(list);
+}
