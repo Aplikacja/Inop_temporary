@@ -23,7 +23,6 @@ void C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result
 	V_k = *V_klucz_.begin();
 	switch (i_choice) {
 	case 1: {
-	
 		f_option_clear(h, pos, Written);
 		while (true) {
 			ptr = 0;
@@ -47,9 +46,11 @@ void C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result
 					s_result = s_working;
 					V_proces = V_procedur_[0];
 					return;
-				case -1: {
+				case -2: {
 					//zaimplementowane do cofania sie do poprzedniego menu
-					return; }
+				//	return; 
+					break;
+				}
 				default:
 					break;
 				}

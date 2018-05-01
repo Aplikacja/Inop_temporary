@@ -33,11 +33,17 @@ void C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 
 				}
 				f_clear(h, pos, Written);
-				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); //dlaczego nie dziala
-				if (i_klucz > -1) {
-					//i = i_klucz; //tu sie zawieszalo
-					V_proces = V_procedur_[i_x];
-					return;
+				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); 
+				switch (i_klucz) {
+				case -2: {  //zaimplementowanie na powrut do porezdniego menu
+							//	return; 
+					break;
+				}
+				default:
+					if (i_klucz > -1) {
+						V_proces = V_procedur_[i_x];
+						return;
+					}
 				}
 			};
 		}break;
@@ -64,7 +70,8 @@ void C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); 
 				switch (i_klucz) {
 				case -2: {  //zaimplementowanie na powrut do porezdniego menu
-					return;
+							//	return; 
+					break;
 				}
 				default:
 					if (i_klucz > -1) {
@@ -72,7 +79,6 @@ void C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 						return;
 					}
 				}
-				
 			};
 		}break;
 		default: break;

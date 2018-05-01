@@ -19,7 +19,6 @@ C_menu_base::C_menu_base( std::vector<std::vector<std::string>>& v, bool b_value
 	V_klucz_ = v_k;
 	V_procedur_ = V_proc;
 	i_start_ = i_iterator;
-	//zmienne porezbne do lepszego obslugiwania konsoli
 };
 void C_menu_base::m_load( std::vector<std::vector<std::vector<std::string>>> V) {
 	if (b_dinamic_)
@@ -70,7 +69,9 @@ void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k) {
 		case vkreturn:
 			i_klucz = v_k[x];
 			return;
-		case vkescape: break; //miejsce na zaimplementowanie powrotu
+		case vkescape: 
+			i_klucz = -2;
+			return; 
 		}
 	}
 }
@@ -96,7 +97,9 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 				i_start = 0;
 				s_klucz = v_k[x];
 				return;
-			case vkescape: break; //miejsce na zaimplementowanie powrotu
+			case vkescape: 
+				i_start = -2;
+				return; 
 			}
 	}
 }
@@ -123,7 +126,9 @@ void f_sterowanie(int& x, std::string& s_klucz,std::string& s_message, int& i_st
 			i_start = 0;
 			s_klucz = v_k[x];
 			return;
-		case vkescape: break; //miejsce na zaimplementowanie powrotu
+		case vkescape:
+			i_start = -2;
+			return; 
 		case vkdelete:
 			s_message.pop_back();	return;
 		case vka:
@@ -376,23 +381,5 @@ inline void f(int i_klawisz, int i_value, unsigned int& i_return) {
 inline void f_pouse() {
 	Sleep(150);
 }
-
-
-//int main() {
-//	std::string data;
-//	int i = 0;
-//	char c_message;
-//	while (true) {
-//		i++;
-//		Sleep(150);
-//		f_obsluga_zadzren_alfabetycznych(c_message);
-//		system("cls");
-//		data += c_message;
-//		std::cout << data;
-//		if (i == 20) { data.clear(); i = 0; }
-//	}
-//
-//	return 0;
-//}
 
 

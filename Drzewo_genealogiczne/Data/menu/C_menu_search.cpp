@@ -39,9 +39,10 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 					s_result = s_temp;
 					V_proces = V_procedur_[0];
 					return; }
-				case -1: {
+				case -2: {
 					//zaimplementowane do cofania sie do poprzedniego menu
-					return; }
+					//	return; 
+					break; }
 				default:
 					break;
 				}
@@ -75,9 +76,10 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 					s_result = ss.str();
 					V_proces = V_procedur_[0];
 					return; }
-				case -1: {
+				case -2: {
 								//zaimplementowane do cofania sie do poprzedniego menu
-					return; }
+								//	return; 
+					break; }
 				default:
 					break;
 				}
@@ -110,9 +112,10 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 					s_result = s_temp;
 					V_proces = V_procedur_[0];
 					return; }
-				case -1: {
+				case -2: {
 					//zaimplementowane do cofania sie do poprzedniego menu
-					return; }
+					//	return; 
+					break; }
 				default:
 					break;
 				}
