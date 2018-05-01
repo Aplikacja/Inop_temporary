@@ -3,7 +3,7 @@
 0 0 Menu glowne
 4 2 10 17 Wczytaj drzewo
 2 1 18 Nowe drzewo
-3 0 Wyjscie
+3 1 100 Wyjscie
 1 5 0 1
 0 0 0 Menu Wyboru
 4 0 Wyswietl
@@ -17,4 +17,4 @@
 0 1 100 tak
 0 0 Nie
 2 1 0 1
-0 2 21 0 Wybieraj:
+0 1 21  Wybieraj:

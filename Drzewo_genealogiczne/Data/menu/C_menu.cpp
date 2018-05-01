@@ -33,14 +33,16 @@ void C_menu::m_loader(std::vector<std::vector<std::string>>& v_s, std::vector<bo
 		it++;
 	}
 }
-void C_menu::m_view(int i_id_menu,int& i_variable, int& i_klucz,std::vector<int>& V_proces, int& i_choice) {
-		if (i_variable >= 0 && i_variable < i_size) {
-			Tab_menu_[i_variable]->m_view(i_id_menu,i_variable, i_klucz, V_proces, i_choice); //do rozwoju trza zaprojektowac lejalt menu
-		}
-}
-void C_menu::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
+bool C_menu::m_view(int i_id_menu,int& i_variable, int& i_klucz,std::vector<int>& V_proces, int& i_choice) {
+	
 	if (i_variable >= 0 && i_variable < i_size) {
-		Tab_menu_[i_variable]->m_view(i_id_menu,i_variable,s_result, i_klucz, V_proces, i_choice); //do rozwoju trza zaprojektowac lejalt menu
+		return Tab_menu_[i_variable]->m_view(i_id_menu,i_variable, i_klucz, V_proces, i_choice); //do rozwoju trza zaprojektowac lejalt menu
+		}
+	
+}
+bool C_menu::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
+	if (i_variable >= 0 && i_variable < i_size) {
+		return Tab_menu_[i_variable]->m_view(i_id_menu,i_variable,s_result, i_klucz, V_proces, i_choice); //do rozwoju trza zaprojektowac lejalt menu
 	}
 }
 void C_menu::m_set_content(int i_choice,std::list<C_person_base*>& Lista) {
@@ -73,4 +75,12 @@ void C_menu::m_set_str(int i_varaible,std::vector<std::vector<std::vector<std::s
 void C_menu::m_get_str(int i_variable,std::vector<std::vector<std::vector<std::string>>>& v_str) {
 	if (i_variable >= 0 && i_variable<i_size)
 		Tab_menu_[i_variable]->m_get_content(v_str);
+}
+void C_menu::m_get_replay(int i_variable, int i_choice, int& i_replay) {
+	if (i_variable >= 0 && i_variable<i_size)
+	Tab_menu_[i_variable]->m_get_replay(i_choice, i_replay);
+}
+void C_menu::m_set_replay(int i_variable, int i_choice, int i_replay) {
+	if (i_variable >= 0 && i_variable<i_size)
+		Tab_menu_[i_variable]->m_set_replay(i_choice, i_replay);
 }

@@ -16,12 +16,13 @@ protected:
 	std::vector<std::list<C_person_base*>> V_L_person_; //lista personow
 	std::vector<std::vector<int>> V_klucz_; //listaklucyz
 	std::vector<std::vector<int>> V_procedur_;
+	std::vector<int> V_replay_;
 	int i_start_;
 	bool b_dinamic_;
 public:
 	C_menu_base( std::vector<std::vector<std::string>>& v, bool b_value,  std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person); //konstruktor parametrowy
-	virtual void m_view(int i_id_menu,int& i_variable,int& i_klucz, std::vector<int>& V_proces, int& i_choice) = 0; //metoda powodujaca ze klasa C_menu_base jest klasa abstrakcyjna
-	virtual void m_view(int i_id_menu,int& i_variable,std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) = 0; //metoda powodujaca ze klasa C_menu_base jest klasa abstrakcyjna
+	virtual bool m_view(int i_id_menu,int& i_variable,int& i_klucz, std::vector<int>& V_proces, int& i_choice) = 0; //metoda powodujaca ze klasa C_menu_base jest klasa abstrakcyjna
+	virtual bool m_view(int i_id_menu,int& i_variable,std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) = 0; //metoda powodujaca ze klasa C_menu_base jest klasa abstrakcyjna
 	void m_load( std::vector<std::vector<std::vector<std::string>>> v); //metoda lafujaca danych
 	void m_ruch(void(*f)(int& x, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k), int& i_klawisz, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k);
 	void m_ruch(void(*f)(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k), int& i_klawisz, int& i_klucz, int& i_start, std::vector<int>& v_k); //metoda umozliwiajaca ruch w menu
@@ -30,6 +31,8 @@ public:
 	void m_set_content( std::vector<std::vector<std::vector<std::string>>>& V_CONTENT); //metoda do dodawania vektor typu string
 	void m_set_str(int i_choice, std::vector<std::string>& v_str);
 	void m_get_str(int i_choice, std::vector<std::string>& v_str);
+	void m_set_replay(int i_choice,int i_replay);
+	void m_get_replay(int i_choice,int& i_replay);
 	void m_add_perosons(std::vector<std::list<C_person_base*>>& L_person);
 	virtual ~C_menu_base(); //destruktor
 };

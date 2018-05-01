@@ -12,6 +12,8 @@
 #define DEFINITION_HPP
 #include <sstream>
 #include <conio.h>
+#define size_menu			10
+#define Menu_glowne			0
 #define load_files			10
 #define save_files			11
 #define add_person			12
@@ -24,6 +26,7 @@
 #define delete_tree			19
 #define load_content_tree	20
 #define searchperson		21
+#define exit				100
 //nazwa pliku do zapisu
 #define file_save "plik2.txt"
 #define file_load "plik1.txt"

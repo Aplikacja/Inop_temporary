@@ -14,11 +14,13 @@ class C_menu {
 public:
 	C_menu(); //konstruktor
 	void m_loader(std::vector<std::vector<std::string>>& v_s, std::vector<bool>& v_b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<std::vector<int>>>& V_procedur,std::vector<int>& i_iterator, std::vector<int>& V_typ_menu); 
-	void m_view(int i_id_menu,int& i_variable, int& i_klucz, std::vector<int>& V_proces, int& i_choice);
-	void m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice);
+	bool m_view(int i_id_menu,int& i_variable, int& i_klucz, std::vector<int>& V_proces, int& i_choice);
+	bool m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice);
 	void m_set_content(int i_choice,std::list<C_person_base*>& lista);
 	void m_set_str(int i_variable,std::vector<std::vector<std::vector<std::string>>>& v_str);
 	void m_get_str(int i_variable,std::vector<std::vector<std::vector<std::string>>>& v_str);
+	void m_get_replay(int i_variable, int i_choice, int& i_replay);
+	void m_set_replay(int i_variable, int i_choice, int i_replay);
 	void m_set_content_person(int i_choice,std::vector<std::list<C_person_base*>>& lista);
 	~C_menu(); //destruktor
 };

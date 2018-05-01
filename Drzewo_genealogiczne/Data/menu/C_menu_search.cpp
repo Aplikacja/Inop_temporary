@@ -1,9 +1,10 @@
 #include "C_menu_search.hpp"
 C_menu_search::C_menu_search(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person):C_menu_base(V, b, v_k, V_procedur, i_iterator, L_person) {}
-void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { //dopasowac zwracanie stringa z metody!!
+bool C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { //dopasowac zwracanie stringa z metody!!
 	int i_x = i_start_;
 	int i_sta = i_start_;
 	int ptr;
+	int i_replay;
 	std::vector<int> V_k;
 	std::string s_temp;
 	std::vector<std::string> V_string;
@@ -38,11 +39,13 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 				case 0: {
 					s_result = s_temp;
 					V_proces = V_procedur_[0];
-					return; }
+					return true; }
 				case -2: {
 					//zaimplementowane do cofania sie do poprzedniego menu
-					//	return; 
-					break; }
+					V_proces.clear();
+					this->m_get_replay(i_id_menu, i_replay);
+					V_proces.push_back(i_replay);
+					return false; }
 				default:
 					break;
 				}
@@ -75,11 +78,13 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 					ss << i_x;
 					s_result = ss.str();
 					V_proces = V_procedur_[0];
-					return; }
+					return true; }
 				case -2: {
 								//zaimplementowane do cofania sie do poprzedniego menu
-								//	return; 
-					break; }
+					V_proces.clear();
+					this->m_get_replay(i_id_menu, i_replay);
+					V_proces.push_back(i_replay);
+					return false; }
 				default:
 					break;
 				}
@@ -111,11 +116,13 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 				case 0: {
 					s_result = s_temp;
 					V_proces = V_procedur_[0];
-					return; }
+					return true; }
 				case -2: {
 					//zaimplementowane do cofania sie do poprzedniego menu
-					//	return; 
-					break; }
+					V_proces.clear();
+					this->m_get_replay(i_id_menu, i_replay);
+					V_proces.push_back(i_replay);
+					return false; }
 				default:
 					break;
 				}
@@ -125,5 +132,5 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 	default: break;
 	}
 } //metoda wysiwetlajaca
-void C_menu_search::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_procedur, int& i_choice) {}
+bool C_menu_search::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<int>& V_procedur, int& i_choice) { return false; }
 C_menu_search::~C_menu_search() {} //destruktor

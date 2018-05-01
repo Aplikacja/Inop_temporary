@@ -12,7 +12,6 @@ void C_engine_hardware::m_load_files(std::string& s_str) {
 	std::ifstream file;
 	file.open(s_str.c_str());
 	if (file.good()) {
-
 		d_Database_.m_load(file);
 		file.close();
 	}

@@ -33,7 +33,7 @@ void C_aplication::m_load_file(std::string s_file) {
 		int i_size_procedur;
 		bool b_temp;
 		V_str_.resize(2);
-		V_str_[1].resize(10);
+		V_str_[1].resize(size_menu);
 		file >> value;
 		i_size_ = value;
 		for (i = 0; i < value; i++)
@@ -79,17 +79,21 @@ void C_aplication::m_view() {
 	int i_variable=0;
 	int i_klucz;
 	std::vector<int> V_proces;
+	V_proces.push_back(Menu_glowne);
 	int i_choice = 1;
 	while (true) {
-		M_.m_view(0,i_variable, i_klucz, V_proces,i_choice);
 		for (auto& X : V_proces) {
 			switch (X)
 			{
-				case 100:
+				case Menu_glowne:
+					i_variable = 0;
+					i_choice = 1;
+				M_.m_view(Menu_glowne, i_variable, i_klucz, V_proces, i_choice);
+				break;
+				case exit:
 					return;
 				case load_files: {
 					e_soft_.m_load_tree();
-					i_variable = 4;
 				}break;
 				case save_files:
 					e_soft_.m_save_files();
@@ -107,25 +111,31 @@ void C_aplication::m_view() {
 					bool b_what = true;
 					std::string s_str;
 					i_variable =2;
-					M_.m_view(id_menu_MenuNewTree,i_variable, s_str, i_klucz, V_proces, i_choice);
-					e_soft_.m_add_tree(V_str_[1][id_menu_MenuNewTree][0], b_what);
-					if (b_what) {
-						std::cout << "Tworzenie nowego drzewa!";
-						//i_variable = ; <- przeladowanie do kolejnego menu
-						//break;
+					M_.m_set_replay(i_variable, id_menu_MenuNewTree, Menu_glowne);
+					if (M_.m_view(id_menu_MenuNewTree, i_variable, s_str, i_klucz, V_proces, i_choice)) {
+						e_soft_.m_add_tree(V_str_[1][id_menu_MenuNewTree][0], b_what);
+						if (b_what) {
+							std::cout << "Tworzenie nowego drzewa!";
+							//i_variable = ; <- przeladowanie do kolejnego menu
+							//break;
+						}
 					}
 
 				}break;
 				case search_tree: {
 					std::string s_str;
 					std::vector<std::string> V_string;
+					i_variable = 4;
+					i_choice = 1;
 					e_soft_.m_get_tree(V_string);
+					M_.m_set_replay(i_variable, id_menu_MenuSearchTree, Menu_glowne);
 					V_str_[1][id_menu_MenuSearchTree] = V_string;
 					M_.m_set_str(i_klucz, V_str_); //ladowanie menu nazwami drzew
-					M_.m_view(id_menu_MenuSearchTree,i_variable, s_str, i_klucz, V_proces, i_choice);
-					s_str += ".tree";
-					e_soft_.m_load_files(s_str);
-					s_str;
+					if (M_.m_view(id_menu_MenuSearchTree, i_variable, s_str, i_klucz, V_proces, i_choice)) {
+						s_str += ".tree";
+						e_soft_.m_load_files(s_str);
+						//s_str;
+					}
 				}break;
 				case delete_tree: {
 					e_soft_.m_delete_tree(*(V_str_[1][0].begin()));
@@ -232,13 +242,15 @@ void C_aplication::m_view() {
 					std::list<C_person_base*> lista;
 					e_soft_.m_get_list_person_orginal(lista);
 				//	e_soft.m_view(view_search, sort_id, data, lista);
+					M_.m_set_replay(i_variable, id_menu_MenuSearchPerson, search_tree);
 					M_.m_set_content(id_menu_MenuSearchPerson,lista);
 					i_choice = 3;
-					M_.m_view(id_menu_MenuSearchPerson,i_variable, s_str, i_klucz, V_proces, i_choice);
-					C_id ID(atoi(s_str.c_str()));
-					e_soft_.m_view(view_search, sort_id, ID, lista);  //do tego momentu jest dobrze
-					std::cin >> s_temp;
-					i_choice = 2;
+					if (M_.m_view(id_menu_MenuSearchPerson, i_variable, s_str, i_klucz, V_proces, i_choice)) {
+						C_id ID(atoi(s_str.c_str()));
+						e_soft_.m_view(view_search, sort_id, ID, lista);  //do tego momentu jest dobrze
+						std::cin >> s_temp;
+						i_choice = 2;
+					}
 					//-----wrazie czego------
 					//for (auto& x : lista) {
 					//	delete x;

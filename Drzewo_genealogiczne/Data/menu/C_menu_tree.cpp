@@ -6,9 +6,10 @@
 
 C_menu_tree::C_menu_tree(std::vector<std::vector<std::string>>& V, bool b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) :C_menu_base(V, b, v_k,V_procedur, i_iterator,L_person) {}
 C_menu_tree::~C_menu_tree() {}
-void C_menu_tree::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
+bool C_menu_tree::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
 	int i_x = 0;
 	int ptr;
+	int i_replay;
 	std::vector<int> V_k;
 	std::vector<std::vector<std::string>>::iterator it_s;
 	V_k = *V_klucz_.begin();
@@ -36,7 +37,10 @@ void C_menu_tree::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V
 			switch (i_klucz) {
 			case -2: {
 				//zaimplementowane do cofania sie do poprzedniego menu
-				return;
+				V_proces.clear();
+				this->m_get_replay(i_id_menu, i_replay);
+				V_proces.push_back(i_replay);
+				return false;
 			}
 			default:
 				if (i_klucz > -1) {
@@ -72,12 +76,15 @@ void C_menu_tree::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V
 			switch (i_klucz) {
 			case -2: {
 						//zaimplementowane do cofania sie do poprzedniego menu
-						//	return; 
-				break;
+				V_proces.clear();
+				this->m_get_replay(i_id_menu, i_replay);
+				V_proces.push_back(i_replay);
+				return false;
 			}
 			default:
 				if (i_klucz > -1) {
-					return;
+				//	return true;
+					break;
 				}
 				break;
 			}
@@ -86,4 +93,4 @@ void C_menu_tree::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V
 	default: break;
 	}
 }
-void C_menu_tree::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {}
+bool C_menu_tree::m_view(int i_id_menu, int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { return false; }

@@ -7,9 +7,10 @@
 //**********************************************************************************************************************************************************//
 #include "C_menu_glowne.hpp"
 C_menu_glowne::C_menu_glowne(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) :C_menu_base(V, b, v_k,V_procedur, i_iterator, L_person) {}
-void C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_proces,int& i_choice) {
+bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_proces,int& i_choice) {
 	int i_x = i_start_;
 	int ptr;
+	int i_replay;
 	std::vector<int> V_k;
 	std::vector<std::vector<std::string>>::iterator it_s;
 	V_k = *V_klucz_.begin();
@@ -36,13 +37,15 @@ void C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); 
 				switch (i_klucz) {
 				case -2: {  //zaimplementowanie na powrut do porezdniego menu
-							//	return; 
-					break;
+					V_proces.clear();
+					this->m_get_replay(i_id_menu, i_replay);
+					V_proces.push_back(i_replay);
+					return false;
 				}
 				default:
 					if (i_klucz > -1) {
 						V_proces = V_procedur_[i_x];
-						return;
+						return true;
 					}
 				}
 			};
@@ -70,13 +73,15 @@ void C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); 
 				switch (i_klucz) {
 				case -2: {  //zaimplementowanie na powrut do porezdniego menu
-							//	return; 
-					break;
+					V_proces.clear();
+					this->m_get_replay(i_id_menu, i_replay);
+					V_proces.push_back(i_replay);
+					return false;
 				}
 				default:
 					if (i_klucz > -1) {
 						V_proces = V_procedur_[i_x];
-						return;
+						return true;
 					}
 				}
 			};
@@ -84,5 +89,5 @@ void C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 		default: break;
 	}
 }
-void C_menu_glowne::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {}
+bool C_menu_glowne::m_view(int i_id_menu, int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { return false; }
 C_menu_glowne::~C_menu_glowne() {};

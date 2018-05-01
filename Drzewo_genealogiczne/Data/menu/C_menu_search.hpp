@@ -11,8 +11,8 @@
 class C_menu_search:public C_menu_base {
 public:
 	C_menu_search(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person); //konstruktor
-	void m_view(int i_id_menu,int& i, std::string& s_klucz, int& i_klucz, std::vector<int>& V_procedur, int& i_choice); //metoda wysiwetlajaca
-	void m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_procedur, int& i_choice);
+	bool m_view(int i_id_menu,int& i, std::string& s_klucz, int& i_klucz, std::vector<int>& V_procedur, int& i_choice); //metoda wysiwetlajaca
+	bool m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_procedur, int& i_choice);
 	~C_menu_search(); //destruktor
 };
 #endif // !C_MENU_SEARCH_HPP

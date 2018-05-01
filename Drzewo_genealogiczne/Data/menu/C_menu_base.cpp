@@ -19,6 +19,7 @@ C_menu_base::C_menu_base( std::vector<std::vector<std::string>>& v, bool b_value
 	V_klucz_ = v_k;
 	V_procedur_ = V_proc;
 	i_start_ = i_iterator;
+	V_replay_.resize(size_menu);
 };
 void C_menu_base::m_load( std::vector<std::vector<std::vector<std::string>>> V) {
 	if (b_dinamic_)
@@ -381,5 +382,10 @@ inline void f(int i_klawisz, int i_value, unsigned int& i_return) {
 inline void f_pouse() {
 	Sleep(150);
 }
-
+void C_menu_base::m_set_replay(int i_choice, int i_replay) {
+	V_replay_[i_choice] = i_replay;
+}
+void C_menu_base::m_get_replay(int i_choice, int& i_replay) {
+	i_replay = V_replay_[i_choice];
+}
 
