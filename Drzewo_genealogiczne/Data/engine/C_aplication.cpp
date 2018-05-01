@@ -32,8 +32,8 @@ void C_aplication::m_load_file(std::string s_file) {
 		int i_temp_procedur;
 		int i_size_procedur;
 		bool b_temp;
-		V_str.resize(2);
-		V_str[1].resize(1);
+		V_str_.resize(2);
+		V_str_[1].resize(10);
 		file >> value;
 		i_size_ = value;
 		for (i = 0; i < value; i++)
@@ -66,11 +66,11 @@ void C_aplication::m_load_file(std::string s_file) {
 			v_klucze.push_back(v_k);
 			V_string.push_back(V_temp);
 			V_start.push_back(i_temp_II);
-			V_str[0] = V_string;
+			V_str_[0] = V_string;
 		}
 		M_.m_loader(V_string, V_b, v_klucze, V_procedur, V_start, V_typ_menu); //ladowanie menu
 		for (j = 0; j < value; j++) {
-			M_.m_set_str(j, V_str);
+			M_.m_set_str(j, V_str_);
 		}
 		file.close();
 	}
@@ -81,7 +81,7 @@ void C_aplication::m_view() {
 	std::vector<int> V_proces;
 	int i_choice = 1;
 	while (true) {
-		M_.m_view(i_variable, i_klucz, V_proces,i_choice);
+		M_.m_view(0,i_variable, i_klucz, V_proces,i_choice);
 		for (auto& X : V_proces) {
 			switch (X)
 			{
@@ -107,8 +107,8 @@ void C_aplication::m_view() {
 					bool b_what = true;
 					std::string s_str;
 					i_variable =2;
-					M_.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
-					e_soft_.m_add_tree(V_str[1][0][0], b_what);
+					M_.m_view(id_menu_MenuNewTree,i_variable, s_str, i_klucz, V_proces, i_choice);
+					e_soft_.m_add_tree(V_str_[1][id_menu_MenuNewTree][0], b_what);
 					if (b_what) {
 						std::cout << "Tworzenie nowego drzewa!";
 						//i_variable = ; <- przeladowanie do kolejnego menu
@@ -120,19 +120,19 @@ void C_aplication::m_view() {
 					std::string s_str;
 					std::vector<std::string> V_string;
 					e_soft_.m_get_tree(V_string);
-					V_str[1][0] = V_string;
-					M_.m_set_str(i_klucz, V_str); //ladowanie menu nazwami drzew
-					M_.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
+					V_str_[1][id_menu_MenuSearchTree] = V_string;
+					M_.m_set_str(i_klucz, V_str_); //ladowanie menu nazwami drzew
+					M_.m_view(id_menu_MenuSearchTree,i_variable, s_str, i_klucz, V_proces, i_choice);
 					s_str += ".tree";
 					e_soft_.m_load_files(s_str);
 					s_str;
 				}break;
 				case delete_tree: {
-					e_soft_.m_delete_tree(*(V_str[1][0].begin()));
+					e_soft_.m_delete_tree(*(V_str_[1][0].begin()));
 					i_variable = search_tree; //<- przelaczenie na odpowiednie menu
 				}break;
 				case load_content_tree: {
-					e_soft_.m_load_files(*(V_str[1][0].begin()));
+					e_soft_.m_load_files(*(V_str_[1][0].begin()));
 					i_variable = search; //<-przelaczenie do menu wyszukiwania persona
 				}break;
 				case tree: {
@@ -232,9 +232,9 @@ void C_aplication::m_view() {
 					std::list<C_person_base*> lista;
 					e_soft_.m_get_list_person_orginal(lista);
 				//	e_soft.m_view(view_search, sort_id, data, lista);
-					M_.m_set_content(lista);
+					M_.m_set_content(id_menu_MenuSearchPerson,lista);
 					i_choice = 3;
-					M_.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
+					M_.m_view(id_menu_MenuSearchPerson,i_variable, s_str, i_klucz, V_proces, i_choice);
 					C_id ID(atoi(s_str.c_str()));
 					e_soft_.m_view(view_search, sort_id, ID, lista);  //do tego momentu jest dobrze
 					std::cin >> s_temp;

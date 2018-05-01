@@ -12,7 +12,7 @@
 class C_aplication {
 	C_menu M_;
 	C_engine_software e_soft_;
-	std::vector<std::vector<std::vector<std::string>>> V_str; //vector vectorow stringow pomocniczy
+	std::vector<std::vector<std::vector<std::string>>> V_str_; //vector vectorow stringow pomocniczy
 	int i_size_;
 public:
 	C_aplication(std::string what); //konstruktor

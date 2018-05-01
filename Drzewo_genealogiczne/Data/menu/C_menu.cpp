@@ -33,17 +33,17 @@ void C_menu::m_loader(std::vector<std::vector<std::string>>& v_s, std::vector<bo
 		it++;
 	}
 }
-void C_menu::m_view(int& i_variable, int& i_klucz,std::vector<int>& V_proces, int& i_choice) {
+void C_menu::m_view(int i_id_menu,int& i_variable, int& i_klucz,std::vector<int>& V_proces, int& i_choice) {
 		if (i_variable >= 0 && i_variable < i_size) {
-			Tab_menu_[i_variable]->m_view(i_variable, i_klucz, V_proces, i_choice); //do rozwoju trza zaprojektowac lejalt menu
+			Tab_menu_[i_variable]->m_view(i_id_menu,i_variable, i_klucz, V_proces, i_choice); //do rozwoju trza zaprojektowac lejalt menu
 		}
 }
-void C_menu::m_view(int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
+void C_menu::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
 	if (i_variable >= 0 && i_variable < i_size) {
-		Tab_menu_[i_variable]->m_view(i_variable,s_result, i_klucz, V_proces, i_choice); //do rozwoju trza zaprojektowac lejalt menu
+		Tab_menu_[i_variable]->m_view(i_id_menu,i_variable,s_result, i_klucz, V_proces, i_choice); //do rozwoju trza zaprojektowac lejalt menu
 	}
 }
-void C_menu::m_set_content(std::list<C_person_base*>& Lista) {
+void C_menu::m_set_content(int i_choice,std::list<C_person_base*>& Lista) {
 	std::list<C_person_base*> lista;
 	lista = Lista;
 	std::string s_data;
@@ -55,7 +55,7 @@ void C_menu::m_set_content(std::list<C_person_base*>& Lista) {
 		V_content.push_back(s_data);
 	}
 	for (i_iter = 0; i_iter < i_size; i_iter++) {
-		Tab_menu_[i_iter]->m_set_str(V_content);
+		Tab_menu_[i_iter]->m_set_str(i_choice,V_content);
 	}
 	V_str_.clear();
 }

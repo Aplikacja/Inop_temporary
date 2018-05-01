@@ -300,8 +300,8 @@ void f_clear(HANDLE& h, COORD& pos, DWORD& Written) {
 	FillConsoleOutputCharacter(h, ' ', 0 * 0, pos, &Written);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
-void C_menu_base::m_set_str(std::vector<std::string>& v_str) {
-	V_str_[1][0] = v_str;
+void C_menu_base::m_set_str(int i_choice,std::vector<std::string>& v_str) {
+	V_str_[1][i_choice] = v_str;
 }
 void C_menu_base::m_get_str(int i_choice, std::vector<std::string>& v_str) {
 	if(i_choice >0&&i_choice < V_str_.size())

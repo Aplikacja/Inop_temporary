@@ -173,4 +173,8 @@
 #define vkx2 1029
 #define vky2 1030
 #define vkz2 1031
+//wartosc id menu
+#define id_menu_MenuSearchTree 0
+#define id_menu_MenuNewTree 1
+#define id_menu_MenuSearchPerson 2
 #endif // !DEFINITION_HPP

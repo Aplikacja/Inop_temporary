@@ -6,7 +6,7 @@
 
 C_menu_tree::C_menu_tree(std::vector<std::vector<std::string>>& V, bool b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) :C_menu_base(V, b, v_k,V_procedur, i_iterator,L_person) {}
 C_menu_tree::~C_menu_tree() {}
-void C_menu_tree::m_view(int& i, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
+void C_menu_tree::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
 	int i_x = 0;
 	int ptr;
 	HANDLE h;
@@ -73,4 +73,4 @@ void C_menu_tree::m_view(int& i, int& i_klucz, std::vector<int>& V_proces, int& 
 	default: break;
 	}
 }
-void C_menu_tree::m_view(int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {}
+void C_menu_tree::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {}

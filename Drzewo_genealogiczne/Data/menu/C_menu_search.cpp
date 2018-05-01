@@ -1,6 +1,6 @@
 #include "C_menu_search.hpp"
 C_menu_search::C_menu_search(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person):C_menu_base(V, b, v_k, V_procedur, i_iterator, L_person) {}
-void C_menu_search::m_view(int& i, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { //dopasowac zwracanie stringa z metody!!
+void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { //dopasowac zwracanie stringa z metody!!
 	int i_x = i_start_;
 	int i_sta = i_start_;
 	int ptr;
@@ -13,7 +13,7 @@ void C_menu_search::m_view(int& i, std::string& s_result, int& i_klucz, std::vec
 	std::vector<std::vector<std::string>>::iterator it_s;
 	for (auto& Y : V_str_[0][i_klucz])
 		V_string.push_back(Y);
-	for  (auto& Y: V_str_[1][0])
+	for  (auto& Y: V_str_[1][i_id_menu])
 		V_string.push_back(Y);
 	V_k = *V_klucz_.begin();
 	switch (i_choice) {
@@ -105,5 +105,5 @@ void C_menu_search::m_view(int& i, std::string& s_result, int& i_klucz, std::vec
 	default: break;
 	}
 } //metoda wysiwetlajaca
-void C_menu_search::m_view(int& i, int& i_klucz, std::vector<int>& V_procedur, int& i_choice) {}
+void C_menu_search::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_procedur, int& i_choice) {}
 C_menu_search::~C_menu_search() {} //destruktor
