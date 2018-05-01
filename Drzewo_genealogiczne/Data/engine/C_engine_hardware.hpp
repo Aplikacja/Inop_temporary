@@ -16,9 +16,9 @@
 void f_creative_file_tree(std::string s_data); //metoda do tworzenia pliku drzewa
 class C_engine_hardware {
 protected:
-	C_db d_Database; //baza danych
-	C_tree t_tree; //drzewo - to cos bedzie realizowac algorytm poruszania sie po drzewie
-	std::set<std::string> S_tree;
+	C_db d_Database_; //baza danych
+	C_tree t_tree_; //drzewo - to cos bedzie realizowac algorytm poruszania sie po drzewie
+	std::set<std::string> S_tree_;
 public:
 	C_engine_hardware(); //konstruktor
 	void m_load_files(std::string& s_str); //metoda do przebudowy

@@ -15,14 +15,14 @@ void C_menu_tree::m_view(int& i, int& i_klucz, std::vector<int>& V_proces, int& 
 
 	std::vector<int> V_k;
 	std::vector<std::vector<std::string>>::iterator it_s;
-	V_k = *V_klucz.begin();
+	V_k = *V_klucz_.begin();
 	switch (i_choice) {
 	case 1: {
 		i_klucz = -1;
 		f_option_clear(h, pos, Written);
 		while (true) {
 			ptr = 0;
-			it_s = V_str[1].begin();
+			it_s = V_str_[1].begin();
 			for (auto& x : *it_s) {
 				if (ptr == i_x) {
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
@@ -36,7 +36,7 @@ void C_menu_tree::m_view(int& i, int& i_klucz, std::vector<int>& V_proces, int& 
 
 			}
 			f_clear(h, pos, Written);
-			m_ruch(f_sterowanie, i_x, i_klucz, i_start, V_k); //dlaczego nie dziala
+			m_ruch(f_sterowanie, i_x, i_klucz, i_start_, V_k); //dlaczego nie dziala
 			if (i_klucz > -1) {
 				//i = i_klucz; //tu sie zawieszalo
 				return;
@@ -49,7 +49,7 @@ void C_menu_tree::m_view(int& i, int& i_klucz, std::vector<int>& V_proces, int& 
 		f_option_clear(h, pos, Written);
 		while (true) {
 			ptr = 0;
-			it_s = V_str[1].begin();
+			it_s = V_str_[1].begin();
 			for (auto& x : *it_s) {
 				if (ptr == i_x) {
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
@@ -63,7 +63,7 @@ void C_menu_tree::m_view(int& i, int& i_klucz, std::vector<int>& V_proces, int& 
 
 			}
 			f_clear(h, pos, Written);
-			m_ruch(f_sterowanie, i_x, i_klucz,i_start, V_k); //dlaczego nie dziala
+			m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); //dlaczego nie dziala
 			if (i_klucz > -1) {
 				//i = i_klucz; //tu sie zawieszalo
 				return;

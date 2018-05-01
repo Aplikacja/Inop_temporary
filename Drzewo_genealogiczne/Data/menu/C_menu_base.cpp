@@ -13,17 +13,17 @@ void f_obsluga_zdarzen_vk(int& i_message);
 inline void f(int i_klawisz, int i_value, unsigned int& i_return);
 inline void f_pouse();
 C_menu_base::C_menu_base( std::vector<std::vector<std::string>>& v, bool b_value,  std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_proc, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) {
-	V_str.push_back(v);
-	b_dinamic = b_value;
-	V_L_person = L_person;
-	V_klucz = v_k;
-	V_procedur = V_proc;
-	i_start = i_iterator;
+	V_str_.push_back(v);
+	b_dinamic_ = b_value;
+	V_L_person_ = L_person;
+	V_klucz_ = v_k;
+	V_procedur_ = V_proc;
+	i_start_ = i_iterator;
 };
 void C_menu_base::m_load( std::vector<std::vector<std::vector<std::string>>> V) {
-	if (b_dinamic)
+	if (b_dinamic_)
 	{
-		V_str = V;
+		V_str_ = V;
 	}
 }
 void C_menu_base::m_ruch(void(*f)(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k), int& i_klawisz, int& i_klucz, int& i_start, std::vector<int>& v_k) {
@@ -40,13 +40,13 @@ void C_menu_base::m_ruch(void(*f)(int& x, std::string& i_klucz,std::string& s_me
 }
 C_menu_base::~C_menu_base() {};
 void C_menu_base::m_get_content( std::vector<std::vector<std::vector<std::string>>>& V_CONTENT) {
-	V_CONTENT = V_str;
+	V_CONTENT = V_str_;
 }
 void C_menu_base::m_set_content( std::vector<std::vector<std::vector<std::string>>>& V_CONTENT) {
-	V_str = V_CONTENT;
+	V_str_ = V_CONTENT;
 }
 void C_menu_base::m_add_perosons(std::vector<std::list<C_person_base*>>& L_person) {
-	V_L_person = L_person;
+	V_L_person_ = L_person;
 }
 void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k) {
 	int i_size = v_k.size();
@@ -301,11 +301,11 @@ void f_clear(HANDLE& h, COORD& pos, DWORD& Written) {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 void C_menu_base::m_set_str(std::vector<std::string>& v_str) {
-	V_str[1][0] = v_str;
+	V_str_[1][0] = v_str;
 }
 void C_menu_base::m_get_str(int i_choice, std::vector<std::string>& v_str) {
-	if(i_choice >0&&i_choice < V_str.size())
-	v_str = V_str[1][i_choice];
+	if(i_choice >0&&i_choice < V_str_.size())
+	v_str = V_str_[1][i_choice];
 }
 void f_obsluga_zadrzen_alfabetycznych(int& i_message) {
 	unsigned int i_result;

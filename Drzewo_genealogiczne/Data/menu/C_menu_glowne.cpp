@@ -8,7 +8,7 @@
 #include "C_menu_glowne.hpp"
 C_menu_glowne::C_menu_glowne(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) :C_menu_base(V, b, v_k,V_procedur, i_iterator, L_person) {}
 void C_menu_glowne::m_view(int& i, int& i_klucz, std::vector<int>& V_proces,int& i_choice) {
-	int i_x = i_start;
+	int i_x = i_start_;
 	int ptr;
 	HANDLE h;
 	COORD pos = { 0,0 };
@@ -17,14 +17,14 @@ void C_menu_glowne::m_view(int& i, int& i_klucz, std::vector<int>& V_proces,int&
 	
 	//std::vector<std::vector<int>>::iterator it_i;
 	std::vector<std::vector<std::string>>::iterator it_s;
-	V_k = *V_klucz.begin();
+	V_k = *V_klucz_.begin();
 	switch (i_choice) {
 		case 1: {
 			i_klucz = -1;
 			f_option_clear(h, pos, Written);
 			while (true) {
 				ptr = 0;
-				it_s = V_str[0].begin();
+				it_s = V_str_[0].begin();
 				for (auto& x : *it_s) {
 					if (ptr == i_x) {
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
@@ -38,10 +38,10 @@ void C_menu_glowne::m_view(int& i, int& i_klucz, std::vector<int>& V_proces,int&
 
 				}
 				f_clear(h, pos, Written);
-				m_ruch(f_sterowanie, i_x, i_klucz,i_start, V_k); //dlaczego nie dziala
+				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); //dlaczego nie dziala
 				if (i_klucz > -1) {
 					//i = i_klucz; //tu sie zawieszalo
-					V_proces = V_procedur[i_x];
+					V_proces = V_procedur_[i_x];
 					return;
 				}
 			};
@@ -51,8 +51,8 @@ void C_menu_glowne::m_view(int& i, int& i_klucz, std::vector<int>& V_proces,int&
 			i_klucz = -1;
 			f_option_clear(h, pos, Written);
 			while (true) {
-				ptr = i_start;
-				it_s = V_str[0].begin();
+				ptr = i_start_;
+				it_s = V_str_[0].begin();
 				for (auto& x : *it_s) {
 					if (ptr == i_x) {
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
@@ -66,10 +66,10 @@ void C_menu_glowne::m_view(int& i, int& i_klucz, std::vector<int>& V_proces,int&
 
 				}
 				f_clear(h, pos, Written);
-				m_ruch(f_sterowanie, i_x, i_klucz,i_start, V_k); //dlaczego nie dziala
+				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); //dlaczego nie dziala
 				if (i_klucz > -1) {
 					//i = i_klucz; //tu sie zawieszalo
-					V_proces = V_procedur[i_x];
+					V_proces = V_procedur_[i_x];
 					return;
 				}
 			};

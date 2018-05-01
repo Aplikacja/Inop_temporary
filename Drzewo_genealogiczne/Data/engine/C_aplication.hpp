@@ -10,10 +10,10 @@
 #include <fstream>
 #include <cstdio>
 class C_aplication {
-	C_menu M;
-	C_engine_software e_soft;
+	C_menu M_;
+	C_engine_software e_soft_;
 	std::vector<std::vector<std::vector<std::string>>> V_str; //vector vectorow stringow pomocniczy
-	int i_size;
+	int i_size_;
 public:
 	C_aplication(std::string what); //konstruktor
 	void m_load_file(std::string s_file); //metoda wczytujaca dane

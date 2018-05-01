@@ -35,7 +35,7 @@ void C_aplication::m_load_file(std::string s_file) {
 		V_str.resize(2);
 		V_str[1].resize(1);
 		file >> value;
-		i_size = value;
+		i_size_ = value;
 		for (i = 0; i < value; i++)
 		{
 			file >> i_typ_menu;
@@ -68,9 +68,9 @@ void C_aplication::m_load_file(std::string s_file) {
 			V_start.push_back(i_temp_II);
 			V_str[0] = V_string;
 		}
-		M.m_loader(V_string, V_b, v_klucze, V_procedur, V_start, V_typ_menu); //ladowanie menu
+		M_.m_loader(V_string, V_b, v_klucze, V_procedur, V_start, V_typ_menu); //ladowanie menu
 		for (j = 0; j < value; j++) {
-			M.m_set_str(j, V_str);
+			M_.m_set_str(j, V_str);
 		}
 		file.close();
 	}
@@ -81,18 +81,18 @@ void C_aplication::m_view() {
 	std::vector<int> V_proces;
 	int i_choice = 1;
 	while (true) {
-		M.m_view(i_variable, i_klucz, V_proces,i_choice);
+		M_.m_view(i_variable, i_klucz, V_proces,i_choice);
 		for (auto& X : V_proces) {
 			switch (X)
 			{
 				case 100:
 					return;
 				case load_files: {
-					e_soft.m_load_tree();
+					e_soft_.m_load_tree();
 					i_variable = 4;
 				}break;
 				case save_files:
-					e_soft.m_save_files();
+					e_soft_.m_save_files();
 					break;
 				case add_person:
 					//	e_soft.m_add_person(); 
@@ -107,8 +107,8 @@ void C_aplication::m_view() {
 					bool b_what = true;
 					std::string s_str;
 					i_variable =2;
-					M.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
-					e_soft.m_add_tree(V_str[1][0][0], b_what);
+					M_.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
+					e_soft_.m_add_tree(V_str[1][0][0], b_what);
 					if (b_what) {
 						std::cout << "Tworzenie nowego drzewa!";
 						//i_variable = ; <- przeladowanie do kolejnego menu
@@ -119,20 +119,20 @@ void C_aplication::m_view() {
 				case search_tree: {
 					std::string s_str;
 					std::vector<std::string> V_string;
-					e_soft.m_get_tree(V_string);
+					e_soft_.m_get_tree(V_string);
 					V_str[1][0] = V_string;
-					M.m_set_str(i_klucz, V_str); //ladowanie menu nazwami drzew
-					M.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
+					M_.m_set_str(i_klucz, V_str); //ladowanie menu nazwami drzew
+					M_.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
 					s_str += ".tree";
-					e_soft.m_load_files(s_str);
+					e_soft_.m_load_files(s_str);
 					s_str;
 				}break;
 				case delete_tree: {
-					e_soft.m_delete_tree(*(V_str[1][0].begin()));
+					e_soft_.m_delete_tree(*(V_str[1][0].begin()));
 					i_variable = search_tree; //<- przelaczenie na odpowiednie menu
 				}break;
 				case load_content_tree: {
-					e_soft.m_load_files(*(V_str[1][0].begin()));
+					e_soft_.m_load_files(*(V_str[1][0].begin()));
 					i_variable = search; //<-przelaczenie do menu wyszukiwania persona
 				}break;
 				case tree: {
@@ -156,7 +156,7 @@ void C_aplication::m_view() {
 					std::vector<C_relationship> V_relationship;
 					std::vector<C_relation> V_relation_temp;
 					std::vector<C_relationship> V_relationship_temp;
-					e_soft.m_view(view_search, sort_id, data, lista_temp);
+					e_soft_.m_view(view_search, sort_id, data, lista_temp);
 					person = *lista_temp.begin();
 					for (auto& x : lista_temp) {
 						delete x;
@@ -168,7 +168,7 @@ void C_aplication::m_view() {
 					for (auto& x_relation : V_relation) {
 						x_relation.m_get_id(id);
 						x_relation.m_get_typ(i_typ);
-						e_soft.m_view(view_search, sort_id, id, lista_temp);
+						e_soft_.m_view(view_search, sort_id, id, lista_temp);
 						//rozkladanie danmych persona na poszczegolne wartosci
 						person = *lista_temp.begin();
 						person->m_get_first_name(s_first_name);
@@ -189,7 +189,7 @@ void C_aplication::m_view() {
 						std::list<C_person_base*> lista;
 						x_relationship.m_get_id(id);
 						x_relationship.m_get_typ(i_typ);
-						e_soft.m_view(view_search, sort_id, id, lista_temp);
+						e_soft_.m_view(view_search, sort_id, id, lista_temp);
 						//rozkladanie danmych persona na poszczegolne wartosci
 						person = *lista_temp.begin();
 						person->m_get_first_name(s_first_name);
@@ -205,7 +205,7 @@ void C_aplication::m_view() {
 						for (auto& x_relation : V_relation) {
 							x_relation.m_get_id(id);
 							x_relation.m_get_typ(i_typ);
-							e_soft.m_view(view_search, sort_id, id, lista_temp);
+							e_soft_.m_view(view_search, sort_id, id, lista_temp);
 							//rozkladanie danmych persona na poszczegolne wartosci
 							person = *lista_temp.begin();
 							person->m_get_first_name(s_first_name);
@@ -220,23 +220,23 @@ void C_aplication::m_view() {
 						}
 						V_lista.push_back(lista);
 					}
-					M.m_set_content_person(0, V_lista); // numer wskazuje na odpowiednie menu!!!
+					M_.m_set_content_person(0, V_lista); // numer wskazuje na odpowiednie menu!!!
 				}break;
 				case 70: {
 					//	case search: {
 					C_id data;
 					std::string s_str;
 					std::string s_temp;
-					//int i;
+					int i;
 					data.m_update(2);
 					std::list<C_person_base*> lista;
-					e_soft.m_get_list_person_orginal(lista);
+					e_soft_.m_get_list_person_orginal(lista);
 				//	e_soft.m_view(view_search, sort_id, data, lista);
-					M.m_set_content(lista);
+					M_.m_set_content(lista);
 					i_choice = 3;
-					M.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
+					M_.m_view(i_variable, s_str, i_klucz, V_proces, i_choice);
 					C_id ID(atoi(s_str.c_str()));
-					e_soft.m_view(view_search, sort_id, ID, lista);  //do tego momentu jest dobrze
+					e_soft_.m_view(view_search, sort_id, ID, lista);  //do tego momentu jest dobrze
 					std::cin >> s_temp;
 					i_choice = 2;
 					//-----wrazie czego------
@@ -250,7 +250,7 @@ void C_aplication::m_view() {
 					break;
 				}
 		}
-		if (i_klucz < i_size) //zabezpiecza przed zawieszaniem menu
+		if (i_klucz < i_size_) //zabezpiecza przed zawieszaniem menu
 			i_variable = i_klucz;
 	}
 

@@ -7,11 +7,11 @@
 #include "C_fabric_menu.hpp"
 #include <list>
 class C_menu {
-	C_fabric_menu f;
+	C_fabric_menu f_;
 	//std::list<C_person_base*> lista;
 	int i_size;
-	std::vector<std::string> V_str;
-	C_menu_base** Tab_menu;
+	std::vector<std::string> V_str_;
+	C_menu_base** Tab_menu_;
 public:
 	C_menu(); //konstruktor
 	void m_loader(std::vector<std::vector<std::string>>& v_s, std::vector<bool>& v_b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<std::vector<int>>>& V_procedur,std::vector<int>& i_iterator, std::vector<int>& V_typ_menu); 

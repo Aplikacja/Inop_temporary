@@ -1,8 +1,8 @@
 #include "C_menu_search.hpp"
 C_menu_search::C_menu_search(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person):C_menu_base(V, b, v_k, V_procedur, i_iterator, L_person) {}
 void C_menu_search::m_view(int& i, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { //dopasowac zwracanie stringa z metody!!
-	int i_x = i_start;
-	int i_sta = i_start;
+	int i_x = i_start_;
+	int i_sta = i_start_;
 	int ptr;
 	HANDLE h;
 	COORD pos = { 0,0 };
@@ -11,11 +11,11 @@ void C_menu_search::m_view(int& i, std::string& s_result, int& i_klucz, std::vec
 	std::string s_temp;
 	std::vector<std::string> V_string;
 	std::vector<std::vector<std::string>>::iterator it_s;
-	for (auto& Y : V_str[0][i_klucz])
+	for (auto& Y : V_str_[0][i_klucz])
 		V_string.push_back(Y);
-	for  (auto& Y: V_str[1][0])
+	for  (auto& Y: V_str_[1][0])
 		V_string.push_back(Y);
-	V_k = *V_klucz.begin();
+	V_k = *V_klucz_.begin();
 	switch (i_choice) {
 	case 1: {
 		//i_klucz = -1;
@@ -39,14 +39,14 @@ void C_menu_search::m_view(int& i, std::string& s_result, int& i_klucz, std::vec
 			if (i_sta <= 0) {
 				//i = i_klucz; //tu sie zawieszalo 
 				s_result = s_temp;
-				V_proces = V_procedur[0];
+				V_proces = V_procedur_[0];
 				return;
 			}
 		};
 	}break;
 	case 3: {
 		//i_klucz = -1;
-		char *c_temp=NULL;
+		char * c_temp;
 		f_option_clear(h, pos, Written);
 		while (true) {
 			ptr = 0;
@@ -68,7 +68,7 @@ void C_menu_search::m_view(int& i, std::string& s_result, int& i_klucz, std::vec
 				std::ostringstream ss;
 				ss << i_x;
 				s_result = ss.str();
-				V_proces = V_procedur[0];
+				V_proces = V_procedur_[0];
 				return;
 			}
 		};
@@ -78,8 +78,8 @@ void C_menu_search::m_view(int& i, std::string& s_result, int& i_klucz, std::vec
 		//i_klucz = -1;
 		f_option_clear(h, pos, Written);
 		while (true) {
-			ptr = i_start;
-			it_s = V_str[1].begin();
+			ptr = i_start_;
+			it_s = V_str_[1].begin();
 			for (auto& x : *it_s) {
 				if (ptr == i_x) {
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
@@ -97,7 +97,7 @@ void C_menu_search::m_view(int& i, std::string& s_result, int& i_klucz, std::vec
 			if (i_sta <= 0) {
 				//i = i_klucz; //tu sie zawieszalo
 				s_result = s_temp;
-				V_proces = V_procedur[0];
+				V_proces = V_procedur_[0];
 				return;
 			}
 		};

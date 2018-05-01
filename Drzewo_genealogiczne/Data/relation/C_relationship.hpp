@@ -8,11 +8,11 @@
 #include "../data/C_date.hpp"
 #include <vector>
 class C_relationship {
-	C_id id;
+	C_id id_;
 	C_date date;
 	std::vector<C_relation> V;
-	bool b_value;
-	int i_typ;
+	bool b_value_;
+	int i_typ_;
 public:
 	C_relationship(); //konstruktor
 	C_relationship(C_id& id, C_date& Date); //konstruktor paramerowy

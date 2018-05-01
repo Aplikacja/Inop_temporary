@@ -24,7 +24,7 @@ int f_sprawdzanie_dol(int& i_SIZE, int& i_iterator, int& i_size); //funkcja do w
 int f_sprawdzanie(int& i_SIZE, int& i_iterator, int& i_size); //funkcja do wyszukiwania
 class C_db {
 	std::list<C_person_base*> L_person;
-	long long ID_MAIN;
+	long long ID_MAIN_;
 	void m_delete_base();
 public:
 	C_db(); //konstruktor
