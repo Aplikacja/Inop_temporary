@@ -19,6 +19,7 @@ C_menu_base::C_menu_base( std::vector<std::vector<std::string>>& v, bool b_value
 	V_klucz_ = v_k;
 	V_procedur_ = V_proc;
 	i_start_ = i_iterator;
+	//zmienne porezbne do lepszego obslugiwania konsoli
 };
 void C_menu_base::m_load( std::vector<std::vector<std::vector<std::string>>> V) {
 	if (b_dinamic_)

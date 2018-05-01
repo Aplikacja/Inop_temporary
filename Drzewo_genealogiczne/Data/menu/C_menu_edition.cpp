@@ -9,9 +9,6 @@ void C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result
 	int i_x = i_start_; //udalo nam sie wejsc w ta metode :)
 	int i_sta = i_start_;
 	int ptr;
-	HANDLE h;
-	COORD pos = { 0,0 };
-	DWORD Written;
 	std::vector<int> V_k;
 	std::string s_temp;
 	std::string s_working;
@@ -26,7 +23,7 @@ void C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result
 	V_k = *V_klucz_.begin();
 	switch (i_choice) {
 	case 1: {
-		//i_klucz = -1;
+	
 		f_option_clear(h, pos, Written);
 		while (true) {
 			ptr = 0;
@@ -43,13 +40,22 @@ void C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result
 
 			}
 			f_clear(h, pos, Written);
-			m_ruch(f_sterowanie, i_x, s_working, i_sta, V_string); //dlaczego nie dziala
+			m_ruch(f_sterowanie, i_x, s_working, i_sta, V_string);
 			if (i_sta <= 0) {
-				//i = i_klucz; //tu sie zawieszalo 
-				s_result = s_working;
-				V_proces = V_procedur_[0];
-				return;
+				switch (i_sta) {
+				case 0: {
+					s_result = s_working;
+					V_proces = V_procedur_[0];
+					return;
+				case -1: {
+					//zaimplementowane do cofania sie do poprzedniego menu
+					return; }
+				default:
+					break;
+				}
+				}
 			}
+			
 		};
 	}break;
 

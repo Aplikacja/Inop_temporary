@@ -23,6 +23,7 @@
 #define	new_tree			18
 #define delete_tree			19
 #define load_content_tree	20
+#define searchperson		21
 //nazwa pliku do zapisu
 #define file_save "plik2.txt"
 #define file_load "plik1.txt"

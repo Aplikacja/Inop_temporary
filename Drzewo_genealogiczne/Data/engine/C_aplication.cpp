@@ -222,7 +222,7 @@ void C_aplication::m_view() {
 					}
 					M_.m_set_content_person(0, V_lista); // numer wskazuje na odpowiednie menu!!!
 				}break;
-				case 70: {
+				case searchperson: {
 					//	case search: {
 					C_id data;
 					std::string s_str;

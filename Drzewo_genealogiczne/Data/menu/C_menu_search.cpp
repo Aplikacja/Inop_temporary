@@ -4,9 +4,6 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 	int i_x = i_start_;
 	int i_sta = i_start_;
 	int ptr;
-	HANDLE h;
-	COORD pos = { 0,0 };
-	DWORD Written;
 	std::vector<int> V_k;
 	std::string s_temp;
 	std::vector<std::string> V_string;
@@ -18,7 +15,7 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 	V_k = *V_klucz_.begin();
 	switch (i_choice) {
 	case 1: {
-		//i_klucz = -1;
+		
 		f_option_clear(h, pos, Written);
 		while (true) {
 			ptr = 0;
@@ -35,17 +32,23 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 
 			}
 			f_clear(h, pos, Written);
-			m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string); //dlaczego nie dziala
+			m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string);
 			if (i_sta <= 0) {
-				//i = i_klucz; //tu sie zawieszalo 
-				s_result = s_temp;
-				V_proces = V_procedur_[0];
-				return;
+				switch (i_sta) {
+				case 0: {
+					s_result = s_temp;
+					V_proces = V_procedur_[0];
+					return; }
+				case -1: {
+					//zaimplementowane do cofania sie do poprzedniego menu
+					return; }
+				default:
+					break;
+				}
 			}
 		};
 	}break;
 	case 3: {
-		//i_klucz = -1;
 		char * c_temp;
 		f_option_clear(h, pos, Written);
 		while (true) {
@@ -63,19 +66,26 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 
 			}
 			f_clear(h, pos, Written);
-			m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string); //dlaczego nie dziala
+			m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string);
 			if (i_sta <= 0) {
-				std::ostringstream ss;
-				ss << i_x;
-				s_result = ss.str();
-				V_proces = V_procedur_[0];
-				return;
+				switch (i_sta) {
+				case 0: {
+					std::ostringstream ss;
+					ss << i_x;
+					s_result = ss.str();
+					V_proces = V_procedur_[0];
+					return; }
+				case -1: {
+								//zaimplementowane do cofania sie do poprzedniego menu
+					return; }
+				default:
+					break;
+				}
 			}
 		};
 	}break;
 	case 2:
 	{
-		//i_klucz = -1;
 		f_option_clear(h, pos, Written);
 		while (true) {
 			ptr = i_start_;
@@ -93,12 +103,19 @@ void C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 
 			}
 			f_clear(h, pos, Written);
-			m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string); //dlaczego nie dziala
+			m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string); 
 			if (i_sta <= 0) {
-				//i = i_klucz; //tu sie zawieszalo
-				s_result = s_temp;
-				V_proces = V_procedur_[0];
-				return;
+				switch (i_sta) {
+				case 0: {
+					s_result = s_temp;
+					V_proces = V_procedur_[0];
+					return; }
+				case -1: {
+					//zaimplementowane do cofania sie do poprzedniego menu
+					return; }
+				default:
+					break;
+				}
 			}
 		};
 	}break;

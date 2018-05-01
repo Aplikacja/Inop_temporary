@@ -9,10 +9,6 @@ C_menu_tree::~C_menu_tree() {}
 void C_menu_tree::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
 	int i_x = 0;
 	int ptr;
-	HANDLE h;
-	COORD pos = { 0,0 };
-	DWORD Written;
-
 	std::vector<int> V_k;
 	std::vector<std::vector<std::string>>::iterator it_s;
 	V_k = *V_klucz_.begin();
@@ -36,10 +32,18 @@ void C_menu_tree::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V
 
 			}
 			f_clear(h, pos, Written);
-			m_ruch(f_sterowanie, i_x, i_klucz, i_start_, V_k); //dlaczego nie dziala
-			if (i_klucz > -1) {
-				//i = i_klucz; //tu sie zawieszalo
+			m_ruch(f_sterowanie, i_x, i_klucz, i_start_, V_k);
+			switch (i_klucz) {
+			case 1: {
+				//zaimplementowane do cofania sie do poprzedniego menu
 				return;
+			}
+			default:
+				if (i_klucz > -1) {
+					//i = i_klucz; //tu sie zawieszalo
+					return;
+				}
+				break;
 			}
 		};
 	}break;
@@ -63,10 +67,17 @@ void C_menu_tree::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V
 
 			}
 			f_clear(h, pos, Written);
-			m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); //dlaczego nie dziala
-			if (i_klucz > -1) {
-				//i = i_klucz; //tu sie zawieszalo
+			m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k);
+			switch (i_klucz) {
+			case 1: {
+						//zaimplementowane do cofania sie do poprzedniego menu
 				return;
+			}
+			default:
+				if (i_klucz > -1) {
+					return;
+				}
+				break;
 			}
 		};
 	}break;

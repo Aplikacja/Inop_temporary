@@ -10,12 +10,7 @@ C_menu_glowne::C_menu_glowne(std::vector<std::vector<std::string>>& V, bool& b, 
 void C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_proces,int& i_choice) {
 	int i_x = i_start_;
 	int ptr;
-	HANDLE h;
-	COORD pos = { 0,0 };
-	DWORD Written;
 	std::vector<int> V_k;
-	
-	//std::vector<std::vector<int>>::iterator it_i;
 	std::vector<std::vector<std::string>>::iterator it_s;
 	V_k = *V_klucz_.begin();
 	switch (i_choice) {
@@ -66,12 +61,18 @@ void C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 
 				}
 				f_clear(h, pos, Written);
-				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); //dlaczego nie dziala
-				if (i_klucz > -1) {
-					//i = i_klucz; //tu sie zawieszalo
-					V_proces = V_procedur_[i_x];
+				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); 
+				switch (i_klucz) {
+				case -2: {  //zaimplementowanie na powrut do porezdniego menu
 					return;
 				}
+				default:
+					if (i_klucz > -1) {
+						V_proces = V_procedur_[i_x];
+						return;
+					}
+				}
+				
 			};
 		}break;
 		default: break;

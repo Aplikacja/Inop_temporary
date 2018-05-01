@@ -8,7 +8,6 @@
 #include <list>
 class C_menu {
 	C_fabric_menu f_;
-	//std::list<C_person_base*> lista;
 	int i_size;
 	std::vector<std::string> V_str_;
 	C_menu_base** Tab_menu_;

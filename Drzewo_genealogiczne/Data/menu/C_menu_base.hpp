@@ -38,4 +38,8 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 void f_option_clear(HANDLE& h, COORD& pos, DWORD& Written);
 void f_clear(HANDLE& h, COORD& pos, DWORD& Written);
 static char C_massage[2];
+//zmienne do lepszego obslugiwania konsoli
+static HANDLE h;
+static COORD pos = { 0,0 };
+static DWORD Written;
 #endif // !C_MENU_BASE_HPP

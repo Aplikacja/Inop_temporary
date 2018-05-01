@@ -17,4 +17,4 @@
 0 1 100 tak
 0 0 Nie
 2 1 0 1
-0 2 70 0 Wybieraj:
+0 2 21 0 Wybieraj:
