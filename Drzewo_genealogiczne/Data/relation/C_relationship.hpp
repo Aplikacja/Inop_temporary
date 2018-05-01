@@ -9,8 +9,8 @@
 #include <vector>
 class C_relationship {
 	C_id id_;
-	C_date date;
-	std::vector<C_relation> V;
+	C_date date_;
+	std::vector<C_relation> V_;
 	bool b_value_;
 	int i_typ_;
 public:

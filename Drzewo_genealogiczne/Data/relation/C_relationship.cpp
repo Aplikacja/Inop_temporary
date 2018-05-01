@@ -6,14 +6,14 @@
 
 C_relationship::C_relationship() {}
 C_relationship::C_relationship(C_id& ID, C_date& Date) {
-	id_ = ID; date = Date;
+	id_ = ID; date_ = Date;
 }
 void operator<<(std::ofstream &is, C_relationship &C) {
 	is << C.b_value_;
 	is << C.i_typ_;
 	is << C.id_;
-	is << C.V.size();
-	for (auto& x : C.V) {
+	is << C.V_.size();
+	for (auto& x : C.V_) {
 		is << x;
 	}
 }
@@ -40,16 +40,16 @@ void C_relationship::m_get_typ(int& i_variable) { i_variable = i_typ_; }
 void C_relationship::m_add_id(C_id& ID) { id_ = ID; }
 void C_relationship::m_get_id(C_id& ID) { ID = id_; }
 C_relation C_relationship::m_return(int i_value) {
-	if(i_value<V.size())
-	return V[i_value];
+	if(i_value<V_.size())
+	return V_[i_value];
 	else {
 		C_relation relation;
 		return relation;
 	}
 }
 void C_relationship::m_set_baby(C_relation relation) {
-	V.push_back(relation);
+	V_.push_back(relation);
 }
 void C_relationship::m_get_baby(std::vector<C_relation>& relation) {
-	relation = V;
+	relation = V_;
 }
