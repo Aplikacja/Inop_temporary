@@ -1,20 +1,24 @@
-5 
+6 
 1 4 0 1 
 0 0 Menu glowne
 4 2 10 17 Wczytaj drzewo
 2 1 18 Nowe drzewo
-3 1 100 Wyjscie
-1 5 0 1
-0 0 0 Menu Wyboru
-4 0 Wyswietl
-10 0 Wczytaj drzewo
-11 0 Zapisz drzewo
-0  0 Powrot
-3 1 0 1 
-0 0 powrot
+3 1 22 Wyjscie
+1 4 0 1
+0 0 Menu Wyboru
+4 1 21 Wyswietl zawartosc
+10 0 Edytuj drzewo
+0 1 17 Powrot
+3 2 0 1
+0 0 Podaj nazwe rodziny: 
+0 0 Powrot
 1 3 0 1
-0 0 Czy jestes pewien ?
+0 0 Czy jestes pewien?
 0 1 100 tak
-0 0 Nie
+0 1 0 Nie
 2 1 0 1
-0 1 21  Wybieraj:
+0 1 23  Wybieraj:
+1 2 0 1
+0 0 Czy na pewno chcesz usunac drzewo?
+0 1 19 Tak
+0 0 Nie

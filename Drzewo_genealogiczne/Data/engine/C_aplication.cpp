@@ -83,13 +83,26 @@ void C_aplication::m_view() {
 	int i_choice = 1;
 	while (true) {
 		for (auto& X : V_proces) {
+
 			switch (X)
 			{
 				case Menu_glowne:
 					i_variable = 0;
 					i_choice = 1;
-				M_.m_view(Menu_glowne, i_variable, i_klucz, V_proces, i_choice);
+				M_.m_view(id_menu_MenuGlowne, i_variable, i_klucz, V_proces, i_choice);
 				break;
+				case Menu_pewnosci:
+					i_variable = 3;
+					i_choice = 1;
+					M_.m_set_replay(i_variable, id_menu_Menu_pewnosci, Menu_glowne);
+					M_.m_view(id_menu_Menu_pewnosci, i_variable, i_klucz, V_proces, i_choice);
+					break;
+				case M_zarzadzaniatree:
+					i_variable = 1;
+					i_choice = 1;
+					M_.m_set_replay(i_variable, id_menu_zarzadzaniadrzewem, search_tree);
+					M_.m_view(id_menu_zarzadzaniadrzewem, i_variable, i_klucz, V_proces, i_choice);
+					break;
 				case exit:
 					return;
 				case load_files: {

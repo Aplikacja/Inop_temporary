@@ -26,6 +26,8 @@
 #define delete_tree			19
 #define load_content_tree	20
 #define searchperson		21
+#define Menu_pewnosci		22
+#define M_zarzadzaniatree   23
 #define exit				100
 //nazwa pliku do zapisu
 #define file_save "plik2.txt"
@@ -178,7 +180,10 @@
 #define vky2 1030
 #define vkz2 1031
 //wartosc id menu
-#define id_menu_MenuSearchTree 0
-#define id_menu_MenuNewTree 1
-#define id_menu_MenuSearchPerson 2
+#define id_menu_MenuGlowne			0
+#define id_menu_Menu_pewnosci		3
+#define id_menu_zarzadzaniadrzewem	1
+#define id_menu_MenuSearchTree		0
+#define id_menu_MenuNewTree			1
+#define id_menu_MenuSearchPerson	2
 #endif // !DEFINITION_HPP

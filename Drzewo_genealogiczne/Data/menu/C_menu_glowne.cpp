@@ -12,7 +12,7 @@ bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 	int ptr;
 	int i_replay;
 	std::vector<int> V_k;
-	std::vector<std::vector<std::string>>::iterator it_s;
+	//std::vector<std::vector<std::string>>::iterator it_s;
 	V_k = *V_klucz_.begin();
 	switch (i_choice) {
 		case 1: {
@@ -20,8 +20,7 @@ bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 			f_option_clear(h, pos, Written);
 			while (true) {
 				ptr = 0;
-				it_s = V_str_[0].begin();
-				for (auto& x : *it_s) {
+				for (auto& x : V_str_[0][i_id_menu]) {
 					if (ptr == i_x) {
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 						printf(x.c_str()); printf("\n");
@@ -56,8 +55,7 @@ bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 			f_option_clear(h, pos, Written);
 			while (true) {
 				ptr = i_start_;
-				it_s = V_str_[0].begin();
-				for (auto& x : *it_s) {
+				for (auto& x : V_str_[0][i_id_menu]) {
 					if (ptr == i_x) {
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 						printf(x.c_str()); printf("\n");
