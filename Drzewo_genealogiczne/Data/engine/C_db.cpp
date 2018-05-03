@@ -50,7 +50,6 @@ void C_db::m_load(std::ifstream& is) {
 			V_rs.push_back(relationship);
 		}
 		L_person.push_back(new C_person_null(id,b_SEX, s_first, s_secend, dat_first, dat_secend,V_r,V_rs));
-
 	}
 }
 C_db::~C_db() {}
@@ -64,7 +63,7 @@ void C_db::m_sort(bool(*F)(C_person_base* _left, C_person_base* _right)) {
 	L_person.sort(F);
 }
 void C_db::m_add_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth) {
-	L_person.push_back(new C_person_null(ID_MAIN,b_SEX,s_first, s_last, d_brith, d_deadth));
+	L_person.push_back(new C_person_null(ID_MAIN_,b_SEX,s_first, s_last, d_brith, d_deadth));
 }
 void C_db::m_update_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth, int& i_variable) { //do szcegolnego przetestowania
 	std::list<C_person_base*>::iterator it = L_person.begin();
@@ -527,4 +526,9 @@ int f_sprawdzanie_gora(int& i_SIZE, int& i_iterator, int& i_size) {
 		else
 			return 3;
 	}
+}
+void C_db::m_search_specjal(C_id Person, std::list<C_person_base*>& List) { //metoda do wyszukiwania specjalnego
+	//wyszukiwanie id desaktywnego!!!
+
+
 }

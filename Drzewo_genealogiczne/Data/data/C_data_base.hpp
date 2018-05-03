@@ -9,8 +9,8 @@
 #include <iostream>
 class C_data_base {
 protected:
-	long long ll_value; //wartosc przechowywana jako long long by latwiej go porownywac i wyszukiwac (optymalizacja)
-	bool b_pointer;  //wartosc bool okreslajaca czy obiekt klasy(klas pochodnych: C_id i C_date) jest aktywny (brany pod uwage!)
+	long long ll_value_; //wartosc przechowywana jako long long by latwiej go porownywac i wyszukiwac (optymalizacja)
+	bool b_pointer_;  //wartosc bool okreslajaca czy obiekt klasy(klas pochodnych: C_id i C_date) jest aktywny (brany pod uwage!)
 public:
 	C_data_base(); //konstruktor
 	void m_update(long long ll_update); // metoda pozwalajaca podmienic wartosc jaka znajduje sie w obiekcie na podana jako argument metody

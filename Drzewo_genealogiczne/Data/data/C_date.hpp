@@ -5,6 +5,7 @@
 #ifndef C_DATE_HPP
 #define C_DATE_HPP
 #include "C_data_base.hpp"
+#include <xtgmath.h> //w code bloksie jest tgmath.h
 #include <string>
 class C_date :public C_data_base {
 public:

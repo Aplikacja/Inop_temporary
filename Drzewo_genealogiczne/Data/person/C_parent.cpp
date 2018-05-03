@@ -9,7 +9,7 @@ C_parent::C_parent(C_id ID, bool b_SEX, std::string s_First, std::string s_Secen
 	C_date Date_brith, C_date Date_death, std::vector<C_relation> V_r, std::vector<C_relationship> V_rs)
 	:C_person_base(ID, b_SEX, s_First, s_Secend, Date_brith, Date_death, V_r, V_rs) {}
 std::string C_parent::m_view() {
-	if (b_sex) {
+	if (b_sex_) {
 		return "-Mather " + m_get_content();
 	}
 	return "-Father " + m_get_content();

@@ -11,14 +11,14 @@
 #include "../relation/C_relation.hpp"
 class C_person_base {
 protected:
-	C_id id; //zmienna id, sluzy do identyfikacji obiektu
-	bool b_sex; //wartosc bool b_SEX odpowiada za przechowywanie wartosci o pluci osobnika (true kobieta, fale Facet)
-	std::string first_name; //zmienna string first_name przechowuje wartosc o imieniu
-	std::string last_name; //zmienna string last_name przechowuje wartosci o nazwisku
-	C_date brith; //zmienna C_date przechowuje informacje o dacie urodzenia
-	C_date death; //zmienna C_date przechowuje informacje o dacie smierci
-	std::vector<C_relationship> V_relationship; //ten typ:P przechowuje rodzaj relacji typu(C_relationship "zwiazki") [partnera, date slubu i dzieci ze zwiazku]
-	std::vector<C_relation> V_realtion; //ten typ:P przechowuje rodzaj relacji typu(C_relation "zwiazki") [typ relacji i id persona na drugim koncu relacji]
+	C_id id_; //zmienna id, sluzy do identyfikacji obiektu
+	bool b_sex_; //wartosc bool b_SEX odpowiada za przechowywanie wartosci o pluci osobnika (true kobieta, fale Facet)
+	std::string first_name_; //zmienna string first_name przechowuje wartosc o imieniu
+	std::string last_name_; //zmienna string last_name przechowuje wartosci o nazwisku
+	C_date brith_; //zmienna C_date przechowuje informacje o dacie urodzenia
+	C_date death_; //zmienna C_date przechowuje informacje o dacie smierci
+	std::vector<C_relationship> V_relationship_; //ten typ:P przechowuje rodzaj relacji typu(C_relationship "zwiazki") [partnera, date slubu i dzieci ze zwiazku]
+	std::vector<C_relation> V_realtion_; //ten typ:P przechowuje rodzaj relacji typu(C_relation "zwiazki") [typ relacji i id persona na drugim koncu relacji]
 	std::string m_get_content(); //prywatna metoda zwaracajaca string z imieniem i nazwiskiem perosna
 public:
 	C_person_base();	//konstruktor

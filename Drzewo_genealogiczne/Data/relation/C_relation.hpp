@@ -6,9 +6,9 @@
 #define C_RELATION_HPP
 #include "../data/C_id.hpp"
 class C_relation {
-	C_id id; //zmienna przechowujaca id
-	bool b_value; //zmienna przechowujaca czy relaca jest aktywna czy tez nie
-	int i_typ; //zmienna charakteryzujacy typ relacji
+	C_id id_; //zmienna przechowujaca id
+	bool b_value_; //zmienna przechowujaca czy relaca jest aktywna czy tez nie
+	int i_typ_; //zmienna charakteryzujacy typ relacji
 public:
 	C_relation(); //konstruktor
 	C_relation(C_id& id); //konstruktor parametrowy

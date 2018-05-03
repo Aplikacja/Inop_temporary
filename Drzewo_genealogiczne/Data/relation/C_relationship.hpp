@@ -8,11 +8,11 @@
 #include "../data/C_date.hpp"
 #include <vector>
 class C_relationship {
-	C_id id;
-	C_date date;
-	std::vector<C_relation> V;
-	bool b_value;
-	int i_typ;
+	C_id id_;
+	C_date date_;
+	std::vector<C_relation> V_;
+	bool b_value_;
+	int i_typ_;
 public:
 	C_relationship(); //konstruktor
 	C_relationship(C_id& id, C_date& Date); //konstruktor paramerowy
@@ -27,6 +27,7 @@ public:
 	void m_get_id(C_id& ID); //metoda pozwalajaca do pozyskiwania id z obiektów typu C_relationship
 	C_relation m_return(int i_value); //metoda zwaracajaca relacje "dziecko"
 	void m_set_baby(C_relation relation); //metoda do dodawanaia relacji typu "dziecko"
+	void m_get_baby(std::vector<C_relation>& V_baby);
 	~C_relationship(); //destruktor
 };
 #endif // !C_RELATIONSHIP_HPP

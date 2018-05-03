@@ -19,6 +19,7 @@ public:
 	void m_add_relation(C_relation& relation, int& i_variable); //metoda pozwalajaca dodawac obietktu typu C_relation do wskazanego przez argument int i_variable do obiektu Person 
 	void m_add_relationship(C_relationship& relation, int& i_variable); //metoda pozwalajaca dodawac obietktu typu C_relationship do wskazanego przez argument int i_variable do obiektu Person 
 	void m_delete_relation(int& i_variable, int& i_var); //metoda pozwalajaca usunac obiekt typu C_relation z obiektu Person
+	void m_get_list_person_orginal(std::list<C_person_base*>& list);
 	void m_delete_relationship(int& i_variable, int& i_var); //metoda pozwalajaca usunac obiekt typu C_relationship z obiektu Person
 	void m_update_relation(C_relation& relation, int& i_variable, int& i_var); //metoda pozwalajaca uaktualnic obiekt typu C_relation z obiektu Person
 	void m_update_relationship(C_relationship& relation, int& i_variable, int& i_var); //metoda pozwalajaca uaktualnic obiekt typu C_relationship z obiektu Person

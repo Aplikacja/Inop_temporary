@@ -1,22 +1,24 @@
 
 #include "Data\engine\C_aplication.hpp"
-//---------------------------------------------------------------------------------------------------------------------------------------
-//Przykladowe klasy do rozdzielenia na plii
-
+void f_read_file_inicjalizer(std::string data, std::string& File);
 int main() {
-
-	C_date D,T;
-	D.m_active();
-	T.m_active();
-	int day = 12;
-	int month = 10;
-	int year = 0;
-	std::string str;
-	D.m_apped(day, month, year);
-	str = "dupa";
-	D.m_sidle(str);
-	D.m_sidle(day, month, year);
-	C_aplication A("plik.txt");
+	std::string File;
+	f_read_file_inicjalizer("plik_inicjalizacyjny.txt",File);
+	C_aplication A(File);
 	A.m_view();
 	return 0;
+}
+void f_read_file_inicjalizer(std::string data, std::string& File) {
+	std::ifstream file;
+	file.open(data.c_str());
+	if (file.good()) {
+		file >> File;
+		file.close();
+	}
+	else
+	{
+		std::cout << "\tProblem z plikiem inicjalizacyjnym\n\tzamykanie programu...\n";
+			Sleep(3000);
+	}
+
 }
