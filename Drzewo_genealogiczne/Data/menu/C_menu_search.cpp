@@ -9,8 +9,9 @@ bool C_menu_search::m_view(int i_id_menu,int& i, std::string& s_result, int& i_k
 	std::string s_temp;
 	std::vector<std::string> V_string;
 	std::vector<std::vector<std::string>>::iterator it_s;
-	for (auto& Y : V_str_[0][i_klucz])
+	for (auto& Y : V_str_[0][i_id_menu]) //eksperymeny bylo i_klucz
 		V_string.push_back(Y);
+
 	for  (auto& Y: V_str_[1][i_id_menu])
 		V_string.push_back(Y);
 	V_k = *V_klucz_.begin();

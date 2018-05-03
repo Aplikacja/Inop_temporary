@@ -78,6 +78,7 @@ void C_aplication::m_load_file(std::string s_file) {
 void C_aplication::m_view() {
 	int i_variable=0;
 	int i_klucz;
+	long long i_id_pointer; //id persona wskaznikowego wzgledem ktorego bedzie rysowane drzewo
 	std::vector<int> V_proces;
 	V_proces.push_back(Menu_glowne);
 	int i_choice = 1;
@@ -103,6 +104,14 @@ void C_aplication::m_view() {
 					M_.m_set_replay(i_variable, id_menu_zarzadzaniadrzewem, search_tree);
 					M_.m_view(id_menu_zarzadzaniadrzewem, i_variable, i_klucz, V_proces, i_choice);
 					break;
+				case M_zarzadzaniapersonem:
+					i_variable = 7;
+					i_choice = 1;
+					M_.m_set_replay(i_variable, id_menu_zarzadzaniapersonem, searchperson);
+					if (M_.m_view(id_menu_zarzadzaniapersonem, i_variable, i_klucz, V_proces, i_choice)) {
+
+					}
+					break;
 				case exit:
 					return;
 				case load_files: {
@@ -118,7 +127,10 @@ void C_aplication::m_view() {
 					//	e_soft.m_delete_person(); 
 					break;
 				case update_person:
-					//	e_soft.m_update_person();
+					i_variable = 8;
+					i_choice = 1;
+					M_.m_set_replay(i_variable, id_menu_Menuedycjipersona, M_zarzadzaniapersonem);
+					M_.m_view(id_menu_Menuedycjipersona, i_variable, i_klucz, V_proces, i_choice);
 					break;
 				case new_tree: {
 					bool b_what = true;
@@ -252,17 +264,20 @@ void C_aplication::m_view() {
 					std::string s_temp;
 					int i;
 					data.m_update(2);
+					i_variable = 5;
 					std::list<C_person_base*> lista;
 					e_soft_.m_get_list_person_orginal(lista);
 				//	e_soft.m_view(view_search, sort_id, data, lista);
 					M_.m_set_replay(i_variable, id_menu_MenuSearchPerson, search_tree);
 					M_.m_set_content(id_menu_MenuSearchPerson,lista);
 					i_choice = 3;
+					i_klucz = 5; //wyjatkowo
 					if (M_.m_view(id_menu_MenuSearchPerson, i_variable, s_str, i_klucz, V_proces, i_choice)) {
-						C_id ID(atoi(s_str.c_str()));
-						e_soft_.m_view(view_search, sort_id, ID, lista);  //do tego momentu jest dobrze
-						std::cin >> s_temp;
-						i_choice = 2;
+						i_id_pointer = atoi(s_str.c_str());
+						//C_id ID();
+						//e_soft_.m_view(view_search, sort_id, ID, lista);  //do tego momentu jest dobrze
+						//std::cin >> s_temp;
+						break;
 					}
 					//-----wrazie czego------
 					//for (auto& x : lista) {
