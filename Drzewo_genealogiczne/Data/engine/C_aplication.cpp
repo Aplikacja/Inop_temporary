@@ -88,6 +88,7 @@ void C_aplication::m_view() {
 			switch (X)
 			{
 				case Menu_glowne:
+
 					i_variable = 0;
 					i_choice = 1;
 				M_.m_view(id_menu_MenuGlowne, i_variable, i_klucz, V_proces, i_choice);

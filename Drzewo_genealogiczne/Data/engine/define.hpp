@@ -13,6 +13,7 @@
 #include <sstream>
 #include <conio.h>
 #define size_menu				10
+#define size_list_view			10
 #define Menu_glowne				0
 #define load_files				10
 #define save_files				11

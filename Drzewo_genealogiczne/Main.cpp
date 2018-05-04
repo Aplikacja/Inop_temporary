@@ -1,5 +1,6 @@
 
 #include "Data\engine\C_aplication.hpp"
+#include <ctime>
 void f_read_file_inicjalizer(std::string data, std::string& File);
 int main() {
 	std::string File;
