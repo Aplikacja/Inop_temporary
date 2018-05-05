@@ -1,5 +1,4 @@
-5COS
+4COS
 Test
-Testddestrukcji
 plik
 plik1
