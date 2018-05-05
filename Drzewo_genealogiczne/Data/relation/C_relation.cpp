@@ -5,7 +5,7 @@
 #include "C_relation.hpp"
 
 C_relation::C_relation() { b_value_ = false; }
-C_relation::C_relation(C_id& ID) { id_ = ID; b_value_ - false; }
+C_relation::C_relation(C_id& ID) { id_ = ID; b_value_ = false; }
 C_relation::C_relation(C_id& ID, int i_TYP, bool b_active) { id_ = ID; i_typ_ = i_TYP, b_value_ = b_active; }
 void operator<<(std::ofstream &is, C_relation &C) {
 	is << C.b_value_;

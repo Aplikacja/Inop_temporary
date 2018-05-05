@@ -2,7 +2,7 @@
 1 4 0 1 
 0 0 Menu glowne
 4 2 10 17 Wczytaj drzewo
-2 1 18 Nowe drzewo
+2 2 10 18 Nowe drzewo
 3 1 22 Wyjscie
 1 4 0 1
 0 0 Menu Wyboru
@@ -10,8 +10,8 @@
 10 0 Edytuj drzewo
 0 1 17 Powrot
 3 2 0 1
-0 0 Podaj nazwe rodziny: 
-0 0 Powrot
+0 0 Podaj nazwe rodziny:
+0 1 0 Powrot
 1 3 0 1
 0 0 Czy jestes pewien?
 0 1 100 tak

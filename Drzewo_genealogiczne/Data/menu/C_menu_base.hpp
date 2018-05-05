@@ -26,7 +26,7 @@ public:
 	void m_load( std::vector<std::vector<std::vector<std::string>>> v); //metoda lafujaca danych
 	void m_ruch(void(*f)(int& x, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k), int& i_klawisz, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k);
 	void m_ruch(void(*f)(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k), int& i_klawisz, int& i_klucz, int& i_start, std::vector<int>& v_k); //metoda umozliwiajaca ruch w menu
-	void m_ruch(void(*f)(int& x, std::string& i_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k), int& i_klawisz, std::string& i_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k);
+	void m_ruch(void(*f)(int& x, std::string& i_klucz, std::string& s_message, int& i_start, std::string* v_k, int i_size), int& i_klawisz, std::string& i_klucz, std::string& s_message, int& i_start, std::string* v_k, int i_size);
 	void m_get_content( std::vector<std::vector<std::vector<std::string>>>& V_CONTENT); //metoda do wyciagania vektor typu string
 	void m_set_content( std::vector<std::vector<std::vector<std::string>>>& V_CONTENT); //metoda do dodawania vektor typu string
 	void m_set_str(int i_choice, std::vector<std::string>& v_str);

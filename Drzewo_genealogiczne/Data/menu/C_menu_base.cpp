@@ -4,7 +4,7 @@
 //**********************************************************************************************************************************************************//
 #include "C_menu_base.hpp"
 void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k);
-void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k);
+void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::string* v_k, int i_Size);
 void f_option_clear(HANDLE& h, COORD& pos, DWORD& Written);
 void f_clear(HANDLE& h, COORD& pos, DWORD& Written);
 void f_obsluga_zadrzen_alfabetycznych(int& i_message);
@@ -35,9 +35,9 @@ void C_menu_base::m_ruch(void(*f)(int& x, std::string& i_klucz, int& i_start, st
 
 	f(i_klawisz, i_klucz, i_start, v_k);
 }
-void C_menu_base::m_ruch(void(*f)(int& x, std::string& i_klucz,std::string& s_message, int& i_start, std::vector<std::string>& v_k), int& i_klawisz, std::string& i_klucz,std::string& s_message, int& i_start, std::vector<std::string>& v_k) {
+void C_menu_base::m_ruch(void(*f)(int& x, std::string& i_klucz,std::string& s_message, int& i_start, std::string* v_k, int i_size), int& i_klawisz, std::string& i_klucz,std::string& s_message, int& i_start, std::string* v_k, int i_size) {
 
-	f(i_klawisz, i_klucz, s_message,i_start, v_k);
+	f(i_klawisz, i_klucz, s_message,i_start, v_k, i_size);
 }
 C_menu_base::~C_menu_base() {};
 void C_menu_base::m_get_content( std::vector<std::vector<std::vector<std::string>>>& V_CONTENT) {
@@ -105,11 +105,12 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 	}
 }
 //ponizsza funkcja przetestowana capslook do poprawy dziala jak cukiereczek
-void f_sterowanie(int& x, std::string& s_klucz,std::string& s_message, int& i_start, std::vector<std::string>& v_k) {
-	int i_size = v_k.size();
+void f_sterowanie(int& x, std::string& s_klucz,std::string& s_message, int& i_start, std::string* v_k, int i_Size) {
+	int i_size = i_Size;
 	int i_message;
 	while (true)
 	{
+		i_start = 1;
 		f_pouse();
 		f_obsluga_zadrzen_alfabetycznych(i_message);
 		switch (i_message) {
@@ -131,7 +132,10 @@ void f_sterowanie(int& x, std::string& s_klucz,std::string& s_message, int& i_st
 			i_start = -2;
 			return; 
 		case vkdelete:
-			s_message.pop_back();	return;
+			i_start = 2;
+			if(s_message.size()>0)
+			s_message.pop_back();
+		return;
 		case vka:
 		case vka1:
 		case vka2:

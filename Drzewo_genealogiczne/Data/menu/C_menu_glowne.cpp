@@ -86,6 +86,7 @@ bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 		}break;
 		default: break;
 	}
+	return false;
 }
 bool C_menu_glowne::m_view(int i_id_menu, int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { return false; }
 C_menu_glowne::~C_menu_glowne() {};

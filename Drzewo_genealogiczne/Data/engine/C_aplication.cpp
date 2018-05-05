@@ -121,6 +121,11 @@ void C_aplication::m_view() {
 				case save_files:
 					e_soft_.m_save_files();
 					break;
+				case save_tree:
+				{
+					e_soft_.m_save_tree();
+					break;
+				}
 				case add_person:
 					//	e_soft.m_add_person(); 
 					break;
@@ -138,14 +143,23 @@ void C_aplication::m_view() {
 					std::string s_str;
 					i_variable =2;
 					M_.m_set_replay(i_variable, id_menu_MenuNewTree, Menu_glowne);
-					if (M_.m_view(id_menu_MenuNewTree, i_variable, s_str, i_klucz, V_proces, i_choice)) {
-						e_soft_.m_add_tree(V_str_[1][id_menu_MenuNewTree][0], b_what);
-						if (b_what) {
-							std::cout << "Tworzenie nowego drzewa!";
-							//i_variable = ; <- przeladowanie do kolejnego menu
-							//break;
+					do {
+						if (M_.m_view(id_menu_MenuNewTree, i_variable, s_str, i_klucz, V_proces, i_choice)) {
+							e_soft_.m_add_tree(s_str, b_what);
+							if (b_what) {
+							f_option_clear(h, pos, Written);
+								printf("Tworzenie nowego drzewa!\n");
+							 f_clear(h, pos, Written);
+								break;
+							}
+							f_option_clear(h, pos, Written);
+							printf("Podana nazwa drezwa juz istnieje!\n");
+							f_clear(h, pos, Written);
+							Sleep(2000);
 						}
-					}
+						else
+						break;
+					} while (true);
 
 				}break;
 				case search_tree: {
@@ -263,7 +277,7 @@ void C_aplication::m_view() {
 					C_id data;
 					std::string s_str;
 					std::string s_temp;
-					int i;
+					//int i;
 					data.m_update(2);
 					i_variable = 5;
 					std::list<C_person_base*> lista;

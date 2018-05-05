@@ -39,11 +39,12 @@ void C_engine_hardware::m_save_files() {
 void C_engine_hardware::m_sort(bool(*F)(C_person_base* _left, C_person_base* _right)) {
 	d_Database_.m_sort(F);
 }
-void C_engine_hardware::m_add_tree(std::string s_data, bool b_what) {
+void C_engine_hardware::m_add_tree(std::string& s_data, bool& b_what) {
 
-	if (S_tree_.count(s_data)!=0) {//tu naprawic
+	if (S_tree_.count(s_data)==0&&s_data.size()>0) {//tu naprawic
 		S_tree_.insert(s_data);
 		f_creative_file_tree(s_data);
+		b_what = true;
 	}
 	else {
 		b_what = false; //element juz istnieje
@@ -69,8 +70,9 @@ void C_engine_hardware::m_save_tree() {
 	std::ofstream file;
 	file.open(file_list_tree);
 	if (file.good()) {
+		file << S_tree_.size();
 		for (auto& x : S_tree_) {
-			file << x;
+			file << x<<"\n";
 		}
 		file.close();
 	}
@@ -94,9 +96,10 @@ void C_engine_hardware::m_edit_name_tree(std::string _new, std::string _old) {
 }
 void f_creative_file_tree(std::string s_data) {
 	s_data = s_data + ".tree";
-	std::ifstream file;
+	std::ofstream file;
 	file.open(s_data.c_str());
 	if (file.good()) {
+		file << "0";
 		file.close();
 	}
 }

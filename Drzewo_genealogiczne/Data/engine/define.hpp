@@ -30,6 +30,7 @@
 #define Menu_pewnosci			22
 #define M_zarzadzaniatree		23
 #define M_zarzadzaniapersonem	24
+#define save_tree				25
 #define exit					100
 //nazwa pliku do zapisu
 #define file_save "plik2.txt"
@@ -187,7 +188,7 @@
 #define id_menu_zarzadzaniadrzewem	1
 #define id_menu_zarzadzaniapersonem 7
 #define id_menu_MenuSearchTree		4
-#define id_menu_MenuNewTree			1
+#define id_menu_MenuNewTree			2
 #define id_menu_MenuSearchPerson	5
 #define id_menu_Menuedycjipersona	8
 #endif // !DEFINITION_HPP
