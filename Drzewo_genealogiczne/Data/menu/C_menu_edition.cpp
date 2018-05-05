@@ -4,6 +4,7 @@
 //**********************************************************************************************************************************************************//
 #include "C_menu_edition.hpp"
 void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
+void f_sterowanie_add_person(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
 C_menu_edition::C_menu_edition(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) :C_menu_base(V, b, v_k,V_procedur, i_iterator,L_person) {}
 bool C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
 	int i_x = i_start_; //udalo nam sie wejsc w ta metode :)
@@ -100,10 +101,10 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 	V_k = *V_klucz_.begin();
 	switch (i_choice) {
 	case 1: {
-		int i_size = V_str_[0][i_id_menu].size() + 1;
+		int i_size = V_str_[0][i_id_menu].size() + 10;
 		std::vector<std::string> V_name_option = { "Imie:\n", "Nazwisko:\n", "Data urodzenia:\n", "Data smierci:\n", "Plec:\n" };
 		V_string.resize(13);
-		V_user_world.resize(5);
+		V_user_world.resize(6);
 		for (auto& Y : V_str_[0][i_id_menu]) {
 			V_string[ptr] = Y;
 			if (ptr == 0) {
@@ -132,7 +133,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 
 			}
 			f_clear(h, pos, Written);
-			m_ruch(f_sterowanie, i_x, s_working, V_user_world[i_position], i_sta, V_string, i_size, i_start_);
+			m_ruch(f_sterowanie_add_person, i_x, s_working, V_user_world[i_position], i_sta, V_string, i_size, i_start_);
 			switch (i_sta) {
 			case 0: {
 				switch (i_x) {
@@ -210,7 +211,9 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 					V_result[1] = V_string[2];
 					return true;
 				case 3:
-					V_proces = V_procedur_[i_x - i_start_];
+					V_proces.clear();
+					this->m_get_replay(i_id_menu, i_replay);
+					V_proces.push_back(i_replay);
 					return false;
 				}
 			case -2: {

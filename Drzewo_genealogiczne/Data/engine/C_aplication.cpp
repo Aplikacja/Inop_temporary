@@ -126,7 +126,7 @@ void C_aplication::m_view() {
 					std::vector<std::string> V_name;
 					V_name.resize(2);
 					V_name[0] = s_tree;
-					M_.m_set_replay(i_variable, id_menu_MenuRenameTree, id_menu_MenuEditTree);
+					M_.m_set_replay(i_variable, id_menu_MenuRenameTree, Edition_tree);
 					if (M_.m_view(id_menu_MenuRenameTree, i_variable, V_name, i_klucz, V_proces, i_choice)) {
 						e_soft_.m_edit_name_tree(V_name[1], V_name[0]);
 						e_soft_.m_save_tree();

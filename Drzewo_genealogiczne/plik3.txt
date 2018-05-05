@@ -1,4 +1,3 @@
-4COS
-Test
+3Test
 plik
 plik1
