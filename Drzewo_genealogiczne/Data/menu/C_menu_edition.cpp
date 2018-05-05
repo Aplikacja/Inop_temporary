@@ -202,15 +202,14 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 			switch (i_sta) {
 			case 0: {
 				switch (i_x) {
-				case 1:
+				case 2:
 					//s_result = s_word_user;
 					V_proces.clear();
 					//wlaczenie kolejnych odwolan
-					V_proces.push_back(25);
-					V_proces.push_back(12);
+					V_proces.push_back(26);
+					V_result[1] = V_string[2];
 					return true;
-
-				case 2:
+				case 3:
 					V_proces = V_procedur_[i_x - i_start_];
 					return false;
 				}

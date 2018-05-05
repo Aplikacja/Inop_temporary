@@ -128,7 +128,8 @@ void C_aplication::m_view() {
 					V_name[0] = s_tree;
 					M_.m_set_replay(i_variable, id_menu_MenuRenameTree, id_menu_MenuEditTree);
 					if (M_.m_view(id_menu_MenuRenameTree, i_variable, V_name, i_klucz, V_proces, i_choice)) {
-						e_soft_.m_edit_name_tree(V_name[0], V_name[2]);
+						e_soft_.m_edit_name_tree(V_name[1], V_name[0]);
+						e_soft_.m_save_tree();
 					}
 					break; }
 				case exit:
@@ -195,7 +196,7 @@ void C_aplication::m_view() {
 					e_soft_.m_get_tree(V_string);
 					M_.m_set_replay(i_variable, id_menu_MenuSearchTree, Menu_glowne);
 					V_str_[1][id_menu_MenuSearchTree] = V_string;
-					M_.m_set_str(i_klucz, V_str_); //ladowanie menu nazwami drzew
+					M_.m_set_str(i_variable, V_str_); //ladowanie menu nazwami drzew
 					if (M_.m_view(id_menu_MenuSearchTree, i_variable, s_str, i_klucz, V_proces, i_choice)) {
 						s_tree = s_str;
 						s_str += ".tree";

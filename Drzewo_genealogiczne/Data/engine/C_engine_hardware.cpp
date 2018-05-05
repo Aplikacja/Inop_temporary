@@ -91,7 +91,7 @@ void C_engine_hardware::m_edit_name_tree(std::string _new, std::string _old) {
 	if (S_tree_.count(_old)!=0) {
 		S_tree_.erase(S_tree_.find(_old));
 		S_tree_.insert(_new);
-		_new = "rename " + _old + " " + _new;
+		_new = "rename " + _old + ".tree " + _new + ".tree";
 		system(_new.c_str());
 	}
 }
