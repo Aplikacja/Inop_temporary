@@ -12,7 +12,7 @@
 #define DEFINITION_HPP
 #include <sstream>
 #include <conio.h>
-#define size_menu				10
+#define size_menu				12
 #define size_list_view			10
 #define Menu_glowne				0
 #define load_files				10
@@ -31,6 +31,8 @@
 #define M_zarzadzaniatree		23
 #define M_zarzadzaniapersonem	24
 #define save_tree				25
+#define Edition_tree			26
+#define rename_tree				27
 #define exit					100
 //nazwa pliku do zapisu
 #define file_save "plik2.txt"
@@ -191,4 +193,7 @@
 #define id_menu_MenuNewTree			2
 #define id_menu_MenuSearchPerson	5
 #define id_menu_Menuedycjipersona	8
+#define id_menu_MenuAddPerson		9
+#define id_menu_MenuEditTree		10
+#define id_menu_MenuRenameTree		11
 #endif // !DEFINITION_HPP

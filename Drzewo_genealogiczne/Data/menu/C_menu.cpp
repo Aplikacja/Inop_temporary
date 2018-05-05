@@ -46,6 +46,12 @@ bool C_menu::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i
 	}
 	return false;
 }
+bool C_menu::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
+	if (i_variable >= 0 && i_variable < i_size) {
+		return Tab_menu_[i_variable]->m_view(i_id_menu, i_variable, V_result, i_klucz, V_proces, i_choice); //do rozwoju trza zaprojektowac lejalt menu
+	}
+	return false;
+}
 void C_menu::m_set_content(int i_choice,std::list<C_person_base*>& Lista) {
 	std::list<C_person_base*> lista;
 	lista = Lista;

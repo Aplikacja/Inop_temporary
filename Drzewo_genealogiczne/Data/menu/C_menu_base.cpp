@@ -4,7 +4,7 @@
 //**********************************************************************************************************************************************************//
 #include "C_menu_base.hpp"
 void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k);
-void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::string* v_k, int i_Size);
+void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
 void f_option_clear(HANDLE& h, COORD& pos, DWORD& Written);
 void f_clear(HANDLE& h, COORD& pos, DWORD& Written);
 void f_obsluga_zadrzen_alfabetycznych(int& i_message);
@@ -35,9 +35,9 @@ void C_menu_base::m_ruch(void(*f)(int& x, std::string& i_klucz, int& i_start, st
 
 	f(i_klawisz, i_klucz, i_start, v_k);
 }
-void C_menu_base::m_ruch(void(*f)(int& x, std::string& i_klucz,std::string& s_message, int& i_start, std::string* v_k, int i_size), int& i_klawisz, std::string& i_klucz,std::string& s_message, int& i_start, std::string* v_k, int i_size) {
+void C_menu_base::m_ruch(void(*f)(int& x, std::string& i_klucz,std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_size, int i_start_), int& i_klawisz, std::string& i_klucz,std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_size, int i_start_) {
 
-	f(i_klawisz, i_klucz, s_message,i_start, v_k, i_size);
+	f(i_klawisz, i_klucz, s_message,i_start, v_k, i_size, i_start_);
 }
 C_menu_base::~C_menu_base() {};
 void C_menu_base::m_get_content( std::vector<std::vector<std::vector<std::string>>>& V_CONTENT) {
@@ -105,8 +105,7 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 	}
 }
 //ponizsza funkcja przetestowana capslook do poprawy dziala jak cukiereczek
-void f_sterowanie(int& x, std::string& s_klucz,std::string& s_message, int& i_start, std::string* v_k, int i_Size) {
-	int i_size = i_Size;
+void f_sterowanie(int& x, std::string& s_klucz,std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_) {
 	int i_message;
 	while (true)
 	{
@@ -116,13 +115,13 @@ void f_sterowanie(int& x, std::string& s_klucz,std::string& s_message, int& i_st
 		switch (i_message) {
 		case vkup:
 			x--;
-			if (x <= i_start - 1)      // gdy wykracza wraca na koniec
-				x = i_size - 1;
+			if (x <= i_start)      // gdy wykracza wraca na koniec
+				x = i_Size - 1;
 			return;
 		case vkdown:
 			x++;
-			if (x >= i_size)       // gdy wykracza poza menu, znow wraca na poczatek
-				x = i_start;
+			if (x >= i_Size)       // gdy wykracza poza menu, znow wraca na poczatek
+				x = i_start_;
 			return;
 		case vkreturn:
 			i_start = 0;

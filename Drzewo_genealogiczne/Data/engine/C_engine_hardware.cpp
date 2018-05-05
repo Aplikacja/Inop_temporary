@@ -88,10 +88,11 @@ void C_engine_hardware::m_delete_tree(std::string s_data) {
 	system(s_data.c_str());
 }
 void C_engine_hardware::m_edit_name_tree(std::string _new, std::string _old) {
-//	std::set<std::string>::iterator it;
 	if (S_tree_.count(_old)!=0) {
 		S_tree_.erase(S_tree_.find(_old));
 		S_tree_.insert(_new);
+		_new = "rename " + _old + " " + _new;
+		system(_new.c_str());
 	}
 }
 void f_creative_file_tree(std::string s_data) {

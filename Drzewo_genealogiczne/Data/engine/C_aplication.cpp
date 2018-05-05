@@ -80,6 +80,7 @@ void C_aplication::m_view() {
 	int i_klucz;
 	long long i_id_pointer; //id persona wskaznikowego wzgledem ktorego bedzie rysowane drzewo
 	std::vector<int> V_proces;
+	std::string s_tree; //nazwa drzewa wokul ktorego zachodza opcje wybierane w menu
 	V_proces.push_back(Menu_glowne);
 	int i_choice = 1;
 	while (true) {
@@ -113,6 +114,23 @@ void C_aplication::m_view() {
 
 					}
 					break;
+				case Edition_tree:
+					i_variable = 10;
+					i_choice = 1;
+					M_.m_set_replay(i_variable, id_menu_MenuEditTree, search_tree);
+					M_.m_view(id_menu_MenuEditTree, i_variable, i_klucz, V_proces, i_choice);
+					break;
+				case rename_tree: {
+					i_variable = 11;
+					i_choice = 2;
+					std::vector<std::string> V_name;
+					V_name.resize(2);
+					V_name[0] = s_tree;
+					M_.m_set_replay(i_variable, id_menu_MenuRenameTree, id_menu_MenuEditTree);
+					if (M_.m_view(id_menu_MenuRenameTree, i_variable, V_name, i_klucz, V_proces, i_choice)) {
+						e_soft_.m_edit_name_tree(V_name[0], V_name[2]);
+					}
+					break; }
 				case exit:
 					return;
 				case load_files: {
@@ -126,9 +144,16 @@ void C_aplication::m_view() {
 					e_soft_.m_save_tree();
 					break;
 				}
-				case add_person:
+				case add_person: {
+					i_variable = 9;
+					i_choice = 1;
+					std::vector<std::string> V_dane;
+					M_.m_set_replay(i_variable, id_menu_MenuAddPerson, search_tree);
+					if (M_.m_view(id_menu_MenuAddPerson, i_variable, V_dane, i_klucz, V_proces, i_choice)) {
+						
+					}
 					//	e_soft.m_add_person(); 
-					break;
+					break; }
 				case delete_person:
 					//	e_soft.m_delete_person(); 
 					break;
@@ -172,6 +197,7 @@ void C_aplication::m_view() {
 					V_str_[1][id_menu_MenuSearchTree] = V_string;
 					M_.m_set_str(i_klucz, V_str_); //ladowanie menu nazwami drzew
 					if (M_.m_view(id_menu_MenuSearchTree, i_variable, s_str, i_klucz, V_proces, i_choice)) {
+						s_tree = s_str;
 						s_str += ".tree";
 						e_soft_.m_load_files(s_str);
 						//s_str;

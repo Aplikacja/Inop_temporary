@@ -1,13 +1,13 @@
-9
+12
 1 4 0 1 
-0 0 Menu glowne
+0 0 Menu glowne:
 4 2 10 17 Wczytaj drzewo
 2 2 10 18 Nowe drzewo
 3 1 22 Wyjscie
 1 4 0 1
-0 0 Menu Wyboru
+0 0 Menu Wyboru:
 5 1 21 Wyswietl zawartosc
-10 0 Edytuj drzewo
+0 1 26 Edytuj drzewo
 0 1 17 Powrot
 3 2 0 1
 0 0 Podaj nazwe rodziny:
@@ -25,13 +25,26 @@
 0 1 19 Tak
 0 0 Nie
 1 4 0 1
-0 0 Menu osoby
+0 0 Menu osoby:
 0 1 15 Wyswietl drzewo osoby
 0 1 14 Edytuj osobe
 5 1 21 Powrot
 1 5 0 1
-0 0 Edycja osoby
+0 0 Edycja osoby:
 0 0 Edytuj dane osoby
 0 0 Edytuj relacje
 0 0 Usun osobe
 0 1 24 Powrot
+3 3 0 1
+0 0 Dodawanie nowej osoby:
+0 0 Dodaj
+0 0 Powrot
+1 5 0 1
+0 0 Edycja drzewa:
+0 1 12 Dodaj nowa osobe
+0 1 27 Zmien nazwe drzewa
+0 1 19 Usun drzewo
+0 0 Powrot
+3 2 0 2
+0 0 Podaj nowa nazwe drzewa:
+0 0 Powrot

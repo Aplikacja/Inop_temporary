@@ -95,3 +95,4 @@ bool C_menu_tree::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V
 	return false;
 }
 bool C_menu_tree::m_view(int i_id_menu, int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { return false; }
+bool C_menu_tree::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { return false; }
