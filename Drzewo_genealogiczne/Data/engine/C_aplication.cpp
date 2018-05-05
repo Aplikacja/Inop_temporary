@@ -205,8 +205,7 @@ void C_aplication::m_view() {
 					}
 				}break;
 				case delete_tree: {
-					e_soft_.m_delete_tree(*(V_str_[1][0].begin()));
-					i_variable = search_tree; //<- przelaczenie na odpowiednie menu
+					e_soft_.m_delete_tree(s_tree);
 				}break;
 				case load_content_tree: {
 					e_soft_.m_load_files(*(V_str_[1][0].begin()));
