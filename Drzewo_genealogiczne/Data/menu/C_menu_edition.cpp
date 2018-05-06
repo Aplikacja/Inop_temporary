@@ -144,8 +144,10 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 			case 0: {
 				switch (i_x) {
 				case 11:
-					V_proces = V_procedur_[i_x - i_start_];
-					return false;
+					V_proces.clear();
+					this->m_get_replay(i_id_menu, i_replay);
+					V_proces.push_back(i_replay);
+					return false;;
 				default:
 					for (i_position = 0; i_position < 5; i_position++) {
 						V_result[i_position] = V_string[V_position[i_position]];
@@ -329,8 +331,8 @@ void f_protected_data(int i_choice, std::string& s_data, std::string& s_message)
 				}
 				else {
 					switch (s_message.size()) {
-					case 2:
-					case 5:
+					case 4:
+					case 7:
 						s_message += '-';
 					}
 					s_data = s_message;
