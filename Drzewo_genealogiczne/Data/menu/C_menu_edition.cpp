@@ -5,6 +5,7 @@
 #include "C_menu_edition.hpp"
 void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
 void f_sterowanie_add_person(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
+void f_protected_data(int i_choice, std::string& s_data, std::string& s_message);
 C_menu_edition::C_menu_edition(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) :C_menu_base(V, b, v_k,V_procedur, i_iterator,L_person) {}
 bool C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
 	int i_x = i_start_; //udalo nam sie wejsc w ta metode :)
@@ -91,20 +92,25 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 	int i_sta = i_start_;
 	int ptr = 0;
 	int i_replay;
-	int i=0;
-	int i_position=0;
+	int i;
+	std::string s_message;
 	std::vector<int> V_k;
 	std::string s_working;
-	std::vector<std::string> V_user_world;
-	std::vector<std::vector<std::string>>::iterator it_s;
+	//std::vector<std::vector<std::string>>::iterator it_s;
 	std::vector<std::string> V_string;
 	V_k = *V_klucz_.begin();
 	switch (i_choice) {
 	case 1: {
+		int i_position=5;
+		int i_remember_x = i_start_;
+		std::vector<int> V_position;
+		V_position.resize(i_position);
+		for (i = 0; i < i_position; i++)
+			V_position[i] = (i+1) * 2;
 		int i_size = V_str_[0][i_id_menu].size() + 10;
-		std::vector<std::string> V_name_option = { "Imie:\n", "Nazwisko:\n", "Data urodzenia:\n", "Data smierci:\n", "Plec:\n" };
+		std::vector<std::string> V_name_option = { "Imie:", "Nazwisko:", "Data urodzenia:", "Data smierci:", "Plec:" };
 		V_string.resize(13);
-		V_user_world.resize(6);
+		i_position = 0;
 		for (auto& Y : V_str_[0][i_id_menu]) {
 			V_string[ptr] = Y;
 			if (ptr == 0) {
@@ -112,9 +118,9 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 					ptr++;
 					V_string[ptr] = P;
 					ptr++;
-					V_string[ptr] = V_user_world[i];
-					i++;
+					V_string[ptr] = s_working;
 				}
+				ptr++;
 			}
 		}
 		f_option_clear(h, pos, Written);
@@ -133,11 +139,17 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 
 			}
 			f_clear(h, pos, Written);
-			m_ruch(f_sterowanie_add_person, i_x, s_working, V_user_world[i_position], i_sta, V_string, i_size, i_start_);
+			m_ruch(f_sterowanie_add_person, i_x, s_working, s_message, i_sta, V_string, i_size, i_start_);
 			switch (i_sta) {
 			case 0: {
 				switch (i_x) {
-				case 1:
+				case 11:
+					V_proces = V_procedur_[i_x - i_start_];
+					return false;
+				default:
+					for (i_position = 0; i_position < 5; i_position++) {
+						V_result[i_position] = V_string[V_position[i_position]];
+					}
 					//s_result = s_word_user;
 					V_proces.clear();
 					//wlaczenie kolejnych odwolan
@@ -145,9 +157,6 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 					V_proces.push_back(12);
 					return true;
 
-				case 2:
-					V_proces = V_procedur_[i_x - i_start_];
-					return false;
 				}
 			case -2: {
 				//zaimplementowane do cofania sie do poprzedniego menu
@@ -157,13 +166,56 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 				return false; }
 			}
 			case 2: {
-				if (V_string[1].size()>0)
-				//	s_Tab[1] = s_word_user + " ";
+				if (i_remember_x != i_x) {
+					switch (i_x) {
+					case 1:
+						i_position = 0;
+						s_message = V_string[V_position[i_position]];  break;
+					case 3:
+						i_position = 1;
+						s_message = V_string[V_position[i_position]];  break;
+					case 5:
+						i_position = 2;
+						s_message = V_string[V_position[i_position]];  break;
+					case 7:
+						i_position = 3;
+						s_message = V_string[V_position[i_position]];  break;
+					case 9:
+						i_position = 4;
+						s_message = V_string[V_position[i_position]];  break;
+					default: break;
+					}
+					i_remember_x = i_x;
+				}
+				if (V_string[V_position[i_position]].size() > 0)
+					V_string[V_position[i_position]] = s_message + " ";
 				break;
 			}
-			default:
-			//	s_Tab[1] = s_word_user;
-				break;
+			default: {
+				if (i_remember_x != i_x) {
+					switch (i_x) {
+					case 1:
+						i_position = 0;
+						s_message = V_string[V_position[i_position]];  break;
+					case 3:
+						i_position = 1;
+						s_message = V_string[V_position[i_position]];  break;
+					case 5:
+						i_position = 2;
+						s_message = V_string[V_position[i_position]];  break;
+					case 7:
+						i_position = 3;
+						s_message = V_string[V_position[i_position]];  break;
+					case 9:
+						i_position = 4;
+						s_message = V_string[V_position[i_position]];  break;
+					default: break;
+					}
+					i_remember_x = i_x;
+				}
+			}
+					 f_protected_data(i_position, V_string[V_position[i_position]], s_message);
+					 break;
 			}
 		}
 		break;
@@ -172,7 +224,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 		std::string _new_name;
 		int i_size = V_str_[0][i_id_menu].size() + 2;
 		V_string.resize(4);
-		V_user_world.resize(1);
+
 		for (auto& Y : V_str_[0][i_id_menu]) {
 			V_string[ptr] = Y;
 			if (ptr == 0) {
@@ -238,4 +290,37 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 	}
 	return false;
 }
-
+void f_protected_data(int i_choice, std::string& s_data, std::string& s_message) {
+	switch (i_choice) {
+		case 0:	//analiza imienia i nazwiska
+		case 1: {
+			if (s_message.size() > 0) {
+				if (s_message[s_message.size() - 1] == 32) {
+					s_data = s_message; break;
+			}
+			else if (s_message[s_message.size()-1] < 58) {
+					s_message.pop_back();
+					return;
+				}
+				else
+					s_data = s_message;
+				break;
+			}}
+		case 2:
+		case 3: {
+			if (s_message.size() > 0) {
+				if (s_message[s_message.size()-1] > 58|| s_message[s_message.size() - 1] == 32) {
+					s_message.pop_back();
+					return;
+				}
+				else
+					s_data = s_message;
+				break;
+			}
+		}
+		case 4: {
+			s_data = s_message; break;
+		}
+		default: break;
+	}
+}

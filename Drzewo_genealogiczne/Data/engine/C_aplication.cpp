@@ -149,9 +149,11 @@ void C_aplication::m_view() {
 					i_variable = 9;
 					i_choice = 1;
 					std::vector<std::string> V_dane;
+					V_dane.resize(5);
 					M_.m_set_replay(i_variable, id_menu_MenuAddPerson, search_tree);
-					if (M_.m_view(id_menu_MenuAddPerson, i_variable, V_dane, i_klucz, V_proces, i_choice)) {
-						
+					if (M_.m_view(id_menu_MenuAddPerson, i_variable, V_dane, i_klucz, V_proces, i_choice)) { //lacze dziala wyciaga dane z interface trzeba zrobic funkcje zabezpieczajace
+					
+						break;
 					}
 					//	e_soft.m_add_person(); 
 					break; }

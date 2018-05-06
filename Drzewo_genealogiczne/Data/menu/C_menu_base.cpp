@@ -306,8 +306,8 @@ void f_sterowanie_add_person(int& x, std::string& s_klucz, std::string& s_messag
 		switch (i_message) {
 		case vkup:
 			x-=2;
-			if (x <= i_start)      // gdy wykracza wraca na koniec
-				x = i_Size - 1;
+			if (x < i_start)      // gdy wykracza wraca na koniec
+				x = i_Size-2;
 			return;
 		case vkdown:
 			x+=2;
@@ -327,6 +327,8 @@ void f_sterowanie_add_person(int& x, std::string& s_klucz, std::string& s_messag
 			if (s_message.size()>0)
 				s_message.pop_back();
 			return;
+		case vkspace:
+			s_message += " "; return;
 		case vka:
 		case vka1:
 		case vka2:
@@ -483,6 +485,26 @@ void f_sterowanie_add_person(int& x, std::string& s_klucz, std::string& s_messag
 			s_message += 'Y';	return;
 		case vkZ:
 			s_message += 'Z';	return;
+		case vk0:
+			s_message += '0'; return;
+		case vk1:
+			s_message += '1'; return;
+		case vk2:
+			s_message += '2'; return;
+		case vk3:
+			s_message += '3'; return;
+		case vk4:
+			s_message += '4'; return;
+		case vk5:
+			s_message += '5'; return;
+		case vk6:
+			s_message += '6'; return;
+		case vk7:
+			s_message += '7'; return;
+		case vk8:
+			s_message += '8'; return;
+		case vk9:
+			s_message += '9'; return;
 		default:	break;
 		}
 	}
@@ -511,16 +533,17 @@ void C_menu_base::m_get_str(int i_choice, std::vector<std::string>& v_str) {
 }
 void f_obsluga_zadrzen_alfabetycznych(int& i_message) {
 	unsigned int i_result;
-	int i_tab_value[35] = { vkdown,vkup,vkreturn,vkescape,vklshift,vkrshift,vkcapslook,vkdelete,vkspace,vka,
+	int i_tab_value[45] = { vkdown,vkup,vkreturn,vkescape,vklshift,vkrshift,vkcapslook,vkdelete,vkspace,vka,
 							vkb,vkc,vkd,vke,vkf,vkg,vkh,vki,vkj,vkk,vkl,vkm,vkn,vko,vkp,vkq,vkr,vks,vkt,vku,
-							vkv,vkw,vkx,vky,vkz };
-	int i_tab_key[35] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_BACK,VK_SPACE,
+							vkv,vkw,vkx,vky,vkz,vk0,vk1,vk2,vk3,vk4,vk5,vk6,vk7,vk8,vk9, };
+	int i_tab_key[45] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_BACK,VK_SPACE,
 							0x041, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4A, 0x04B, 0x4C, 0x4D, 
-							0x4E, 0x4F, 0x50, 0x51,	0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A};
+							0x4E, 0x4F, 0x50, 0x51,	0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A,
+							0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39 };
 	int i;
 	do {
 		i_result = 0;
-		for (i = 0; i<35; i++)
+		for (i = 0; i<45; i++)
 			f(i_tab_key[i], i_tab_value[i], i_result);
 	} while (i_result==0);
 	i_message = i_result;
