@@ -89,7 +89,6 @@ void C_aplication::m_view() {
 			switch (X)
 			{
 				case Menu_glowne:
-
 					i_variable = 0;
 					i_choice = 1;
 				M_.m_view(id_menu_MenuGlowne, i_variable, i_klucz, V_proces, i_choice);
@@ -138,7 +137,7 @@ void C_aplication::m_view() {
 					e_soft_.m_load_tree();
 				}break;
 				case save_files:
-					e_soft_.m_save_files();
+					e_soft_.m_save_files(s_tree);
 					break;
 				case save_tree:
 				{
@@ -152,10 +151,21 @@ void C_aplication::m_view() {
 					V_dane.resize(5);
 					M_.m_set_replay(i_variable, id_menu_MenuAddPerson, search_tree);
 					if (M_.m_view(id_menu_MenuAddPerson, i_variable, V_dane, i_klucz, V_proces, i_choice)) { //lacze dziala wyciaga dane z interface trzeba zrobic funkcje zabezpieczajace
-					
+						C_date date_brith, date_death;
+						bool b_gender=false;
+						date_brith.m_active();
+						date_death.m_active();
+						date_brith.m_apped(V_dane[2]);
+						date_death.m_apped(V_dane[3]);
+						switch (V_dane[4][0]) {
+						case 'W':
+							b_gender = true;
+						case 'M':
+							b_gender = false;
+						}
+							e_soft_.m_add_person(b_gender, V_dane[0], V_dane[1],date_brith, date_death);
 						break;
 					}
-					//	e_soft.m_add_person(); 
 					break; }
 				case delete_person:
 					//	e_soft.m_delete_person(); 

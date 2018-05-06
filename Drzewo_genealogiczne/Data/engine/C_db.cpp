@@ -4,7 +4,7 @@
 //**********************************************************************************************************************************************************//
 #include "C_db.hpp"
 
-C_db::C_db() {}
+C_db::C_db() { ID_MAIN_ = 0; }
 void C_db::m_size(int& i_var) {
 	i_var = L_person.size();
 }
@@ -51,6 +51,7 @@ void C_db::m_load(std::ifstream& is) {
 		}
 		L_person.push_back(new C_person_null(id,b_SEX, s_first, s_secend, dat_first, dat_secend,V_r,V_rs));
 	}
+	ID_MAIN_ = L_person.size();
 }
 C_db::~C_db() {}
 void C_db::m_delete_base() {
@@ -63,7 +64,7 @@ void C_db::m_sort(bool(*F)(C_person_base* _left, C_person_base* _right)) {
 	L_person.sort(F);
 }
 void C_db::m_add_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth) {
-	L_person.push_back(new C_person_null(ID_MAIN_,b_SEX,s_first, s_last, d_brith, d_deadth));
+	L_person.push_back(new C_person_null(ID_MAIN_++,b_SEX,s_first, s_last, d_brith, d_deadth));
 }
 void C_db::m_update_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth, int& i_variable) { //do szcegolnego przetestowania
 	std::list<C_person_base*>::iterator it = L_person.begin();

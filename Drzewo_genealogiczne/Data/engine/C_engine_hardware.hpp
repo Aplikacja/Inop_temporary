@@ -22,7 +22,7 @@ protected:
 public:
 	C_engine_hardware(); //konstruktor
 	void m_load_files(std::string& s_str); //metoda do przebudowy
-	void m_save_files();	//metoda do przebudowy
+	void m_save_files(std::string s_data);	//metoda do przebudowy
 	void m_sort(bool(*F)(C_person_base* _left, C_person_base* _right)); //metoda do sortowania bazy danych
 	void m_add_tree(std::string& s_data, bool& b_what); //metoda do dodawania nowych drzew
 	void m_get_tree(std::vector<std::string>& V_str);

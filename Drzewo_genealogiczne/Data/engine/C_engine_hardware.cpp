@@ -16,7 +16,7 @@ void C_engine_hardware::m_load_files(std::string& s_str) {
 		file.close();
 	}
 } //metoda do przebudowy
-void C_engine_hardware::m_save_files() {
+void C_engine_hardware::m_save_files(std::string s_data) {
 	int i_size;
 	d_Database_.m_size(i_size);
 	//d_Database.m_sort(f_sort_last_name); //test na sortowanie po imieniach! (Test zakonczony sukcesem!)
@@ -25,7 +25,8 @@ void C_engine_hardware::m_save_files() {
 	//d_Database.m_sort(f_sort_date_brith); //test na sortowanie po dacie urodzenia! (Test zakonczony sukcesem!)
 	//d_Database.m_sort(f_sort_date_death); //test na sortowanie po dacie smierci! (Test zakonczony sukcesem!)
 	std::ofstream file;
-	file.open(file_save);
+	s_data += ".tree";
+	file.open(s_data.c_str());
 	if (file.good()) {
 		file << i_size;
 		std::list<C_person_base*> LISTA;

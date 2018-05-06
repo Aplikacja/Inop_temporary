@@ -153,10 +153,10 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 					//s_result = s_word_user;
 					V_proces.clear();
 					//wlaczenie kolejnych odwolan
-					V_proces.push_back(25);
-					V_proces.push_back(12);
+					V_proces.push_back(11);
+					V_proces.push_back(11);
+					V_proces.push_back(21);
 					return true;
-
 				}
 			case -2: {
 				//zaimplementowane do cofania sie do poprzedniego menu
@@ -187,8 +187,21 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 					}
 					i_remember_x = i_x;
 				}
-				if (V_string[V_position[i_position]].size() > 0)
-					V_string[V_position[i_position]] = s_message + " ";
+				if (V_string[V_position[i_position]].size() > 0) {
+					switch (i_position) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+						V_string[V_position[i_position]] = s_message + " ";
+						break;
+					case 4:
+						V_string[V_position[i_position]] = "                 ";
+						s_message = "";
+						break;
+					}
+			
+				}
 				break;
 			}
 			default: {
@@ -208,7 +221,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 						s_message = V_string[V_position[i_position]];  break;
 					case 9:
 						i_position = 4;
-						s_message = V_string[V_position[i_position]];  break;
+						s_message = "";  break;
 					default: break;
 					}
 					i_remember_x = i_x;
@@ -305,21 +318,40 @@ void f_protected_data(int i_choice, std::string& s_data, std::string& s_message)
 				else
 					s_data = s_message;
 				break;
-			}}
+			}
+			break; }
 		case 2:
-		case 3: {
-			if (s_message.size() > 0) {
+		case 3: { //przydal by sie algorytm do weryfikacji daty!!
+			if (s_message.size() > 0 && s_message.size()<11) {
 				if (s_message[s_message.size()-1] > 58|| s_message[s_message.size() - 1] == 32) {
 					s_message.pop_back();
 					return;
 				}
-				else
+				else {
+					switch (s_message.size()) {
+					case 2:
+					case 5:
+						s_message += '-';
+					}
 					s_data = s_message;
-				break;
+					break;
+				}
 			}
-		}
+			break; }
 		case 4: {
-			s_data = s_message; break;
+			if(s_message.size() > 0 && s_message.size()<2)
+				switch (s_message[0]){
+				case '1':
+				case 't':
+				case 'T':
+					s_data ="Woman";
+					break;
+				case '0':
+				case 'n':
+				case 'N':
+					s_data = "Man";
+				}
+		 break;
 		}
 		default: break;
 	}
