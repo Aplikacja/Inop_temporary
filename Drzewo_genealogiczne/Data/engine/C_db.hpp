@@ -30,7 +30,7 @@ public:
 	C_db(); //konstruktor
 	void m_size(int& i_var); //metoda do pobierania rozmiaru bazy danych
 	void m_add_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth); //metoda do dodawania do listy persona
-	void m_update_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth, int& i_variable); //metoda do edycji perosna w liscie
+	void m_update_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth, long long& i_variable); //metoda do edycji perosna w liscie
 	void m_add_relation(C_relation& relation, int& i_variable); //metoda do dodawania relacji do bazy danych do wybranego perosna 
 	void m_add_relationship(C_relationship& relation, int& i_variable);  //metoda do dodawania zwiazku(relationship) do bazy danych do wybranego perosna 
 	void m_delete_person(long long& i_variable); //usuwania persona z bazy danych

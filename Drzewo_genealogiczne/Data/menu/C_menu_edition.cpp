@@ -302,6 +302,161 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 		}
 		break;
 	}
+	case 3: {
+		int i_position = 5;
+		int i_remember_x = i_start_;
+		std::vector<int> V_position;
+		V_position.resize(i_position);
+		for (i = 0; i < i_position; i++)
+			V_position[i] = (i + 1) * 2;
+		int i_size = V_str_[0][i_id_menu].size() + 10;
+		std::vector<std::string> V_name_option = { "Imie:", "Nazwisko:", "Data urodzenia:", "Data smierci:", "Plec:" };
+		V_string.resize(13);
+		i_position = 0;
+		for (auto& Y : V_str_[0][i_id_menu]) {
+			V_string[ptr] = Y;
+			if (ptr == 0) {
+				for (auto& P : V_name_option) {
+					ptr++;
+					V_string[ptr] = P;
+					ptr++;
+					V_string[ptr] = V_result[i_position];
+					i_position++;
+				}
+				ptr++;
+			}
+		}
+		i_position = 0;
+		switch (i_x) {
+		case 1:
+			i_position = 0;
+			s_message = V_string[V_position[i_position]];  break;
+		case 3:
+			i_position = 1;
+			s_message = V_string[V_position[i_position]];  break;
+		case 5:
+			i_position = 2;
+			s_message = V_string[V_position[i_position]];  break;
+		case 7:
+			i_position = 3;
+			s_message = V_string[V_position[i_position]];  break;
+		case 9:
+			i_position = 4;
+			s_message = "";  break;
+		default: break;
+		}
+		f_option_clear(h, pos, Written);
+		while (true) {
+			ptr = 0;
+			for (i = 0; i < i_size; i++) {
+				if (ptr == i_x) {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+					printf(V_string[ptr].c_str()); printf("\n");
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+					ptr++;
+					continue;
+				}
+				printf(V_string[ptr].c_str()); printf("\n");
+				ptr++;
+
+			}
+			f_clear(h, pos, Written);
+			m_ruch(f_sterowanie_add_person, i_x, s_working, s_message, i_sta, V_string, i_size, i_start_);
+			switch (i_sta) {
+			case 0: {
+				switch (i_x) {
+				case 11:
+					V_proces.clear();
+					this->m_get_replay(i_id_menu, i_replay);
+					V_proces.push_back(i_replay);
+					return false;;
+				default:
+					for (i_position = 0; i_position < 5; i_position++) {
+						V_result[i_position] = V_string[V_position[i_position]];
+					}
+					//s_result = s_word_user;
+					V_proces.clear();
+					//wlaczenie kolejnych odwolan
+					V_proces.push_back(11);
+					V_proces.push_back(11);
+					V_proces.push_back(21);
+					return true;
+				}
+			case -2: {
+				//zaimplementowane do cofania sie do poprzedniego menu
+				V_proces.clear();
+				this->m_get_replay(i_id_menu, i_replay);
+				V_proces.push_back(i_replay);
+				return false; }
+			}
+			case 2: {
+				if (i_remember_x != i_x) {
+					switch (i_x) {
+					case 1:
+						i_position = 0;
+						s_message = V_string[V_position[i_position]];  break;
+					case 3:
+						i_position = 1;
+						s_message = V_string[V_position[i_position]];  break;
+					case 5:
+						i_position = 2;
+						s_message = V_string[V_position[i_position]];  break;
+					case 7:
+						i_position = 3;
+						s_message = V_string[V_position[i_position]];  break;
+					case 9:
+						i_position = 4;
+						s_message = V_string[V_position[i_position]];  break;
+					default: break;
+					}
+					i_remember_x = i_x;
+				}
+				if (V_string[V_position[i_position]].size() > 0) {
+					switch (i_position) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+						V_string[V_position[i_position]] = s_message + " ";
+						break;
+					case 4:
+						V_string[V_position[i_position]] = "                 ";
+						s_message = "";
+						break;
+					}
+
+				}
+				break;
+			}
+			default: {
+				if (i_remember_x != i_x) {
+					switch (i_x) {
+					case 1:
+						i_position = 0;
+						s_message = V_string[V_position[i_position]];  break;
+					case 3:
+						i_position = 1;
+						s_message = V_string[V_position[i_position]];  break;
+					case 5:
+						i_position = 2;
+						s_message = V_string[V_position[i_position]];  break;
+					case 7:
+						i_position = 3;
+						s_message = V_string[V_position[i_position]];  break;
+					case 9:
+						i_position = 4;
+						s_message = "";  break;
+					default: break;
+					}
+					i_remember_x = i_x;
+				}
+			}
+					 f_protected_data(i_position, V_string[V_position[i_position]], s_message);
+					 break;
+			}
+		}
+		break;
+	};
 	}
 	return false;
 }

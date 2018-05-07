@@ -15,7 +15,7 @@ void C_engine_software::m_add_person(bool b_SEX,std::string& s_first, std::strin
 void C_engine_software::m_delete_person(long long& i_variable) {
 	d_Database_.m_delete_person(i_variable);
 } //metoda do przebudowania
-void C_engine_software::m_update_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth, int& i_variable) {
+void C_engine_software::m_update_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth, long long& i_variable) {
 	d_Database_.m_update_person(b_SEX,s_first, s_last, d_brith, d_deadth, i_variable);
 } //metoda do przebudowy
 void C_engine_software::m_add_relation(C_relation& relation, int& i_variable) {

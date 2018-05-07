@@ -171,12 +171,53 @@ void C_aplication::m_view() {
 				case delete_person:
 					e_soft_.m_delete_person(ID_person.m_return_value()); //testy co i dalczego!!!
 					break;
-				case update_person:
+				case M_menu_edycji_persona:
 					i_variable = 8;
 					i_choice = 1;
 					M_.m_set_replay(i_variable, id_menu_Menuedycjipersona, M_zarzadzaniapersonem);
 					M_.m_view(id_menu_Menuedycjipersona, i_variable, i_klucz, V_proces, i_choice);
 					break;
+				case updata_person: {
+					i_variable = 12;
+					i_choice = 3;
+					std::vector<std::string> V_dane;
+					C_date date_brith, date_death;
+					bool b_gender;
+					V_dane.resize(5);
+					std::list<C_person_base*> L_Person;
+					C_person_base* person;
+					e_soft_.m_view(view_search, sort_id, ID_person, L_Person);
+					person = *(L_Person.begin()); //konwersja bez iteratora
+					person->m_get_first_name(V_dane[0]);
+					person->m_get_last_name(V_dane[1]);
+					person->m_get_date(D_brith, date_brith);
+					date_brith.m_sidle(V_dane[2]);
+					person->m_get_date(D_death, date_death);
+					date_death.m_sidle(V_dane[3]);
+					person->m_get_sex(b_gender);
+					switch (b_gender) {
+					case true:
+						V_dane[4] = "Woman";
+					case false:
+						V_dane[4] = "Man";
+					}
+					M_.m_set_replay(i_variable, id_menu_MenuUpdatePerson, M_menu_edycji_persona);
+					if (M_.m_view(id_menu_MenuUpdatePerson, i_variable, V_dane, i_klucz, V_proces, i_choice))
+					{
+						date_brith.m_active();
+						date_death.m_active();
+						date_brith.m_apped(V_dane[2]);
+						date_death.m_apped(V_dane[3]);
+						switch (V_dane[4][0]) {
+						case 'W':
+							b_gender = true;
+						case 'M':
+							b_gender = false;
+						}
+						e_soft_.m_update_person(b_gender, V_dane[0], V_dane[1], date_brith, date_death, i_id_pointer);
+					}
+					break;
+				}
 				case new_tree: {
 					bool b_what = true;
 					std::string s_str;
