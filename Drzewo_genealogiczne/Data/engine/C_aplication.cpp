@@ -79,6 +79,7 @@ void C_aplication::m_view() {
 	int i_variable=0;
 	int i_klucz;
 	long long i_id_pointer; //id persona wskaznikowego wzgledem ktorego bedzie rysowane drzewo
+	C_id ID_person;
 	std::vector<int> V_proces;
 	std::string s_tree; //nazwa drzewa wokul ktorego zachodza opcje wybierane w menu
 	V_proces.push_back(Menu_glowne);
@@ -168,7 +169,7 @@ void C_aplication::m_view() {
 					}
 					break; }
 				case delete_person:
-					//	e_soft.m_delete_person(); 
+					e_soft_.m_delete_person(ID_person.m_return_value()); //testy co i dalczego!!!
 					break;
 				case update_person:
 					i_variable = 8;
@@ -316,19 +317,19 @@ void C_aplication::m_view() {
 					C_id data;
 					std::string s_str;
 					std::string s_temp;
-					//int i;
+					std::vector<C_id> V_id;
 					data.m_update(2);
 					i_variable = 5;
 					std::list<C_person_base*> lista;
 					e_soft_.m_get_list_person_orginal(lista);
 				//	e_soft.m_view(view_search, sort_id, data, lista);
 					M_.m_set_replay(i_variable, id_menu_MenuSearchPerson, search_tree);
-					M_.m_set_content(id_menu_MenuSearchPerson,lista);
+					M_.m_set_content(id_menu_MenuSearchPerson,lista,V_id);
 					i_choice = 3;
 					i_klucz = 5; //wyjatkowo
 					if (M_.m_view(id_menu_MenuSearchPerson, i_variable, s_str, i_klucz, V_proces, i_choice)) {
 						i_id_pointer = atoi(s_str.c_str());
-						//C_id ID();
+						ID_person.m_update(V_id[i_id_pointer].m_return_value()); //przepisanie wartosci id!
 						//e_soft_.m_view(view_search, sort_id, ID, lista);  //do tego momentu jest dobrze
 						//std::cin >> s_temp;
 						break;

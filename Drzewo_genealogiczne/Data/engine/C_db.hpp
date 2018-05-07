@@ -33,7 +33,7 @@ public:
 	void m_update_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth, int& i_variable); //metoda do edycji perosna w liscie
 	void m_add_relation(C_relation& relation, int& i_variable); //metoda do dodawania relacji do bazy danych do wybranego perosna 
 	void m_add_relationship(C_relationship& relation, int& i_variable);  //metoda do dodawania zwiazku(relationship) do bazy danych do wybranego perosna 
-	void m_delete_person(int& i_variable); //usuwania persona z bazy danych
+	void m_delete_person(long long& i_variable); //usuwania persona z bazy danych
 	void m_delete_relation(int& i_variable, int& i_var); //metoda do usuwania relacji z wybranego perosna
 	void m_delete_relationship(int& i_variable, int& i_var); //metoda do usuwania zwiazku z wybranego persona
 	void m_update_relation(C_relation& relation, int& i_variable, int& i_var);  //metoda do zaktualizowania relacji u danego persona

@@ -13,7 +13,7 @@ class C_engine_software :public C_engine_hardware {
 public:
 	C_engine_software(); //konstruktor
 	void m_add_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth); //meoda pozwalajaca dodawac nowa osobe do bazy danych
-	void m_delete_person(int& i_variable); //metoda pozwalajaca usunac osobe z bazy danych 
+	void m_delete_person(long long& i_variable); //metoda pozwalajaca usunac osobe z bazy danych 
 	void m_update_person(bool b_SEX,std::string& s_first, std::string& s_last, C_date& d_brith, C_date& d_deadth, int& i_variable); //metoda pozwalajaca updatowac (podmieniac) dane perosna wskazanego
 	//za pomoca argumentu int i_variable
 	void m_add_relation(C_relation& relation, int& i_variable); //metoda pozwalajaca dodawac obietktu typu C_relation do wskazanego przez argument int i_variable do obiektu Person 

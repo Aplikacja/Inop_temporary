@@ -12,6 +12,7 @@ public:
 	C_id(long long ll_var); //konstruktor parametrowy wstawia wartosc z long long ll_var do long long ll_value
 	void m_giving(long long& ll_iterator); //metoda przepisujaca wartosc z long long ll_iterator do long long ll_value
 	void m_virtual(); //klasa do rozbudowy
+	void m_down();
 	~C_id(); //destruktor
 };
 #endif // !C_ID_HPP

@@ -1,4 +1,4 @@
-24 1 1 10Tadeusz1
+25 1 1 10Tadeusz1
 Bonaparte
 1 19911210
 1 19991013 0 0 1 1 1Tomasz2
@@ -10,8 +10,7 @@ Sitek vel Witkowska
 1 20120730 0 0 1 1 3Kacper4
 Nowacki vel Wittt
 1 19981208
-1 20001210 0 0 
-1 1 10Tadeusz5
+1 20001210 0 0 1 1 10Tadeusz5
 Bonaparte
 1 19911210
 1 19991013 0 0 1 1 1Tomasz6
@@ -23,8 +22,7 @@ Sitek vel Witkowska
 1 20120730 0 0 1 1 3Kacper8
 Nowacki vel Wittt
 1 19981208
-1 20001210 0 0 
-1 1 10Tadeusz9
+1 20001210 0 0 1 1 10Tadeusz9
 Bonaparte
 1 19911210
 1 19991013 0 0 1 1 1Tomasz10
@@ -36,8 +34,7 @@ Sitek vel Witkowska
 1 20120730 0 0 1 1 3Kacper12
 Nowacki vel Wittt
 1 19981208
-1 20001210 0 0 
-1 1 10Tadeusz13
+1 20001210 0 0 1 1 10Tadeusz13
 Bonaparte
 1 19911210
 1 19991013 0 0 1 1 1Tomasz14
@@ -49,8 +46,7 @@ Sitek vel Witkowska
 1 20120730 0 0 1 1 3Kacper16
 Nowacki vel Wittt
 1 19981208
-1 20001210 0 0 
-1 1 10Tadeusz17
+1 20001210 0 0 1 1 10Tadeusz17
 Bonaparte
 1 19911210
 1 19991013 0 0 1 1 1Tomasz18
@@ -62,8 +58,7 @@ Sitek vel Witkowska
 1 20120730 0 0 1 1 3Kacper20
 Nowacki vel Wittt
 1 19981208
-1 20001210 0 0 
-1 1 10Tadeusz21
+1 20001210 0 0 1 1 10Tadeusz21
 Bonaparte
 1 19911210
 1 19991013 0 0 1 1 1Tomasz22
@@ -75,4 +70,7 @@ Sitek vel Witkowska
 1 20120730 0 0 1 1 3Kacper24
 Nowacki vel Wittt
 1 19981208
-1 20001210 0 0 
+1 20001210 0 0 0 0 24
+
+1 0
+1 0 0 0

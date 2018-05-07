@@ -88,11 +88,147 @@ void C_db::m_add_relationship(C_relationship& relation, int& i_variable) { //do 
 	advance(it, i_variable); //przesuwa iterator listy o wartosc i_variable
 	(*it)->m_add_relationship(relation);
 }
-void C_db::m_delete_person(int& i_variable) { //do szcegolnego przetestowania
-	std::list<C_person_base*>::iterator it = L_person.begin();
-	advance(it, i_variable); //przesuwa iterator listy o wartosc i_variable
-	delete *it;
-	L_person.erase(it);
+void C_db::m_delete_person(long long& i_variable) { //do szcegolnego przetestowania
+	C_id id_variable;
+	id_variable.m_active();
+	id_variable.m_update(i_variable);
+	C_id id;
+	C_id ID;
+	C_id id_temp;
+	C_id id_relation;
+	std::vector<C_relation> V_relation;
+	std::vector<C_relationship> V_relationship;
+	std::vector<C_relation> V_relation_ptr;
+	std::vector<C_relationship> V_relationship_ptr;
+	std::list<C_person_base*> L_search;
+	std::list<C_person_base*> L_Person;
+	std::list<C_person_base*>::iterator it;
+	C_person_base* person;
+	m_search(sort_id, id_variable, L_Person);
+	for (auto& Person: L_Person) {
+		Person->m_get_id(id); //pobranie id z persona ktory jest usuwany
+		Person->m_add_V_relation(V_relation);
+		for (auto& relation : V_relation) {
+			relation.m_get_id(id_temp);
+			m_search(sort_id, id_temp, L_search);
+			for (auto& Ptr_person : L_search) {
+				Ptr_person->m_add_V_relation(V_relation_ptr);
+				for (auto& PTR_relation : V_relation_ptr) {
+					PTR_relation.m_get_id(id_relation);
+					if (id.m_return_value() == id_relation.m_return_value()) {
+						PTR_relation.~C_relation(); //usuniecie obiektu z vectora
+					}
+				}
+			}
+		}
+		Person->m_add_V_relationship(V_relationship);
+		for (auto& relationship : V_relationship) {
+			relationship.m_get_id(id_temp);
+			m_search(sort_id, id_temp, L_search);
+			for (auto& Ptr_person : L_search) {
+				Ptr_person->m_add_V_relationship(V_relationship_ptr);
+				for (auto& PTR_relationship : V_relationship_ptr) {
+					PTR_relationship.m_get_id(id_relation);
+					if (id.m_return_value() == id_relation.m_return_value()) {
+						PTR_relationship.~C_relationship(); //usuniecie obiektu z vectora
+					}
+				}
+			}
+			relationship.m_get_baby(V_relation);
+			for (auto& relation : V_relation) {
+				relation.m_get_id(id_temp);
+				m_search(sort_id, id_temp, L_search);
+				for (auto& Ptr_person : L_search) {
+					Ptr_person->m_add_V_relation(V_relation_ptr);
+					for (auto& PTR_relation : V_relation_ptr) {
+						PTR_relation.m_get_id(id_relation);
+						if (id.m_return_value() == id_relation.m_return_value()) {
+							PTR_relation.~C_relation(); //usuniecie obiektu z vectora
+						}
+					}
+				}
+			}
+		}
+		for (it = L_person.begin(); it != L_person.end(); it++) {
+			person = *it;
+			person->m_get_id(id_temp);
+			if (id.m_return_value() == id_temp.m_return_value()) {
+				delete *it;
+				L_person.erase(it);  //usuniecie persona wskaznikowego
+				break;
+			}
+		}
+		for (auto& x : L_person) {
+			x->m_get_id(ID);
+			if (ID < id) continue;
+			x->m_down_id();
+			x->m_get_V_relation(V_relation);
+			for (auto& R : V_relation) {
+				R.m_get_id(id_temp);
+				if (id_temp < id) continue;
+				m_search(sort_id, id_temp, L_search);
+				switch (L_search.size()) {
+				case 1: //ciekawe czy to w ogule potzrebne?
+					for (auto& ptr_person : L_search) {
+						ptr_person->m_down_id();
+						ptr_person->m_get_V_relation(V_relation_ptr);
+						for (auto& ptr_relation : V_relation_ptr) {
+							ptr_relation.m_get_id(id_relation);
+							if (id_relation.m_return_value() == id_temp.m_return_value()) { //trzeba byc ostrozny o to czy id sa przypadkiem nie nadpisywane?
+								id_relation.m_down();
+								ptr_relation.m_add_id(id_relation);
+							}
+						}
+					}
+					break;
+				case 0:
+					break;
+				default:
+					for (auto& ptr_person : L_search) {
+						ptr_person->m_down_id();
+						ptr_person->m_get_V_relation(V_relation_ptr);
+						for (auto& ptr_relation : V_relation_ptr) {
+							ptr_relation.m_get_id(id_relation);
+							if (id_relation.m_return_value() == id_temp.m_return_value()) { //trzeba byc ostrozny o to czy id sa przypadkiem nie nadpisywane?
+								id_relation.m_down();
+								ptr_relation.m_add_id(id_relation);
+							}
+						}
+					}
+					break;
+				}
+			}
+			x->m_add_V_relationship(V_relationship);
+			for (auto& relationship : V_relationship) {
+				relationship.m_get_id(id_temp);
+				m_search(sort_id, id_temp, L_search);
+				for (auto& Ptr_person : L_search) {
+					Ptr_person->m_add_V_relationship(V_relationship_ptr);
+					for (auto& PTR_relationship : V_relationship_ptr) {
+						PTR_relationship.m_get_id(id_relation);
+						if (id.m_return_value() == id_relation.m_return_value()) {
+							PTR_relationship.~C_relationship(); //usuniecie obiektu z vectora
+						}
+					}
+				}
+				relationship.m_get_baby(V_relation);
+				for (auto& relation : V_relation) {
+					relation.m_get_id(id_temp);
+					m_search(sort_id, id_temp, L_search);
+					for (auto& Ptr_person : L_search) {
+						Ptr_person->m_add_V_relation(V_relation_ptr);
+						for (auto& PTR_relation : V_relation_ptr) {
+							PTR_relation.m_get_id(id_relation);
+							if (id.m_return_value() == id_relation.m_return_value()) {
+								PTR_relation.~C_relation(); //usuniecie obiektu z vectora
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return;
 }
 void C_db::m_add_relation(C_relation& relation, int& i_variable) { //do szcegolnego przetestowania
 	std::list<C_person_base*>::iterator it = L_person.begin();
@@ -162,7 +298,7 @@ void C_db::m_search(int i_choice, std::string s_szukana, std::list<C_person_base
 				advance(it, i_sr);
 				f_typ(i_choice, s_pointer, it);
 				if (f_comparison(s_pointer,s_szukana)) { //zwraca person odpowiednia wartosc
-					List.push_back(*it); //nie mam pojecia czy to bedzie dzialac
+					List.push_back(*it); 
 					i_size = i_sr;
 					i_iterator = i_sr;
 					f_szukaj<std::string>(sort_first_name,i_SIZE, i_var, i_iterator, i_size, List, it, it_start, s_pointer, s_szukana);
@@ -184,7 +320,7 @@ void C_db::m_search(int i_choice, std::string s_szukana, std::list<C_person_base
 					advance(it, i_iterator);
 					f_typ(i_choice, s_pointer, it);
 					if (f_comparison(s_pointer, s_szukana)) { //zwraca person odpowiednia wartosc
-						List.push_back(*it); //nie mam pojecia czy to bedzie dzial
+						List.push_back(*it); 
 					}
 				i_iterator++;
 				}
@@ -199,7 +335,7 @@ void C_db::m_search(int i_choice, std::string s_szukana, std::list<C_person_base
 				advance(it, i_iterator);
 				f_typ(i_choice, s_pointer, it);
 				if (f_comparison(s_pointer, s_szukana)) { //zwraca person odpowiednia wartosc
-					List.push_back(*it); //nie mam pojecia czy to bedzie dzialac
+					List.push_back(*it); 
 				}
 				i_iterator++;
 			}break;
@@ -213,7 +349,7 @@ void C_db::m_search(int i_choice, std::string s_szukana, std::list<C_person_base
 				advance(it, i_iterator);
 				f_typ(i_choice, s_pointer, it);
 				if (f_comparison(s_pointer, s_szukana)) { //zwraca person odpowiednia wartosc
-					List.push_back(*it); //nie mam pojecia czy to bedzie dzialac
+					List.push_back(*it); 
 				}
 				i_iterator++;
 			}break;
@@ -223,7 +359,7 @@ void C_db::m_search(int i_choice, std::string s_szukana, std::list<C_person_base
 }
 void C_db::m_search(int i_choice, C_id& id_szukana, std::list<C_person_base*>& List) {
 	int i_iterator = 0;
-	int i_size = L_person.size() - 1;
+	int i_size = L_person.size();
 	int i_SIZE = i_size;
 	int i_sr=0;
 	int i_var = 0;
@@ -232,18 +368,19 @@ void C_db::m_search(int i_choice, C_id& id_szukana, std::list<C_person_base*>& L
 	std::string s_szukana;
 	std::string s_pointer;
 	switch (i_choice) {
-	case sort_id: {
+	case sort_id: { 
 		L_person.sort(f_sort_id);
 		std::list<C_person_base*>::iterator it = L_person.begin();
 		std::list<C_person_base*>::iterator it_start = L_person.begin();
 		ll_szukana = id_szukana.m_return_value();
-		while (i_iterator < i_size)
+		while (i_iterator < i_size) //do przebudowy!!!!! bedy powoduja ze nie zaglada we wszystkie 
 		{
 			i_sr = (i_iterator + i_size) / 2;
+			it = L_person.begin(); //sprawdzenie
 			advance(it, i_sr);
 			f_typ(i_choice, ll_pointer, it);
 			if (ll_pointer == ll_szukana) { //zwraca person odpowiednia wartosc
-				List.push_back(*it); //nie mam pojecia czy to bedzie dzialac
+				List.push_back(*it); 
 				i_size = i_sr;
 				i_iterator = i_sr;
 				f_szukaj<long long>(sort_id,i_SIZE, i_var, i_iterator, i_size, List, it, it_start, ll_pointer, ll_szukana);
@@ -255,6 +392,7 @@ void C_db::m_search(int i_choice, C_id& id_szukana, std::list<C_person_base*>& L
 				i_iterator = i_sr + 1;
 		}break;
 	}
+
 	default: return; //zwracamy -1, gdy nie znajdziemy elementu
 	}
 }

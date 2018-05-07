@@ -33,7 +33,7 @@
 0 0 Edycja osoby:
 0 0 Edytuj dane osoby
 0 0 Edytuj relacje
-0 0 Usun osobe
+0 3 13 11 21 Usun osobe
 0 1 24 Powrot
 3 3 0 1
 0 0 Dodawanie nowej osoby:

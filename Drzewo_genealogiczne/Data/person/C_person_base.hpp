@@ -43,6 +43,7 @@ public:
 	void m_add_V_relation(std::vector<C_relation>& V_r); //metoda pozwalajaca na dodawanie vektora typu C_relation do obiektu klasy Perosn (...)
 	void m_add_V_relationship(std::vector<C_relationship>& V_rs); //metoda pozwalajaca na dodawanie vektora typu C_relationship do obiektu klasy Perosn (...)
 	void m_conwert(std::string& s_str); //metoda pozwalajaca wycagnac dane z perosna za pomoca typu string. Metoda ta wykorzystywana jest w wyborze Perosna w interface
+	void m_down_id();
 	virtual std::string m_view()=0; //metoda wirtualna sprawiajaca ze klasa C_perosn jest klasa abstrakcyjna
 	friend void operator<<(std::ofstream &is, C_person_base &C); //przeciazenie operatora przesuniecia botowego na output pozawalajaca na zapis danych Perosna do pliku 
 	friend bool f_sort_first_name(C_person_base* _left, C_person_base* _right); //zaprzyjazniona funcja zwaracajaca zwartosc bool, porownujaca dwa imienia (napisana do sortowania std::list<C_perosn_base*>)
