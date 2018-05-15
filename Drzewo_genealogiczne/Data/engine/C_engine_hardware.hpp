@@ -8,10 +8,11 @@
 #ifndef C_ENGINE_HARDWARE_HPP
 #define C_ENGINE_HARDWARE_HPP
 #include "define.hpp"
-//#include "../person/C_person_base.hpp"
+#include "../person/C_fabric_person.hpp"
 #include "C_db.hpp"
 #include "C_tree.hpp"
 #include <set>
+#include <windows.h>
 //bool f_sort_tree(std::string _Left, std::string _Right);
 void f_creative_file_tree(std::string s_data); //metoda do tworzenia pliku drzewa
 class C_engine_hardware {

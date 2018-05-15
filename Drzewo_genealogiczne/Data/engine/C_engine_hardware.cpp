@@ -9,32 +9,58 @@
 
 C_engine_hardware::C_engine_hardware() {}
 void C_engine_hardware::m_load_files(std::string& s_str) {
-	std::ifstream file;
-	file.open(s_str.c_str());
-	if (file.good()) {
-		d_Database_.m_load(file);
-		file.close();
+	try
+	{
+		std::ifstream file;
+		std::ios_base::iostate exceptionMask = file.exceptions() | std::ios::failbit;
+		file.exceptions(exceptionMask);
+		file.open(s_str.c_str());
+		if (file.good()) {
+			d_Database_.m_load(file);
+			file.close();
+		}
+	}
+	catch (const std::ifstream::failure& ex)
+	{
+		MessageBox(nullptr, TEXT("Blad otwarcia pliku. SprawdŸ poprawnoœæ pliku."), TEXT("Blad!"), MB_OK);
+	}
+	catch (...)
+	{
+		MessageBox(nullptr, TEXT("Nierozpoznany blad w menu aplikacji."), TEXT("Blad!"), MB_OK);
 	}
 } //metoda do przebudowy
 void C_engine_hardware::m_save_files(std::string s_data) {
-	int i_size;
-	d_Database_.m_size(i_size);
-	//d_Database.m_sort(f_sort_last_name); //test na sortowanie po imieniach! (Test zakonczony sukcesem!)
-	//d_Database.m_sort(f_sort_last_name); //test na sortowanie po nazwiskach! (Test zakonczony sukcesem!)
-	//d_Database.m_sort(f_sort_id); //test na sortowanie po id! (Test zakonczony sukcesem!)
-	//d_Database.m_sort(f_sort_date_brith); //test na sortowanie po dacie urodzenia! (Test zakonczony sukcesem!)
-	//d_Database.m_sort(f_sort_date_death); //test na sortowanie po dacie smierci! (Test zakonczony sukcesem!)
-	std::ofstream file;
-	s_data += ".tree";
-	file.open(s_data.c_str());
-	if (file.good()) {
-		file << i_size;
-		std::list<C_person_base*> LISTA;
-		d_Database_.m_get(LISTA);
-		for (auto& x : LISTA) {
-			file << *x;
+	try
+	{
+		int i_size;
+		d_Database_.m_size(i_size);
+		//d_Database.m_sort(f_sort_last_name); //test na sortowanie po imieniach! (Test zakonczony sukcesem!)
+		//d_Database.m_sort(f_sort_last_name); //test na sortowanie po nazwiskach! (Test zakonczony sukcesem!)
+		//d_Database.m_sort(f_sort_id); //test na sortowanie po id! (Test zakonczony sukcesem!)
+		//d_Database.m_sort(f_sort_date_brith); //test na sortowanie po dacie urodzenia! (Test zakonczony sukcesem!)
+		//d_Database.m_sort(f_sort_date_death); //test na sortowanie po dacie smierci! (Test zakonczony sukcesem!)
+		std::ofstream file;
+		std::ios_base::iostate exceptionMask = file.exceptions() | std::ios::failbit;
+		file.exceptions(exceptionMask);
+		s_data += ".tree";
+		file.open(s_data.c_str());
+		if (file.good()) {
+			file << i_size;
+			std::list<C_person_base*> LISTA;
+			d_Database_.m_get(LISTA);
+			for (auto& x : LISTA) {
+				file << *x;
+			}
+			file.close();
 		}
-		file.close();
+	}
+	catch (const std::ofstream::failure& ex)
+	{
+		MessageBox(nullptr, TEXT("Blad podczas zapisu pliku. SprawdŸ poprawnoœæ nazwy."), TEXT("Blad!"), MB_OK);
+	}
+	catch (...)
+	{
+		MessageBox(nullptr, TEXT("Nierozpoznany blad z silnikiem aplikacji."), TEXT("Blad!"), MB_OK);
 	}
 }	//metoda do przebudowy
 void C_engine_hardware::m_sort(bool(*F)(C_person_base* _left, C_person_base* _right)) {
@@ -52,30 +78,54 @@ void C_engine_hardware::m_add_tree(std::string& s_data, bool& b_what) {
 	}
 }
 void C_engine_hardware::m_load_tree() {
-	std::string s_data;
-	std::ifstream file;
-	int i_size;
-	int i_iterator;
-	file.open(file_list_tree);
-	if (file.good()) {
-		file >> i_size;
-		for (i_iterator = 0; i_iterator < i_size; i_iterator++) {
-			getline(file, s_data);
-			S_tree_.insert(s_data);
+	try
+	{
+		std::string s_data;
+		std::ifstream file;
+		std::ios_base::iostate exceptionMask = file.exceptions() | std::ios::failbit;
+		file.exceptions(exceptionMask);
+		int i_size;
+		int i_iterator;
+		file.open(file_list_tree);
+		if (file.good()) {
+			file >> i_size;
+			for (i_iterator = 0; i_iterator < i_size; i_iterator++) {
+				getline(file, s_data);
+				S_tree_.insert(s_data);
+			}
+			file.close();
 		}
-		file.close();
+	}
+	catch (const std::ifstream::failure& ex)
+	{
+		MessageBox(nullptr, TEXT("Blad podczas ³adowania drzewa"), TEXT("Blad!"), MB_OK);
+	}
+	catch (...)
+	{
+		MessageBox(nullptr, TEXT("Nierozpoznany blad z silnikiem aplikacji."), TEXT("Blad!"), MB_OK);
 	}
 }
 void C_engine_hardware::m_save_tree() {
-	std::string s_data;
-	std::ofstream file;
-	file.open(file_list_tree);
-	if (file.good()) {
-		file << S_tree_.size();
-		for (auto& x : S_tree_) {
-			file << x<<"\n";
+	try
+	{
+		std::string s_data;
+		std::ofstream file;
+		file.open(file_list_tree);
+		if (file.good()) {
+			file << S_tree_.size();
+			for (auto& x : S_tree_) {
+				file << x<<"\n";
+			}
+			file.close();
 		}
-		file.close();
+	}
+	catch (std::ofstream::failure& ex)
+	{
+		MessageBox(nullptr, TEXT("Blad podczas zapisu drzewa"), TEXT("Blad!"), MB_OK);
+	}
+	catch (...)
+	{
+		MessageBox(nullptr, TEXT("Nierozpoznany blad z silnikiem aplikacji."), TEXT("Blad!"), MB_OK);
 	}
 }
 C_engine_hardware::~C_engine_hardware() {}
@@ -97,12 +147,21 @@ void C_engine_hardware::m_edit_name_tree(std::string _new, std::string _old) {
 	}
 }
 void f_creative_file_tree(std::string s_data) {
-	s_data = s_data + ".tree";
-	std::ofstream file;
-	file.open(s_data.c_str());
-	if (file.good()) {
-		file << "0";
-		file.close();
+	try
+	{
+		s_data = s_data + ".tree";
+		std::ofstream file;
+		std::ios_base::iostate exceptionMask = file.exceptions() | std::ios::failbit;
+		file.exceptions(exceptionMask);
+		file.open(s_data.c_str());
+		if (file.good()) {
+			file << "0";
+			file.close();
+		}
+	}
+	catch (...)
+	{
+		MessageBox(nullptr, TEXT("Nierozpoznany blad z silnikiem aplikacji."), TEXT("Blad!"), MB_OK);
 	}
 }
 void C_engine_hardware::m_get_tree(std::vector<std::string>& V_str) {
