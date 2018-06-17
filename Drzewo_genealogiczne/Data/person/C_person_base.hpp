@@ -15,6 +15,7 @@ protected:
 	bool b_sex_; //wartosc bool b_SEX odpowiada za przechowywanie wartosci o pluci osobnika (true kobieta, fale Facet)
 	std::string first_name_; //zmienna string first_name przechowuje wartosc o imieniu
 	std::string last_name_; //zmienna string last_name przechowuje wartosci o nazwisku
+	std::vector<std::string> V_last_name_; //zmienna do przechowywania nazwisk mezow dla kobiet
 	C_date brith_; //zmienna C_date przechowuje informacje o dacie urodzenia
 	C_date death_; //zmienna C_date przechowuje informacje o dacie smierci
 	std::vector<C_relationship> V_relationship_; //ten typ:P przechowuje rodzaj relacji typu(C_relationship "zwiazki") [partnera, date slubu i dzieci ze zwiazku]
@@ -31,6 +32,13 @@ public:
 	void m_add_sex(bool& SEX); //metoda pozwalajaca wstawic do obiektu klasy C_person i jej pochodnych wartosc bool okreslajaca plec perosna
 	void m_get_sex(bool& SEX); //metoda pozwalajaca wyciagnac wartosc okreslajaca plec (...)
 	void m_add_first_name(std::string& first); //metoda pozwalajaca wstawic wartosc imienia (...)
+	void m_add_V_last_name(std::string& last); //metoda pozwala wstawic nazwisko do vectora nazwisk
+	void m_add_V_last_name(std::vector<std::string>& last); //metoda pozwala dodac vector nazwisk
+	void m_get_V_last_name(std::string& last, int i_position);
+	void m_get_V_last_name(std::vector<std::string>& last);
+	void m_delete_V_last_name(std::string& last);
+	void m_delete_V_last_name();
+	void m_delete_V_last_name(int i_position);
 	void m_get_first_name(std::string& first); //metoda pozwalajaca wyciagnac z obiektu informacje o imieniu (...)
 	void m_add_last_name(std::string& last); //metoda pozwalajaca wstawic wartosc nazwiska (...)
 	void m_get_last_name(std::string& last); //metoda pozwalajaca wyciagnac z obiektu informacje o nazwisku (...)

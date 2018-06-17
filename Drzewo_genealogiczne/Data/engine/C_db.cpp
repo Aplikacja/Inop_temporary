@@ -17,26 +17,37 @@ void C_db::m_load(std::ifstream& is) {
 	int i_iterator;
 	int i_iterator_integral;
 	int i_variable;
+	int i_size_last;
 	int i_var_relation;
 	//int i_var_relationship;
 	bool b_SEX;
 	std::string s_first;
 	std::string s_secend;
+	std::string s_last;
 	C_id id;
 	C_date dat_first;
 	C_date dat_secend;
 	C_relation relation;
 	C_relationship relationship;
+	std::list<C_person_base*>::iterator it = L_person_.begin();
+	std::vector<std::vector<std::string>> V_LAST;
+	std::vector<std::string> V_last_name;
 	std::vector<C_relation> V_r;
 	std::vector<C_relationship> V_rs;
 	is >> i_variable;
 	for (i_iterator = 0; i_iterator < i_variable ; i_iterator++) {
 		V_r.clear();
 		V_rs.clear();
+		V_last_name.clear();
 		is >> b_SEX;
 		is >> id;
 		getline(is, s_first);
 		getline(is, s_secend);
+		is >> i_size_last;
+		for (i_iterator_integral = 0; i_iterator_integral < i_size_last; i_iterator_integral++) {
+			getline(is, s_last);
+			V_last_name.push_back(s_last);
+		}
 		is >> dat_first;
 		is >> dat_secend;
 		is >> i_var_relation;
@@ -50,8 +61,15 @@ void C_db::m_load(std::ifstream& is) {
 			V_rs.push_back(relationship);
 		}
 		L_person_.push_back(new C_person_null(id,b_SEX, s_first, s_secend, dat_first, dat_secend,V_r,V_rs));
+		//it++;
+		V_LAST.push_back(V_last_name);
 	}
 	ID_MAIN_ = L_person_.size();
+	int i_position =0;
+	for (auto R : L_person_) {
+		R->m_add_V_last_name(V_LAST[i_position]);
+		i_position++;
+	}
 }
 C_db::~C_db() {}
 void C_db::m_delete_base() {

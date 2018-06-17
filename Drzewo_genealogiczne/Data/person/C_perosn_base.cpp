@@ -43,6 +43,10 @@ void operator<<(std::ofstream &is, C_person_base &C) {
 	is << C.id_;
 	is << C.first_name_<<"\n";
 	is << C.last_name_ << "\n";
+	is << C.V_last_name_.size() << " ";
+	for (auto X : C.V_last_name_) {
+		is << X << "\n";
+	}
 	is << C.brith_;
 	is << "\n";
 	is << C.death_;
@@ -214,5 +218,55 @@ std::vector<C_relation>& C_person_base::m_content_V_relation(int i_choice) {
 	default:
 		std::vector<C_relation> V_relation;
 		return V_relation;
+	}
+}
+void C_person_base::m_add_V_last_name(std::string& last) {
+	if (b_sex_ == woman) {
+		V_last_name_.push_back(last);
+	}
+}
+void C_person_base::m_add_V_last_name(std::vector<std::string>& last) {
+	if (b_sex_ == woman) {
+		V_last_name_ = last;
+	}
+}
+void C_person_base::m_get_V_last_name(std::string& last, int i_position) {
+	if (b_sex_ == woman) {
+		if (i_position >= 0 && i_position < V_last_name_.size()) {
+			V_last_name_[i_position] = last;
+		}
+	}
+}
+void C_person_base::m_get_V_last_name(std::vector<std::string>& last) {
+	if (b_sex_ == woman) {
+		V_last_name_ = last;
+	}
+}
+void C_person_base::m_delete_V_last_name(std::string& last) {
+	if (b_sex_ == woman) {
+		int i_position = 0;
+		bool b_find=false;
+		for (auto X : V_last_name_) {
+			if (X == last) {
+				b_find = true;
+				break;
+			}
+			i_position++;
+		}
+		if (b_find) {
+			V_last_name_.erase(V_last_name_.begin() + i_position);
+		}
+	}
+}
+void C_person_base::m_delete_V_last_name() {
+	if (b_sex_ == woman) {
+		V_last_name_.clear();
+	}
+}
+void C_person_base::m_delete_V_last_name(int i_position) {
+	if (b_sex_ == woman) {
+		if (i_position >= 0 && i_position < V_last_name_.size()) {
+			V_last_name_.erase(V_last_name_.begin() + i_position);
+		}
 	}
 }

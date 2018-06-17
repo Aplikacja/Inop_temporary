@@ -82,7 +82,7 @@ void C_aplication::m_load_file(std::string s_file) {
 	}
 	catch (std::ios_base::failure& ex)
 	{
-		MessageBox(nullptr, TEXT("Blad podczs wczytywania pliku."), TEXT("Blad!"), MB_OK);
+		MessageBox(nullptr, TEXT("Blad podczas wczytywania pliku."), TEXT("Blad!"), MB_OK);
 	}
 	catch (...)
 	{
@@ -543,7 +543,7 @@ void C_aplication::m_view() {
 						else
 						break;
 					} while (true);
-
+					s_tree = s_str;
 				}break;
 				case search_tree: {
 					std::string s_str;
