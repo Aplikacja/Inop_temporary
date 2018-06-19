@@ -6,8 +6,6 @@
 void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
 void f_sterowanie_add_person(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
 void f_protected_data(int i_choice, std::string& s_data, std::string& s_message);
-void f_werification_date(std::string& s_data, bool& b_what);
-void f_what_good_day(int& i_month,int& i_day, bool& b_what);
 C_menu_edition::C_menu_edition(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) :C_menu_base(V, b, v_k,V_procedur, i_iterator,L_person) {}
 bool C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
 	int i_x = i_start_; //udalo nam sie wejsc w ta metode :)
@@ -89,7 +87,8 @@ bool C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result
 }
 C_menu_edition::~C_menu_edition() {}
 bool C_menu_edition::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_procedur, int& i_choice) {return false;}
-bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
+bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { return false; }
+bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice, int b_replay) {
 	int i_x = i_start_; //udalo nam sie wejsc w ta metode :)
 	int i_sta = i_start_;
 	int ptr = 0;
@@ -113,17 +112,63 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 		std::vector<std::string> V_name_option = { "Imie:", "Nazwisko:", "Data urodzenia:", "Data smierci:", "Plec:" };
 		V_string.resize(13);
 		i_position = 0;
-		for (auto& Y : V_str_[0][i_id_menu]) {
-			V_string[ptr] = Y;
-			if (ptr == 0) {
-				for (auto& P : V_name_option) {
+		switch (b_replay) {
+		case 1:{
+			int i_posit = 0;
+			for (auto& Y : V_str_[0][i_id_menu]) {
+				V_string[ptr] = Y;
+				if (ptr == 0) {
+					for (auto& P : V_name_option) {
+						ptr++;
+						V_string[ptr] = P;
+						ptr++;
+						V_string[ptr] = V_result[i_posit];
+						i_posit++;
+						V_string.push_back("\n");
+						V_string.push_back("Wprowadzono zla date!");
+						V_string.push_back("Wprowadz w kolejnosci: rok, miesiac, dzien!");
+						i_size = (int)V_str_[0][i_id_menu].size() + 13;
+					}
 					ptr++;
-					V_string[ptr] = P;
-					ptr++;
-					V_string[ptr] = s_working;
 				}
-				ptr++;
 			}
+			break;
+		}
+		case 2: {
+			int i_posit = 0;
+			for (auto& Y : V_str_[0][i_id_menu]) {
+				V_string[ptr] = Y;
+				if (ptr == 0) {
+					for (auto& P : V_name_option) {
+						ptr++;
+						V_string[ptr] = P;
+						ptr++;
+						V_string[ptr] = V_result[i_posit];
+						i_posit++;
+						V_string.push_back("\n");
+						V_string.push_back("Niepoprawen daty urodzenia lub smierci!");
+						V_string.push_back("DWprowadzona przez Ciebie osoba najpier umarla a potem sie urodzila!"); //t22 do poprawy
+						i_size = (int)V_str_[0][i_id_menu].size() + 13;
+					}
+					ptr++;
+				}
+			}
+			break; }
+		default: {
+			for (auto& Y : V_str_[0][i_id_menu]) {
+				V_string[ptr] = Y;
+				if (ptr == 0) {
+					for (auto& P : V_name_option) {
+						ptr++;
+						V_string[ptr] = P;
+						ptr++;
+						V_string[ptr] = s_working;
+					}
+					ptr++;
+				}
+			}
+			break;
+		}
 		}
 		f_option_clear(h, pos, Written);
 		while (true) {
@@ -380,7 +425,6 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 					V_proces.clear();
 					//wlaczenie kolejnych odwolan
 					V_proces.push_back(11);
-					V_proces.push_back(11);
 					V_proces.push_back(21);
 					return true;
 				}
@@ -503,62 +547,19 @@ void f_protected_data(int i_choice, std::string& s_data, std::string& s_message)
 				case '1':
 				case 't':
 				case 'T':
+				case 'w':
+				case 'W':
 					s_data ="Woman";
 					break;
 				case '0':
 				case 'n':
 				case 'N':
+				case 'm':
+				case 'M':
 					s_data = "Man";
 				}
 		 break;
 		}
 		default: break;
-	}
-}
-void f_werification_date(std::string& s_data, bool& b_what) {
-	int i_level=0;
-	std::string s_year;
-	std::string s_month;
-	std::string s_day;
-	int i_year;
-	int i_month;
-	int i_day;
-	bool b_przestepny = false;
-	for (auto& x : s_data) {
-		if (x == '-') { 
-			i_level++; 	continue;
-		}
-		switch (i_level) {
-		case 0:
-			s_year += x;
-			break;
-		case 1:
-			s_month += x;
-			break;
-		case 2:
-			s_day += x;
-			break;
-		}
-	}
-	i_year=atoi(s_year.c_str());
-	i_month = atoi(s_month.c_str());
-	i_day = atoi(s_day.c_str());
-	//dalsza analiza
-
-	if (b_przestepny) {
-		f_what_good_day(i_month, i_day, b_what);
-	}
-	else {
-		f_what_good_day(i_month, i_day, b_what);
-	}
-}
-void f_what_good_day(int& i_month, int& i_day, bool& b_what) {
-	switch (i_month) {
-	case 1:
-		break;
-	case 2:
-		break; //itp;
-	default:
-		b_what = false;
 	}
 }

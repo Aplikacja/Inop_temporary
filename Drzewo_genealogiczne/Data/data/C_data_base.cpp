@@ -26,11 +26,13 @@ void operator>>(std::ifstream &is, C_data_base &C) {
 }
 bool C_data_base::operator<(const C_data_base& D) {
 	if (this->b_pointer_&D.b_pointer_) {
-		if (this->ll_value_ < D.ll_value_) {
+		return this->ll_value_ < D.ll_value_;
+	}
+	/*	if (this->ll_value_ < D.ll_value_) {
 			return true;
 		}
 		return false;
-	}
+	}*/
 	return false;
 }
 void C_data_base::m_active() { 

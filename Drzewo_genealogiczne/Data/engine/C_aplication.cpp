@@ -5,7 +5,9 @@
 //											mozliwosci wywolania metod klasy C_silnik_software. Klasa C_aplication przeladowuje klase C_menu				//
 //**********************************************************************************************************************************************************//
 #include "C_aplication.hpp"
-
+void f_werification_date(std::string& s_data, int& b_what);
+void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny);
+void f_good_day(C_date& data_first, C_date& data_sacend, int & b_what);
 void f_clean(std::list<C_person_base*>& list);
 C_aplication::C_aplication(std::string what) {
 	m_load_file(what);
@@ -452,24 +454,38 @@ void C_aplication::m_view() {
 					i_variable = 9;
 					i_choice = 1;
 					std::vector<std::string> V_dane;
+					int i_what_1;
+					int i_what_2;
+					int i_what = 0;
+					bool b_gender = false;
 					V_dane.resize(5);
 					M_.m_set_replay(i_variable, id_menu_MenuAddPerson, search_tree);
-					if (M_.m_view(id_menu_MenuAddPerson, i_variable, V_dane, i_klucz, V_proces, i_choice)) { //lacze dziala wyciaga dane z interface trzeba zrobic funkcje zabezpieczajace
-						C_date date_brith, date_death;
-						bool b_gender=false;
-						date_brith.m_active();
-						date_death.m_active();
-						date_brith.m_apped(V_dane[2]);
-						date_death.m_apped(V_dane[3]);
-						switch (V_dane[4][0]) {
-						case 'W':
-							b_gender = true;
-						case 'M':
-							b_gender = false;
+					do {
+						if (M_.m_view(id_menu_MenuAddPerson, i_variable, V_dane, i_klucz, V_proces, i_choice, i_what)) { //lacze dziala wyciaga dane z interface trzeba zrobic funkcje zabezpieczajace
+							i_what = 1;
+							i_what_1 = 0;
+							i_what_2 = 0;
+							f_werification_date(V_dane[2], i_what_1);
+							f_werification_date(V_dane[3], i_what_2);
+							C_date date_brith, date_death;
+							date_brith.m_active();
+							date_death.m_active();
+							date_brith.m_apped(V_dane[2]);
+							date_death.m_apped(V_dane[3]);
+							f_good_day(date_brith, date_death, i_what);
+							switch (V_dane[4][0]) {
+							case 'W':
+								b_gender = true;
+							case 'M':
+								b_gender = false;
+							}
+							if (i_what_1&&i_what_2&&i_what<2) {
+								e_soft_.m_add_person(b_gender, V_dane[0], V_dane[1], date_brith, date_death);
+								i_what = 0;
+							}
+							//break;
 						}
-							e_soft_.m_add_person(b_gender, V_dane[0], V_dane[1],date_brith, date_death);
-						break;
-					}
+					} while (i_what != 0); 
 					break; }
 				case delete_person: {
 					e_soft_.m_delete_person(ID_person.m_return_value()); //testy co i dalczego!!!
@@ -484,6 +500,9 @@ void C_aplication::m_view() {
 					i_variable = 12;
 					i_choice = 3;
 					std::vector<std::string> V_dane;
+					int i_what_1; 
+					int i_what_2;
+					int i_what = 1;
 					C_date date_brith, date_death;
 					bool b_gender;
 					V_dane.resize(5);
@@ -505,20 +524,30 @@ void C_aplication::m_view() {
 						V_dane[4] = "Man";
 					}
 					M_.m_set_replay(i_variable, id_menu_MenuUpdatePerson, M_menu_edycji_persona);
-					if (M_.m_view(id_menu_MenuUpdatePerson, i_variable, V_dane, i_klucz, V_proces, i_choice))
-					{
-						date_brith.m_active();
-						date_death.m_active();
-						date_brith.m_apped(V_dane[2]);
-						date_death.m_apped(V_dane[3]);
-						switch (V_dane[4][0]) {
-						case 'W':
-							b_gender = true;
-						case 'M':
-							b_gender = false;
+					do {
+						if (M_.m_view(id_menu_MenuUpdatePerson, i_variable, V_dane, i_klucz, V_proces, i_choice,i_what))
+						{
+							i_what_1 = 0;
+							i_what_2 = 0;
+							f_werification_date(V_dane[2], i_what_1);
+							f_werification_date(V_dane[3], i_what_2);
+							date_brith.m_active();
+							date_death.m_active();
+							date_brith.m_apped(V_dane[2]);
+							date_death.m_apped(V_dane[3]);
+							f_good_day(date_brith, date_death, i_what);
+							switch (V_dane[4][0]) {
+							case 'W':
+								b_gender = true;
+							case 'M':
+								b_gender = false;
+							}
+							if (i_what_1&&i_what_2&&i_what<2) {
+								e_soft_.m_update_person(b_gender, V_dane[0], V_dane[1], date_brith, date_death, i_id_pointer);
+								i_what = 0;
+							}
 						}
-						e_soft_.m_update_person(b_gender, V_dane[0], V_dane[1], date_brith, date_death, i_id_pointer);
-					}
+					} while (i_what != 0); 
 					break;
 				}
 				case new_tree: {
@@ -702,4 +731,83 @@ void f_clean(std::list<C_person_base*>& list) {
 		delete X;
 	}
 	list.clear();
+}
+void f_werification_date(std::string& s_data, int& b_what) {
+	int i_level = 0;
+	std::string s_year;
+	std::string s_month;
+	std::string s_day;
+	int i_year;
+	int i_month;
+	int i_day;
+	bool b_przestepny = false;
+	for (auto& x : s_data) {
+		if (x == '-') {
+			i_level++; 	continue;
+		}
+		switch (i_level) {
+		case 0:
+			s_year += x;
+			break;
+		case 1:
+			s_month += x;
+			break;
+		case 2:
+			s_day += x;
+			break;
+		}
+	}
+	i_year = atoi(s_year.c_str());
+	i_month = atoi(s_month.c_str());
+	i_day = atoi(s_day.c_str());
+	//dalsza analiza
+	if (i_year % 4 == 0) b_przestepny = true;
+	f_what_good_day(i_month, i_day, b_what, b_przestepny);
+}
+void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny) {
+	switch (i_month) {
+	case 1: //miesiace o dlugosci 31 dni
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		if (i_day > 0 && i_day <= 31) {
+			b_what = true;
+		}
+		else
+			b_what = false;
+		break;
+	case 2: //luty 
+		if (b_przestepny) {
+			if (i_day > 0 && i_day <= 29) {
+				b_what = true;
+			}
+			else
+				b_what = false;
+		}
+		if (i_day > 0 && i_day <= 28) {
+			b_what = true;
+		}
+		else
+			b_what = false;
+		break;
+	case 4: //miesiac o dlugosci 30 dni
+	case 6:
+	case 9:
+	case 11:
+		if (i_day > 0 && i_day <= 30) {
+			b_what = true;
+		}
+		else
+			b_what = false;
+	default:
+		b_what = false;
+	}
+}
+void f_good_day(C_date& data_first, C_date& data_sacend, int& i_what) {
+	if (data_sacend < data_first) {
+		i_what = 2;
+	}
 }
