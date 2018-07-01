@@ -439,6 +439,9 @@ void C_db::m_search(int i_choice, C_id& id_szukana, std::list<C_person_base*>& L
 				List.push_back(*it); 
 				i_size = i_sr;
 				i_iterator = i_sr;
+				if (L_person_.size() == 1) {
+					return; //zmiana
+				}
 				f_szukaj<long long>(sort_id,i_SIZE, i_var, i_iterator, i_size, List, it, it_start, ll_pointer, ll_szukana);
 			return;
 			}
@@ -727,4 +730,7 @@ void C_db::m_search_specjal(C_id Person, std::list<C_person_base*>& List) { //me
 	//wyszukiwanie id desaktywnego!!!
 
 
+}
+void C_db::m_clear() {
+	m_delete_base();
 }

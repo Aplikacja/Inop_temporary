@@ -4,6 +4,8 @@
 //**********************************************************************************************************************************************************//
 #include "C_menu_base.hpp"
 void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k);
+void f_obsluga_zdarzen_vk_tree(int& i_message);
+void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k);
 void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
 void f_option_clear(HANDLE& h, COORD& pos, DWORD& Written);
 void f_clear(HANDLE& h, COORD& pos, DWORD& Written);
@@ -556,10 +558,23 @@ void f_obsluga_zdarzen_vk(int& i_message) {
 	int i;
 	do {
 		i_result = 0;
-		for (i = 0; i < 26; i++)
+		for (i = 0; i < 4; i++)  //bylo do 26
 			f(i_tab_key[i], i_tab_value[i], i_result);
 	
 	} while (i_result==0);
+	i_message = i_result;
+}
+void f_obsluga_zdarzen_vk_tree(int& i_message) {
+	unsigned int i_result = 0;
+	int i_tab_value[6] = { vkdown,vkup,vkreturn,vkescape,vkleft, vkright };
+	int i_tab_key[6] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,VK_LEFT, VK_RIGHT };
+	int i;
+	do {
+		i_result = 0;
+		for (i = 0; i < 6; i++)
+			f(i_tab_key[i], i_tab_value[i], i_result);
+
+	} while (i_result == 0);
 	i_message = i_result;
 }
 void f_obsluga_zadzren_numerycznych(char& c_message) {
@@ -569,7 +584,7 @@ void f_obsluga_zadzren_numerycznych(char& c_message) {
 	int i;
 	do {
 		i_result = 0;
-		for (i = 0; i < 26; i++)
+		for (i = 0; i < 10; i++) //bylo do 26
 			f(i_tab_key[i], i_tab_value[i], i_result);
 		switch (i_result) {
 		case vk0:
@@ -679,4 +694,39 @@ void f_discripsion_keys(int i_choice, std::string& data) {
 
 	}
 }
-
+void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k) {
+	int i_size = (int)v_k.size();
+	int i_message;
+	while (true)
+	{
+		f_pouse();
+		f_obsluga_zdarzen_vk_tree(i_message);
+		switch (i_message) {
+		case vkup:
+			x--;
+			if (x <= i_start-1)      // gdy wykracza wraca na koniec
+				x = i_size;
+			return;
+		case vkdown:
+			x++;
+			if (x >= i_size)       // gdy wykracza poza menu, znow wraca na poczatek
+				x = i_start;
+			return;
+		case vkreturn:
+			i_klucz = v_k[x];
+			return;
+		case vkescape:
+			i_klucz = -2;
+			return;
+		case vkleft:
+			i_klucz = -10;
+			return;
+		case vkright:
+			i_klucz = -11;
+			return;
+		case vkspace:
+			i_klucz = -12;
+			return;
+		}
+	}
+}

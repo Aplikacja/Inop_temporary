@@ -1,7 +1,7 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_date.cpp																										Data_utworzenia: 11-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
-//		22-03-2018			Lukasz				Dodanie i rozwiniecie metod:																				//
+//		21-03-2018			Marcin				Dodanie i rozwiniecie metod:																				//
 //												-	void C_date::m_apped(int& i_day, int& i_month, int& i_year);											//
 //												-	void C_date::m_sidle(int& i_day, int& i_month, int& i_year);											//
 //												-	void C_date::m_apped(std::string& s_date);																//

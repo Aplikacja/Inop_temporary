@@ -46,6 +46,7 @@ public:
 	void m_search(int i_choice, C_id& Person, std::list<C_person_base*>& List); //metoda do wyszukiwania
 	void m_search(int i_choice, std::string s_szukana, std::list<C_person_base*>& List); //metoda do wyszukiwania
 	void m_search_specjal(C_id Person, std::list<C_person_base*>& List); //metoda do wyszukiwania specjalnego
+	void m_clear();
 	~C_db(); //destruktor
 };
 #endif // !C_DB_HPP

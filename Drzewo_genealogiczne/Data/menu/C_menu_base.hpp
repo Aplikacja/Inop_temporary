@@ -39,6 +39,7 @@ public:
 	virtual ~C_menu_base(); //destruktor
 };
 void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k);
+void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k);
 void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::string>& v_k);
 void f_option_clear(HANDLE& h, COORD& pos, DWORD& Written);
 void f_clear(HANDLE& h, COORD& pos, DWORD& Written);

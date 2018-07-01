@@ -1,4 +1,4 @@
-16
+17
 1 4 0 1 
 0 0 Menu glowne:
 4 2 10 17 Wczytaj drzewo
@@ -58,3 +58,5 @@
 0 0 Wzbierz relacje:
 2 1 0 1
 0 0 Wzbierz partnera:
+4 1 0 1
+0 0 Projekcja drzewa:

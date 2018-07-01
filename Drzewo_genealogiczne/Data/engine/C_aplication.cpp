@@ -9,10 +9,10 @@ void f_werification_date(std::string& s_data, int& b_what);
 void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny);
 void f_good_day(C_date& data_first, C_date& data_sacend, int & b_what);
 void f_clean(std::list<C_person_base*>& list);
-C_aplication::C_aplication(std::string what) {
-	m_load_file(what);
+C_aplication::C_aplication(std::string what, bool& b_mistacke) {
+	m_load_file(what,b_mistacke);
 };
-void C_aplication::m_load_file(std::string s_file) {
+void C_aplication::m_load_file(std::string s_file, bool& b_mistacke) {
 
 	try
 	{
@@ -22,7 +22,13 @@ void C_aplication::m_load_file(std::string s_file) {
 		file.open(s_file.c_str());
 		if (file.good())
 		{
-			int value, value_II, i, j,k, i_temp;
+			b_mistacke = false;
+			int value;
+			int value_II;
+			int i;
+			int j; 
+			int k;
+			int i_temp;
 			std::vector<std::vector<std::string>> V_string;
 			std::vector<std::vector<int>> v_klucze;
 			std::vector<std::vector<std::vector<int>>> V_procedur;
@@ -85,15 +91,18 @@ void C_aplication::m_load_file(std::string s_file) {
 	catch (std::ios_base::failure& ex)
 	{
 		MessageBox(nullptr, TEXT("Blad podczas wczytywania pliku."), TEXT("Blad!"), MB_OK);
+		b_mistacke = true;
 	}
 	catch (...)
 	{
 		MessageBox(nullptr, TEXT("Nierozpoznany blad aplikacji."), TEXT("Blad!"), MB_OK);
+		b_mistacke = true;
 	}
 }
 void C_aplication::m_view() {
 	int i_variable=0;
 	int i_klucz;
+	bool b_mistacke;
 	long long i_id_pointer; //id persona wskaznikowego wzgledem ktorego bedzie rysowane drzewo
 	long long i_id_pointer_temp;
 	C_id ID_person;
@@ -146,21 +155,37 @@ void C_aplication::m_view() {
 					M_.m_set_replay(i_variable, id_menu_MenuRenameTree, Edition_tree);
 					if (M_.m_view(id_menu_MenuRenameTree, i_variable, V_name, i_klucz, V_proces, i_choice)) {
 						e_soft_.m_edit_name_tree(V_name[1], V_name[0]);
-						e_soft_.m_save_tree();
+						e_soft_.m_save_tree(b_mistacke);
+						if (b_mistacke) {
+							V_proces.clear();
+							V_proces.push_back(Menu_glowne);
+						}
 					}
 					break; }
 				case exit: {
 					return; 
 				}
 				case load_files: {
-					e_soft_.m_load_tree();
+					e_soft_.m_load_tree(b_mistacke);
+					if (b_mistacke) {
+						V_proces.clear();
+						V_proces.push_back(Menu_glowne);
+					}
 					break; }
 				case save_files: {
-					e_soft_.m_save_files(s_tree);
+					e_soft_.m_save_files(s_tree, b_mistacke);
+					if (b_mistacke) {
+						V_proces.clear();
+						V_proces.push_back(Menu_glowne);
+					}
 					break; }
 				case save_tree:
 				{
-					e_soft_.m_save_tree();
+					e_soft_.m_save_tree(b_mistacke);
+					if (b_mistacke) {
+						V_proces.clear();
+						V_proces.push_back(Menu_glowne);
+					}
 					break;
 				}
 				case choice_person: {
@@ -572,6 +597,7 @@ void C_aplication::m_view() {
 						else
 						break;
 					} while (true);
+					e_soft_.m_clean();
 					s_tree = s_str;
 				}break;
 				case search_tree: {
@@ -586,7 +612,13 @@ void C_aplication::m_view() {
 					if (M_.m_view(id_menu_MenuSearchTree, i_variable, s_str, i_klucz, V_proces, i_choice)) {
 						s_tree = s_str;
 						s_str += ".tree";
-						e_soft_.m_load_files(s_str);
+						e_soft_.m_load_files(s_str, b_mistacke);
+						if (b_mistacke) {
+							V_proces.clear();
+							V_proces.push_back(Menu_glowne);
+							e_soft_.m_delete_tree(s_tree);
+							e_soft_.m_save_tree(b_mistacke);
+						}
 						//s_str;
 					}
 				}break;
@@ -595,19 +627,27 @@ void C_aplication::m_view() {
 
 				}break;
 				case load_content_tree: {
-					e_soft_.m_load_files(*(V_str_[1][0].begin()));
+					e_soft_.m_load_files(*(V_str_[1][0].begin()), b_mistacke);
+					if (b_mistacke) {
+						V_proces.clear();
+						V_proces.push_back(Menu_glowne);
+					}
 					i_variable = search; //<-przelaczenie do menu wyszukiwania persona
 				}break;
 				case tree: {
 					//----------------czytanie persona----------------------------------
 					C_id data;
+					std::string s_str;
 					C_person_base *person;
 					std::vector<std::list<C_person_base*>> V_lista;
 					V_lista.resize(4);
 					std::list<C_person_base*> lista_temp;
+					std::list<C_person_base*> lista_t;
 					C_fabric_person Fabric;
 					C_id ID;
 					C_id id;
+					i_choice = 1;
+					i_variable = id_menu_MenuViewTree;
 					std::string s_first_name;
 					std::string s_last_name;
 					C_date d_brith;
@@ -619,12 +659,14 @@ void C_aplication::m_view() {
 					std::vector<C_relationship> V_relationship;
 					std::vector<C_relation> V_relation_temp;
 					std::vector<C_relationship> V_relationship_temp;
-					e_soft_.m_view(view_search, sort_id, data, lista_temp);
-					person = *lista_temp.begin();
-					for (auto& x : lista_temp) {
+					data = ID_person;
+					e_soft_.m_view(view_search, sort_id, data, lista_t);
+					person = *lista_t.begin();
+			/*		for (auto& x : lista_temp) {
 						delete x;
-					}
+					}*/
 					V_lista.clear();
+					V_lista.push_back(lista_t);
 					person->m_get_V_relation(V_relation);
 					person->m_get_V_relationship(V_relationship);
 					person->m_get_id(ID);
@@ -683,7 +725,8 @@ void C_aplication::m_view() {
 						}
 						V_lista.push_back(lista);
 					}
-					M_.m_set_content_person(0, V_lista); // numer wskazuje na odpowiednie menu!!!
+					M_.m_set_content_person(id_menu_MenuViewTree, V_lista); // numer wskazuje na odpowiednie menu!!!
+					M_.m_view(id_menu_MenuViewTree, i_variable, i_klucz, V_proces, i_choice);
 				}break;
 				case searchperson: {
 					//	case search: {
@@ -802,6 +845,7 @@ void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny) {
 		}
 		else
 			b_what = false;
+		break;
 	default:
 		b_what = false;
 	}

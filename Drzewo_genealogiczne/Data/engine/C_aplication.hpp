@@ -15,8 +15,8 @@ class C_aplication {
 	std::vector<std::vector<std::vector<std::string>>> V_str_; //vector vectorow stringow pomocniczy
 	int i_size_;
 public:
-	C_aplication(std::string what); //konstruktor
-	void m_load_file(std::string s_file); //metoda wczytujaca dane
+	C_aplication(std::string what, bool& b_mistacke); //konstruktor
+	void m_load_file(std::string s_file, bool& b_mistacke); //metoda wczytujaca dane
 	void m_view(); //metoda do wyswietlania
 	~C_aplication(); //destruktor
 };

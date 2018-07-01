@@ -1,11 +1,15 @@
-
 #include "Data\engine\C_aplication.hpp"
 #include <ctime>
 void f_read_file_inicjalizer(std::string data, std::string& File);
+
 int main() {
 	std::string File;
 	f_read_file_inicjalizer("plik_inicjalizacyjny.txt",File);
-	C_aplication A(File);
+	bool b_what;
+	C_aplication A(File, b_what);
+	if (b_what) {
+		return 0;
+	}
 	A.m_view();
 	return 0;
 }

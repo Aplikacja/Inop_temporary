@@ -8,7 +8,7 @@
 #include "C_engine_hardware.hpp"
 
 C_engine_hardware::C_engine_hardware() {}
-void C_engine_hardware::m_load_files(std::string& s_str) {
+void C_engine_hardware::m_load_files(std::string& s_str, bool& b_what) {
 	try
 	{
 		std::ifstream file;
@@ -16,6 +16,7 @@ void C_engine_hardware::m_load_files(std::string& s_str) {
 		file.exceptions(exceptionMask);
 		file.open(s_str.c_str());
 		if (file.good()) {
+			b_what = false;
 			d_Database_.m_load(file);
 			file.close();
 		}
@@ -23,13 +24,15 @@ void C_engine_hardware::m_load_files(std::string& s_str) {
 	catch (const std::ifstream::failure& ex)
 	{
 		MessageBox(nullptr, TEXT("Blad otwarcia pliku. SprawdŸ poprawnoœæ pliku."), TEXT("Blad!"), MB_OK);
+		b_what = true;
 	}
 	catch (...)
 	{
 		MessageBox(nullptr, TEXT("Nierozpoznany blad w menu aplikacji."), TEXT("Blad!"), MB_OK);
+		b_what = true;
 	}
 } //metoda do przebudowy
-void C_engine_hardware::m_save_files(std::string s_data) {
+void C_engine_hardware::m_save_files(std::string s_data,bool& b_what) {
 	try
 	{
 		int i_size;
@@ -45,6 +48,7 @@ void C_engine_hardware::m_save_files(std::string s_data) {
 		s_data += ".tree";
 		file.open(s_data.c_str());
 		if (file.good()) {
+			b_what = false;
 			file << i_size;
 			std::list<C_person_base*> LISTA;
 			d_Database_.m_get(LISTA);
@@ -57,10 +61,12 @@ void C_engine_hardware::m_save_files(std::string s_data) {
 	catch (const std::ofstream::failure& ex)
 	{
 		MessageBox(nullptr, TEXT("Blad podczas zapisu pliku. SprawdŸ poprawnoœæ nazwy."), TEXT("Blad!"), MB_OK);
+		b_what = true;
 	}
 	catch (...)
 	{
 		MessageBox(nullptr, TEXT("Nierozpoznany blad z silnikiem aplikacji."), TEXT("Blad!"), MB_OK);
+		b_what = true;
 	}
 }	//metoda do przebudowy
 void C_engine_hardware::m_sort(bool(*F)(C_person_base* _left, C_person_base* _right)) {
@@ -77,7 +83,7 @@ void C_engine_hardware::m_add_tree(std::string& s_data, bool& b_what) {
 		b_what = false; //element juz istnieje
 	}
 }
-void C_engine_hardware::m_load_tree() {
+void C_engine_hardware::m_load_tree(bool& b_what) {
 	try
 	{
 		std::string s_data;
@@ -88,6 +94,7 @@ void C_engine_hardware::m_load_tree() {
 		int i_iterator;
 		file.open(file_list_tree);
 		if (file.good()) {
+			b_what = false;
 			file >> i_size;
 			for (i_iterator = 0; i_iterator < i_size; i_iterator++) {
 				getline(file, s_data);
@@ -99,19 +106,22 @@ void C_engine_hardware::m_load_tree() {
 	catch (const std::ifstream::failure& ex)
 	{
 		MessageBox(nullptr, TEXT("Blad podczas ³adowania drzewa"), TEXT("Blad!"), MB_OK);
+		b_what = true;
 	}
 	catch (...)
 	{
+		b_what = true;
 		MessageBox(nullptr, TEXT("Nierozpoznany blad z silnikiem aplikacji."), TEXT("Blad!"), MB_OK);
 	}
 }
-void C_engine_hardware::m_save_tree() {
+void C_engine_hardware::m_save_tree(bool& b_what) {
 	try
 	{
 		std::string s_data;
 		std::ofstream file;
 		file.open(file_list_tree);
 		if (file.good()) {
+			b_what = false;
 			file << S_tree_.size();
 			for (auto& x : S_tree_) {
 				file << x<<"\n";
@@ -122,10 +132,12 @@ void C_engine_hardware::m_save_tree() {
 	catch (std::ofstream::failure& ex)
 	{
 		MessageBox(nullptr, TEXT("Blad podczas zapisu drzewa"), TEXT("Blad!"), MB_OK);
+		b_what = true;
 	}
 	catch (...)
 	{
 		MessageBox(nullptr, TEXT("Nierozpoznany blad z silnikiem aplikacji."), TEXT("Blad!"), MB_OK);
+		b_what = true;
 	}
 }
 C_engine_hardware::~C_engine_hardware() {}

@@ -147,7 +147,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 						i_posit++;
 						V_string.push_back("\n");
 						V_string.push_back("Niepoprawen daty urodzenia lub smierci!");
-						V_string.push_back("DWprowadzona przez Ciebie osoba najpier umarla a potem sie urodzila!"); //t22 do poprawy
+						V_string.push_back("Wprowadzona przez Ciebie osoba najpier umarla a potem sie urodzila!"); //t22 do poprawy
 						i_size = (int)V_str_[0][i_id_menu].size() + 13;
 					}
 					ptr++;

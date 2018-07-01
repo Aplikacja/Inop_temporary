@@ -98,7 +98,9 @@ C_menu::~C_menu() {
 	delete[]Tab_menu_;
 }
 void C_menu::m_set_content_person(int i_choice,std::vector<std::list<C_person_base*>>& lista) {
-	Tab_menu_[i_choice]->m_add_perosons(lista);
+		if (i_choice >= 0 && i_choice < i_size) {
+			Tab_menu_[i_choice]->m_add_perosons(lista);
+		}
 }
 void C_menu::m_set_str(int i_varaible,std::vector<std::vector<std::vector<std::string>>>& v_str) {
 	if (i_varaible >= 0 && i_varaible < i_size) {

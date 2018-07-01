@@ -12,6 +12,8 @@ C_menu_base * C_fabric_menu::m_Create_menu(int& i_value, bool b, std::vector<std
 		return new C_menu_search(V, b, v_k, V_procedur, i_iterator, L_person);
 	case 3:
 		return new C_menu_edition(V, b, v_k, V_procedur, i_iterator, L_person);
+	case 4:
+		return new C_menu_tree(V, b, v_k, V_procedur, i_iterator, L_person);
 	default:
 		return new C_menu_glowne(V, b, v_k, V_procedur, i_iterator, L_person);
 	}
