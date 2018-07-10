@@ -5,6 +5,7 @@
 #include "C_menu_edition.hpp"
 void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
 void f_sterowanie_add_person(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
+void f_sterowanie_edit_tree(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
 void f_protected_data(int i_choice, std::string& s_data, std::string& s_message);
 C_menu_edition::C_menu_edition(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) :C_menu_base(V, b, v_k,V_procedur, i_iterator,L_person) {}
 bool C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
@@ -87,9 +88,156 @@ bool C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result
 }
 C_menu_edition::~C_menu_edition() {}
 bool C_menu_edition::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_procedur, int& i_choice) {return false;}
-bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { return false; }
+bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
+	int i_x = i_start_;
+	int i_sta = i_start_;
+	int ptr = 0;
+	int i_replay;
+	int i;
+	std::string s_message;
+	std::vector<int> V_k;
+	std::string s_working;
+	//std::vector<std::vector<std::string>>::iterator it_s;
+	std::vector<std::string> V_string;
+	V_k = *V_klucz_.begin();
+	switch (i_choice) {
+	case 0: {
+		int i_position = 2;
+		int i_remember_x = i_start_;
+		std::vector<int> V_position;
+		V_position.resize(i_position);
+		V_position[0] = 1;
+		V_position[1] = 2;
+		int i_size = (int)V_str_[0][i_id_menu].size()+1;
+		V_string.resize(3);
+		V_string[0] = *(V_str_[0][i_id_menu].begin());
+		V_string[1] = V_result[0];
+		s_working = V_result[0];
+		s_message = V_result[0];
+		V_string[2] = *(V_str_[0][i_id_menu].rbegin());
+		i_position = 0;
+		/*switch (i_x) {
+		case 1:
+			i_position = 0;
+			s_message = V_string[V_position[i_position]];  break;
+		case 3:
+			i_position = 1;
+			s_message = V_string[V_position[i_position]];  break;
+		case 5:
+			i_position = 2;
+			s_message = V_string[V_position[i_position]];  break;
+		case 7:
+			i_position = 3;
+			s_message = V_string[V_position[i_position]];  break;
+		case 9:
+			i_position = 4;
+			s_message = "";  break;
+		default: break;
+		}*/
+		f_option_clear(h, pos, Written);
+		while (true) {
+			ptr = 0;
+			for (i = 0; i < i_size; i++) {
+				if (ptr == i_x) {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+					printf(V_string[ptr].c_str()); printf("\n");
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+					ptr++;
+					continue;
+				}
+				printf(V_string[ptr].c_str()); printf("\n");
+				ptr++;
+			}
+			f_clear(h, pos, Written);
+			m_ruch(f_sterowanie_edit_tree, i_x, s_working, s_message, i_sta, V_string, i_size, i_start_);
+			switch (i_sta) {
+			case 0: {
+				switch (i_x) {
+				case 11:
+					V_proces.clear();
+					this->m_get_replay(i_id_menu, i_replay);
+					V_proces.push_back(i_replay);
+					return false;
+				default:
+					/*for (i_position = 0; i_position < 2; i_position++) {
+						V_result[i_position] = V_string[V_position[i_position]];
+					}*/
+					V_result[1] = s_message;
+					//s_result = s_word_user;
+					V_proces.clear();
+					//wlaczenie kolejnych odwolan
+					V_proces.push_back(11);
+					V_proces.push_back(21);
+					return true;
+				}
+			case -2: {
+				//zaimplementowane do cofania sie do poprzedniego menu
+				V_proces.clear();
+				this->m_get_replay(i_id_menu, i_replay);
+				V_proces.push_back(i_replay);
+				return false; }
+			}
+			case 2: {
+				if (i_remember_x != i_x) {
+					switch (i_x) {
+					case 1:
+						i_position = 0;
+						s_message = V_string[V_position[i_position]];  break;
+					case 3:
+						i_position = 1;
+						s_message = V_string[V_position[i_position]];  break;
+					case 5:
+						i_position = 2;
+						s_message = V_string[V_position[i_position]];  break;
+					case 7:
+						i_position = 3;
+						s_message = V_string[V_position[i_position]];  break;
+					case 9:
+						i_position = 4;
+						s_message = V_string[V_position[i_position]];  break;
+					default: break;
+					}
+					i_remember_x = i_x;
+				}
+				if (V_string[V_position[i_position]].size() > 0) {
+					switch (i_position) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+						V_string[V_position[i_position]] = s_message + " ";
+						break;
+					case 4:
+						V_string[V_position[i_position]] = "                 ";
+						s_message = "";
+						break;
+					}
+
+				}
+				break;
+			}
+			default: {
+				if (i_remember_x != i_x) {
+					switch (i_x) {
+					case 1:
+						i_position = 0;
+						s_message = V_string[V_position[i_position]];  break;
+					default: break;
+					}
+					i_remember_x = i_x;
+				}
+			}
+					 f_protected_data(i_position, V_string[V_position[i_position]], s_message);
+					 break;
+			}
+		}
+		break;
+	};
+	}
+	return false;
+}
 bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice, int b_replay) {
-	int i_x = i_start_; //udalo nam sie wejsc w ta metode :)
+	int i_x = i_start_;
 	int i_sta = i_start_;
 	int ptr = 0;
 	int i_replay;

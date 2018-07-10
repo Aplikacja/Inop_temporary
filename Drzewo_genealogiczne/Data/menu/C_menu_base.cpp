@@ -730,3 +730,217 @@ void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k
 		}
 	}
 }
+void f_sterowanie_edit_tree(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_) {
+	int i_message;
+	bool b_what = false;
+	while (true)
+	{
+		i_start = 1;
+		f_pouse();
+		f_obsluga_zadrzen_alfabetycznych(i_message);
+		switch (i_message) {
+		case vkup:
+			x--;
+			if (x < i_start)      // gdy wykracza wraca na koniec
+				x = i_Size-1;
+			return;
+		case vkdown:
+			x++;
+			if (x >= i_Size) {// gdy wykracza poza menu, znow wraca na poczatek
+				x = i_start_;
+			}
+			return;
+		case vkreturn:
+			i_start = 0;
+			s_klucz = v_k[x];
+			return;
+		case vkescape:
+			i_start = -2;
+			return;
+		case vkdelete:
+			i_start = 2;
+			if (s_message.size()>0)
+				s_message.pop_back();
+			return;
+		case vkspace:
+			s_message += " "; return;
+		case vka:
+		case vka1:
+		case vka2:
+			s_message += 'a';	return;
+		case vkb:
+		case vkb1:
+		case vkb2:
+			s_message += 'b';	return;
+		case vkc:
+		case vkc1:
+		case vkc2:
+			s_message += 'c';	return;
+		case vkd:
+		case vkd1:
+		case vkd2:
+			s_message += 'd';	return;
+		case vke:
+		case vke1:
+		case vke2:
+			s_message += 'e';	return;
+		case vkf:
+		case vkf1:
+		case vkf2:
+			s_message += 'f';	return;
+		case vkg:
+		case vkg1:
+		case vkg2:
+			s_message += 'g';	return;
+		case vkh:
+		case vkh1:
+		case vkh2:
+			s_message += 'h';	return;
+		case vki:
+		case vki1:
+		case vki2:
+			s_message += 'i';	return;
+		case vkj:
+		case vkj1:
+		case vkj2:
+			s_message += 'j';	return;
+		case vkk:
+		case vkk1:
+		case vkk2:
+			s_message += 'k';	return;
+		case vkl:
+		case vkl1:
+		case vkl2:
+			s_message += 'l';	return;
+		case vkm:
+		case vkm1:
+		case vkm2:
+			s_message += 'm';	return;
+		case vkn:
+		case vkn1:
+		case vkn2:
+			s_message += 'n';	return;
+		case vko:
+		case vko1:
+		case vko2:
+			s_message += 'o';	return;
+		case vkp:
+		case vkp1:
+		case vkp2:
+			s_message += 'p';	return;
+		case vkq:
+		case vkq1:
+		case vkq2:
+			s_message += 'q';	return;
+		case vkr:
+		case vkr1:
+		case vkr2:
+			s_message += 'r';	return;
+		case vks:
+		case vks1:
+		case vks2:
+			s_message += 's';	return;
+		case vkt:
+		case vkt1:
+		case vkt2:
+			s_message += 't';	return;
+		case vku:
+		case vku1:
+		case vku2:
+			s_message += 'u';	return;
+		case vkw:
+		case vkw1:
+		case vkw2:
+			s_message += 'w';	return;
+		case vkv:
+		case vkv1:
+		case vkv2:
+			s_message += 'v';	return;
+		case vkx:
+		case vkx1:
+		case vkx2:
+			s_message += 'x';	return;
+		case vky:
+		case vky1:
+		case vky2:
+			s_message += 'y';	return;
+		case vkz:
+		case vkz1:
+		case vkz2:
+			s_message += 'z';	return;
+		case vkA:
+			s_message += 'A';	return;
+		case vkB:
+			s_message += 'B';	return;
+		case vkC:
+			s_message += 'C';	return;
+		case vkD:
+			s_message += 'D';	return;
+		case vkE:
+			s_message += 'E';	return;
+		case vkF:
+			s_message += 'F';	return;
+		case vkG:
+			s_message += 'G';	return;
+		case vkH:
+			s_message += 'H';	return;
+		case vkI:
+			s_message += 'I';	return;
+		case vkJ:
+			s_message += 'J';	return;
+		case vkK:
+			s_message += 'K';	return;
+		case vkL:
+			s_message += 'L';	return;
+		case vkM:
+			s_message += 'M';	return;
+		case vkN:
+			s_message += 'N';	return;
+		case vkO:
+			s_message += 'O';	return;
+		case vkP:
+			s_message += 'P';	return;
+		case vkQ:
+			s_message += 'Q';	return;
+		case vkR:
+			s_message += 'R';	return;
+		case vkS:
+			s_message += 'S';	return;
+		case vkT:
+			s_message += 'T';	return;
+		case vkU:
+			s_message += 'U';	return;
+		case vkW:
+			s_message += 'W';	return;
+		case vkV:
+			s_message += 'V';	return;
+		case vkX:
+			s_message += 'X';	return;
+		case vkY:
+			s_message += 'Y';	return;
+		case vkZ:
+			s_message += 'Z';	return;
+		/*case vk0:
+			s_message += '0'; return;
+		case vk1:
+			s_message += '1'; return;
+		case vk2:
+			s_message += '2'; return;
+		case vk3:
+			s_message += '3'; return;
+		case vk4:
+			s_message += '4'; return;
+		case vk5:
+			s_message += '5'; return;
+		case vk6:
+			s_message += '6'; return;
+		case vk7:
+			s_message += '7'; return;
+		case vk8:
+			s_message += '8'; return;
+		case vk9:
+			s_message += '9'; return;*/
+		default:	break;
+		}
+	}
+}

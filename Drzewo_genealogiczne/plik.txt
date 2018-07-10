@@ -46,7 +46,7 @@
 0 1 27 Zmien nazwe drzewa
 0 3 19 25 17 Usun drzewo
 0 1 17 Powrot
-3 2 0 2
+3 2 0 1
 0 0 Podaj nowa nazwe drzewa:
 0 0 Powrot
 3 2 0 1

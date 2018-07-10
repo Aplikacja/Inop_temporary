@@ -148,7 +148,7 @@ void C_aplication::m_view() {
 				break; }
 				case rename_tree: {
 					i_variable = 11;
-					i_choice = 2;
+					i_choice = 0;
 					std::vector<std::string> V_name;
 					V_name.resize(2);
 					V_name[0] = s_tree;
