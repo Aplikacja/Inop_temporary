@@ -156,6 +156,7 @@ void C_aplication::m_view() {
 					if (M_.m_view(id_menu_MenuRenameTree, i_variable, V_name, i_klucz, V_proces, i_choice)) {
 						e_soft_.m_edit_name_tree(V_name[1], V_name[0]);
 						e_soft_.m_save_tree(b_mistacke);
+						s_tree = V_name[1];
 						if (b_mistacke) {
 							V_proces.clear();
 							V_proces.push_back(Menu_glowne);
