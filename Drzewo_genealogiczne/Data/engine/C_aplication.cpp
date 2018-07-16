@@ -146,23 +146,23 @@ void C_aplication::m_view() {
 				M_.m_set_replay(i_variable, id_menu_MenuEditTree, search_tree);
 				M_.m_view(id_menu_MenuEditTree, i_variable, i_klucz, V_proces, i_choice);
 				break; }
-				case rename_tree: {
-					i_variable = 11;
-					i_choice = 0;
-					std::vector<std::string> V_name;
-					V_name.resize(2);
-					V_name[0] = s_tree;
-					M_.m_set_replay(i_variable, id_menu_MenuRenameTree, Edition_tree);
-					if (M_.m_view(id_menu_MenuRenameTree, i_variable, V_name, i_klucz, V_proces, i_choice)) {
-						e_soft_.m_edit_name_tree(V_name[1], V_name[0]);
-						e_soft_.m_save_tree(b_mistacke);
-						s_tree = V_name[1];
-						if (b_mistacke) {
-							V_proces.clear();
-							V_proces.push_back(Menu_glowne);
-						}
+			case rename_tree: {
+				i_variable = 11;
+				i_choice = 0;
+				std::vector<std::string> V_name;
+				V_name.resize(2);
+				V_name[0] = s_tree;
+				M_.m_set_replay(i_variable, id_menu_MenuRenameTree, Edition_tree);
+				if (M_.m_view(id_menu_MenuRenameTree, i_variable, V_name, i_klucz, V_proces, i_choice)) {
+					e_soft_.m_edit_name_tree(V_name[1], V_name[0]);
+					e_soft_.m_save_tree(b_mistacke);
+					s_tree = V_name[1];
+					if (b_mistacke) {
+						V_proces.clear();
+						V_proces.push_back(Menu_glowne);
 					}
-					break; }
+				}
+				break; }
 				case exit: {
 					return; 
 				}
@@ -474,8 +474,7 @@ void C_aplication::m_view() {
 					V_proces.clear();
 					V_proces.push_back(11);
 					V_proces.push_back(21);
-					break;
-				}
+					break;}
 				case add_person: {
 					i_variable = 9;
 					i_choice = 1;
@@ -574,8 +573,7 @@ void C_aplication::m_view() {
 							}
 						}
 					} while (i_what != 0); 
-					break;
-				}
+					break;}
 				case new_tree: {
 					bool b_what = true;
 					std::string s_str;

@@ -11,6 +11,7 @@ bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 	int i_x = i_start_;
 	int ptr;
 	int i_replay;
+	bool b_search = false;
 	std::vector<int> V_k;
 	//std::vector<std::vector<std::string>>::iterator it_s;
 	V_k = *V_klucz_.begin();
@@ -33,7 +34,7 @@ bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 
 				}
 				f_clear(h, pos, Written);
-				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); 
+				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k, b_search,0); 
 				switch (i_klucz) {
 				case -2: {  //zaimplementowanie na powrut do porezdniego menu
 					V_proces.clear();
@@ -68,7 +69,7 @@ bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 
 				}
 				f_clear(h, pos, Written);
-				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k); 
+				m_ruch(f_sterowanie, i_x, i_klucz,i_start_, V_k, b_search,0); 
 				switch (i_klucz) {
 				case -2: {  //zaimplementowanie na powrut do porezdniego menu
 					V_proces.clear();
