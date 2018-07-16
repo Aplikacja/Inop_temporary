@@ -1,6 +1,9 @@
 #include "C_menu_search.hpp"
 void f_edge(unsigned int& i_iter_down, unsigned int& i_iter_up, int i_x, int i_size, int i_start);
+void f_search(std::list<std::string>& L_string, std::string& s_szukana, std::list<std::string>& L_orginal);
+bool f_sort(std::string _left, std::string _right);
 inline void f_type_search(int& i_typ);
+bool f_komperator(std::string& s_L, std::string& s_R);
 C_menu_search::C_menu_search(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person):C_menu_base(V, b, v_k, V_procedur, i_iterator, L_person) {}
 bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { //dopasowac zwracanie stringa z metody!!
 	int i_x = i_start_;
@@ -44,6 +47,11 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 				V_string_final = V_string;
 			}
 			else if (b_search) {
+				if (s_message.size() > 0 && s_message[0] != ' ')
+					L_string.clear();
+				else
+					L_string = L_string_orgin;
+				f_search(L_string, s_message, L_string_orgin);
 				V_string_final.clear();
 				V_string_final = V_string_head;
 				V_string_final.push_back("");
@@ -551,4 +559,72 @@ void f_edge(unsigned int& i_iter_down, unsigned int& i_iter_up, int i_x, int i_s
 inline void f_type_search(int& i_typ) {
 	if (i_typ > 4) i_typ = 1;
 	else if (i_typ < 1) i_typ = 4;
+}
+bool f_sort(std::string _left, std::string _right) {
+	return (_left < _right);
+	//return true;
+}
+void f_search(std::list<std::string>& L_string, std::string& s_szukana, std::list<std::string>& L_orginal) {
+	int i_size = (int)L_orginal.size() - 1;
+	int i_iterator = 0;
+	std::string s_pointer;
+	L_orginal.sort(f_sort);
+	std::list<std::string>::iterator it = L_orginal.begin();
+	std::list<std::string>::iterator it_start = L_orginal.begin();
+	while (i_iterator <= i_size)
+	{
+		it = it_start;
+		advance(it, i_iterator);
+		s_pointer = *it ;
+		if (f_komperator(s_pointer, s_szukana)) { //zwraca person odpowiednia wartosc
+			L_string.push_back(*it);
+		}
+		i_iterator++;
+	}
+}
+bool f_komperator(std::string& s_L, std::string& s_R) {
+	std::string s_l; //string krutszy
+	std::string s_r; //string wiekszy
+	int i_iter_l = 0;
+	int i_iter_r = 0;
+	int i_inter_max = 0;
+	bool b_var = false;
+	bool b_value = false;
+	if (s_L.size() > s_R.size()) {
+		s_r = s_L;
+		s_l = s_R;
+	}
+	else if (s_R.size() > s_L.size()) {
+		s_r = s_R;
+		s_l = s_L;
+	}
+	else {
+		return s_R == s_L;
+	}
+	do {
+		if (b_value) {
+			i_inter_max++;
+			for (i_iter_r = i_inter_max; i_iter_r < s_r.size(); i_iter_r++) {
+				if (s_r[i_iter_r] == ' ' || s_r[i_iter_r] == '-') {
+					i_inter_max = i_iter_r;
+					break;
+				}
+			}
+			i_iter_r = i_inter_max + 1;
+		}
+		if (i_iter_r > s_r.size() - s_l.size()) return false; //nic nie znalazl
+		for (i_iter_l = 0; i_iter_l < s_l.size(); i_iter_l++) {
+			if (s_l[i_iter_l] == s_r[i_iter_r]) b_var = true;
+			else {
+				b_var = false;
+				break;
+			}
+			i_iter_r++;
+		}
+		if (b_var) return true;
+		else {
+			b_value = true;
+		}
+	} while (b_value);
+	return false; //usuniecie waringu
 }

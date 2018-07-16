@@ -357,7 +357,7 @@ void C_db::m_search(int i_choice, std::string s_szukana, std::list<C_person_base
 					List.push_back(*it);
 					i_size = i_sr;
 					i_iterator = i_sr;
-					f_szukaj<std::string>(sort_first_name, i_SIZE, i_var, i_iterator, i_size, List, it, it_start, s_pointer, s_szukana);
+					f_szukaj<std::string>(sort_first_name, i_SIZE, i_var, i_iterator, i_size, List, it, it_start, s_pointer, s_szukana); //???
 					return;
 				}
 				if (s_pointer > s_szukana)
