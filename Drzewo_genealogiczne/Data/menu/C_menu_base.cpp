@@ -108,16 +108,11 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 				x = i_position+1;
 			i_start = 10;
 			return;
-		case vkreturn:
-			i_start = 0;
-			s_klucz = v_k[x];
-			return;
-		case vkescape:
-			i_start = -10;
-			return;
-		case vkdelete:
-			i_start = -20;
-			return;
+		case vkreturn:	i_start = 0;	s_klucz = v_k[x];		return;
+		case vkescape:	i_start = -10;							return;
+		case vkdelete:	i_start = -20;							return;
+		case vkleft:	i_start = -30;							return;
+		case vkright:	i_start = -35;							return;
 		case vkspace:	v_k[i_position] += " "; i_start = -100; return;
 		case vka:
 		case vka1:
@@ -709,17 +704,17 @@ void C_menu_base::m_get_str(int i_choice, std::vector<std::string>& v_str) {
 }
 void f_obsluga_zadrzen_alfabetycznych(int& i_message) {
 	unsigned int i_result;
-	int i_tab_value[45] = { vkdown,vkup,vkreturn,vkescape,vklshift,vkrshift,vkcapslook,vkdelete,vkspace,vka,
+	int i_tab_value[47] = { vkdown,vkup,vkreturn,vkescape,vklshift,vkrshift,vkcapslook,vkdelete,vkspace,vka,
 							vkb,vkc,vkd,vke,vkf,vkg,vkh,vki,vkj,vkk,vkl,vkm,vkn,vko,vkp,vkq,vkr,vks,vkt,vku,
-							vkv,vkw,vkx,vky,vkz,vk0,vk1,vk2,vk3,vk4,vk5,vk6,vk7,vk8,vk9, };
-	int i_tab_key[45] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_BACK,VK_SPACE,
+							vkv,vkw,vkx,vky,vkz,vk0,vk1,vk2,vk3,vk4,vk5,vk6,vk7,vk8,vk9,vkleft, vkright };
+	int i_tab_key[47] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_BACK,VK_SPACE,
 							0x041, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4A, 0x04B, 0x4C, 0x4D, 
 							0x4E, 0x4F, 0x50, 0x51,	0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A,
-							0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39 };
+							0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39, VK_LEFT, VK_RIGHT};
 	int i;
 	do {
 		i_result = 0;
-		for (i = 0; i<45; i++)
+		for (i = 0; i<47; i++)
 			f(i_tab_key[i], i_tab_value[i], i_result);
 	} while (i_result==0);
 	i_message = i_result;
@@ -1130,3 +1125,9 @@ void f_sterowanie_edit_tree(int& x, std::string& s_klucz, std::string& s_message
 		}
 	}
 }
+void C_menu_base::m_get_data(C_engine_software& e_soft) {
+/*	std::list<C_person_base*> L_PERSON;
+	e_soft.m_copy(L_PERSON);
+	E_soft.m_get_list_person_orginal(L_PERSON);*/
+	E_soft = e_soft;
+};

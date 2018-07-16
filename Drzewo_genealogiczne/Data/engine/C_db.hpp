@@ -41,6 +41,7 @@ public:
 	void m_update_relation(C_relation& relation, C_id& i_variable, int i_var);  //metoda do zaktualizowania relacji u danego persona
 	void m_update_relationship(C_relationship& relation, C_id& i_variable, int i_var); //metoda do zaktualizowania zwiazku u danego persona
 	void m_get(std::list<C_person_base*>& lista); //metoda zwracajaca liste persona
+	//void m_set(std::list<C_person_base*>& lista); //metoda do wstawiania w bazie danych calej listy
 	void m_load(std::ifstream& is); //metoda wczytujaca dane z pliku
 	void m_sort(bool(*F)(C_person_base* _left, C_person_base* _right)); //metoda do sortowania listy
 	void m_search(int i_choice, C_id& Person, std::list<C_person_base*>& List); //metoda do wyszukiwania

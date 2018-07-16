@@ -119,3 +119,7 @@ void C_menu::m_set_replay(int i_variable, int i_choice, int i_replay) {
 	if (i_variable >= 0 && i_variable<i_size)
 		Tab_menu_[i_variable]->m_set_replay(i_choice, i_replay);
 }
+void C_menu::m_set_data_base(int i_choice, C_engine_software& E_SOFT) {
+	if (i_choice >= 0 && i_choice < i_size)
+		Tab_menu_[i_choice]->m_get_data(E_SOFT);
+}

@@ -103,7 +103,6 @@ void C_engine_software::m_view(int i_typ, int i_var, C_id& ID, std::list<C_perso
 		MessageBox(nullptr, TEXT("Nierozpoznany b³¹d z silnikiem aplikacji."), TEXT("B³¹d!"), MB_OK);
 
 	}
-
 } //metoda do przebudowy
 void C_engine_software::m_view(int i_typ, int i_var, std::string Person, std::list<C_person_base*>& lista) {
 	try
@@ -112,22 +111,19 @@ void C_engine_software::m_view(int i_typ, int i_var, std::string Person, std::li
 		case view_search: {
 			switch (i_var) {
 			case sort_id: {
-				d_Database_.m_search(sort_id, Person, lista); break;
+				d_Database_.m_search(sort_id, Person, lista);			break;
 			}
 			case sort_first_name: {
-				d_Database_.m_search(sort_first_name, Person, lista);
-				break;
+				d_Database_.m_search(sort_first_name, Person, lista);	break;
 			}
 			case sort_last_name: {
-				d_Database_.m_search(sort_last_name, Person, lista); 
-				break;
+				d_Database_.m_search(sort_last_name, Person, lista);	break;
 			}
 			case sort_date_brith: {
-				d_Database_.m_search(sort_date_brith, Person, lista); break;
-
+				d_Database_.m_search(sort_date_brith, Person, lista);	break;
 			}
 			case sort_date_death: {
-				d_Database_.m_search(sort_date_death, Person, lista); break;
+				d_Database_.m_search(sort_date_death, Person, lista);	break;
 			}
 			default: break;
 			}

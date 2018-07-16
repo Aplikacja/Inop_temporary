@@ -9,6 +9,7 @@
 #include <string>
 #include <list>
 #include "../person/C_fabric_person.hpp"
+#include "../engine/C_engine_software.hpp"
 #include <windows.h>
 class C_menu_base {
 protected:
@@ -19,6 +20,7 @@ protected:
 	std::vector<int> V_replay_;
 	int i_start_;
 	bool b_dinamic_;
+	C_engine_software E_soft;
 public:
 	C_menu_base( std::vector<std::vector<std::string>>& v, bool b_value,  std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person); //konstruktor parametrowy
 	virtual bool m_view(int i_id_menu,int& i_variable,int& i_klucz, std::vector<int>& V_proces, int& i_choice) = 0; //metoda powodujaca ze klasa C_menu_base jest klasa abstrakcyjna
@@ -37,6 +39,7 @@ public:
 	void m_get_str(int i_choice, std::vector<std::string>& v_str);
 	void m_set_replay(int i_choice,int i_replay);
 	void m_get_replay(int i_choice,int& i_replay);
+	void m_get_data(C_engine_software& e_soft);
 	void m_add_perosons(std::vector<std::list<C_person_base*>>& L_person);
 	virtual ~C_menu_base(); //destruktor
 };

@@ -341,7 +341,8 @@ void C_db::m_search(int i_choice, std::string s_szukana, std::list<C_person_base
 	int i_sr =0;
 	int i_var=0;
 	std::string s_pointer;
-	switch(i_choice) {
+	if (s_szukana.size() > 0) {
+		switch (i_choice) {
 		case sort_first_name: {
 			L_person_.sort(f_sort_first_name);
 			std::list<C_person_base*>::iterator it = L_person_.begin();
@@ -352,11 +353,11 @@ void C_db::m_search(int i_choice, std::string s_szukana, std::list<C_person_base
 				it = it_start;
 				advance(it, i_sr);
 				f_typ(i_choice, s_pointer, it);
-				if (f_comparison(s_pointer,s_szukana)) { //zwraca person odpowiednia wartosc
-					List.push_back(*it); 
+				if (f_comparison(s_pointer, s_szukana)) { //zwraca person odpowiednia wartosc
+					List.push_back(*it);
 					i_size = i_sr;
 					i_iterator = i_sr;
-					f_szukaj<std::string>(sort_first_name,i_SIZE, i_var, i_iterator, i_size, List, it, it_start, s_pointer, s_szukana);
+					f_szukaj<std::string>(sort_first_name, i_SIZE, i_var, i_iterator, i_size, List, it, it_start, s_pointer, s_szukana);
 					return;
 				}
 				if (s_pointer > s_szukana)
@@ -369,28 +370,29 @@ void C_db::m_search(int i_choice, std::string s_szukana, std::list<C_person_base
 			L_person_.sort(f_sort_last_name);
 			std::list<C_person_base*>::iterator it = L_person_.begin();
 			std::list<C_person_base*>::iterator it_start = L_person_.begin();
-				while (i_iterator <= i_size)
-				{
-					it = it_start;
-					advance(it, i_iterator);
-					f_typ(i_choice, s_pointer, it);
-					if (f_comparison(s_pointer, s_szukana)) { //zwraca person odpowiednia wartosc
-						List.push_back(*it); 
-					}
-				i_iterator++;
+			while (i_iterator <= i_size)
+			{
+				it = it_start;
+				advance(it, i_iterator);
+				f_typ(i_choice, s_pointer, it);
+				if (f_comparison(s_pointer, s_szukana)) { //zwraca person odpowiednia wartosc
+					List.push_back(*it);
 				}
+				i_iterator++;
+			}
 			break;
 		}
-		case sort_date_brith:	{
+		case sort_date_brith: {
 			L_person_.sort(f_sort_date_brith);
 			std::list<C_person_base*>::iterator it = L_person_.begin();
 			std::list<C_person_base*>::iterator it_start = L_person_.begin();
 			while (i_iterator <= i_size)
 			{
+				it = it_start;
 				advance(it, i_iterator);
 				f_typ(i_choice, s_pointer, it);
 				if (f_comparison(s_pointer, s_szukana)) { //zwraca person odpowiednia wartosc
-					List.push_back(*it); 
+					List.push_back(*it);
 				}
 				i_iterator++;
 			}break;
@@ -401,15 +403,17 @@ void C_db::m_search(int i_choice, std::string s_szukana, std::list<C_person_base
 			std::list<C_person_base*>::iterator it_start = L_person_.begin();
 			while (i_iterator <= i_size)
 			{
+				it = it_start;
 				advance(it, i_iterator);
 				f_typ(i_choice, s_pointer, it);
 				if (f_comparison(s_pointer, s_szukana)) { //zwraca person odpowiednia wartosc
-					List.push_back(*it); 
+					List.push_back(*it);
 				}
 				i_iterator++;
 			}break;
 		}
 		default: return; //zwracamy -1, gdy nie znajdziemy elementu
+		}
 	}
 }
 void C_db::m_search(int i_choice, C_id& id_szukana, std::list<C_person_base*>& List) {

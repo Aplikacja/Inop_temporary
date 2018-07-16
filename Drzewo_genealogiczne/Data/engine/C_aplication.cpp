@@ -740,6 +740,7 @@ void C_aplication::m_view() {
 				//	e_soft.m_view(view_search, sort_id, data, lista);
 					M_.m_set_replay(i_variable, id_menu_MenuSearchPerson, search_tree);
 					M_.m_set_content(id_menu_MenuSearchPerson,lista,V_id);
+					M_.m_set_data_base(id_menu_MenuSearchPerson,e_soft_);
 					i_choice = 3;
 					i_klucz = 5; //wyjatkowo
 					if (M_.m_view(id_menu_MenuSearchPerson, i_variable, s_str, i_klucz, V_proces, i_choice)) {
