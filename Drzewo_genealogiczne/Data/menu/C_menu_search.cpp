@@ -2,7 +2,7 @@
 void f_edge(unsigned int& i_iter_down, unsigned int& i_iter_up, int i_x, int i_size, int i_start);
 void f_search(std::list<std::string>& L_string, std::string& s_szukana, std::list<std::string>& L_orginal);
 bool f_sort(std::string _left, std::string _right);
-inline void f_type_search(int& i_typ);
+inline void f_type_search(int& i_typ, int& i_sort);
 bool f_komperator(std::string& s_L, std::string& s_R);
 C_menu_search::C_menu_search(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person):C_menu_base(V, b, v_k, V_procedur, i_iterator, L_person) {}
 bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { //dopasowac zwracanie stringa z metody!!
@@ -15,6 +15,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 	bool b_choice;
 	int i_replay;
 	int i_typ_soft = 1;
+	int i_typ_sort = 0;
 	std::vector<int> V_k;
 	std::string s_temp;
 	std::string s_temp_;
@@ -41,7 +42,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 	switch (i_choice) {
 	case 1: {
 		while (true) {
-			f_type_search(i_typ_soft);
+			f_type_search(i_typ_soft, i_typ_sort);
 			if (!b_search&&V_string_final.size() != V_string.size()) { //gdy == false;
 				V_string_final.clear();
 				V_string_final = V_string;
@@ -172,13 +173,31 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 //		char * c_temp;
 		//f_option_clear(h, pos, Written);
 		while (true) {
-			f_type_search(i_typ_soft);
+			f_type_search(i_typ_soft, i_typ_sort);
 			L_PERSON.clear();
-			if (!b_search&&V_string_final.size() != V_string.size()) { //gdy == false;
+		//	if (!b_search&&V_string_final.size() != V_string.size()) { //gdy == false;
+			if (!b_search){
 				V_string_final.clear();
-				V_string_final = V_string;
+				V_string_final = V_string_head;
+				switch (i_typ_sort) {
+				case 0:
+					E_soft.m_view(view_sort, sort_id, L_PERSON); break;
+				case 1:
+					E_soft.m_view(view_sort, sort_first_name, L_PERSON); break;
+				case 2:
+					E_soft.m_view(view_sort, sort_last_name, L_PERSON); break;
+				case 3:
+					E_soft.m_view(view_sort, sort_date_brith, L_PERSON); break;
+				case 4:
+					E_soft.m_view(view_sort, sort_date_death, L_PERSON); break;
+				}
+				for (auto& X : L_PERSON) {
+					s_temp_.clear();
+					X->m_conwert(s_temp_);
+					V_string_final.push_back(s_temp_);
+				}
 			}
-			else if(b_search) {
+			else {
 				//wyszukiwanie 
 				switch (i_typ_soft) {
 				case 1: {
@@ -328,6 +347,8 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 							b_choice = false;
 							break;
 						}
+						case -40:	i_typ_sort++;	b_choice = false;	break;
+						case -45:	i_typ_sort--;	b_choice = false;	break;
 						default:
 							break;
 						}
@@ -401,7 +422,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 	}break;
 	case 4: { //nazwy typow do wyboru w relacjach
 		while (true) {
-			f_type_search(i_typ_soft);
+			f_type_search(i_typ_soft, i_typ_sort);
 			if (!b_search&&V_string_final.size() != V_string.size()) { //gdy == false;
 				V_string_final.clear();
 				V_string_final = V_string;
@@ -556,9 +577,29 @@ void f_edge(unsigned int& i_iter_down, unsigned int& i_iter_up, int i_x, int i_s
 		return;
 	}
 }
-inline void f_type_search(int& i_typ) {
-	if (i_typ > 4) i_typ = 1;
-	else if (i_typ < 1) i_typ = 4;
+inline void f_type_search(int& i_typ, int& i_sort) {
+	switch (i_typ) {
+		case 0:
+			i_typ = 4;
+			break;
+		case 5:
+			i_typ = 1;
+			break;
+	}
+	switch (i_sort) {
+		case -4:
+		case -3:
+		case -2:
+		case -1:
+			i_sort = 4;
+			break;
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+			i_sort = 0;
+			break;
+	}
 }
 bool f_sort(std::string _left, std::string _right) {
 	return (_left < _right);

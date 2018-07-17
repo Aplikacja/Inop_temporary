@@ -218,15 +218,25 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 		case vkX:		v_k[i_position] += 'X';	i_start = -100; return;
 		case vkY:		v_k[i_position] += 'Y';	i_start = -100; return;
 		case vkZ:		v_k[i_position] += 'Z';	i_start = -100; return;
+		case vkn0:
 		case vk0:		v_k[i_position] += '0'; i_start = -100; return;
+		case vkn_1:
 		case vk1:		v_k[i_position] += '1'; i_start = -100; return;
+		case vkn_2:
 		case vk2:		v_k[i_position] += '2'; i_start = -100; return;
+		case vkn3:
 		case vk3:		v_k[i_position] += '3'; i_start = -100; return;
+		case vkn4:
 		case vk4:		v_k[i_position] += '4'; i_start = -100; return;
+		case vkn5:
 		case vk5:		v_k[i_position] += '5'; i_start = -100; return;
+		case vkn6:
 		case vk6:		v_k[i_position] += '6'; i_start = -100; return;
+		case vkn7:
 		case vk7:		v_k[i_position] += '7'; i_start = -100; return;
+		case vkn8:
 		case vk8:		v_k[i_position] += '8'; i_start = -100; return;
+		case vkn9:
 		case vk9:		v_k[i_position] += '9'; i_start = -100; return;
 		}
 	}
@@ -262,9 +272,9 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 				i_start = 0;
 				s_klucz = v_k[x];
 				return;
-			case vkescape:
-				i_start = -2;
-				return;
+			case vkescape:	i_start = -2;							return;
+			case vkplus:	i_start = -40;							return;
+			case vkminus:	i_start = -45;							return;
 			case vkf:	
 			case vkF:	
 			case vkf2:
@@ -656,24 +666,34 @@ void f_sterowanie_add_person(int& x, std::string& s_klucz, std::string& s_messag
 			s_message += 'Y';	return;
 		case vkZ:
 			s_message += 'Z';	return;
+		case vkn0:
 		case vk0:
 			s_message += '0'; return;
+		case vkn_1:
 		case vk1:
 			s_message += '1'; return;
+		case vkn_2:
 		case vk2:
 			s_message += '2'; return;
+		case vkn3:
 		case vk3:
 			s_message += '3'; return;
+		case vkn4:
 		case vk4:
 			s_message += '4'; return;
+		case vkn5:
 		case vk5:
 			s_message += '5'; return;
+		case vkn6:
 		case vk6:
 			s_message += '6'; return;
+		case vkn7:
 		case vk7:
 			s_message += '7'; return;
+		case vkn8:
 		case vk8:
 			s_message += '8'; return;
+		case vkn9:
 		case vk9:
 			s_message += '9'; return;
 		default:	break;
@@ -704,17 +724,20 @@ void C_menu_base::m_get_str(int i_choice, std::vector<std::string>& v_str) {
 }
 void f_obsluga_zadrzen_alfabetycznych(int& i_message) {
 	unsigned int i_result;
-	int i_tab_value[47] = { vkdown,vkup,vkreturn,vkescape,vklshift,vkrshift,vkcapslook,vkdelete,vkspace,vka,
+	int i_tab_value[57] = { vkdown,vkup,vkreturn,vkescape,vklshift,vkrshift,vkcapslook,vkdelete,vkspace,vka,
 							vkb,vkc,vkd,vke,vkf,vkg,vkh,vki,vkj,vkk,vkl,vkm,vkn,vko,vkp,vkq,vkr,vks,vkt,vku,
-							vkv,vkw,vkx,vky,vkz,vk0,vk1,vk2,vk3,vk4,vk5,vk6,vk7,vk8,vk9,vkleft, vkright };
-	int i_tab_key[47] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_BACK,VK_SPACE,
+							vkv,vkw,vkx,vky,vkz,vk0,vk1,vk2,vk3,vk4,vk5,vk6,vk7,vk8,vk9,vkleft, vkright, 
+							vkn0, vkn_1, vkn_2,vkn3,vkn4, vkn5, vkn6, vkn7, vkn8, vkn9 };
+	int i_tab_key[57] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_BACK,VK_SPACE,
 							0x041, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4A, 0x04B, 0x4C, 0x4D, 
 							0x4E, 0x4F, 0x50, 0x51,	0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A,
-							0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39, VK_LEFT, VK_RIGHT};
+							0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39, VK_LEFT, VK_RIGHT,
+							VK_NUMPAD0, VK_NUMPAD1, VK_NUMPAD2, VK_NUMPAD3, VK_NUMPAD4, VK_NUMPAD5,
+							VK_NUMPAD6, VK_NUMPAD7, VK_NUMPAD8, VK_NUMPAD9 };
 	int i;
 	do {
 		i_result = 0;
-		for (i = 0; i<47; i++)
+		for (i = 0; i<57; i++)
 			f(i_tab_key[i], i_tab_value[i], i_result);
 	} while (i_result==0);
 	i_message = i_result;
@@ -734,12 +757,12 @@ void f_obsluga_zdarzen_vk(int& i_message) {
 }
 void f_obsluga_zdarzen_vk_search(int& i_message) {
 	unsigned int i_result = 0;
-	int i_tab_value[8] = { vkdown,vkup,vkreturn,vkescape, vkF,vklshift,vkrshift, vkcapslook};
-	int i_tab_key[8] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,0x46,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL};
+	int i_tab_value[10] = { vkdown,vkup,vkreturn,vkescape, vkF,vklshift,vkrshift, vkcapslook, vkplus, vkminus};
+	int i_tab_key[10] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,0x46,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_ADD,VK_SUBTRACT};
 	int i;
 	do {
 		i_result = 0;
-		for (i = 0; i < 8; i++)  //bylo do 26
+		for (i = 0; i < 10; i++)  //bylo do 26
 			f(i_tab_key[i], i_tab_value[i], i_result);
 
 	} while (i_result == 0);

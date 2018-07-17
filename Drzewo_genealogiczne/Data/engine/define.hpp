@@ -68,6 +68,8 @@
 //stale obslugi klawiszy
 #define vkleft					1040
 #define vkright					1041
+#define vkplus					1042
+#define vkminus					1043
 #define vkdelete				99
 #define vkcapslook				300 //dziala tylko trzymanie
 #define vklshift				300
@@ -113,6 +115,16 @@
 #define vk7						139
 #define vk8						140
 #define vk9						141
+#define vkn_1					142
+#define vkn_2					143
+#define vkn3					144
+#define vkn4					145
+#define vkn5					146
+#define vkn6					147
+#define vkn7					148
+#define vkn8					149
+#define vkn9					150
+#define vkn0					151
 #define vkA						406
 #define vkB						407
 #define vkC						408

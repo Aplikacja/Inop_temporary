@@ -157,7 +157,7 @@ void C_person_base::m_conwert(std::string& s_str) {
 				data_death;
 	brith_.m_sidle(data_brith);
 	death_.m_sidle(data_death);
-	s_str +=  '\t'+first_name_ + " , " + last_name_ + " , " + data_brith + " , " + data_death + ";";
+	s_str +=  '\t'+first_name_ + " , " + last_name_ + " , " + data_brith + " , " + data_death;
 }
 void C_person_base::m_down_id() {
 	id_.m_down();
