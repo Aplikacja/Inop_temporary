@@ -4,7 +4,7 @@
 //**********************************************************************************************************************************************************//
 #include "C_db.hpp"
 void f_clean(std::list<C_person_base*>& list);
-C_db::C_db() { ID_MAIN_ = 0; }
+C_db::C_db() { ID_MAIN_ = 0; b_protected = true; }
 void C_db::m_size(int& i_var) {
 	i_var = (int)L_person_.size();
 }
@@ -737,4 +737,15 @@ void C_db::m_search_specjal(C_id Person, std::list<C_person_base*>& List) { //me
 }
 void C_db::m_clear() {
 	m_delete_base();
+}
+void C_db::m_giving(std::list<C_person_base*>& L_peroson) {
+	if(!b_protected)
+	L_person_ = L_peroson;
+
+	b_protected = true;
+}
+void C_db::m_delete_protected(int i_key) {
+	if (protect == i_key) {
+		b_protected = false;
+	}
 }

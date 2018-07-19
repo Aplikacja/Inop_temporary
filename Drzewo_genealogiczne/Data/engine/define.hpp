@@ -38,6 +38,7 @@
 #define add_relation			30
 #define Presentation_tree		31
 #define exit					100
+#define protect					-121212
 //nazwa pliku do zapisu
 #define file_save "plik2.txt"
 #define file_load "plik1.txt"

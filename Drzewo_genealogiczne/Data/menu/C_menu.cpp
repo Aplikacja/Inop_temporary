@@ -123,3 +123,7 @@ void C_menu::m_set_data_base(int i_choice, C_engine_software& E_SOFT) {
 	if (i_choice >= 0 && i_choice < i_size)
 		Tab_menu_[i_choice]->m_get_data(E_SOFT);
 }
+void C_menu::m_elimination(int i_choice, std::vector<int>& L_person) {
+	if (i_choice >= 0 && i_choice < i_size)
+		Tab_menu_[i_choice]->m_elimination(L_person);
+}

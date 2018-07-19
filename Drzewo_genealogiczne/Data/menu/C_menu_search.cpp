@@ -13,6 +13,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 	unsigned int i_iter_up;
 	bool b_search = false;
 	bool b_choice;
+	bool b_begin = true; //okresla czy od poczatku czy od konca
 	int i_replay;
 	int i_typ_soft = 1;
 	int i_typ_sort = 0;
@@ -26,7 +27,8 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 	std::list<std::string> L_string;
 	std::list<std::string> L_string_orgin;
 	std::list<C_person_base*> L_PERSON;
-	std::vector<std::string> V_string_data = { "Wyszukiwanie po imionu","Wyszukiwanie po nazwisku", "Wyszukiwanie po dacie urodzenia", "Wyszukiwanie po dacie smierci"};
+	std::vector<std::vector<std::string>> V_string_data = { { "\tWyszukiwanie po imionu","\tWyszukiwanie po nazwisku", "\tWyszukiwanie po dacie urodzenia", "\tWyszukiwanie po dacie smierci"},
+	{"\tSortowanie po kolejnosci dodania","\tSortowanie po imieniu", "\tSortowanie po nazwisku", "\tSortowanie po dacie urodzenia", "\tSortowanie po dacie smierci"} };
 	std::vector<std::vector<std::string>>::iterator it_s;
 	for (auto& Y : V_str_[0][i_id_menu]) { //eksperymeny bylo i_klucz
 		V_string.push_back(Y);
@@ -170,6 +172,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 		};
 		}break;
 	case 3: { //WYSZUKIWANIE OSOB I DODAWANIE RELACJI
+		i_x++;
 //		char * c_temp;
 		//f_option_clear(h, pos, Written);
 		while (true) {
@@ -179,6 +182,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 			if (!b_search){
 				V_string_final.clear();
 				V_string_final = V_string_head;
+				V_string_final.push_back(V_string_data[1][i_typ_sort]);
 				switch (i_typ_sort) {
 				case 0:
 					E_soft.m_view(view_sort, sort_id, L_PERSON); break;
@@ -191,49 +195,74 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 				case 4:
 					E_soft.m_view(view_sort, sort_date_death, L_PERSON); break;
 				}
-				for (auto& X : L_PERSON) {
-					s_temp_.clear();
-					X->m_conwert(s_temp_);
-					V_string_final.push_back(s_temp_);
+				if (b_begin) {
+					for (auto& X : L_PERSON) {
+						s_temp_.clear();
+						X->m_conwert(s_temp_);
+						V_string_final.push_back(s_temp_);
+					}
+				}
+				else
+				{
+					for (std::list<C_person_base*>::reverse_iterator it = L_PERSON.rbegin(); it != L_PERSON.rend(); it++) {
+						s_temp_.clear();
+						(*it)->m_conwert(s_temp_);
+						V_string_final.push_back(s_temp_);
+					}
 				}
 			}
 			else {
 				//wyszukiwanie 
+				if (i_typ_sort > 0)
+					i_typ_soft = i_typ_sort;
 				switch (i_typ_soft) {
 				case 1: {
-					if (s_message.size() > 0 && s_message[0] != ' ')
-						L_string.clear();
-					else
-						L_string = L_string_orgin;
+					L_string.clear();
 					E_soft.m_view(view_search, sort_first_name,s_message,L_PERSON);	break;}
 				case 2: {
-					if (s_message.size()>0	&&	s_message[0] != ' ')
-						L_string.clear();
-					else
-						L_string = L_string_orgin;
+					L_string.clear();
 					E_soft.m_view(view_search, sort_last_name, s_message, L_PERSON);	break; }
 				case 3: {
-					if (s_message.size()>0	&&	s_message[0] != ' ')
-						L_string.clear();
-					else
-						L_string = L_string_orgin;
+					L_string.clear();
 					E_soft.m_view(view_search, sort_date_brith, s_message, L_PERSON);	break; }
 				case 4: {
-					if (s_message.size()>0	&&	s_message[0] != ' ')
-						L_string.clear();
-					else
-						L_string = L_string_orgin;
+					L_string.clear();
 					E_soft.m_view(view_search, sort_date_death, s_message, L_PERSON);	break; }
 				}
-				for (auto& X : L_PERSON) {
-					s_temp_.clear();
-					X->m_conwert(s_temp_);
-					L_string.push_back(s_temp_);
+				if ((int)L_PERSON.size() == 0) {
+					switch (i_typ_soft) {
+					case 0:
+						E_soft.m_view(view_sort, sort_id, L_PERSON); break;
+					case 1:
+						E_soft.m_view(view_sort, sort_first_name, L_PERSON); break;
+					case 2:
+						E_soft.m_view(view_sort, sort_last_name, L_PERSON); break;
+					case 3:
+						E_soft.m_view(view_sort, sort_date_brith, L_PERSON); break;
+					case 4:
+						E_soft.m_view(view_sort, sort_date_death, L_PERSON); break;
+					}
 				}
+				if (b_begin) {
+					for (auto& X : L_PERSON) {
+						s_temp_.clear();
+						X->m_conwert(s_temp_);
+						L_string.push_back(s_temp_);
+					}
+				}
+				else
+				{
+					for (std::list<C_person_base*>::reverse_iterator it = L_PERSON.rbegin(); it != L_PERSON.rend(); it++) {
+						s_temp_.clear();
+						(*it)->m_conwert(s_temp_);
+						L_string.push_back(s_temp_);
+					}
+				}
+					
 				//----
 				V_string_final.clear();
 				V_string_final = V_string_head;
-				V_string_final.push_back(V_string_data[i_typ_soft - 1]);
+				V_string_final.push_back(V_string_data[0][i_typ_soft - 1]);
 				V_string_final.push_back("");
 				if (i_sta == -20) {
 					V_string_final[V_string_final.size() - 1] = s_message + " ";
@@ -247,9 +276,9 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 			while (b_choice) {
 				f_option_clear(h, pos, Written);
 				ptr = 0;
-				f_edge(i_iter_down, i_iter_up, i_x, (int)V_string_final.size(), i_start_);
+				f_edge(i_iter_down, i_iter_up, i_x, (int)V_string_final.size(), (int)i_start_+1 + b_search);
 				for (auto& x : V_string_final) {
-					if (ptr < i_start_) {
+					if (ptr < i_start_+1+b_search) {
 						printf(x.c_str()); printf("\n");
 						ptr++; continue;
 					}
@@ -267,7 +296,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 
 				}
 				f_clear(h, pos, Written);
-				m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string_final, b_search, V_string_head.size()+1);
+				m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string_final, b_search, V_string_head.size()+b_search);
 				if (b_search) { // gdy == true
 					if (i_sta <= 0) {
 						switch (i_sta) {
@@ -287,10 +316,12 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 						case -10: { //zaimplementowane do wlaczenia wyszukiwania z listy
 							if (b_search) {
 								i_x--;
+								b_begin = true;
 								b_search = false;
 							}
 							else {
 								i_x++;
+								b_begin = true;
 								b_search = true;
 							}
 							b_choice = false;
@@ -309,6 +340,8 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 						}
 						case -30: 	i_typ_soft--;	b_choice = false;	break;
 						case -35: 	i_typ_soft++;	b_choice = false;	break;
+						case -40:
+						case -45: 	b_begin = !b_begin;	b_choice = false;	break;
 						case -100: {
 							s_message = V_string_final[V_string_head.size()+1];
 							b_choice = false;
@@ -338,17 +371,21 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 						case -10: { //zaimplementowane do wlaczenia wyszukiwania z listy
 							if (b_search) {
 								i_x--;
+								b_begin = true;
 								b_search = false;
 							}
 							else {
 								i_x++;
+								b_begin = true;
 								b_search = true;
 							}
 							b_choice = false;
 							break;
 						}
-						case -40:	i_typ_sort++;	b_choice = false;	break;
-						case -45:	i_typ_sort--;	b_choice = false;	break;
+						case -30:	i_typ_sort++;	b_choice = false;	break;
+						case -35:	i_typ_sort--;	b_choice = false;	break;
+						case -40:
+						case -45: 	b_begin = !b_begin;	b_choice = false;	break;
 						default:
 							break;
 						}
@@ -645,7 +682,7 @@ bool f_komperator(std::string& s_L, std::string& s_R) {
 	do {
 		if (b_value) {
 			i_inter_max++;
-			for (i_iter_r = i_inter_max; i_iter_r < s_r.size(); i_iter_r++) {
+			for (i_iter_r = i_inter_max; i_iter_r < (int)s_r.size(); i_iter_r++) {
 				if (s_r[i_iter_r] == ' ' || s_r[i_iter_r] == '-') {
 					i_inter_max = i_iter_r;
 					break;
@@ -653,8 +690,8 @@ bool f_komperator(std::string& s_L, std::string& s_R) {
 			}
 			i_iter_r = i_inter_max + 1;
 		}
-		if (i_iter_r > s_r.size() - s_l.size()) return false; //nic nie znalazl
-		for (i_iter_l = 0; i_iter_l < s_l.size(); i_iter_l++) {
+		if (i_iter_r > ((int)s_r.size() - (int)s_l.size())) return false; //nic nie znalazl
+		for (i_iter_l = 0; i_iter_l < (int)s_l.size(); i_iter_l++) {
 			if (s_l[i_iter_l] == s_r[i_iter_r]) b_var = true;
 			else {
 				b_var = false;

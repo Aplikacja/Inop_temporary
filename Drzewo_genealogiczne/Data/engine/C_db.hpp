@@ -25,6 +25,7 @@ int f_sprawdzanie(int& i_SIZE, int& i_iterator, int& i_size); //funkcja do wyszu
 class C_db {
 	std::list<C_person_base*> L_person_;
 	long long ID_MAIN_;
+	bool b_protected;
 	void m_delete_base();
 public:
 	C_db(); //konstruktor
@@ -47,6 +48,8 @@ public:
 	void m_search(int i_choice, C_id& Person, std::list<C_person_base*>& List); //metoda do wyszukiwania
 	void m_search(int i_choice, std::string s_szukana, std::list<C_person_base*>& List); //metoda do wyszukiwania
 	void m_search_specjal(C_id Person, std::list<C_person_base*>& List); //metoda do wyszukiwania specjalnego
+	void m_giving(std::list<C_person_base*>& L_peroson);
+	void m_delete_protected(int i_key);
 	void m_clear();
 	~C_db(); //destruktor
 };

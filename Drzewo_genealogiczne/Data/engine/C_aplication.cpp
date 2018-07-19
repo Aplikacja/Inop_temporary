@@ -251,17 +251,18 @@ void C_aplication::m_view() {
 						V_person_temp.erase(it);
 					}
 					V_id.clear();
-				/*	for (auto& X : V_person_temp) {
-						s_str.clear();
-						X->m_conwert(s_str);
-						V_string.push_back(s_str);
+					for (auto& X : V_person_temp) {
+						//-> resetowanie id
 						X->m_get_id(id);
 						V_id.push_back(id);
-					}*/
+					}
 					//V_str_[1][id_menu_MenuChoicePerson] = V_string;
+					C_engine_software E;
 					M_.m_set_str(i_variable, V_str_);
 					M_.m_set_replay(i_variable, id_menu_MenuChoicePerson, searchperson);
 					M_.m_set_content(id_menu_MenuChoicePerson, V_person_temp, V_id);
+					M_.m_set_data_base(id_menu_MenuChoicePerson, e_soft_);
+					M_.m_elimination(id_menu_MenuChoicePerson, V_position);
 					i_choice = 3;
 
 					i_klucz = 5;
@@ -303,7 +304,7 @@ void C_aplication::m_view() {
 					V_str_[1][id_menu_MenuAddRelation] = V_string;
 					M_.m_set_str(i_variable, V_str_);
 
-					M_.m_set_replay(i_variable, id_menu_MenuAddRelation, searchperson);
+					M_.m_set_replay(i_variable, id_menu_MenuAddRelation, searchperson);//tu ubdate
 					if (M_.m_view(id_menu_MenuAddRelation, i_variable, s_str, i_klucz, V_proces, i_choice)) {
 						switch (i_klucz) {
 						case 0:
@@ -671,6 +672,7 @@ void C_aplication::m_view() {
 					person->m_get_id(ID);
 					for (auto& x_relation : V_relation) {
 						x_relation.m_get_id(id);
+						//->V_k.push_back(id.m_return_value());
 						x_relation.m_get_typ(i_typ);
 						e_soft_.m_view(view_search, sort_id, id, lista_temp);
 						//rozkladanie danmych persona na poszczegolne wartosci
@@ -689,9 +691,11 @@ void C_aplication::m_view() {
 							V_lista[1].push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
 
 					}
+					//->V_k.push_back(ID_person.m_return_value());
 					for (auto& x_relationship : V_relationship) {
 						std::list<C_person_base*> lista;
 						x_relationship.m_get_id(id);
+						//->V_k.push_back(id.m_return_value());
 						x_relationship.m_get_typ(i_typ);
 						e_soft_.m_view(view_search, sort_id, id, lista_temp);
 						//rozkladanie danmych persona na poszczegolne wartosci
@@ -708,6 +712,7 @@ void C_aplication::m_view() {
 						x_relationship.m_get_baby(V_relation_temp);
 						for (auto& x_relation : V_relation) {
 							x_relation.m_get_id(id);
+							//->V_k.push_back(id.m_return_value());
 							x_relation.m_get_typ(i_typ);
 							e_soft_.m_view(view_search, sort_id, id, lista_temp);
 							//rozkladanie danmych persona na poszczegolne wartosci
@@ -725,11 +730,11 @@ void C_aplication::m_view() {
 						V_lista.push_back(lista);
 					}
 					M_.m_set_content_person(id_menu_MenuViewTree, V_lista); // numer wskazuje na odpowiednie menu!!!
-					M_.m_view(id_menu_MenuViewTree, i_variable, i_klucz, V_proces, i_choice);
+					M_.m_view(id_menu_MenuViewTree, i_variable, i_klucz, V_k, i_choice);
 				}break;
 				case searchperson: {
 					//	case search: {
-					C_id data;
+					C_id data; 
 					std::string s_str;
 					std::string s_temp;
 					std::vector<C_id> V_id;

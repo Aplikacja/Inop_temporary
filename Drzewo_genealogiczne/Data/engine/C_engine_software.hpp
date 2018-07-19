@@ -30,6 +30,7 @@ public:
 	void m_view(int i_typ, int i_var, std::list<C_person_base*>& lista); //metoda do sortowania i wyszkiwania
 	void m_view(int i_typ, int i_var, C_id& Person, std::list<C_person_base*>& lista); //metoda do sortowaia i wyszukiwania
 	void m_view(int i_typ, int i_var, std::string Person, std::list<C_person_base*>& lista); //metoda do sortowania i wyszukiwania
+	C_db& m_db();
 	void m_clean();
 	~C_engine_software(); //destruktor
 };

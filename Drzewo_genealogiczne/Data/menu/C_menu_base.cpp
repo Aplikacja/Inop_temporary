@@ -113,6 +113,8 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 		case vkdelete:	i_start = -20;							return;
 		case vkleft:	i_start = -30;							return;
 		case vkright:	i_start = -35;							return;
+		case vkplus:	i_start = -40;							return;
+		case vkminus:	i_start = -45;							return;
 		case vkspace:	v_k[i_position] += " "; i_start = -100; return;
 		case vka:
 		case vka1:
@@ -248,14 +250,14 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 			switch (i_message) {
 			case vkup:
 				x--;
-				if (x <= i_position-1)      // gdy wykracza wraca na koniec
+				if (x <= i_position)      // gdy wykracza wraca na koniec
 					x = v_k.size() - 1;
 				i_start = 10;
 				return;
 			case vkdown:
 				x++;
 				if (x >= v_k.size())       // gdy wykracza poza menu, znow wraca na poczatek
-					x = i_position;
+					x = i_position+1;
 				i_start = 10;
 				return;
 			/*case vkup:
@@ -275,6 +277,8 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 			case vkescape:	i_start = -2;							return;
 			case vkplus:	i_start = -40;							return;
 			case vkminus:	i_start = -45;							return;
+			case vkleft:	i_start = -30;							return;
+			case vkright:	i_start = -35;							return;
 			case vkf:	
 			case vkF:	
 			case vkf2:
@@ -724,20 +728,20 @@ void C_menu_base::m_get_str(int i_choice, std::vector<std::string>& v_str) {
 }
 void f_obsluga_zadrzen_alfabetycznych(int& i_message) {
 	unsigned int i_result;
-	int i_tab_value[57] = { vkdown,vkup,vkreturn,vkescape,vklshift,vkrshift,vkcapslook,vkdelete,vkspace,vka,
+	int i_tab_value[59] = { vkdown,vkup,vkreturn,vkescape,vklshift,vkrshift,vkcapslook,vkdelete,vkspace,vka,
 							vkb,vkc,vkd,vke,vkf,vkg,vkh,vki,vkj,vkk,vkl,vkm,vkn,vko,vkp,vkq,vkr,vks,vkt,vku,
 							vkv,vkw,vkx,vky,vkz,vk0,vk1,vk2,vk3,vk4,vk5,vk6,vk7,vk8,vk9,vkleft, vkright, 
-							vkn0, vkn_1, vkn_2,vkn3,vkn4, vkn5, vkn6, vkn7, vkn8, vkn9 };
-	int i_tab_key[57] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_BACK,VK_SPACE,
+							vkn0, vkn_1, vkn_2,vkn3,vkn4, vkn5, vkn6, vkn7, vkn8, vkn9, vkplus, vkminus };
+	int i_tab_key[59] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_BACK,VK_SPACE,
 							0x041, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4A, 0x04B, 0x4C, 0x4D, 
 							0x4E, 0x4F, 0x50, 0x51,	0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A,
 							0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39, VK_LEFT, VK_RIGHT,
 							VK_NUMPAD0, VK_NUMPAD1, VK_NUMPAD2, VK_NUMPAD3, VK_NUMPAD4, VK_NUMPAD5,
-							VK_NUMPAD6, VK_NUMPAD7, VK_NUMPAD8, VK_NUMPAD9 };
+							VK_NUMPAD6, VK_NUMPAD7, VK_NUMPAD8, VK_NUMPAD9,VK_ADD,VK_SUBTRACT };
 	int i;
 	do {
 		i_result = 0;
-		for (i = 0; i<57; i++)
+		for (i = 0; i<59; i++)
 			f(i_tab_key[i], i_tab_value[i], i_result);
 	} while (i_result==0);
 	i_message = i_result;
@@ -757,12 +761,12 @@ void f_obsluga_zdarzen_vk(int& i_message) {
 }
 void f_obsluga_zdarzen_vk_search(int& i_message) {
 	unsigned int i_result = 0;
-	int i_tab_value[10] = { vkdown,vkup,vkreturn,vkescape, vkF,vklshift,vkrshift, vkcapslook, vkplus, vkminus};
-	int i_tab_key[10] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,0x46,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_ADD,VK_SUBTRACT};
+	int i_tab_value[12] = { vkdown,vkup,vkreturn,vkescape, vkF,vklshift,vkrshift, vkcapslook, vkplus, vkminus,vkleft, vkright };
+	int i_tab_key[12] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE,0x46,VK_LSHIFT,VK_RSHIFT,VK_CAPITAL,VK_ADD,VK_SUBTRACT, VK_LEFT, VK_RIGHT };
 	int i;
 	do {
 		i_result = 0;
-		for (i = 0; i < 10; i++)  //bylo do 26
+		for (i = 0; i < 12; i++)  //bylo do 26
 			f(i_tab_key[i], i_tab_value[i], i_result);
 
 	} while (i_result == 0);
@@ -1149,8 +1153,8 @@ void f_sterowanie_edit_tree(int& x, std::string& s_klucz, std::string& s_message
 	}
 }
 void C_menu_base::m_get_data(C_engine_software& e_soft) {
-/*	std::list<C_person_base*> L_PERSON;
-	e_soft.m_copy(L_PERSON);
-	E_soft.m_get_list_person_orginal(L_PERSON);*/
 	E_soft = e_soft;
 };
+void C_menu_base::m_elimination(std::vector<int>& V_position) {
+	this->E_soft.m_elimination_person(V_position);
+}

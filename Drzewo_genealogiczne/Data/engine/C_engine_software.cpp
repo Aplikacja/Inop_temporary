@@ -175,3 +175,6 @@ void C_engine_software::m_copy(std::list<C_person_base*>& L_Person) {
 void C_engine_software::m_clean() {
 	d_Database_.m_clear();
 }
+C_db& C_engine_software::m_db() {
+	return d_Database_;
+}
