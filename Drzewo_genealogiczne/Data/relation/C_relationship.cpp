@@ -55,3 +55,4 @@ void C_relationship::m_set_baby(C_relation& relation) {
 void C_relationship::m_get_baby(std::vector<C_relation>& relation) {
 	relation = V_;
 }
+int C_relationship::m_get_typ() { return i_typ_; }

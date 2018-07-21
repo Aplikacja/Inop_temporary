@@ -24,6 +24,7 @@ void C_relation::m_active() { b_value_ = true; }
 void C_relation::m_deactive() { b_value_ = false; }
 void C_relation::m_add_typ(int i_variable) { i_typ_ = i_variable; }
 void C_relation::m_get_typ(int& i_variable) { i_variable = i_typ_; }
+int C_relation::m_get_typ() {return i_typ_; }
 void C_relation::m_add_id(C_id& ID) { id_ = ID; }
 void C_relation::m_get_id(C_id& ID) { ID = id_; }
 

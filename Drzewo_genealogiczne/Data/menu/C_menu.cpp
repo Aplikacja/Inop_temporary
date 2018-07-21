@@ -58,37 +58,38 @@ bool C_menu::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_
 	}
 	return false;
 }
-void C_menu::m_set_content(int i_choice,std::list<C_person_base*>& Lista, std::vector<C_id>& V_id) {
-	std::list<C_person_base*> lista;
-	lista = Lista;
+void C_menu::m_set_content(int i_choice,std::vector<std::list<C_person_base*>>& Lista, std::vector<C_id>& V_id) {
 	std::string s_data;
 	C_id id;
 	std::vector<std::string> V_content;
 	int i_iter;
-	for (auto& X : lista) {
-		s_data.clear();
-		X->m_conwert(s_data);
-		X->m_get_id(id);
-		V_id.push_back(id);
-		V_content.push_back(s_data);
+	for (auto person : Lista) {
+		for (auto& X : person) {
+			s_data.clear();
+			X->m_conwert(s_data);
+			X->m_get_id(id);
+			V_id.push_back(id);
+			V_content.push_back(s_data);
+		}
 	}
 	for (i_iter = 0; i_iter < i_size; i_iter++) {
 		Tab_menu_[i_iter]->m_set_str(i_choice,V_content);
 	}
 	V_str_.clear();
+	m_set_content_person(i_choice, Lista);
 }
-void C_menu::m_set_content(int i_choice, std::vector<C_person_base*>& V_person, std::vector<C_id>& V_id) {
+void C_menu::m_set_content(int i_choice, std::list<C_person_base*>& Lista, std::vector<C_id>& V_id) {
 	std::string s_data;
 	C_id id;
 	std::vector<std::string> V_content;
 	int i_iter;
-	for (auto& X : V_person) {
-		s_data.clear();
-		X->m_conwert(s_data);
-		X->m_get_id(id);
-		V_id.push_back(id);
-		V_content.push_back(s_data);
-	}
+		for (auto& X : Lista) {
+			s_data.clear();
+			X->m_conwert(s_data);
+			X->m_get_id(id);
+			V_id.push_back(id);
+			V_content.push_back(s_data);
+		}
 	for (i_iter = 0; i_iter < i_size; i_iter++) {
 		Tab_menu_[i_iter]->m_set_str(i_choice, V_content);
 	}

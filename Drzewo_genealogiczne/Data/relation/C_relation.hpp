@@ -22,6 +22,7 @@ public:
 	void m_get_typ(int& i_variable); //metoda pozwalajaca wyciagac informacje o typie relacji z obiektu typu C_relation
 	void m_add_id(C_id& ID); //metoda pozwalajaca dodawac id od relacji
 	void m_get_id(C_id& ID); //metoda pozwalajaca do pozyskiwania id z relacji
+	int m_get_typ(); //metoda zwraca informacje o typie
 	~C_relation(); //destruktor
 };
 #endif // !C_RELATION_HPP

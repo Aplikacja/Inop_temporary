@@ -195,10 +195,14 @@ void C_aplication::m_view() {
 					int i_position_old = 0;
 					i_variable = 13;
 					i_choice = 1;
+					std::vector<C_relation> V_relation_temp;
 					std::list<C_person_base*> L_Person_orgin;
 					std::list<C_person_base*> L_Person_temp;
 					std::vector<C_person_base*> V_person_temp;
 					std::vector<C_person_base*>::iterator it;
+					std::vector<std::list<C_person_base*>> V_person_result;
+					V_person_result.resize(4);
+					std::vector<std::vector<C_person_base*>>::iterator IT_result;
 					std::vector<C_relation> V_relation;
 					std::vector<C_relationship> V_relationship;
 					std::vector<std::string> V_string;
@@ -215,21 +219,42 @@ void C_aplication::m_view() {
 					std::vector<C_relationship> V_relationship_copy;
 					std::vector<C_id> V_id;
 				//	C_person_base* person;
-					e_soft_.m_get_list_person_orginal(L_Person_orgin); //pobranie z silnika orginalnej listy osob
- 					e_soft_.m_view(view_search, sort_id, ID_person, L_Person_temp); //wyszukanie persona po id
-					(*L_Person_temp.begin())->m_get_V_relation(V_relation);
+					//e_soft_.m_get_list_person_orginal(L_Person_orgin); //pobranie z silnika orginalnej listy osob
+ 					e_soft_.m_view(view_search, sort_id, ID_person, L_Person_orgin); //wyszukanie persona po id
+					(*L_Person_orgin.begin())->m_get_V_relation(V_relation);
 					V_id.push_back(ID_person);
 					if (V_relation.size() != 0) {
 						for (auto& relation : V_relation) {
 							relation.m_get_id(id);
+							e_soft_.m_view(view_search, sort_id, id, L_Person_temp);
+							switch (relation.m_get_typ()) {
+							case r_parents:	V_person_result[r_parents - 1].push_back(*L_Person_temp.begin()); break;
+							case r_sibling: V_person_result[r_sibling - 1].push_back(*L_Person_temp.begin()); break;
+							default: break;
+							}
 							V_id.push_back(id);
 						}
 					}
-					(*L_Person_temp.begin())->m_get_V_relationship(V_relationship);
+					(*L_Person_orgin.begin())->m_get_V_relationship(V_relationship);
 					if (V_relationship.size() != 0) {
 						for (auto& relationship : V_relationship) {
 							relationship.m_get_id(id);
+							e_soft_.m_view(view_search, sort_id, id, L_Person_temp);
+							switch (relationship.m_get_typ()) {
+							case r_partner:	V_person_result[r_partner - 1].push_back(*L_Person_temp.begin()); break;
+							default: break;
+							}
 							V_id.push_back(id);
+							relationship.m_get_baby(V_relation_temp);
+								for (auto& relation : V_relation_temp) {
+									relation.m_get_id(id);
+									e_soft_.m_view(view_search, sort_id, id, L_Person_temp);
+									switch (relation.m_get_typ()) {
+									case r_chlidren:	V_person_result[r_chlidren - 1].push_back(*L_Person_temp.begin()); break;
+									default: break;
+									}
+									V_id.push_back(id);
+								}
 						}
 					}
 					e_soft_.m_copy(V_person_temp);
@@ -260,7 +285,7 @@ void C_aplication::m_view() {
 					C_engine_software E;
 					M_.m_set_str(i_variable, V_str_);
 					M_.m_set_replay(i_variable, id_menu_MenuChoicePerson, searchperson);
-					M_.m_set_content(id_menu_MenuChoicePerson, V_person_temp, V_id);
+					M_.m_set_content(id_menu_MenuChoicePerson, V_person_result, V_id);
 					M_.m_set_data_base(id_menu_MenuChoicePerson, e_soft_);
 					M_.m_elimination(id_menu_MenuChoicePerson, V_position);
 					i_choice = 3;

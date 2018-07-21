@@ -28,6 +28,7 @@ public:
 	C_relation m_return(int i_value); //metoda zwaracajaca relacje "dziecko"
 	void m_set_baby(C_relation& relation); //metoda do dodawanaia relacji typu "dziecko"
 	void m_get_baby(std::vector<C_relation>& V_baby);
+	int m_get_typ(); //metoda pozwalajaca wyciagac informacje o typie relacji z obiektu typu C_relationship
 	~C_relationship(); //destruktor
 };
 #endif // !C_RELATIONSHIP_HPP
