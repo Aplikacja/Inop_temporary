@@ -301,7 +301,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 					if (i_sta <= 0) {
 						switch (i_sta) {
 						case 0: {
-							--i_x; //korekta!
+							i_x-=2; //korekta!
 							std::ostringstream ss;
 							ss << i_x;
 							s_result = ss.str();
@@ -356,7 +356,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 					if (i_sta <= 0) {
 						switch (i_sta) {
 						case 0: {
-							--i_x; //korekta!
+							i_x-=2; //korekta!
 							std::ostringstream ss;
 							ss << i_x;
 							s_result = ss.str();
