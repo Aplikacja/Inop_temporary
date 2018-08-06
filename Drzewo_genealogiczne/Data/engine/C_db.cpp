@@ -486,7 +486,7 @@ bool f_comparison(std::string& s_L, std::string& s_R) {
 	do {
 		if(b_value) {
 			i_inter_max++;
-			for (i_iter_r = i_inter_max; i_iter_r < s_r.size(); i_iter_r++) {
+			for (i_iter_r = i_inter_max; i_iter_r < (int)s_r.size(); i_iter_r++) {
 				if (s_r[i_iter_r] == ' ' || s_r[i_iter_r] == '-') {
 					i_inter_max = i_iter_r;
 					break;
@@ -494,8 +494,8 @@ bool f_comparison(std::string& s_L, std::string& s_R) {
 			}
 			i_iter_r = i_inter_max + 1;
 		}
-		if (i_iter_r > s_r.size() - s_l.size()) return false; //nic nie znalazl
-		for (i_iter_l = 0; i_iter_l < s_l.size(); i_iter_l++) {
+		if (i_iter_r > (int)s_r.size() - (int)s_l.size()) return false; //nic nie znalazl
+		for (i_iter_l = 0; i_iter_l < (int)s_l.size(); i_iter_l++) {
 			if (s_l[i_iter_l] == s_r[i_iter_r]) b_var = true;
 			else {
 				b_var = false;

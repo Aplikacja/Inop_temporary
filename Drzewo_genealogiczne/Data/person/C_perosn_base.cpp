@@ -232,7 +232,7 @@ void C_person_base::m_add_V_last_name(std::vector<std::string>& last) {
 }
 void C_person_base::m_get_V_last_name(std::string& last, int i_position) {
 	if (b_sex_ == woman) {
-		if (i_position >= 0 && i_position < V_last_name_.size()) {
+		if (i_position >= 0 && i_position < (int)V_last_name_.size()) {
 			V_last_name_[i_position] = last;
 		}
 	}
@@ -265,7 +265,7 @@ void C_person_base::m_delete_V_last_name() {
 }
 void C_person_base::m_delete_V_last_name(int i_position) {
 	if (b_sex_ == woman) {
-		if (i_position >= 0 && i_position < V_last_name_.size()) {
+		if (i_position >= 0 && i_position < (int)V_last_name_.size()) {
 			V_last_name_.erase(V_last_name_.begin() + i_position);
 		}
 	}

@@ -326,7 +326,7 @@ void C_aplication::m_view() {
 						//zastapic bool-e i int-y na tablice
 						bool b_fisrt_parents = false;
 						bool b_secend_parents = false;
-						bool b_temp;
+						//bool b_temp;
 						bool b_mather=false;
 						bool b_father=false;
 						bool b_gender;
@@ -402,7 +402,6 @@ void C_aplication::m_view() {
 						}
 						if (b_gender) f_delete_krotka(V_string, "Zona");//odrzucenie zony
 						else f_delete_krotka(V_string, "Maz");//odrzucenie meza
-//-------------------------
 						L_person.clear();
 						e_soft_.m_view(view_search, sort_id, id, L_person);
 						secend_brith = (*L_person.begin())->m_content_date(p_data_brith);
@@ -420,7 +419,32 @@ void C_aplication::m_view() {
 							f_delete_krotka(V_string, "Syn");
 							f_delete_krotka(V_string, "Brat");
 						}
-						//analiza wieku i emilinacja w razie czego
+						//analiza wieku i emilinacja relacji do przemyslenia
+						if (first_brith - first_death > Min_old) {
+							if (secend_brith < first_brith + Min_old) { //powinno byc prawidlowo
+								f_delete_krotka(V_string, "Syn");
+								f_delete_krotka(V_string, "Corka");
+							}
+						}
+						else {
+							f_delete_krotka(V_string, "Syn");
+							f_delete_krotka(V_string, "Corka");
+						}
+						if (secend_brith - secend_death > Min_old) {
+							if (secend_death < first_brith-1) { //powinno byc prawidlowo - zalorzenie to mowi ze osoba dodawana wczesniej umarla niz sie pierwsza osoba urodzila
+								f_delete_krotka(V_string, "Mama");
+								f_delete_krotka(V_string, "Tata");
+								f_delete_krotka(V_string, "Maz");
+								f_delete_krotka(V_string, "Zona");
+							}
+						}
+						else
+						{
+							f_delete_krotka(V_string, "Mama");
+							f_delete_krotka(V_string, "Tata");
+						}
+
+//-------------------------
 						V_str_[1][id_menu_MenuAddRelation] = V_string;
 						M_.m_set_str(i_variable, V_str_);
 						M_.m_set_replay(i_variable, id_menu_MenuAddRelation, searchperson);//tu ubdate					

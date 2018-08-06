@@ -19,7 +19,7 @@ void C_menu::m_loader(std::vector<std::vector<std::string>>& v_s, std::vector<bo
 	std::vector<std::vector<std::string>> V_temp;
 	std::vector<std::vector<int>> V_temp_i;
 	int i; //int iterator fora
-	for (i = 0; i < v_s.size(); i++) {
+	for (i = 0; i < (int)v_s.size(); i++) {
 		V_temp.push_back(v_s[i]);
 		V_temp_i.push_back(*it_i);
 		//V_L_person.push_back(L_peron);

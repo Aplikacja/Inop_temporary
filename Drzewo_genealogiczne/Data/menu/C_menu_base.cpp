@@ -104,7 +104,7 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 			return;
 		case vkdown:
 			x++;
-			if (x >= v_k.size())       // gdy wykracza poza menu, znow wraca na poczatek
+			if (x >= (int)v_k.size())       // gdy wykracza poza menu, znow wraca na poczatek
 				x = i_position+1;
 			i_start = 10;
 			return;
@@ -256,7 +256,7 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 				return;
 			case vkdown:
 				x++;
-				if (x >= v_k.size())       // gdy wykracza poza menu, znow wraca na poczatek
+				if (x >= (int)v_k.size())       // gdy wykracza poza menu, znow wraca na poczatek
 					x = i_position+1;
 				i_start = 10;
 				return;
@@ -723,7 +723,7 @@ void C_menu_base::m_set_str(int i_choice,std::vector<std::string>& v_str) {
 	V_str_[1][i_choice] = v_str;
 }
 void C_menu_base::m_get_str(int i_choice, std::vector<std::string>& v_str) {
-	if(i_choice >0&&i_choice < V_str_.size())
+	if(i_choice >0&&i_choice < (int)V_str_.size())
 	v_str = V_str_[1][i_choice];
 }
 void f_obsluga_zadrzen_alfabetycznych(int& i_message) {

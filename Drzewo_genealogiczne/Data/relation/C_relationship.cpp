@@ -42,7 +42,7 @@ void C_relationship::m_get_typ(int i_variable) { i_variable = i_typ_; }
 void C_relationship::m_add_id(C_id& ID) { id_ = ID; }
 void C_relationship::m_get_id(C_id& ID) { ID = id_; }
 C_relation C_relationship::m_return(int i_value) {
-	if(i_value<V_.size())
+	if(i_value<(int)V_.size())
 	return V_[i_value];
 	else {
 		C_relation relation;

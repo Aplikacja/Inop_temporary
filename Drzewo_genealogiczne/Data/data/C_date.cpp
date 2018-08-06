@@ -53,4 +53,38 @@ void C_date::m_sidle(std::string& s_date) {
 			i_cykl_1--;
 	}
 }
+int C_date::m_old() {
+	int data = (ll_value_ % 100000000) / 10000; return data;
+}
+C_date::C_date(long long data) {
+	ll_value_ = data;
+}
+C_date C_date::operator+(const int& i) {
+	return C_date (this->ll_value_ + i); //return data;
+}
+C_date C_date::operator+(C_date& i)  {
+	return C_date (this->ll_value_ + i.m_old());
+}
+C_date C_date::operator-(const int& i) {
+	return C_date (this->ll_value_ - i);
+}
+C_date C_date::operator-(C_date& i) {
+	return C_date (this->ll_value_ - i.m_old());
+}
+bool C_date::operator<(const int& i) {
+	return m_old() < i;
+}
+bool C_date::operator>(const int& i) {
+	return m_old() > i;
+}
+bool C_date::operator<(const C_date& D) {
+	if (b_pointer_ && D.b_pointer_)
+		return ll_value_ < D.ll_value_;
+		return false;
+}
+bool C_date::operator>(const C_date& D) {
+	if (b_pointer_ && D.b_pointer_)
+		return ll_value_ > D.ll_value_;
+	return false;
+}
 C_date::~C_date() {}
