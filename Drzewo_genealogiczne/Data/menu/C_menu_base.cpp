@@ -88,7 +88,7 @@ void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k, bool
 			}
 		}
 }
-void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::string>& v_k, bool& b_search, int i_position) {
+void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::string>& v_k, bool& b_search, int i_position) { //rozszerzyc o jeszcze jden bool
 	int i_size = (int)v_k.size();
 	int i_message;
 	i_start = 1;
@@ -250,14 +250,14 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 			switch (i_message) {
 			case vkup:
 				x--;
-				if (x <= i_position)      // gdy wykracza wraca na koniec
-					x = v_k.size() - 1;
+				if (x <= i_position-1)      // gdy wykracza wraca na koniec
+					x = v_k.size()-1;
 				i_start = 10;
 				return;
 			case vkdown:
 				x++;
 				if (x >= (int)v_k.size())       // gdy wykracza poza menu, znow wraca na poczatek
-					x = i_position+1;
+					x = i_position;
 				i_start = 10;
 				return;
 			/*case vkup:

@@ -60,16 +60,16 @@ C_date::C_date(long long data) {
 	ll_value_ = data;
 }
 C_date C_date::operator+(const int& i) {
-	return C_date (this->ll_value_ + i); //return data;
+	return C_date (this->ll_value_ + i* 10000); //return data;
 }
 C_date C_date::operator+(C_date& i)  {
-	return C_date (this->ll_value_ + i.m_old());
+	return C_date (this->ll_value_ + i.m_old()* 10000);
 }
 C_date C_date::operator-(const int& i) {
-	return C_date (this->ll_value_ - i);
+	return C_date (this->ll_value_ - i*10000);
 }
 C_date C_date::operator-(C_date& i) {
-	return C_date (this->ll_value_ - i.m_old());
+	return C_date (this->ll_value_ - i.m_old()* 10000);
 }
 bool C_date::operator<(const int& i) {
 	return m_old() < i;

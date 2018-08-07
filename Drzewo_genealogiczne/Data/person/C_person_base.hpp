@@ -54,7 +54,7 @@ public:
 	C_date& m_content_date(int i_choice);
 	C_id& m_content_id(int i_choice);
 	std::string& m_content_name(int i_choice);
-	bool& m_content_gender(int i_choice);
+	bool m_content_gender(int i_choice);
 	std::vector<C_relationship>& m_content_V_relationship(int i_choice);
 	std::vector<C_relation>& m_content_V_relation(int i_choice);
 	void m_down_id();

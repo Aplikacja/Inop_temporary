@@ -59,7 +59,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 				V_string_final = V_string_head;
 				V_string_final.push_back("");
 				if (i_sta == -20) {
-					V_string_final[V_string_final.size()-1]=s_message + " ";
+					V_string_final[V_string_final.size() - 1] = s_message + " ";
 				}
 				V_string_final[V_string_final.size() - 1] = s_message;
 				for (auto Y : L_string) {
@@ -70,10 +70,10 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 			while (b_choice) {
 				f_option_clear(h, pos, Written);
 				ptr = 0;
-				f_edge(i_iter_down, i_iter_up, i_x, (int)V_string_final.size(), (int)(i_start_+b_search));
+				f_edge(i_iter_down, i_iter_up, i_x, (int)V_string_final.size(), (int)(i_start_ + b_search));
 				for (auto& x : V_string_final) {
 					{
-						if (ptr < (int)(i_start_+b_search)) {
+						if (ptr < (int)(i_start_ + b_search)) {
 							printf(x.c_str()); printf("\n");
 							ptr++; continue;
 						}
@@ -170,16 +170,16 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 				}
 			};
 		};
-		}break;
+	}break;
 	case 3: { //WYSZUKIWANIE OSOB I DODAWANIE RELACJI
 		i_x++;
-//		char * c_temp;
-		//f_option_clear(h, pos, Written);
+		//		char * c_temp;
+				//f_option_clear(h, pos, Written);
 		while (true) {
 			f_type_search(i_typ_soft, i_typ_sort);
 			L_PERSON.clear();
-		//	if (!b_search&&V_string_final.size() != V_string.size()) { //gdy == false;
-			if (!b_search){
+			//	if (!b_search&&V_string_final.size() != V_string.size()) { //gdy == false;
+			if (!b_search) {
 				V_string_final.clear();
 				V_string_final = V_string_head;
 				V_string_final.push_back(V_string_data[1][i_typ_sort]);
@@ -218,7 +218,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 				switch (i_typ_soft) {
 				case 1: {
 					L_string.clear();
-					E_soft.m_view(view_search, sort_first_name,s_message,L_PERSON);	break;}
+					E_soft.m_view(view_search, sort_first_name, s_message, L_PERSON);	break; }
 				case 2: {
 					L_string.clear();
 					E_soft.m_view(view_search, sort_last_name, s_message, L_PERSON);	break; }
@@ -258,7 +258,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 						L_string.push_back(s_temp_);
 					}
 				}
-					
+
 				//----
 				V_string_final.clear();
 				V_string_final = V_string_head;
@@ -276,9 +276,9 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 			while (b_choice) {
 				f_option_clear(h, pos, Written);
 				ptr = 0;
-				f_edge(i_iter_down, i_iter_up, i_x, (int)V_string_final.size(), (int)i_start_+1 + b_search);
+				f_edge(i_iter_down, i_iter_up, i_x, (int)V_string_final.size(), (int)i_start_ + 1 + b_search);
 				for (auto& x : V_string_final) {
-					if (ptr < i_start_+1+b_search) {
+					if (ptr < i_start_ + 1 + b_search) {
 						printf(x.c_str()); printf("\n");
 						ptr++; continue;
 					}
@@ -296,12 +296,12 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 
 				}
 				f_clear(h, pos, Written);
-				m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string_final, b_search, V_string_head.size()+b_search);
+				m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string_final, b_search, V_string_head.size() + b_search);
 				if (b_search) { // gdy == true
 					if (i_sta <= 0) {
 						switch (i_sta) {
 						case 0: {
-							i_x-=2; //korekta!
+							i_x -= 2; //korekta!
 							std::ostringstream ss;
 							ss << i_x;
 							s_result = ss.str();
@@ -343,7 +343,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 						case -40:
 						case -45: 	b_begin = !b_begin;	b_choice = false;	break;
 						case -100: {
-							s_message = V_string_final[V_string_head.size()+1];
+							s_message = V_string_final[V_string_head.size() + 1];
 							b_choice = false;
 							break;
 						}
@@ -356,7 +356,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 					if (i_sta <= 0) {
 						switch (i_sta) {
 						case 0: {
-							i_x-=2; //korekta!
+							i_x -= 2; //korekta!
 							std::ostringstream ss;
 							ss << i_x;
 							s_result = ss.str();
@@ -423,38 +423,38 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 			f_clear(h, pos, Written);
 			m_ruch(f_sterowanie, i_x, s_temp, i_sta, V_string, b_search, V_string_head.size());
 			//if (!b_search) { // gdy == false
-				if (i_sta <= 0) {
-					switch (i_sta) {
-					case 0: {
-						s_result = s_temp;
-						V_proces = V_procedur_[0];
-						return true; }
-					case -2: {
-						//zaimplementowane do cofania sie do poprzedniego menu
-						V_proces.clear();
-						this->m_get_replay(i_id_menu, i_replay);
-						V_proces.push_back(i_replay);
-						return false; }
-					case -10: { //zaimplementowane do wlaczenia wyszukiwania z listy
-						if (b_search) {
-							i_x--;
-							b_search = false;
-						}
-						else {
-							i_x++;
-							b_search = true;
-						}
-						b_choice = false;
-						break;
+			if (i_sta <= 0) {
+				switch (i_sta) {
+				case 0: {
+					s_result = s_temp;
+					V_proces = V_procedur_[0];
+					return true; }
+				case -2: {
+					//zaimplementowane do cofania sie do poprzedniego menu
+					V_proces.clear();
+					this->m_get_replay(i_id_menu, i_replay);
+					V_proces.push_back(i_replay);
+					return false; }
+				case -10: { //zaimplementowane do wlaczenia wyszukiwania z listy
+					if (b_search) {
+						i_x--;
+						b_search = false;
 					}
-					default:
-						break;
+					else {
+						i_x++;
+						b_search = true;
 					}
+					b_choice = false;
+					break;
 				}
-		//	}
-		//	else {
+				default:
+					break;
+				}
+			}
+			//	}
+			//	else {
 
-		//	}
+			//	}
 		};
 	}break;
 	case 4: { //nazwy typow do wyboru w relacjach
@@ -506,9 +506,23 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 					if (i_sta <= 0) {
 						switch (i_sta) {
 						case 0: {
-							i_klucz = i_x - i_start_;
-							V_proces = V_procedur_[0];
-							return true; }
+							for (auto X : L_string_orgin) {
+									switch (X[0]) {
+										case 'M':
+											if (X.size() > 3)	i_klucz = r_parents;			//jak mama
+											else				i_klucz = r_partner; 	break;	//jak maz
+										case 'T': 				i_klucz = r_parents;	break;	//jak tata
+										case 'B':				i_klucz = r_sibling;	break;	//jak brat
+										case 'S':
+											if (X.size() > 3)	i_klucz = r_chlidren;			//jak syn
+											else				i_klucz = r_sibling;	break;	//jak siostra
+										case 'Z': 				i_klucz = r_partner;	break;	//jak zona
+										case 'C':				i_klucz = r_chlidren;	break;	//jak corka
+									}
+								}
+								V_proces = V_procedur_[0];
+								return true;
+							}
 						case -2: {
 							//zaimplementowane do cofania sie do poprzedniego menu
 							V_proces.clear();
@@ -546,44 +560,58 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 						default:
 							break;
 						}
-					}
-				}
-				else {
-					if (i_sta <= 0) {
-						switch (i_sta) {
-						case 0: {
-							i_klucz = i_x - i_start_;
-							V_proces = V_procedur_[0];
-							return true; }
-						case -2: {
-							//zaimplementowane do cofania sie do poprzedniego menu
-							V_proces.clear();
-							this->m_get_replay(i_id_menu, i_replay);
-							V_proces.push_back(i_replay);
-							return false; }
-						case -10: { //zaimplementowane do wlaczenia wyszukiwania z listy
-							if (b_search) {
-								i_x--;
-								b_search = false;
-							}
-							else {
-								i_x++;
-								b_search = true;
-							}
-							b_choice = false;
-							break;
-						}
-						default:
-							break;
 						}
 					}
-				}
-			};
-		};
-	}break;
+					else {
+						if (i_sta <= 0) {
+							switch (i_sta) {
+							case 0: {
+								for (auto X : L_string_orgin) {
+										switch (X[0]) {
+											case 'M':
+												if (X.size() > 3)	i_klucz = r_parents;			//jak mama
+												else				i_klucz = r_partner; 	break;	//jak maz
+											case 'T': 				i_klucz = r_parents;	break;	//jak tata
+											case 'B':				i_klucz = r_sibling;	break;	//jak brat
+											case 'S': 
+												if (X.size() > 3)	i_klucz = r_chlidren;			//jak syn
+												else				i_klucz = r_sibling;	break;	//jak siostra
+											case 'Z': 				i_klucz = r_partner;	break;	//jak zona
+											case 'C':				i_klucz = r_chlidren;	break;	//jak corka
+										}
+									}
+									V_proces = V_procedur_[0];
+									return true;
+								}
+							case -2: {
+								//zaimplementowane do cofania sie do poprzedniego menu
+								V_proces.clear();
+								this->m_get_replay(i_id_menu, i_replay);
+								V_proces.push_back(i_replay);
+								return false; }
+							case -10: { //zaimplementowane do wlaczenia wyszukiwania z listy
+								if (b_search) {
+									i_x--;
+									b_search = false;
+								}
+								else {
+									i_x++;
+									b_search = true;
+								}
+								b_choice = false;
+								break;
+							}
+							default:
+								break;
+							}
+							}
+						}
+					};
+				};
+			}break;
 	default: break;
-	}
-	return false;
+		}
+		return false;
 } //metoda wysiwetlajaca
 bool C_menu_search::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<int>& V_procedur, int& i_choice) { return false; }
 bool C_menu_search::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { return false; }

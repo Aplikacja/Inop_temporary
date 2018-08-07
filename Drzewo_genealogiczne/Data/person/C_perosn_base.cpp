@@ -193,9 +193,9 @@ std::string& C_person_base::m_content_name(int i_choice) {
 		return str;
 	}
 }
-bool& C_person_base::m_content_gender(int i_choice) {
+bool C_person_base::m_content_gender(int i_choice) {
 	switch (i_choice) {
-	case p_first_name:
+	case p_gender:
 		return b_sex_;
 	default:
 		bool b=NULL;
