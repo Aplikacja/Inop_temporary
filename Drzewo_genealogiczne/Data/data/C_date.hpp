@@ -24,6 +24,7 @@ public:
 	bool operator>(const int& i);
 	bool operator<(const C_date& D);
 	bool operator>(const C_date& D);
+	bool operator==(const C_date& D);
 	C_date operator-(const int& i);
 	C_date operator-(C_date& i);
 	~C_date(); //destruktor

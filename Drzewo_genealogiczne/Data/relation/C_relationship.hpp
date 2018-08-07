@@ -18,6 +18,7 @@ public:
 	C_relationship(C_id& id, C_date& Date); //konstruktor paramerowy
 	friend void operator<<(std::ofstream &is, C_relationship &C); //operator do zapisywaia danych
 	friend void operator>>(std::ifstream& is, C_relationship &C); //operator do wczytywania danych
+	bool operator==(const C_relationship& re);
 	void m_wiew(); // mozna pomicac
 	void m_active(); //metoda aktywujaca relacje
 	void m_deactive(); //metoda powodujaca ze dana relacja jest niekatywna

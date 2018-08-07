@@ -87,4 +87,5 @@ bool C_date::operator>(const C_date& D) {
 		return ll_value_ > D.ll_value_;
 	return false;
 }
+bool C_date::operator==(const C_date& D){ return (ll_value_ == D.ll_value_&&b_pointer_ == D.b_pointer_); }
 C_date::~C_date() {}

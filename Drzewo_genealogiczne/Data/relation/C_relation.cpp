@@ -27,4 +27,5 @@ void C_relation::m_get_typ(int& i_variable) { i_variable = i_typ_; }
 int C_relation::m_get_typ() {return i_typ_; }
 void C_relation::m_add_id(C_id& ID) { id_ = ID; }
 void C_relation::m_get_id(C_id& ID) { ID = id_; }
+bool C_relation::operator==(const C_relation& re) {	return (id_ == re.id_&&i_typ_ == re.i_typ_&&b_value_ == re.b_value_);}
 

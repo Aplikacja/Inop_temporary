@@ -56,3 +56,18 @@ void C_relationship::m_get_baby(std::vector<C_relation>& relation) {
 	relation = V_;
 }
 int C_relationship::m_get_typ() { return i_typ_; }
+bool C_relationship::operator==(const C_relationship& re) {
+	if (id_ == re.id_&&date_ == re.date_&&b_value_ == re.b_value_&&i_typ_ == re.i_typ_) {
+		std::vector<C_relation> V_relation = re.V_;
+		if (V_relation.size() == V_.size()) {
+			for (auto X : V_relation) {
+				for (auto Y : V_) {
+					if (X == Y)  return false;
+				}
+			}
+			return true;
+		}
+		
+	}
+	return false;
+}

@@ -13,6 +13,7 @@ public:
 	void m_giving(long long& ll_iterator); //metoda przepisujaca wartosc z long long ll_iterator do long long ll_value
 	void m_virtual(); //klasa do rozbudowy
 	void m_down();
+	bool operator==(const C_id& id);
 	~C_id(); //destruktor
 };
 #endif // !C_ID_HPP
