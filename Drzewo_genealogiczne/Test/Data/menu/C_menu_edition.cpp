@@ -660,7 +660,7 @@ void f_protected_data(int i_choice, std::string& s_data, std::string& s_message)
 	switch (i_choice) {
 		case 0:	//analiza imienia i nazwiska
 		case 1: {
-			if (s_message.size() > 0 && s_message.size() <= Max_size_names) {
+			if (s_message.size() > 0) {
 				if (s_message[s_message.size() - 1] == 32) {
 					s_data = s_message; break;
 			}
@@ -672,9 +672,6 @@ void f_protected_data(int i_choice, std::string& s_data, std::string& s_message)
 					s_data = s_message;
 				break;
 			}
-			else
-				if(s_message.size()>0)
-				s_message.pop_back();
 			break; }
 		case 2:
 		case 3: { //przydal by sie algorytm do weryfikacji daty!!
@@ -693,19 +690,16 @@ void f_protected_data(int i_choice, std::string& s_data, std::string& s_message)
 					break;
 				}
 			}
-			else
-				if (s_message.size()>0)
-					s_message.pop_back();
 			break; }
 		case 4: {
-			if (s_message.size() > 0 && s_message.size() < 2) {
-				switch (s_message[0]) {
+			if(s_message.size() > 0 && s_message.size()<2)
+				switch (s_message[0]){
 				case '1':
 				case 't':
 				case 'T':
 				case 'w':
 				case 'W':
-					s_data = "Woman";
+					s_data ="Woman";
 					break;
 				case '0':
 				case 'n':
@@ -714,10 +708,6 @@ void f_protected_data(int i_choice, std::string& s_data, std::string& s_message)
 				case 'M':
 					s_data = "Man";
 				}
-			}
-			else
-				if (s_message.size()>0)
-					s_message.pop_back();
 		 break;
 		}
 		case 5:

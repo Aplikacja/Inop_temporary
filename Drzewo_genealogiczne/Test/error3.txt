@@ -1,0 +1,78 @@
+Main.cpp
+C_data_base.cpp
+C_date.cpp
+C_id.cpp
+C_aplication.cpp
+C_db.cpp
+C_engine_hardware.cpp
+C_engine_software.cpp
+C_engine_tree.cpp
+C_tree.cpp
+C_fabric_menu.cpp
+C_menu.cpp
+C_menu_base.cpp
+C_menu_edition.cpp
+C_menu_glowne.cpp
+C_menu_search.cpp
+C_menu_tree.cpp
+C_children.cpp
+C_fabric_person.cpp
+C_parent.cpp
+Generating Code...
+Compiling...
+C_partner.cpp
+C_perosn_base.cpp
+C_perosn_null.cpp
+C_sibling.cpp
+C_relation.cpp
+C_relationship.cpp
+Generating Code...
+d:\project\studia\semestr_iv\inop\zadanie 2\starz projekt\drzewo\drzewo_genealogiczne\test\data\person\c_perosn_base.cpp(183) : warning C4172: returning address of local variable or temporary: date
+d:\project\studia\semestr_iv\inop\zadanie 2\starz projekt\drzewo\drzewo_genealogiczne\test\data\person\c_perosn_base.cpp(192) : warning C4172: returning address of local variable or temporary: id
+d:\project\studia\semestr_iv\inop\zadanie 2\starz projekt\drzewo\drzewo_genealogiczne\test\data\person\c_perosn_base.cpp(221) : warning C4172: returning address of local variable or temporary: V_relationship
+d:\project\studia\semestr_iv\inop\zadanie 2\starz projekt\drzewo\drzewo_genealogiczne\test\data\person\c_perosn_base.cpp(230) : warning C4172: returning address of local variable or temporary: V_relation
+d:\project\studia\semestr_iv\inop\zadanie 2\starz projekt\drzewo\drzewo_genealogiczne\test\data\person\c_perosn_base.cpp(203) : warning C4172: returning address of local variable or temporary: str
+Microsoft (R) Incremental Linker Version 14.14.26433.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:Main.exe 
+Main.obj 
+C_data_base.obj 
+C_date.obj 
+C_id.obj 
+C_aplication.obj 
+C_db.obj 
+C_engine_hardware.obj 
+C_engine_software.obj 
+C_engine_tree.obj 
+C_tree.obj 
+C_fabric_menu.obj 
+C_menu.obj 
+C_menu_base.obj 
+C_menu_edition.obj 
+C_menu_glowne.obj 
+C_menu_search.obj 
+C_menu_tree.obj 
+C_children.obj 
+C_fabric_person.obj 
+C_parent.obj 
+C_partner.obj 
+C_perosn_base.obj 
+C_perosn_null.obj 
+C_sibling.obj 
+C_relation.obj 
+C_relationship.obj 
+C_menu_tree.obj : error LNK2019: unresolved external symbol __imp__GetForegroundWindow@0 referenced in function "public: class std::vector<int,class std::allocator<int> > & __thiscall std::vector<int,class std::allocator<int> >::operator=(class std::vector<int,class std::allocator<int> > const &)" (??4?$vector@HV?$allocator@H@std@@@std@@QAEAAV01@ABV01@@Z)
+C_menu_base.obj : error LNK2001: unresolved external symbol __imp__GetForegroundWindow@0
+C_menu_edition.obj : error LNK2001: unresolved external symbol __imp__GetForegroundWindow@0
+C_menu_glowne.obj : error LNK2001: unresolved external symbol __imp__GetForegroundWindow@0
+C_menu_search.obj : error LNK2001: unresolved external symbol __imp__GetForegroundWindow@0
+Main.obj : error LNK2001: unresolved external symbol __imp__GetForegroundWindow@0
+C_aplication.obj : error LNK2001: unresolved external symbol __imp__GetForegroundWindow@0
+C_fabric_menu.obj : error LNK2001: unresolved external symbol __imp__GetForegroundWindow@0
+C_menu.obj : error LNK2001: unresolved external symbol __imp__GetForegroundWindow@0
+C_aplication.obj : error LNK2019: unresolved external symbol __imp__MessageBoxA@16 referenced in function __catch$?m_load_file@C_aplication@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AA_N@Z$0
+C_engine_hardware.obj : error LNK2001: unresolved external symbol __imp__MessageBoxA@16
+C_engine_software.obj : error LNK2001: unresolved external symbol __imp__MessageBoxA@16
+C_menu_base.obj : error LNK2019: unresolved external symbol __imp__GetAsyncKeyState@4 referenced in function "void __cdecl f(int,int,unsigned int &)" (?f@@YAXHHAAI@Z)
+Main.exe : fatal error LNK1120: 3 unresolved externals

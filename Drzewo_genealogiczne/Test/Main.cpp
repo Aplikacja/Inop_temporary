@@ -6,6 +6,7 @@ int main() {
 	std::string File;
 	f_read_file_inicjalizer("plik_inicjalizacyjny.txt",File);
 	bool b_what;
+	static HANDLE HandleConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 	C_aplication A(File, b_what);
 	if (b_what) {
 		return 0;

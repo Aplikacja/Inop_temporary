@@ -783,7 +783,7 @@ void f_obsluga_zadrzen_alfabetycznych(int& i_message) {
 		i_message = i_result;
 }
 void f_obsluga_zdarzen_vk(int& i_message) {
-	unsigned int i_result = 0;
+	unsigned int i_result=0;
 	int i_tab_value[4] = { vkdown,vkup,vkreturn,vkescape, };
 	int i_tab_key[4] = { VK_DOWN,VK_UP,VK_RETURN,VK_ESCAPE };
 	int i;

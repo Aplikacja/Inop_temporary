@@ -118,6 +118,7 @@ void C_aplication::m_view() {
 			switch (X)
 			{
 			case Menu_glowne: {
+				
 				i_variable = 0;
 				i_choice = 1;
 				M_.m_view(id_menu_MenuGlowne, i_variable, i_klucz, V_proces, i_choice);
@@ -526,7 +527,7 @@ void C_aplication::m_view() {
 										M_.m_set_str(i_variable, V_str_);
 										M_.m_set_replay(i_variable, id_menu_MenuChoicePartner, searchperson);
 										if (M_.m_view(id_menu_MenuChoicePartner, i_variable, s_str, i_klucz, V_proces, i_choice)) { //potencjalne wybranie z partnerow rodzica 
-											if (i_klucz < (int)V_relationship.size()) {
+											if (i_klucz < V_relationship.size()) {
 												for (it_relation = V_relation_temp.begin(); it_relation != V_relation_temp.end(); it_relation++)
 												V_relationship[i_klucz].m_set_baby(*it_relation);
 												V_relationship[i_klucz].m_get_id(id_temp);
@@ -675,7 +676,7 @@ void C_aplication::m_view() {
 									M_.m_set_str(i_variable, V_str_);
 									M_.m_set_replay(i_variable, id_menu_MenuChoicePartner, searchperson);
 									if (M_.m_view(id_menu_MenuChoicePartner, i_variable, s_str, i_klucz, V_proces, i_choice)) { //potencjalne wybranie z partnerow rodzica 
-										if (i_klucz < (int)V_relationship.size()) {
+										if (i_klucz < V_relationship.size()) {
 											V_relation=(*L_person.begin())->m_content_V_relation(p_relation);
 											for (auto R : V_relation) {
 												switch (R.m_get_typ()) {
@@ -739,9 +740,7 @@ void C_aplication::m_view() {
 							f_werification_date(V_dane[2], i_what_1);
 							f_werification_date(V_dane[3], i_what_2);
 							C_date date_brith, date_death;
-							if (V_dane[2].size()>0)
 							date_brith.m_active();
-							if (V_dane[3].size()>0)
 							date_death.m_active();
 							date_brith.m_apped(V_dane[2]);
 							date_death.m_apped(V_dane[3]);
@@ -804,9 +803,7 @@ void C_aplication::m_view() {
 							i_what_2 = 0;
 							f_werification_date(V_dane[2], i_what_1);
 							f_werification_date(V_dane[3], i_what_2);
-							if (V_dane[2].size()>0)
 							date_brith.m_active();
-							if (V_dane[3].size()>0)
 							date_death.m_active();
 							date_brith.m_apped(V_dane[2]);
 							date_death.m_apped(V_dane[3]);
@@ -1063,10 +1060,6 @@ void f_werification_date(std::string& s_data, int& b_what) {
 }
 void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny) {
 	switch (i_month) {
-	case 0:
-		if(i_day ==0)
-		b_what = true;
-		break;
 	case 1: //miesiace o dlugosci 31 dni
 	case 3:
 	case 5:
@@ -1077,7 +1070,7 @@ void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny) {
 		if (i_day > 0 && i_day <= 31) {
 			b_what = true;
 		}
-		else 
+		else
 			b_what = false;
 		break;
 	case 2: //luty 
@@ -1085,13 +1078,13 @@ void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny) {
 			if (i_day > 0 && i_day <= 29) {
 				b_what = true;
 			}
-			else 
+			else
 				b_what = false;
 		}
 		if (i_day > 0 && i_day <= 28) {
 			b_what = true;
 		}
-		else 
+		else
 			b_what = false;
 		break;
 	case 4: //miesiac o dlugosci 30 dni
@@ -1101,7 +1094,7 @@ void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny) {
 		if (i_day > 0 && i_day <= 30) {
 			b_what = true;
 		}
-		else 
+		else
 			b_what = false;
 		break;
 	default:
@@ -1109,10 +1102,8 @@ void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny) {
 	}
 }
 void f_good_day(C_date& data_first, C_date& data_sacend, int& i_what) {
-	if (data_first.m_what() && data_sacend.m_what()) {
-		if (data_sacend < data_first) {
-			i_what = 2;
-		}
+	if (data_sacend < data_first) {
+		i_what = 2;
 	}
 }
 void f_analicaly_parents(std::list<C_person_base*>& X, bool& b_father, bool& b_mather, bool& b_parents, int& i_number) {

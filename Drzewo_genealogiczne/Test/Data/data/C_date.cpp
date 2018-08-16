@@ -39,20 +39,18 @@ void C_date::m_apped(std::string& s_date) {
 }
 void C_date::m_sidle(std::string& s_date) {
 	s_date.clear();
-	if (b_pointer_) {
-		long long i_variable = ll_value_;
-		int i_cykl;
-		int i_cykl_1 = 7;
-		for (i_cykl = 8; i_cykl > 0; i_cykl--) {
-			s_date += (char)(int)((i_variable % (int)pow(10, i_cykl)) / pow(10, i_cykl_1)) % 10 + (int)'0';
-			switch (i_cykl) {
-			case 5:
-			case 3:
-				s_date += '-';
-			}
-			if (i_cykl_1 >= 1)
-				i_cykl_1--;
+	long long i_variable = ll_value_;
+	int i_cykl;
+	int i_cykl_1 = 7;
+	for (i_cykl = 8; i_cykl > 0; i_cykl--) {
+		s_date += (char)(int)((i_variable % (int)pow(10, i_cykl)) / pow(10, i_cykl_1)) % 10 + (int)'0';
+		switch (i_cykl) {
+		case 5:
+		case 3:
+			s_date += '-';
 		}
+		if (i_cykl_1 >= 1)
+			i_cykl_1--;
 	}
 }
 int C_date::m_old() {
@@ -82,14 +80,12 @@ bool C_date::operator>(const int& i) {
 bool C_date::operator<(const C_date& D) {
 	if (b_pointer_ && D.b_pointer_)
 		return ll_value_ < D.ll_value_;
-	else
-		return true;
+		return false;
 }
 bool C_date::operator>(const C_date& D) {
 	if (b_pointer_ && D.b_pointer_)
 		return ll_value_ > D.ll_value_;
-	else
-		return true;
+	return false;
 }
 bool C_date::operator==(const C_date& D){ return (ll_value_ == D.ll_value_&&b_pointer_ == D.b_pointer_); }
 C_date::~C_date() {}

@@ -1,0 +1,72 @@
+17
+1 4 0 1 
+0 0 Menu glowne:
+4 2 10 17 Wczytaj drzewo
+2 2 10 18 Nowe drzewo
+3 1 22 Wyjscie
+1 4 0 1
+0 0 Menu Wyboru:
+5 1 21 Wyswietl zawartosc
+0 1 26 Edytuj drzewo
+0 1 17 Powrot
+3 2 0 1
+0 0 Podaj nazwe rodziny:
+0 1 0 Powrot
+1 3 0 1
+0 0 Czy jestes pewien?
+0 1 100 tak
+0 1 0 Nie
+2 1 0 1
+1 1 23  Wzbierz drzewo:
+2 1 0 1
+1 1 24  Wybierz osobe:
+1 3 0 1
+0 0 Czy na pewno chcesz usunac drzewo?
+0 1 19 Tak
+0 0 Nie
+1 4 0 1
+0 0 Menu osoby:
+0 1 15 Wyswietl drzewo osoby
+0 1 14 Edytuj osobe
+5 1 21 Powrot
+1 6 0 1
+0 0 Menu edycji osoby:
+0 2 29 30 Dodaj relacje
+0 3 28 11 21 Edytuj dane osoby
+0 0 Edytuj relacje
+0 3 13 11 21 Usun osobe
+0 1 24 Powrot
+3 3 0 1
+0 0 Dodawanie nowej osoby:
+0 0 Dodaj
+0 0 Powrot
+1 5 0 1
+0 0 Edycja drzewa:
+0 1 12 Dodaj nowa osobe
+0 1 27 Zmien nazwe drzewa
+0 3 19 25 17 Usun drzewo
+0 1 17 Powrot
+3 2 0 1
+0 0 Podaj nowa nazwe drzewa:
+0 0 Powrot
+3 2 0 1
+0 0 Edycja osoby:
+0 0 powrot
+2 1 0 1
+0 1 30 Wybierz osobe do dodania relacji:
+2 1 0 1
+0 0 Wzbierz relacje:
+2 1 0 1
+0 0 Wzbierz partnera:
+4 1 0 1
+0 0 Projekcja drzewa:Main.cpp
+Microsoft (R) Incremental Linker Version 14.14.26433.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:Main.exe 
+Main.obj 
+Main.obj : error LNK2019: unresolved external symbol __imp__GetForegroundWindow@0 referenced in function "void __cdecl `dynamic initializer for 'Active''(void)" (??__EActive@@YAXXZ)
+Main.obj : error LNK2019: unresolved external symbol "public: __thiscall C_aplication::C_aplication(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool &)" (??0C_aplication@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AA_N@Z) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: void __thiscall C_aplication::m_view(void)" (?m_view@C_aplication@@QAEXXZ) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: __thiscall C_aplication::~C_aplication(void)" (??1C_aplication@@QAE@XZ) referenced in function _main
+Main.exe : fatal error LNK1120: 4 unresolved externals

@@ -73,11 +73,15 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>EXAMPLE_MACRO_NAME;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <UseUnicodeForAssemblerListing>true</UseUnicodeForAssemblerListing>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
+    <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -90,15 +94,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <UseUnicodeForAssemblerListing>true</UseUnicodeForAssemblerListing>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
