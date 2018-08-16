@@ -118,6 +118,7 @@ void C_aplication::m_view() {
 			switch (X)
 			{
 			case Menu_glowne: {
+				
 				i_variable = 0;
 				i_choice = 1;
 				M_.m_view(id_menu_MenuGlowne, i_variable, i_klucz, V_proces, i_choice);
@@ -325,6 +326,9 @@ void C_aplication::m_view() {
 						C_id id;
 						C_id id_temp;
 						C_id id_baby;
+						id.m_active();
+						id_baby.m_active();
+						id_temp.m_active();
 						//zastapic bool-e i int-y na tablice
 						bool b_fisrt_parents = false;
 						bool b_secend_parents = false;
@@ -354,7 +358,8 @@ void C_aplication::m_view() {
 						b_gender = (*L_Person.begin())->m_content_gender(p_gender);
 						first_brith = (*L_Person.begin())->m_content_date(p_data_brith);
 						first_death = (*L_Person.begin())->m_content_date(p_data_death);
-						for (auto& X : (*L_Person.begin())->m_content_V_relation(p_relation)) {
+						V_relation = (*L_Person.begin())->m_content_V_relation(p_relation);
+						for (auto X : V_relation) {
 							X.m_get_typ(i_typ);
 							switch (i_typ) {
 								case r_parents: {
@@ -370,7 +375,8 @@ void C_aplication::m_view() {
 								}
 							}
 						}
-						for (auto& Y : (*L_person.begin())->m_content_V_relationship(p_relationship)) {
+						V_relationship = (*L_Person.begin())->m_content_V_relationship(p_relationship);
+						for (auto Y : V_relationship) {
 							Y.m_get_typ(i_typ);
 							switch (i_typ) {
 								case r_partner: {
@@ -456,6 +462,8 @@ void C_aplication::m_view() {
 						M_.m_set_str(i_variable, V_str_);
 						M_.m_set_replay(i_variable, id_menu_MenuAddRelation, searchperson);//tu ubdate					
 						if (M_.m_view(id_menu_MenuAddRelation, i_variable, s_str, i_klucz, V_proces, i_choice)) { //wybor rodzaju relacji
+							V_relation.clear();
+							V_relationship.clear();
 							switch (i_klucz) {
 							case r_parents: {
 								//tworzenie nowej relacji
@@ -463,7 +471,8 @@ void C_aplication::m_view() {
 								relation.m_add_typ(r_parents); //dodanie typu do relacji
 								relation.m_add_id(id); //wstaweinie id do relacji
 								//e_soft_.m_view(view_search, sort_id, ID_person, L_Person_temp);//dostaie sie do zawartosci persona
-									for(auto& X: (*L_Person.begin())->m_content_V_relation(p_relation)){
+								V_relation = (*L_Person.begin())->m_content_V_relation(p_relation);
+								for(auto X: V_relation){
 										X.m_get_typ(i_typ);
 										switch (i_typ) {
 										case r_sibling: //dodanie relacji rodzica do rodzenstwa
@@ -554,7 +563,10 @@ void C_aplication::m_view() {
 								relation.m_add_id(id); //wstawienie id do relacji
 								//e_soft_.m_view(view_search, sort_id, ID_person, L_Person_temp);
 								//dostaie sie do zawartosci persona
-								for (auto& X : (*L_Person.begin())->m_content_V_relation(p_relation)) {
+								V_relation.clear();
+								V_relationship.clear();
+								V_relation = (*L_Person.begin())->m_content_V_relation(p_relation);
+								for (auto X : V_relation) {
 									X.m_get_typ(i_typ);
 									switch (i_typ) {
 									case r_sibling:
@@ -573,7 +585,8 @@ void C_aplication::m_view() {
 								relation.m_active();	//aktywacja relacji
 								relation.m_add_typ(r_sibling); //ustawienie typu relacji
 								relation.m_add_id(ID_person); //wstawienie id do relacji
-									for (auto& X : (*L_person.begin())->m_content_V_relation(p_relation)) {
+								V_relation_temp = (*L_person.begin())->m_content_V_relation(p_relation);
+									for (auto X : V_relation_temp) {
 										X.m_get_typ(i_typ);
 										switch (i_typ) {
 										case r_sibling:
@@ -649,8 +662,11 @@ void C_aplication::m_view() {
 								relation.m_active(); //aktywacja relacji
 								relation.m_add_typ(r_chlidren);	//ustawienie typu relacji
 								relation.m_add_id(id); //wstawienie id do relacji
-								if ((*L_Person.begin())->m_content_V_relationship(p_relationship).size() > 0){
-									for (auto X : (*L_Person.begin())->m_content_V_relationship(p_relationship)) {
+								V_relation.clear();
+								V_relationship.clear();
+								V_relationship = (*L_Person.begin())->m_content_V_relationship(p_relationship);
+								if (V_relationship.size() > 0){
+									for (auto X : V_relationship) {
 										X.m_get_id(id_temp);
 										e_soft_.m_view(view_search, sort_id, id_temp, L_Person_temp);
 										(*L_Person_temp.begin())->m_conwert(s_str);
@@ -678,7 +694,8 @@ void C_aplication::m_view() {
 											relation.m_add_typ(r_parents); //dodanie typu do relacji
 											relation.m_add_id(id); //wstaweinie id do relacji
 																   //e_soft_.m_view(view_search, sort_id, ID_person, L_Person_temp);//dostaie sie do zawartosci persona
-											for (auto& X : (*L_Person.begin())->m_content_V_relation(p_relation)) {
+											V_relation_temp = (*L_Person.begin())->m_content_V_relation(p_relation);
+											for (auto X : V_relation_temp) {
 												X.m_get_typ(i_typ);
 												switch (i_typ) {
 												case r_sibling: //dodanie relacji rodzica do rodzenstwa pobranego ze zwiazku dodanego rodzica

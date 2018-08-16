@@ -54,4 +54,7 @@ static char C_massage[2];
 static HANDLE h;
 static COORD pos = { 0,0 };
 static DWORD Written;
+static 	HWND Active = GetForegroundWindow();
+static 	HWND Stan;
+static HANDLE HandleConsol;
 #endif // !C_MENU_BASE_HPP

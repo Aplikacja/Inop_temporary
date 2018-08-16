@@ -64,7 +64,8 @@ void C_menu_base::m_add_perosons(std::vector<std::list<C_person_base*>>& L_perso
 void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k, bool& b_search, int i_position) {
 	int i_size = (int)v_k.size();
 	int i_message;
-		while (true)
+	Stan = GetForegroundWindow();
+		while (Active == Stan)
 		{
 			f_pouse();
 			f_obsluga_zdarzen_vk(i_message);
@@ -92,207 +93,211 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 	int i_size = (int)v_k.size();
 	int i_message;
 	i_start = 1;
-	if (b_search) {
-		f_pouse();
-		f_obsluga_zadrzen_alfabetycznych(i_message);
-		switch (i_message) {
-		case vkup:
-			x--;
-			if (x <= i_position)      // gdy wykracza wraca na koniec
-				x = v_k.size() - 1;
-			i_start = 10;
-			return;
-		case vkdown:
-			x++;
-			if (x >= (int)v_k.size())       // gdy wykracza poza menu, znow wraca na poczatek
-				x = i_position+1;
-			i_start = 10;
-			return;
-		case vkreturn:	i_start = 0;	s_klucz = v_k[x];		return;
-		case vkescape:	i_start = -10;							return;
-		case vkdelete:	i_start = -20;							return;
-		case vkleft:	i_start = -30;							return;
-		case vkright:	i_start = -35;							return;
-		case vkplus:	i_start = -40;							return;
-		case vkminus:	i_start = -45;							return;
-		case vkspace:	v_k[i_position] += " "; i_start = -100; return;
-		case vka:
-		case vka1:
-		case vka2:		v_k[i_position] += 'a';	i_start = -100; return;
-		case vkb:
-		case vkb1:
-		case vkb2:		v_k[i_position] += 'b';	i_start = -100; return;
-		case vkc:
-		case vkc1:
-		case vkc2:		v_k[i_position] += 'c';	i_start = -100; return;
-		case vkd:
-		case vkd1:
-		case vkd2:		v_k[i_position] += 'd';	i_start = -100; return;
-		case vke:
-		case vke1:
-		case vke2:		v_k[i_position] += 'e';	i_start = -100; return;
-		case vkf:
-		case vkf1:
-		case vkf2:		v_k[i_position] += 'f';	i_start = -100; return;
-		case vkg:
-		case vkg1:
-		case vkg2:		v_k[i_position] += 'g';	i_start = -100; return;
-		case vkh:
-		case vkh1:
-		case vkh2:		v_k[i_position] += 'h';	i_start = -100; return;
-		case vki:
-		case vki1:
-		case vki2:		v_k[i_position] += 'i';	i_start = -100; return;
-		case vkj:
-		case vkj1:
-		case vkj2:		v_k[i_position] += 'j';	i_start = -100; return;
-		case vkk:
-		case vkk1:
-		case vkk2:		v_k[i_position] += 'k';	i_start = -100; return;
-		case vkl:
-		case vkl1:
-		case vkl2:		v_k[i_position] += 'l';	i_start = -100; return;
-		case vkm:
-		case vkm1:
-		case vkm2:		v_k[i_position] += 'm';	i_start = -100; return;
-		case vkn:
-		case vkn1:
-		case vkn2:		v_k[i_position] += 'n';	i_start = -100; return;
-		case vko:
-		case vko1:
-		case vko2:		v_k[i_position] += 'o';	i_start = -100; return;
-		case vkp:
-		case vkp1:
-		case vkp2:		v_k[i_position] += 'p';	i_start = -100; return;
-		case vkq:
-		case vkq1:
-		case vkq2:		v_k[i_position] += 'q';	i_start = -100; return;
-		case vkr:
-		case vkr1:
-		case vkr2:		v_k[i_position] += 'r';	i_start = -100; return;
-		case vks:
-		case vks1:
-		case vks2:		v_k[i_position] += 's';	i_start = -100; return;
-		case vkt:
-		case vkt1:
-		case vkt2:		v_k[i_position] += 't';	i_start = -100; return;
-		case vku:
-		case vku1:
-		case vku2:		v_k[i_position] += 'u';	i_start = -100; return;
-		case vkw:
-		case vkw1:
-		case vkw2:		v_k[i_position] += 'w';	i_start = -100; return;
-		case vkv:
-		case vkv1:
-		case vkv2:		v_k[i_position] += 'v';	i_start = -100; return;
-		case vkx:
-		case vkx1:
-		case vkx2:		v_k[i_position] += 'x';	i_start = -100; return;
-		case vky:
-		case vky1:
-		case vky2:		v_k[i_position] += 'y';	i_start = -100; return;
-		case vkz:
-		case vkz1:
-		case vkz2:		v_k[i_position] += 'z';	i_start = -100; return;
-		case vkA:		v_k[i_position] += 'A';	i_start = -100; return;
-		case vkB:		v_k[i_position] += 'B';	i_start = -100; return;
-		case vkC:		v_k[i_position] += 'C';	i_start = -100; return;
-		case vkD:		v_k[i_position] += 'D';	i_start = -100; return;
-		case vkE:		v_k[i_position] += 'E';	i_start = -100; return;
-		case vkF:		v_k[i_position] += 'F';	i_start = -100; return;
-		case vkG:		v_k[i_position] += 'G';	i_start = -100; return;
-		case vkH:		v_k[i_position] += 'H';	i_start = -100; return;
-		case vkI:		v_k[i_position] += 'I';	i_start = -100; return;
-		case vkJ:		v_k[i_position] += 'J';	i_start = -100; return;
-		case vkK:		v_k[i_position] += 'K';	i_start = -100; return;
-		case vkL:		v_k[i_position] += 'L';	i_start = -100; return;
-		case vkM:		v_k[i_position] += 'M';	i_start = -100; return;
-		case vkN:		v_k[i_position] += 'N';	i_start = -100; return;
-		case vkO:		v_k[i_position] += 'O';	i_start = -100; return;
-		case vkP:		v_k[i_position] += 'P';	i_start = -100; return;
-		case vkQ:		v_k[i_position] += 'Q';	i_start = -100; return;
-		case vkR:		v_k[i_position] += 'R';	i_start = -100; return;
-		case vkS:		v_k[i_position] += 'S';	i_start = -100; return;
-		case vkT:		v_k[i_position] += 'T';	i_start = -100; return;
-		case vkU:		v_k[i_position] += 'U';	i_start = -100; return;
-		case vkW:		v_k[i_position] += 'W';	i_start = -100; return;
-		case vkV:		v_k[i_position] += 'V';	i_start = -100; return;
-		case vkX:		v_k[i_position] += 'X';	i_start = -100; return;
-		case vkY:		v_k[i_position] += 'Y';	i_start = -100; return;
-		case vkZ:		v_k[i_position] += 'Z';	i_start = -100; return;
-		case vkn0:
-		case vk0:		v_k[i_position] += '0'; i_start = -100; return;
-		case vkn_1:
-		case vk1:		v_k[i_position] += '1'; i_start = -100; return;
-		case vkn_2:
-		case vk2:		v_k[i_position] += '2'; i_start = -100; return;
-		case vkn3:
-		case vk3:		v_k[i_position] += '3'; i_start = -100; return;
-		case vkn4:
-		case vk4:		v_k[i_position] += '4'; i_start = -100; return;
-		case vkn5:
-		case vk5:		v_k[i_position] += '5'; i_start = -100; return;
-		case vkn6:
-		case vk6:		v_k[i_position] += '6'; i_start = -100; return;
-		case vkn7:
-		case vk7:		v_k[i_position] += '7'; i_start = -100; return;
-		case vkn8:
-		case vk8:		v_k[i_position] += '8'; i_start = -100; return;
-		case vkn9:
-		case vk9:		v_k[i_position] += '9'; i_start = -100; return;
-		}
-	}
-	else {
-		while (true)
-		{
+	Stan = GetForegroundWindow();
+	while (Active == Stan){
+		if (b_search) {
 			f_pouse();
-			f_obsluga_zdarzen_vk_search(i_message);
+			f_obsluga_zadrzen_alfabetycznych(i_message);
 			switch (i_message) {
 			case vkup:
 				x--;
-				if (x <= i_position-1)      // gdy wykracza wraca na koniec
-					x = v_k.size()-1;
+				if (x <= i_position)      // gdy wykracza wraca na koniec
+					x = v_k.size() - 1;
 				i_start = 10;
 				return;
 			case vkdown:
 				x++;
 				if (x >= (int)v_k.size())       // gdy wykracza poza menu, znow wraca na poczatek
-					x = i_position;
+					x = i_position + 1;
 				i_start = 10;
 				return;
-			/*case vkup:
-				x--;
-				if (x <= i_start - 1)      // gdy wykracza wraca na koniec
-					x = i_size - 1;
-				return;
-			case vkdown:
-				x++;
-				if (x >= i_size)       // gdy wykracza poza menu, znow wraca na poczatek
-					x = i_start;
-				return;*/
-			case vkreturn:
-				i_start = 0;
-				s_klucz = v_k[x];
-				return;
-			case vkescape:	i_start = -2;							return;
-			case vkplus:	i_start = -40;							return;
-			case vkminus:	i_start = -45;							return;
+			case vkreturn:	i_start = 0;	s_klucz = v_k[x];		return;
+			case vkescape:	i_start = -10;							return;
+			case vkdelete:	i_start = -20;							return;
 			case vkleft:	i_start = -30;							return;
 			case vkright:	i_start = -35;							return;
-			case vkf:	
-			case vkF:	
-			case vkf2:
-			case vkf1:			// wlaczenie opcji wyszukiwania
-				i_start = -10;
-				return;
+			case vkplus:	i_start = -40;							return;
+			case vkminus:	i_start = -45;							return;
+			case vkspace:	v_k[i_position] += " "; i_start = -100; return;
+			case vka:
+			case vka1:
+			case vka2:		v_k[i_position] += 'a';	i_start = -100; return;
+			case vkb:
+			case vkb1:
+			case vkb2:		v_k[i_position] += 'b';	i_start = -100; return;
+			case vkc:
+			case vkc1:
+			case vkc2:		v_k[i_position] += 'c';	i_start = -100; return;
+			case vkd:
+			case vkd1:
+			case vkd2:		v_k[i_position] += 'd';	i_start = -100; return;
+			case vke:
+			case vke1:
+			case vke2:		v_k[i_position] += 'e';	i_start = -100; return;
+			case vkf:
+			case vkf1:
+			case vkf2:		v_k[i_position] += 'f';	i_start = -100; return;
+			case vkg:
+			case vkg1:
+			case vkg2:		v_k[i_position] += 'g';	i_start = -100; return;
+			case vkh:
+			case vkh1:
+			case vkh2:		v_k[i_position] += 'h';	i_start = -100; return;
+			case vki:
+			case vki1:
+			case vki2:		v_k[i_position] += 'i';	i_start = -100; return;
+			case vkj:
+			case vkj1:
+			case vkj2:		v_k[i_position] += 'j';	i_start = -100; return;
+			case vkk:
+			case vkk1:
+			case vkk2:		v_k[i_position] += 'k';	i_start = -100; return;
+			case vkl:
+			case vkl1:
+			case vkl2:		v_k[i_position] += 'l';	i_start = -100; return;
+			case vkm:
+			case vkm1:
+			case vkm2:		v_k[i_position] += 'm';	i_start = -100; return;
+			case vkn:
+			case vkn1:
+			case vkn2:		v_k[i_position] += 'n';	i_start = -100; return;
+			case vko:
+			case vko1:
+			case vko2:		v_k[i_position] += 'o';	i_start = -100; return;
+			case vkp:
+			case vkp1:
+			case vkp2:		v_k[i_position] += 'p';	i_start = -100; return;
+			case vkq:
+			case vkq1:
+			case vkq2:		v_k[i_position] += 'q';	i_start = -100; return;
+			case vkr:
+			case vkr1:
+			case vkr2:		v_k[i_position] += 'r';	i_start = -100; return;
+			case vks:
+			case vks1:
+			case vks2:		v_k[i_position] += 's';	i_start = -100; return;
+			case vkt:
+			case vkt1:
+			case vkt2:		v_k[i_position] += 't';	i_start = -100; return;
+			case vku:
+			case vku1:
+			case vku2:		v_k[i_position] += 'u';	i_start = -100; return;
+			case vkw:
+			case vkw1:
+			case vkw2:		v_k[i_position] += 'w';	i_start = -100; return;
+			case vkv:
+			case vkv1:
+			case vkv2:		v_k[i_position] += 'v';	i_start = -100; return;
+			case vkx:
+			case vkx1:
+			case vkx2:		v_k[i_position] += 'x';	i_start = -100; return;
+			case vky:
+			case vky1:
+			case vky2:		v_k[i_position] += 'y';	i_start = -100; return;
+			case vkz:
+			case vkz1:
+			case vkz2:		v_k[i_position] += 'z';	i_start = -100; return;
+			case vkA:		v_k[i_position] += 'A';	i_start = -100; return;
+			case vkB:		v_k[i_position] += 'B';	i_start = -100; return;
+			case vkC:		v_k[i_position] += 'C';	i_start = -100; return;
+			case vkD:		v_k[i_position] += 'D';	i_start = -100; return;
+			case vkE:		v_k[i_position] += 'E';	i_start = -100; return;
+			case vkF:		v_k[i_position] += 'F';	i_start = -100; return;
+			case vkG:		v_k[i_position] += 'G';	i_start = -100; return;
+			case vkH:		v_k[i_position] += 'H';	i_start = -100; return;
+			case vkI:		v_k[i_position] += 'I';	i_start = -100; return;
+			case vkJ:		v_k[i_position] += 'J';	i_start = -100; return;
+			case vkK:		v_k[i_position] += 'K';	i_start = -100; return;
+			case vkL:		v_k[i_position] += 'L';	i_start = -100; return;
+			case vkM:		v_k[i_position] += 'M';	i_start = -100; return;
+			case vkN:		v_k[i_position] += 'N';	i_start = -100; return;
+			case vkO:		v_k[i_position] += 'O';	i_start = -100; return;
+			case vkP:		v_k[i_position] += 'P';	i_start = -100; return;
+			case vkQ:		v_k[i_position] += 'Q';	i_start = -100; return;
+			case vkR:		v_k[i_position] += 'R';	i_start = -100; return;
+			case vkS:		v_k[i_position] += 'S';	i_start = -100; return;
+			case vkT:		v_k[i_position] += 'T';	i_start = -100; return;
+			case vkU:		v_k[i_position] += 'U';	i_start = -100; return;
+			case vkW:		v_k[i_position] += 'W';	i_start = -100; return;
+			case vkV:		v_k[i_position] += 'V';	i_start = -100; return;
+			case vkX:		v_k[i_position] += 'X';	i_start = -100; return;
+			case vkY:		v_k[i_position] += 'Y';	i_start = -100; return;
+			case vkZ:		v_k[i_position] += 'Z';	i_start = -100; return;
+			case vkn0:
+			case vk0:		v_k[i_position] += '0'; i_start = -100; return;
+			case vkn_1:
+			case vk1:		v_k[i_position] += '1'; i_start = -100; return;
+			case vkn_2:
+			case vk2:		v_k[i_position] += '2'; i_start = -100; return;
+			case vkn3:
+			case vk3:		v_k[i_position] += '3'; i_start = -100; return;
+			case vkn4:
+			case vk4:		v_k[i_position] += '4'; i_start = -100; return;
+			case vkn5:
+			case vk5:		v_k[i_position] += '5'; i_start = -100; return;
+			case vkn6:
+			case vk6:		v_k[i_position] += '6'; i_start = -100; return;
+			case vkn7:
+			case vk7:		v_k[i_position] += '7'; i_start = -100; return;
+			case vkn8:
+			case vk8:		v_k[i_position] += '8'; i_start = -100; return;
+			case vkn9:
+			case vk9:		v_k[i_position] += '9'; i_start = -100; return;
 			}
 		}
-	}
+		else {
+			while (true)
+			{
+				f_pouse();
+				f_obsluga_zdarzen_vk_search(i_message);
+				switch (i_message) {
+				case vkup:
+					x--;
+					if (x <= i_position - 1)      // gdy wykracza wraca na koniec
+						x = v_k.size() - 1;
+					i_start = 10;
+					return;
+				case vkdown:
+					x++;
+					if (x >= (int)v_k.size())       // gdy wykracza poza menu, znow wraca na poczatek
+						x = i_position;
+					i_start = 10;
+					return;
+					/*case vkup:
+						x--;
+						if (x <= i_start - 1)      // gdy wykracza wraca na koniec
+							x = i_size - 1;
+						return;
+					case vkdown:
+						x++;
+						if (x >= i_size)       // gdy wykracza poza menu, znow wraca na poczatek
+							x = i_start;
+						return;*/
+				case vkreturn:
+					i_start = 0;
+					s_klucz = v_k[x];
+					return;
+				case vkescape:	i_start = -2;							return;
+				case vkplus:	i_start = -40;							return;
+				case vkminus:	i_start = -45;							return;
+				case vkleft:	i_start = -30;							return;
+				case vkright:	i_start = -35;							return;
+				case vkf:
+				case vkF:
+				case vkf2:
+				case vkf1:			// wlaczenie opcji wyszukiwania
+					i_start = -10;
+					return;
+				}
+			}
+		}
+	};
 }
 //ponizsza funkcja przetestowana capslook do poprawy dziala jak cukiereczek
 void f_sterowanie(int& x, std::string& s_klucz,std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_) {
 	int i_message;
-	while (true)
+	Stan = GetForegroundWindow();
+	while (Active == Stan)
 	{
 		i_start = 1;
 		f_pouse();
@@ -483,7 +488,8 @@ void f_sterowanie(int& x, std::string& s_klucz,std::string& s_message, int& i_st
 void f_sterowanie_add_person(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_) {
 	int i_message;
 	bool b_what = false;
-	while (true)
+	Stan = GetForegroundWindow();
+	while (Active == Stan)
 	{
 		i_start = 1;
 		f_pouse();
@@ -739,12 +745,12 @@ void f_obsluga_zadrzen_alfabetycznych(int& i_message) {
 							VK_NUMPAD0, VK_NUMPAD1, VK_NUMPAD2, VK_NUMPAD3, VK_NUMPAD4, VK_NUMPAD5,
 							VK_NUMPAD6, VK_NUMPAD7, VK_NUMPAD8, VK_NUMPAD9,VK_ADD,VK_SUBTRACT };
 	int i;
-	do {
-		i_result = 0;
-		for (i = 0; i<59; i++)
-			f(i_tab_key[i], i_tab_value[i], i_result);
-	} while (i_result==0);
-	i_message = i_result;
+		do {
+			i_result = 0;
+			for (i = 0; i < 59; i++)
+				f(i_tab_key[i], i_tab_value[i], i_result);
+		} while (i_result == 0);
+		i_message = i_result;
 }
 void f_obsluga_zdarzen_vk(int& i_message) {
 	unsigned int i_result=0;
@@ -905,7 +911,8 @@ void f_discripsion_keys(int i_choice, std::string& data) {
 void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k) {
 	int i_size = (int)v_k.size();
 	int i_message;
-	while (true)
+	Stan = GetForegroundWindow();
+	while (Active == Stan)
 	{
 		f_pouse();
 		f_obsluga_zdarzen_vk_tree(i_message);
@@ -941,7 +948,8 @@ void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k
 void f_sterowanie_edit_tree(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_) {
 	int i_message;
 	bool b_what = false;
-	while (true)
+	Stan = GetForegroundWindow();
+	while (Active == Stan)
 	{
 		i_start = 1;
 		f_pouse();
