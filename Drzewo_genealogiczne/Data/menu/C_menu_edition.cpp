@@ -148,6 +148,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 				printf(V_string[ptr].c_str()); printf("\n");
 				ptr++;
 			}
+		//	i_position = 5;
 			f_clear(h, pos, Written);
 			m_ruch(f_sterowanie_edit_tree, i_x, s_working, s_message, i_sta, V_string, i_size, i_start_);
 			switch (i_sta) {
@@ -227,7 +228,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 					i_remember_x = i_x;
 				}
 			}
-					 f_protected_data(i_position, V_string[V_position[i_position]], s_message);
+					 V_string[1] = s_message;
 					 break;
 			}
 		}
@@ -645,6 +646,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 					i_remember_x = i_x;
 				}
 			}
+			
 					 f_protected_data(i_position, V_string[V_position[i_position]], s_message);
 					 break;
 			}
@@ -708,6 +710,9 @@ void f_protected_data(int i_choice, std::string& s_data, std::string& s_message)
 				}
 		 break;
 		}
+		case 5:
+			s_data = s_message; //przepisywanie liczb
+			break;
 		default: break;
 	}
 }

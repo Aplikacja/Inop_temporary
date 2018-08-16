@@ -481,6 +481,36 @@ void f_sterowanie(int& x, std::string& s_klucz,std::string& s_message, int& i_st
 			s_message += 'Y';	return;
 		case vkZ:
 			s_message += 'Z';	return;
+		case vkn0:
+		case vk0:
+			s_message += '0'; return;
+		case vkn_1:
+		case vk1:
+			s_message += '1'; return;
+		case vkn_2:
+		case vk2:
+			s_message += '2'; return;
+		case vkn3:
+		case vk3:
+			s_message += '3'; return;
+		case vkn4:
+		case vk4:
+			s_message += '4'; return;
+		case vkn5:
+		case vk5:
+			s_message += '5'; return;
+		case vkn6:
+		case vk6:
+			s_message += '6'; return;
+		case vkn7:
+		case vk7:
+			s_message += '7'; return;
+		case vkn8:
+		case vk8:
+			s_message += '8'; return;
+		case vkn9:
+		case vk9:
+			s_message += '9'; return;
 		default:	break;
 		}
 	}
@@ -1136,26 +1166,37 @@ void f_sterowanie_edit_tree(int& x, std::string& s_klucz, std::string& s_message
 			s_message += 'Y';	return;
 		case vkZ:
 			s_message += 'Z';	return;
-		/*case vk0:
+		case vkn0:
+		case vk0:
 			s_message += '0'; return;
+		case vkn_1:
 		case vk1:
 			s_message += '1'; return;
+		case vkn_2:
 		case vk2:
 			s_message += '2'; return;
+		case vkn3:
 		case vk3:
 			s_message += '3'; return;
+		case vkn4:
 		case vk4:
 			s_message += '4'; return;
+		case vkn5:
 		case vk5:
 			s_message += '5'; return;
+		case vkn6:
 		case vk6:
 			s_message += '6'; return;
+		case vkn7:
 		case vk7:
 			s_message += '7'; return;
+		case vkn8:
 		case vk8:
 			s_message += '8'; return;
+		case vkn9:
 		case vk9:
-			s_message += '9'; return;*/
+			s_message += '9'; 
+			return;
 		default:	break;
 		}
 	}
