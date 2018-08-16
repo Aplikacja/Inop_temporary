@@ -41,6 +41,7 @@
 #define protect					-121212
 #define Min_old					12 //wartosc lat minimalna dla zrobienia dziecka i zawarcia malzenstwa
 #define Max_old_woman			55 //maksymany wiek pozwalajacy urodzic dziecko przez kobiete
+#define Max_size_names			24 //maksymalna wartosc imienia i nazwiska
 //nazwa pliku do zapisu
 #define file_save "plik2.txt"
 #define file_load "plik1.txt"
