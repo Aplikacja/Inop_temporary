@@ -237,7 +237,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 	}
 	return false;
 }
-bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice, int b_replay) {
+bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice, int& b_replay) {
 	int i_x = i_start_;
 	int i_sta = i_start_;
 	int ptr = 0;

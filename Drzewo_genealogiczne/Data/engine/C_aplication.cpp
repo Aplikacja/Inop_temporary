@@ -11,6 +11,7 @@ void f_good_day(C_date& data_first, C_date& data_sacend, int & b_what);
 void f_clean(std::list<C_person_base*>& list);
 void f_analicaly_parents(std::list<C_person_base*>& L_person, bool& b_father, bool& b_mather, bool& b_parents, int& number);
 void f_delete_krotka(std::vector<std::string>& V_s, std::string data);
+void f_clera_data(std::string& data);
 C_aplication::C_aplication(std::string what, bool& b_mistacke) {
 	m_load_file(what,b_mistacke);
 };
@@ -733,6 +734,8 @@ void C_aplication::m_view() {
 					M_.m_set_replay(i_variable, id_menu_MenuAddPerson, search_tree);
 					do {
 						if (M_.m_view(id_menu_MenuAddPerson, i_variable, V_dane, i_klucz, V_proces, i_choice, i_what)) { //lacze dziala wyciaga dane z interface trzeba zrobic funkcje zabezpieczajace
+							f_clera_data(V_dane[2]);
+							f_clera_data(V_dane[3]);
 							i_what = 1;
 							i_what_1 = 0;
 							i_what_2 = 0;
@@ -775,7 +778,7 @@ void C_aplication::m_view() {
 					std::vector<std::string> V_dane;
 					int i_what_1; 
 					int i_what_2;
-					int i_what = 1;
+					int i_what = 0;
 					C_date date_brith, date_death;
 					bool b_gender;
 					V_dane.resize(5);
@@ -800,6 +803,9 @@ void C_aplication::m_view() {
 					do {
 						if (M_.m_view(id_menu_MenuUpdatePerson, i_variable, V_dane, i_klucz, V_proces, i_choice,i_what))
 						{
+							i_what = 1;
+							f_clera_data(V_dane[2]);
+							f_clera_data(V_dane[3]);
 							i_what_1 = 0;
 							i_what_2 = 0;
 							f_werification_date(V_dane[2], i_what_1);
@@ -1137,5 +1143,12 @@ void f_delete_krotka(std::vector<std::string>& V_s, std::string data) {
 		}
 		else
 			i_position++;
+	}
+}
+void f_clera_data(std::string& data) {
+	if (data.size() == 1) {
+		if (data[0] == ' ') {
+			data.clear();
+		}
 	}
 }
