@@ -283,10 +283,10 @@ void C_aplication::m_view() {
 					for (auto& X : V_person_temp) {
 						//-> resetowanie id
 						X->m_get_id(id);
-						V_id.push_back(id);
+						V_id.push_back(id); 
 					}
 					//V_str_[1][id_menu_MenuChoicePerson] = V_string;
-					C_engine_software E;
+					//C_engine_software E;
 					M_.m_set_str(i_variable, V_str_);
 					M_.m_set_replay(i_variable, id_menu_MenuChoicePerson, searchperson);
 					M_.m_set_content(id_menu_MenuChoicePerson, V_person_result, V_id);
@@ -308,9 +308,11 @@ void C_aplication::m_view() {
 						C_relationship relationship;
 						C_relation relation_temp;
 						C_relationship relationship_temp;
+						C_relationship relationship_tempII;
 						std::vector<C_relation> V_relation;
 						std::vector<C_relation> V_relation_temp;
 						std::vector<C_relation> V_relation_temp_II;
+						std::map<std::string, int> M_relation;
 						std::vector<C_id> V_id;
 						std::vector<C_id> V_id_temp;
 						std::vector<C_id> ::iterator it_id;
@@ -327,6 +329,14 @@ void C_aplication::m_view() {
 						C_id id;
 						C_id id_temp;
 						C_id id_baby;
+						M_relation["Tata"] = r_parents;
+						M_relation["Mama"] = r_parents;
+						M_relation["Brat"] = r_sibling;
+						M_relation["Siostra"] = r_sibling;
+						M_relation["Zona"] = r_partner;
+						M_relation["Maz"] = r_partner;
+						M_relation["Syn"] = r_chlidren;
+						M_relation["Corka"] = r_chlidren;
 						id.m_active();
 						id_baby.m_active();
 						id_temp.m_active();
@@ -416,7 +426,7 @@ void C_aplication::m_view() {
 						secend_brith = (*L_person.begin())->m_content_date(p_data_brith);
 						secend_death = (*L_person.begin())->m_content_date(p_data_death);
 						b_gender = (*L_person.begin())->m_content_gender(p_gender);
-						if (!b_gender) {
+						if (b_gender) {
 							f_delete_krotka(V_string, "Zona");
 							f_delete_krotka(V_string, "Siostra");
 							f_delete_krotka(V_string, "Corka");
@@ -465,7 +475,8 @@ void C_aplication::m_view() {
 						if (M_.m_view(id_menu_MenuAddRelation, i_variable, s_str, i_klucz, V_proces, i_choice)) { //wybor rodzaju relacji
 							V_relation.clear();
 							V_relationship.clear();
-							switch (i_klucz) {
+
+							switch (M_relation[V_string[i_klucz-3]]) {
 							case r_parents: {
 								//tworzenie nowej relacji
 								relation.m_active(); //aktywacja relacji
@@ -634,9 +645,9 @@ void C_aplication::m_view() {
 											R.m_get_id(id_temp);
 											if (id_temp.m_return_value() == id.m_return_value()) {
 												R.m_get_baby(V_relation);
-												relation_temp.m_active();
-												relation_temp.m_add_typ(r_parents);
-												relation_temp.m_add_id(ID_person);
+												relationship_tempII.m_active();
+												relationship_tempII.m_add_typ(r_partner);
+												relationship_tempII.m_add_id(ID_person);
 												for (auto& r : V_relation) {
 													r.m_get_id(id_baby);
 													e_soft_.m_get_list_person_orginal(L_person_orgin);
@@ -658,7 +669,9 @@ void C_aplication::m_view() {
 									}
 								}
 								e_soft_.m_add_relationship(relationship, ID_person);
+								e_soft_.m_add_relationship(relationship_temp, id);
 							} break;
+
 							case r_chlidren: {
 								relation.m_active(); //aktywacja relacji
 								relation.m_add_typ(r_chlidren);	//ustawienie typu relacji
@@ -867,18 +880,24 @@ void C_aplication::m_view() {
 					M_.m_set_replay(i_variable, id_menu_MenuSearchTree, Menu_glowne);
 					V_str_[1][id_menu_MenuSearchTree] = V_string;
 					M_.m_set_str(i_variable, V_str_); //ladowanie menu nazwami drzew
-					if (M_.m_view(id_menu_MenuSearchTree, i_variable, s_str, i_klucz, V_proces, i_choice)) {
-						s_tree = s_str;
-						s_str += ".tree";
-						e_soft_.m_load_files(s_str, b_mistacke);
-						if (b_mistacke) {
-							V_proces.clear();
-							V_proces.push_back(Menu_glowne);
-							e_soft_.m_delete_tree(s_tree);
-							e_soft_.m_save_tree(b_mistacke);
+					do {
+						if (M_.m_view(id_menu_MenuSearchTree, i_variable, s_str, i_klucz, V_proces, i_choice)) {
+							if (V_string.size() > 0) {
+								s_tree = s_str;
+								s_str += ".tree";
+								e_soft_.m_load_files(s_str, b_mistacke);
+								if (b_mistacke) {
+									V_proces.clear();
+									V_proces.push_back(Menu_glowne);
+									e_soft_.m_delete_tree(s_tree);
+									e_soft_.m_save_tree(b_mistacke);
+								}
+							}
+							//s_str;
 						}
-						//s_str;
-					}
+							else
+								break;
+						} while (V_string.size() == 0);
 				}break;
 				case delete_tree: {
 					e_soft_.m_delete_tree(s_tree);
@@ -993,7 +1012,7 @@ void C_aplication::m_view() {
 				case searchperson: {
 					//	case search: {
 					C_id data; 
-					std::string s_str;
+					std::string s_str="";
 					std::string s_temp;
 					std::vector<C_id> V_id;
 					data.m_update(2);
@@ -1006,13 +1025,16 @@ void C_aplication::m_view() {
 					M_.m_set_data_base(id_menu_MenuSearchPerson,e_soft_);
 					i_choice = 3;
 					i_klucz = 5; //wyjatkowo
-					if (M_.m_view(id_menu_MenuSearchPerson, i_variable, s_str, i_klucz, V_proces, i_choice)) {
-						i_id_pointer = atoi(s_str.c_str());
-						ID_person.m_update(V_id[i_id_pointer].m_return_value()); //przepisanie wartosci id!
-						//e_soft_.m_view(view_search, sort_id, ID, lista);  //do tego momentu jest dobrze
-						//std::cin >> s_temp;
-						break;
-					}
+					do {
+						if (M_.m_view(id_menu_MenuSearchPerson, i_variable, s_str, i_klucz, V_proces, i_choice)) {
+							if (V_id.size() > 0) {
+								i_id_pointer = atoi(s_str.c_str());
+								ID_person.m_update(V_id[i_id_pointer].m_return_value()); //przepisanie wartosci id!
+							}
+						}
+						else
+							break;
+					} while (V_id.size() == 0);
 					//-----wrazie czego------
 					//for (auto& x : lista) {
 					//	delete x;

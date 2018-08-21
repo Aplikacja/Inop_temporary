@@ -312,6 +312,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 							V_proces.clear();
 							this->m_get_replay(i_id_menu, i_replay);
 							V_proces.push_back(i_replay);
+							s_result = "";
 							return false; }
 						case -10: { //zaimplementowane do wlaczenia wyszukiwania z listy
 							if (b_search) {
