@@ -32,19 +32,6 @@ void C_date::m_apped(std::string& s_date) {
 	long long ll_temp;
 	int i_size = s_date.size();
 	f_conversion(s_date, ll_value_);
-	switch (i_size) {
-	case 7:
-	case 8:
-		ll_value_ * 100; break;
-	case 9:
-		f_conversion(s_date, ll_value_);
-		ll_temp = ll_value_;
-		ll_value_ /= 10;
-		i_cykl = ll_temp - ll_value_;
-		ll_value_ * 10;
-		ll_value_ += i_cykl;
-		break;
-	}
 }
 void C_date::m_sidle(std::string& s_date) {
 	s_date.clear();
@@ -62,6 +49,21 @@ void C_date::m_sidle(std::string& s_date) {
 			if (i_cykl_1 >= 1)
 				i_cykl_1--;
 		}
+		if (s_date[9] == '0'&&s_date[8] == '0'&&s_date[6] == '0'&& s_date[5] == '0') {
+			s_date.pop_back();
+			s_date.pop_back();
+			s_date.pop_back();
+			s_date.pop_back();
+			s_date.pop_back();
+			s_date += " - - -";
+		}
+		if (s_date[9] == '0'&&s_date[8] == '0')
+		{
+			s_date.pop_back();
+			s_date.pop_back();
+			s_date += " -";
+		}
+	
 	}
 }
 int C_date::m_old() {

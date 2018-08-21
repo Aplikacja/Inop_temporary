@@ -12,6 +12,7 @@ void f_clean(std::list<C_person_base*>& list);
 void f_analicaly_parents(std::list<C_person_base*>& L_person, bool& b_father, bool& b_mather, bool& b_parents, int& number);
 void f_delete_krotka(std::vector<std::string>& V_s, std::string data);
 void f_clera_data(std::string& data);
+void f_break(std::string& data);
 C_aplication::C_aplication(std::string what, bool& b_mistacke) {
 	m_load_file(what,b_mistacke);
 };
@@ -734,6 +735,8 @@ void C_aplication::m_view() {
 					M_.m_set_replay(i_variable, id_menu_MenuAddPerson, Menu_glowne);
 					do {
 						if (M_.m_view(id_menu_MenuAddPerson, i_variable, V_dane, i_klucz, V_proces, i_choice, i_what)) { //lacze dziala wyciaga dane z interface trzeba zrobic funkcje zabezpieczajace
+							f_break(V_dane[2]);
+							f_break(V_dane[3]);
 							f_clera_data(V_dane[2]);
 							f_clera_data(V_dane[3]);
 							i_what = 1;
@@ -1080,7 +1083,7 @@ void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny) {
 	case 8:
 	case 10:
 	case 12:
-		if (i_day > 0 && i_day <= 31) {
+		if (i_day >= 0 && i_day <= 31) {
 			b_what = true;
 		}
 		else 
@@ -1088,13 +1091,13 @@ void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny) {
 		break;
 	case 2: //luty 
 		if (b_przestepny) {
-			if (i_day > 0 && i_day <= 29) {
+			if (i_day >= 0 && i_day <= 29) {
 				b_what = true;
 			}
 			else 
 				b_what = false;
 		}
-		if (i_day > 0 && i_day <= 28) {
+		if (i_day >= 0 && i_day <= 28) {
 			b_what = true;
 		}
 		else 
@@ -1104,7 +1107,7 @@ void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny) {
 	case 6:
 	case 9:
 	case 11:
-		if (i_day > 0 && i_day <= 30) {
+		if (i_day >= 0 && i_day <= 30) {
 			b_what = true;
 		}
 		else 
@@ -1150,5 +1153,42 @@ void f_clera_data(std::string& data) {
 		if (data[0] == ' ') {
 			data.clear();
 		}
+	}
+}
+void f_break(std::string& data) {
+	switch ((int)data.size()) {
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+		data = "0000-00-00";
+		break;
+	case 5:
+		data += "00-00";
+		break;
+	case 6:
+		char a;
+		a = data[data.size() - 1];
+		data.pop_back();
+		data += '0';
+		data += a;
+		data+= "-00";
+		break;
+	case 7:
+		data += "-00";
+		break;
+	case 8:
+		data += "00";
+		break;
+	case 9:
+		char b;
+		b = data[data.size() - 1];
+		data.pop_back();
+		data += '0';
+		data += b;
+		break;
+	default:
+		return;
 	}
 }
