@@ -731,7 +731,7 @@ void C_aplication::m_view() {
 					int i_what = 0;
 					bool b_gender = false;
 					V_dane.resize(5);
-					M_.m_set_replay(i_variable, id_menu_MenuAddPerson, search_tree);
+					M_.m_set_replay(i_variable, id_menu_MenuAddPerson, Menu_glowne);
 					do {
 						if (M_.m_view(id_menu_MenuAddPerson, i_variable, V_dane, i_klucz, V_proces, i_choice, i_what)) { //lacze dziala wyciaga dane z interface trzeba zrobic funkcje zabezpieczajace
 							f_clera_data(V_dane[2]);

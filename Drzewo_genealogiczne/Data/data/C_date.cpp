@@ -8,7 +8,7 @@
 //												-	void C_date::m_sidle(std::string& s_date);																//
 //**********************************************************************************************************************************************************//
 #include "C_date.hpp"
-
+void f_conversion(std::string& s_data, long long& ll_value);
 C_date::C_date() :C_data_base() {};
 void C_date::m_virtual() { //tymczasowo
 	std::string str;
@@ -29,12 +29,21 @@ void C_date::m_apped(std::string& s_date) {
 	ll_value_ = 0;
 	int i_iterator;
 	int i_cykl = 0;
-	for (i_iterator = (int)s_date.size() - 1; i_iterator >= 0; i_iterator--) {
-		if (s_date[i_iterator] == '-') {
-			continue;
-		}
-		ll_value_ += ((int)(s_date[i_iterator]) - (int)'0')*(int)pow(10,i_cykl);
-		i_cykl++;
+	long long ll_temp;
+	int i_size = s_date.size();
+	f_conversion(s_date, ll_value_);
+	switch (i_size) {
+	case 7:
+	case 8:
+		ll_value_ * 100; break;
+	case 9:
+		f_conversion(s_date, ll_value_);
+		ll_temp = ll_value_;
+		ll_value_ /= 10;
+		i_cykl = ll_temp - ll_value_;
+		ll_value_ * 10;
+		ll_value_ += i_cykl;
+		break;
 	}
 }
 void C_date::m_sidle(std::string& s_date) {
@@ -93,3 +102,14 @@ bool C_date::operator>(const C_date& D) {
 }
 bool C_date::operator==(const C_date& D){ return (ll_value_ == D.ll_value_&&b_pointer_ == D.b_pointer_); }
 C_date::~C_date() {}
+void f_conversion(std::string& s_date, long long& ll_value) {
+	int i_iterator;
+	int i_cykl=0;
+	for (i_iterator = (int)s_date.size() - 1; i_iterator >= 0; i_iterator--) {
+		if (s_date[i_iterator] == '-') {
+			continue;
+		}
+		ll_value += ((int)(s_date[i_iterator]) - (int)'0')*(int)pow(10, i_cykl);
+		i_cykl++;
+	}
+}

@@ -12,7 +12,7 @@ public:
 	C_date(); //konstruktor
 	C_date(long long data);
 	//C_date(const C_date& date);
-	void m_apped(std::string& s_date); //metoda prezkonwertujaca wartosc zawarta w stringu zmiennej long long ll_value
+	void m_apped(std::string& s_date); //metoda przekonwertujaca wartosc zawarta w stringu zmiennej long long ll_value
 	void m_apped(int& i_day, int& i_month, int& i_year); //metoda przekonwertujaca wartosci z trezch intow do zmiennej long long ll_value
 	void m_sidle(int& i_day, int& i_month, int& i_year); //metoda przekonwertujaca wartosc ze zmiennej long long ll_value na trzy inty
 	void m_sidle(std::string& s_date); //metoda przekonwertujaca wartosc ze zmiennej long long ll_value na stringa
