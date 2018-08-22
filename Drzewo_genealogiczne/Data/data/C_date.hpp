@@ -18,15 +18,19 @@ public:
 	void m_sidle(std::string& s_date); //metoda przekonwertujaca wartosc ze zmiennej long long ll_value na stringa
 	void m_virtual(); //metoda odpowiadajaca za wyswietlanie danych za pomoca printf()
 	int m_old();
-	C_date operator+(const int& i);
-	C_date operator+(C_date& i);
+	//C_date operator+(const int& i);
+	//C_date operator+(C_date& i);
+	int operator+(const int& i);
+	int operator+(C_date& i);
+	int operator-(const int& i);
+	int operator-(C_date& i);
 	bool operator<(const int& i);
 	bool operator>(const int& i);
 	bool operator<(const C_date& D);
 	bool operator>(const C_date& D);
 	bool operator==(const C_date& D);
-	C_date operator-(const int& i);
-	C_date operator-(C_date& i);
+	//C_date operator-(const int& i);
+	//C_date operator-(C_date& i);
 	~C_date(); //destruktor
 };
 #endif // !C_DATE_HPP

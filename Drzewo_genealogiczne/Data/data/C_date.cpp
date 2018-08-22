@@ -72,7 +72,7 @@ int C_date::m_old() {
 C_date::C_date(long long data) {
 	ll_value_ = data;
 }
-C_date C_date::operator+(const int& i) {
+/*C_date C_date::operator+(const int& i) {
 	return C_date (this->ll_value_ + i* 10000); //return data;
 }
 C_date C_date::operator+(C_date& i)  {
@@ -83,6 +83,18 @@ C_date C_date::operator-(const int& i) {
 }
 C_date C_date::operator-(C_date& i) {
 	return C_date (this->ll_value_ - i.m_old()* 10000);
+}*/
+int C_date::operator+(const int& i) {
+	return (this->m_old() + i); //return data;
+}
+int C_date::operator+(C_date& i) {
+	return (this->m_old() + i.m_old());
+}
+int C_date::operator-(const int& i) {
+	return (this->m_old() - i);
+}
+int C_date::operator-(C_date& i) {
+	return (this->m_old() - i.m_old());
 }
 bool C_date::operator<(const int& i) {
 	return m_old() < i;

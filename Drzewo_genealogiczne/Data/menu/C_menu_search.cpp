@@ -506,21 +506,22 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 				if (b_search) { // gdy == true
 					if (i_sta <= 0) {
 						switch (i_sta) {
-						case 0: {
-							for (auto X : L_string_orgin) {
-									switch (X[0]) {
-										case 'M':
-											if (X.size() > 3)	i_klucz = r_parents;			//jak mama
-											else				i_klucz = r_partner; 	break;	//jak maz
-										case 'T': 				i_klucz = r_parents;	break;	//jak tata
-										case 'B':				i_klucz = r_sibling;	break;	//jak brat
-										case 'S':
-											if (X.size() > 3)	i_klucz = r_chlidren;			//jak syn
-											else				i_klucz = r_sibling;	break;	//jak siostra
-										case 'Z': 				i_klucz = r_partner;	break;	//jak zona
-										case 'C':				i_klucz = r_chlidren;	break;	//jak corka
-									}
-								}
+						case 0: { //przebudowac!!!
+							i_klucz = i_x;
+							//for (auto X : L_string_orgin) {
+							//		switch (X[0]) {
+							//			case 'M':
+							//				if (X.size() > 3)	i_klucz = r_parents;			//jak mama
+							//				else				i_klucz = r_partner; 	break;	//jak maz
+							//			case 'T': 				i_klucz = r_parents;	break;	//jak tata
+							//			case 'B':				i_klucz = r_sibling;	break;	//jak brat
+							//			case 'S':
+							//				if (X.size() > 3)	i_klucz = r_chlidren;			//jak syn
+							//				else				i_klucz = r_sibling;	break;	//jak siostra
+							//			case 'Z': 				i_klucz = r_partner;	break;	//jak zona
+							//			case 'C':				i_klucz = r_chlidren;	break;	//jak corka
+							//		}
+							//	}
 								V_proces = V_procedur_[0];
 								return true;
 							}
@@ -567,20 +568,21 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 						if (i_sta <= 0) {
 							switch (i_sta) {
 							case 0: {
-								for (auto X : L_string_orgin) {
-										switch (X[0]) {
-											case 'M':
-												if (X.size() > 3)	i_klucz = r_parents;			//jak mama
-												else				i_klucz = r_partner; 	break;	//jak maz
-											case 'T': 				i_klucz = r_parents;	break;	//jak tata
-											case 'B':				i_klucz = r_sibling;	break;	//jak brat
-											case 'S': 
-												if (X.size() > 3)	i_klucz = r_chlidren;			//jak syn
-												else				i_klucz = r_sibling;	break;	//jak siostra
-											case 'Z': 				i_klucz = r_partner;	break;	//jak zona
-											case 'C':				i_klucz = r_chlidren;	break;	//jak corka
-										}
-									}
+								i_klucz = i_x;
+								//for (auto X : L_string_orgin) {
+								//		switch (X[0]) {
+								//			case 'M':
+								//				if (X.size() > 3)	i_klucz = r_parents;			//jak mama
+								//				else				i_klucz = r_partner; 	break;	//jak maz
+								//			case 'T': 				i_klucz = r_parents;	break;	//jak tata
+								//			case 'B':				i_klucz = r_sibling;	break;	//jak brat
+								//			case 'S': 
+								//				if (X.size() > 3)	i_klucz = r_chlidren;			//jak syn
+								//				else				i_klucz = r_sibling;	break;	//jak siostra
+								//			case 'Z': 				i_klucz = r_partner;	break;	//jak zona
+								//			case 'C':				i_klucz = r_chlidren;	break;	//jak corka
+								//		}
+								//	}
 									V_proces = V_procedur_[0];
 									return true;
 								}

@@ -38,7 +38,7 @@ C_person_base::C_person_base(std::string& s_FIRSTNAME, std::string& s_LASTNAME,C
 C_person_base::~C_person_base() {}
 void operator<<(std::ofstream &is, C_person_base &C) {
 	is << ' ';
-	is << C.b_sex_;
+	is << (int)C.b_sex_;
 	is << ' ';
 	is << C.id_;
 	is << C.first_name_<<"\n";
