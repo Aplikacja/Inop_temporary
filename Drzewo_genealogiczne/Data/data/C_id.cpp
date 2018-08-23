@@ -15,3 +15,6 @@ C_id::~C_id() {};
 bool C_id::operator==(const C_id& id) {
 	return (ll_value_ == id.ll_value_&&b_pointer_ == id.b_pointer_);
 }
+bool C_id::operator!=(const C_id& id) {
+	return (ll_value_ != id.ll_value_||b_pointer_ != id.b_pointer_);
+}

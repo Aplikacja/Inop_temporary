@@ -23,7 +23,7 @@ public:
 	void m_active(); //metoda aktywujaca relacje
 	void m_deactive(); //metoda powodujaca ze dana relacja jest niekatywna
 	void m_add_typ(int i_variable); //metoda pozwalajaca dodawac do obiektu typu C_relation wartosc okreslajaca typ C_relationship
-	void m_get_typ(int i_variable); //metoda pozwalajaca wyciagac informacje o typie relacji z obiektu typu C_relationship
+	void m_get_typ(int& i_variable); //metoda pozwalajaca wyciagac informacje o typie relacji z obiektu typu C_relationship
 	void m_add_id(C_id& ID); //metoda pozwalajaca dodawac id od obiektu typu C_relationship
 	void m_get_id(C_id& ID); //metoda pozwalajaca do pozyskiwania id z obiektów typu C_relationship
 	C_relation m_return(int i_value); //metoda zwaracajaca relacje "dziecko"
