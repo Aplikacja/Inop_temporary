@@ -9,7 +9,7 @@ void f_werification_date(std::string& s_data, int& b_what);
 void f_what_good_day(int& i_month, int& i_day, int& b_what, bool b_przestepny);
 void f_good_day(C_date& data_first, C_date& data_sacend, int & b_what);
 void f_clean(std::list<C_person_base*>& list);
-void f_analicaly_parents(std::list<C_person_base*>& L_person, bool& b_father, bool& b_mather, bool& b_parents, int& number);
+void f_analicaly_parents(std::list<C_person_base*>& X, bool& b_father, bool& b_mather, bool& b_parents, int& i_number, C_person_base** father, C_person_base** mather);
 void f_delete_krotka(std::vector<std::string>& V_s, std::string data);
 void f_clera_data(std::string& data);
 void f_break(std::string& data);
@@ -305,6 +305,10 @@ void C_aplication::m_view() {
 						i_choice = 4;
 						int i_iterator;
 						int i_typ;
+						C_person_base* Fisrt_father;
+						C_person_base* Fisrt_mather;
+						C_person_base* Secend_father;
+						C_person_base* Secend_mather;
 						C_relation relation;
 						C_relation relationII;
 						C_relationship relationship;
@@ -318,6 +322,9 @@ void C_aplication::m_view() {
 						std::map<std::string, int> M_relation;
 						std::vector<C_id> V_id;
 						std::vector<C_id> V_id_temp;
+						std::vector<C_id> V_id_help;
+						std::vector<C_id>::iterator it_s;
+						std::vector<C_id> V_id_children;
 						std::vector<C_id> ::iterator it_id;
 						std::vector<C_relation>::iterator it_relation;
 						std::vector<C_relationship> V_relationship;
@@ -343,6 +350,7 @@ void C_aplication::m_view() {
 						M_relation["Maz"] = r_partner;
 						M_relation["Syn"] = r_chlidren;
 						M_relation["Corka"] = r_chlidren;
+						M_relation["Brak mo¿liwej relacji do dodania!"] = 6;
 						id.m_active();
 						id_baby.m_active();
 						id_temp.m_active();
@@ -350,15 +358,18 @@ void C_aplication::m_view() {
 						bool b_fisrt_parents = false;
 						bool b_secend_parents = false;
 						//bool b_temp;
-						bool b_mather=false;
-						bool b_father=false;
+						bool b_first_mather=false;
+						bool b_first_father=false;
+						bool b_secend_mather = false;
+						bool b_secend_father = false;
 						bool b_gender;
 						//bool b_secend_gender;
 						int i_first_numb_parents=0;
-						int i_secend_numb_parets = 0;
+						int i_secend_numb_parents = 0;
 						int i_first_numb_sibling = 0;
 						int i_secend_numb_sibling = 0;
 						int i_first_free_relationship = 0;
+						int i_secend_free_relationship = 0;
 						//zastapic pojedyncze C_date tablica
 						C_date first_brith;
 						C_date first_death;
@@ -383,7 +394,7 @@ void C_aplication::m_view() {
 									//Analiza osoby (parents)
 									X.m_get_id(id_temp);
 									e_soft_.m_view(view_search, sort_id, id_temp, L_Person_temp);
-									f_analicaly_parents(L_Person_temp, b_father, b_mather, b_fisrt_parents, i_first_numb_parents);
+									f_analicaly_parents(L_Person_temp, b_first_father, b_first_mather, b_fisrt_parents, i_first_numb_parents, &Fisrt_father, &Fisrt_mather);
 									break; 
 								}
 								case r_sibling: {
@@ -417,13 +428,13 @@ void C_aplication::m_view() {
 							}
 						}
 						//analiza wyboru relacji
-						if (i_first_numb_parents) {
+						if (i_first_numb_parents==2) {
 							f_delete_krotka(V_string, "Tata");
 							f_delete_krotka(V_string, "Mama");
 						}
 						else {
-							if(b_mather) f_delete_krotka(V_string, "Tata");
-							if(b_father) f_delete_krotka(V_string, "Mama");
+							if(b_first_mather) f_delete_krotka(V_string, "Mama");
+							if(b_first_father) f_delete_krotka(V_string, "Tata");
 						}
 						if (b_gender) f_delete_krotka(V_string, "Zona");//odrzucenie zony
 						else f_delete_krotka(V_string, "Maz");//odrzucenie meza
@@ -432,6 +443,55 @@ void C_aplication::m_view() {
 						secend_brith = (*L_person.begin())->m_content_date(p_data_brith);
 						secend_death = (*L_person.begin())->m_content_date(p_data_death);
 						b_gender = (*L_person.begin())->m_content_gender(p_gender);
+						V_relation = (*L_Person.begin())->m_content_V_relation(p_relation);
+						for (auto X : V_relation) {
+							X.m_get_typ(i_typ);
+							switch (i_typ) {
+								case r_parents: {
+									//Analiza osoby (parents)
+									X.m_get_id(id_temp);
+									e_soft_.m_view(view_search, sort_id, id_temp, L_Person_temp);
+									f_analicaly_parents(L_Person_temp, b_secend_father, b_secend_mather, b_secend_parents, i_secend_numb_parents, &Secend_father, &Secend_mather);
+									break;
+								}
+								case r_sibling: {
+									//Analiza osoby (sibling)
+									i_secend_numb_sibling++; break;
+								}
+							}
+						}
+						V_relationship = (*L_Person.begin())->m_content_V_relationship(p_relationship);
+						for (auto Y : V_relationship) {
+							Y.m_get_typ(i_typ);
+							switch (i_typ) {
+								case r_partner: {
+									Y.m_get_id(id_temp);
+									if (id_temp.m_what()) {
+										Y.m_get_baby(V_relation);
+										for (auto& T : V_relation) {
+											T.m_get_typ(i_typ);
+											switch (i_typ) {
+											case r_chlidren:
+												break;
+											default:
+												//dodac informacje o bledzie
+												break;
+											}
+										}
+									}
+									else
+										i_secend_free_relationship++;
+								}
+							}
+						}
+						if (b_first_father&&b_secend_father || b_first_mather && b_secend_mather) {
+							if (&Fisrt_father != &Secend_father || &Fisrt_mather != &Secend_mather) {
+								f_delete_krotka(V_string, "Brat");
+								f_delete_krotka(V_string, "Siostra");
+								f_delete_krotka(V_string, "Mama");
+								f_delete_krotka(V_string, "Tata");
+							}
+						}
 						if (!b_gender) {
 							f_delete_krotka(V_string, "Zona");
 							f_delete_krotka(V_string, "Siostra");
@@ -477,6 +537,7 @@ void C_aplication::m_view() {
 
 //-------------------------
 //---------scalanie dzewa---------------------------------------
+						if (V_string.size() == 0) V_string.push_back("Brak mo¿liwej relacji do dodania!");
 						V_str_[1][id_menu_MenuAddRelation] = V_string;
 						M_.m_set_str(i_variable, V_str_);
 						M_.m_set_replay(i_variable, id_menu_MenuAddRelation, searchperson);//tu ubdate					
@@ -505,6 +566,7 @@ void C_aplication::m_view() {
 										case r_parents:
 											X.m_get_id(id_temp);
 											e_soft_.m_view(view_search, sort_id, id_temp, L_person_temp); break; //L_person_temp <- potencjalny partner dodanego rodzica
+
 										}
 								}
 									relation_temp.m_active(); //aktywacja relacji
@@ -518,9 +580,11 @@ void C_aplication::m_view() {
 									//stworzenie nowej relacji
 									if (V_relationship.size() == 0) { //sprawdzanie czy vector relationship ma jakas zawartosc
 										//tworzenie nowej relationship
-										relationship_tempII.m_active();
-										relationship_tempII.m_add_typ(r_partner);
-										relationship_tempII.m_add_id(id);
+										relation.m_active(); //aktywacja relacji
+										relation.m_add_typ(r_parents); //dodanie typu do relacji
+										relation.m_add_id(id); //wstaweinie id do relacji
+										for (auto& X : V_id) 
+											e_soft_.m_add_relation(relation, X);
 										relationship_temp.m_active(); //aktywacja relationship
 										relationship_temp.m_add_typ(r_partner); //okreslenie typu relationship 
 										if (L_person_temp.size() > 0) { //czy wykryto partnera w srod relacji
@@ -582,11 +646,16 @@ void C_aplication::m_view() {
 												}
 											}
 											else {//stworzenie nowego zwiazku 
+												relation.m_active(); //aktywacja relacji
+												relation.m_add_typ(r_parents); //dodanie typu do relacji
+												relation.m_add_id(id); //wstaweinie id do relacji
 												relationship_temp.m_active();
 												relationship_temp.m_add_typ(r_partner); //okreslenie typu relationship 
 												for (it_relation = V_relation_temp.begin(); it_relation != V_relation_temp.end(); it_relation++)
 													relationship_temp.m_set_baby(*it_relation); //wstaweinie wczesniej stworzonej relacji do vectora relacji
 												V_relationship.push_back(relationship_temp); //wstawienie relationship do vectora relationship
+												for (auto& X : V_id) 
+													e_soft_.m_add_relation(relation, X);
 											}
 											e_soft_.m_add_V_relationship(V_relationship, id); //mam nadzieje ze bedzie to kombo dzialac...
 											e_soft_.m_add_V_relationship(V_relationship_temp, idI);
@@ -603,6 +672,8 @@ void C_aplication::m_view() {
 								L_Person.clear();
 								e_soft_.m_view(view_search, sort_id, ID_person, L_Person);
 								V_relation = (*L_Person.begin())->m_content_V_relation(p_relation);
+								V_id_children.push_back(id);
+								V_id_children.push_back(ID_person);
 								//stworzenie relacji	
 								relation.m_active(); //aktywacja relacji
 								relation.m_add_typ(r_sibling);	//ustawienie typu relacji
@@ -612,7 +683,7 @@ void C_aplication::m_view() {
 								for (auto X : V_relation) {
 									X.m_get_typ(i_typ);
 									switch (i_typ) {
-									case r_sibling:
+									case r_sibling: {
 										X.m_get_id(id_temp);
 										if (id_temp == id || id_temp == ID_person) break;
 										relation_temp.m_active();	//aktywacja relacji
@@ -620,9 +691,16 @@ void C_aplication::m_view() {
 										relation_temp.m_add_id(id_temp); //wstawienie id do relacji
 										V_relation_temp.push_back(relation_temp); //stworzenie listy rodzenstwa
 										V_id.push_back(id_temp);
+										V_id_children.push_back(id_temp);
 										e_soft_.m_add_relation(relation_temp, id); //dodanie relacji rodzenstwo do kazdego z rodzenstwa
 										e_soft_.m_add_relation(relation, id_temp);
-										break;
+										break; }
+									case r_parents:
+										X.m_get_id(id_temp);
+										for (auto& X : V_id_help) {
+											if (X == id_temp) break;
+										}
+										V_id_help.push_back(id_temp); break;
 									}
 								}
 								e_soft_.m_add_relation(relation, ID_person);
@@ -634,7 +712,7 @@ void C_aplication::m_view() {
 									for (auto X : V_relationII) {
 										X.m_get_typ(i_typ);
 										switch (i_typ) {
-										case r_sibling:
+										case r_sibling: {
 											X.m_get_id(id_temp);
 											if (id_temp == id || id_temp == ID_person) break;
 											relation_temp.m_active();	//aktywacja relacji
@@ -642,11 +720,18 @@ void C_aplication::m_view() {
 											relation_temp.m_add_id(id_temp); //wstawienie id do relacji
 											V_relation_temp_II.push_back(relation_temp);
 											V_id_temp.push_back(id_temp);
+											V_id_children.push_back(id_temp);
 											e_soft_.m_add_relation(relation_temp, ID_person);
 											e_soft_.m_add_relation(relationII, id_temp);
-										/*	for (it_relation = V_relation_temp.begin(); it_relation != V_relation_temp.end(); it_relation++)
-												e_soft_.m_add_relation(*it_relation, id_temp);*/
-											break;
+											/*	for (it_relation = V_relation_temp.begin(); it_relation != V_relation_temp.end(); it_relation++)
+													e_soft_.m_add_relation(*it_relation, id_temp);*/
+											break; }
+										case r_parents:
+											X.m_get_id(id_temp);
+											for (auto& X : V_id_help) {
+												if (X == id_temp) break;
+											}
+											V_id_help.push_back(id_temp); break;
 										}
 								//	while(f_powtorzenia(V_id, V_id_temp, V_relation_temp, V_relation_temp_II)){}
 									//e_soft_.m_add_relation(relation, id);
@@ -659,6 +744,65 @@ void C_aplication::m_view() {
 									for (it_id = V_id.begin(); it_id != V_id.end(); it_id++) {
 										for (it_relation = V_relation_temp_II.begin(); it_relation != V_relation_temp_II.end(); it_relation++) {
 											e_soft_.m_add_relation(*it_relation, *it_id); //wstaweinie do orginalnego persona z id = id relacji
+										}
+									}
+									if (V_id_help.size() == 2) {
+										relation.m_active();
+										relation.m_add_typ(r_chlidren);
+										for (it_s = V_id_help.begin(); it_s != V_id_help.end(); it_s++) {
+											L_person.clear();
+											e_soft_.m_view(view_search, sort_id, *it_s, L_person);
+											(*L_person.begin())->m_get_V_relationship(V_relationship);
+											it_s++;
+											C_id T;
+											if (V_relationship.size() == 1) {
+												(*V_relationship.begin()).m_get_id(T);
+												if (!T.m_what()) {
+													(*V_relationship.begin()).m_add_typ(r_partner);
+													(*V_relationship.begin()).m_add_id(*it_s);
+												}
+											}
+											
+											for (auto& R : V_relationship) {
+												R.m_get_id(id_temp);
+												for (auto& S : V_id_children) {
+													relation.m_add_id(S);
+													R.m_set_baby(relation);
+												}
+											}
+											L_person.clear();
+											
+											e_soft_.m_view(view_search, sort_id, *it_s, L_person);
+											(*L_person.begin())->m_get_V_relationship(V_relationship_temp);
+											it_s--;
+											if (V_relationship_temp.size() == 1) {
+												(*V_relationship_temp.begin()).m_get_id(T);
+												if (!T.m_what()) {
+													(*V_relationship_temp.begin()).m_add_typ(r_partner);
+													(*V_relationship_temp.begin()).m_add_id(*it_s);
+												}
+											}
+											e_soft_.m_add_V_relationship(V_relationship, *it_s);
+											for (auto& R : V_relationship_temp) {
+												R.m_get_id(id_temp);
+												for (auto& S : V_id_children) {
+													relation.m_add_id(S);
+													R.m_set_baby(relation);
+												}
+											}
+											it_s++;
+											e_soft_.m_add_V_relationship(V_relationship_temp, *it_s);
+											it_s--;
+											relation.m_add_typ(r_parents);
+											relation.m_add_id(*it_s);
+											for (auto C : V_id_children) {
+												e_soft_.m_add_relation(relation, C);
+											}
+											it_s++;
+											relation.m_add_id(*it_s);
+											for (auto C : V_id_children) {
+												e_soft_.m_add_relation(relation, C);
+											}
 										}
 									}
 								e_soft_.m_add_relation(relationII, id);
@@ -707,8 +851,8 @@ void C_aplication::m_view() {
 								}
 								e_soft_.m_add_relationship(relationship, ID_person);
 								e_soft_.m_add_relationship(relationship_temp, id);
-							} break;
-
+								break;
+							} 
 							case r_chlidren: { //naprawic!!
 								relation.m_active(); //aktywacja relacji
 								relation.m_add_typ(r_chlidren);	//ustawienie typu relacji
@@ -1181,15 +1325,17 @@ void f_good_day(C_date& data_first, C_date& data_sacend, int& i_what) {
 		}
 	}
 }
-void f_analicaly_parents(std::list<C_person_base*>& X, bool& b_father, bool& b_mather, bool& b_parents, int& i_number) {
+void f_analicaly_parents(std::list<C_person_base*>& X, bool& b_father, bool& b_mather, bool& b_parents, int& i_number, C_person_base** father, C_person_base** mather) {
 	bool b_temp;
 	b_temp=(*X.begin())->m_content_gender(p_gender);
 		if (b_temp) { //woman
 			b_mather = true;
+			*mather = (*X.begin());
 			i_number++;
 		}
 		else { //man
 			b_father = true;
+			*father = (*X.begin());
 			i_number++;
 		}
 		if (i_number == 2) b_parents = true;

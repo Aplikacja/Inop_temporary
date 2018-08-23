@@ -98,19 +98,13 @@ std::string C_person_base::m_get_content() {
 	return ' ' + first_name_ + ' ' + last_name_ + '\n';
 }
 void C_person_base::m_add_relation(C_relation& relation) {
-	for (auto X : V_relation_) {
-		if (X == relation) {
-			return;
-		}
-	}
+	for (auto X : V_relation_) 
+		if (X == relation) 	return;
 	V_relation_.push_back(relation);
 }
 void C_person_base::m_add_relationship(C_relationship& relation) {
-	for (auto X : V_relationship_) {
-		if (X == relation) {
-			return;
-		}
-	}
+	for (auto X : V_relationship_) 
+		if (X == relation) 	return;
 	V_relationship_.push_back(relation);
 }
 void C_person_base::m_get_V_relation(std::vector<C_relation>& V_r) {
