@@ -111,14 +111,14 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 					x = i_position + 1;
 				i_start = 10;
 				return;
-			case vkreturn:	i_start = 0;	s_klucz = v_k[x];		return;
-			case vkescape:	i_start = -10;							return;
-			case vkdelete:	i_start = -20;							return;
-			case vkleft:	i_start = -30;							return;
-			case vkright:	i_start = -35;							return;
-			case vkplus:	i_start = -40;							return;
-			case vkminus:	i_start = -45;							return;
-			case vkspace:	v_k[i_position] += " "; i_start = -100; return;
+			case vkreturn:	i_start = 0;  if(v_k.size()>2)	s_klucz = v_k[x];		return;
+			case vkescape:	i_start = -10;											return;
+			case vkdelete:	i_start = -20;											return;
+			case vkleft:	i_start = -30;											return;
+			case vkright:	i_start = -35;											return;
+			case vkplus:	i_start = -40;											return;
+			case vkminus:	i_start = -45;											return;
+			case vkspace:	v_k[i_position] += " "; i_start = -100;					return;
 			case vka:
 			case vka1:
 			case vka2:		v_k[i_position] += 'a';	i_start = -100; return;
@@ -275,6 +275,7 @@ void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::s
 						return;*/
 				case vkreturn:
 					i_start = 0;
+					if(v_k.size()>2)
 					s_klucz = v_k[x];
 					return;
 				case vkescape:	i_start = -2;							return;

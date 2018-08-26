@@ -38,7 +38,7 @@ C_person_base::C_person_base(std::string& s_FIRSTNAME, std::string& s_LASTNAME,C
 C_person_base::~C_person_base() {}
 void operator<<(std::ofstream &is, C_person_base &C) {
 	is << ' ';
-	is << C.b_sex_;
+	is << (int)C.b_sex_;
 	is << ' ';
 	is << C.id_;
 	is << C.first_name_<<"\n";
@@ -98,19 +98,13 @@ std::string C_person_base::m_get_content() {
 	return ' ' + first_name_ + ' ' + last_name_ + '\n';
 }
 void C_person_base::m_add_relation(C_relation& relation) {
-	for (auto X : V_relation_) {
-		if (X == relation) {
-			return;
-		}
-	}
+	for (auto X : V_relation_) 
+		if (X == relation) 	return;
 	V_relation_.push_back(relation);
 }
 void C_person_base::m_add_relationship(C_relationship& relation) {
-	for (auto X : V_relationship_) {
-		if (X == relation) {
-			return;
-		}
-	}
+	for (auto X : V_relationship_) 
+		if (X == relation) 	return;
 	V_relationship_.push_back(relation);
 }
 void C_person_base::m_get_V_relation(std::vector<C_relation>& V_r) {

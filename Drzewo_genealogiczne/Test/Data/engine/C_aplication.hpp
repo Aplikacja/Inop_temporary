@@ -9,6 +9,7 @@
 #include "define.hpp"
 #include <fstream>
 #include <cstdio>
+#include <map>
 class C_aplication {
 	C_menu M_;
 	C_engine_software e_soft_;

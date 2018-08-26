@@ -12,6 +12,9 @@ void C_data_base::m_update(long long ll_update) {
 	ll_value_ = ll_update; }
 long long& C_data_base::m_return_value() {
 	return ll_value_; }
+long long C_data_base::m_return() {
+	return ll_value_;
+}
 bool& C_data_base::m_what() { 
 	return b_pointer_; }
 C_data_base::~C_data_base() {}

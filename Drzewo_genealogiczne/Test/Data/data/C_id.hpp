@@ -14,6 +14,7 @@ public:
 	void m_virtual(); //klasa do rozbudowy
 	void m_down();
 	bool operator==(const C_id& id);
+	bool operator!=(const C_id& id);
 	~C_id(); //destruktor
 };
 #endif // !C_ID_HPP

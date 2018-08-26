@@ -38,7 +38,7 @@ C_relationship::~C_relationship() {}
 void C_relationship::m_active() { b_value_ = true; }
 void C_relationship::m_deactive() { b_value_ = false; }
 void C_relationship::m_add_typ(int i_variable) { i_typ_ = i_variable; }
-void C_relationship::m_get_typ(int i_variable) { i_variable = i_typ_; }
+void C_relationship::m_get_typ(int& i_variable) { i_variable = i_typ_; }
 void C_relationship::m_add_id(C_id& ID) { id_ = ID; }
 void C_relationship::m_get_id(C_id& ID) { ID = id_; }
 C_relation C_relationship::m_return(int i_value) {
@@ -50,6 +50,8 @@ C_relation C_relationship::m_return(int i_value) {
 	}
 }
 void C_relationship::m_set_baby(C_relation& relation) {
+	for (auto& X : V_)
+		if (X == relation) return;
 	V_.push_back(relation);
 }
 void C_relationship::m_get_baby(std::vector<C_relation>& relation) {

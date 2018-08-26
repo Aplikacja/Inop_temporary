@@ -83,6 +83,10 @@ void C_menu::m_set_content(int i_choice, std::list<C_person_base*>& Lista, std::
 	C_id id;
 	std::vector<std::string> V_content;
 	int i_iter;
+	if (Lista.size() == 0) {
+		V_content.push_back("Brak osob w drzewie!!");
+		V_id.clear();
+	}
 		for (auto& X : Lista) {
 			s_data.clear();
 			X->m_conwert(s_data);

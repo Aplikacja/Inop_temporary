@@ -15,6 +15,7 @@ public:
 	C_data_base(); //konstruktor
 	void m_update(long long ll_update); // metoda pozwalajaca podmienic wartosc jaka znajduje sie w obiekcie na podana jako argument metody
 	long long& m_return_value(); //metoda zwracajaca adres do zmiennej (long long ll_value)
+	long long m_return();
 	virtual void m_virtual() = 0; //metoda wirtualna sprawia ze klasa C_data_base jest klasa abstrakcyjna
 	void m_deactivation(); //metoda ustwaia w zmiennej bool b_pointer wartosc false (sprawia ze obiekt staje NIE aktywny)
 	void m_active(); //metoda ustwaia w zmiennej bool b_pointer wartosc true (sprawia ze obiekt staje sie aktywny)
