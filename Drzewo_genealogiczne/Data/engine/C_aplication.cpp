@@ -610,7 +610,7 @@ void C_aplication::m_view() {
 											(*L_Person_temp.begin())->m_conwert(s_str);
 											V_string.push_back(s_str);
 										}
-										V_string.push_back("Dodaj do nowej relacji");
+										V_string.push_back("\tDodaj do nowej relacji");
 										V_str_[1][id_menu_MenuChoicePartner] = V_string;
 										M_.m_set_str(i_variable, V_str_);
 										M_.m_set_replay(i_variable, id_menu_MenuChoicePartner, searchperson);
@@ -854,61 +854,86 @@ void C_aplication::m_view() {
 								break;
 							} 
 							case r_chlidren: { //naprawic!!
-								relation.m_active(); //aktywacja relacji
-								relation.m_add_typ(r_chlidren);	//ustawienie typu relacji
-								relation.m_add_id(id); //wstawienie id do relacji
-								V_relation.clear();
-								V_relationship.clear();
+								L_Person.clear();
+								L_person.clear();
+								e_soft_.m_view(view_search, sort_id, id, L_person); //analiza czy jest rodzenstwo
+								V_relation = (*L_person.begin())->m_content_V_relation(p_relation);
+								V_id.clear();
+								V_id.push_back(id); //zalokowanie id wybranego dziecka
+								if (V_relation.size() > 0) {
+									for (auto R : V_relation) {
+										switch (R.m_get_typ()) {
+										case r_sibling:
+											R.m_get_id(id_temp);
+											V_id.push_back(id_temp); //wpisanie wszystkich id braci
+											break;
+										}
+											
+									}
+								}
+								e_soft_.m_view(view_search, sort_id, ID_person, L_Person);
 								V_relationship = (*L_Person.begin())->m_content_V_relationship(p_relationship);
-								if (V_relationship.size() > 0){
+								relation_temp.m_active(); //aktywacja relacji
+								relation_temp.m_add_typ(r_parents);	//ustawienie typu relacji
+								relation_temp.m_add_id(ID_person); //wstawienie id do relacji
+								if (V_relationship.size() > 0) {
+									V_string.clear();
 									for (auto X : V_relationship) {
 										X.m_get_id(id_temp);
+										L_Person_temp.clear();
 										e_soft_.m_view(view_search, sort_id, id_temp, L_Person_temp);
 										(*L_Person_temp.begin())->m_conwert(s_str);
 										V_string.push_back(s_str);
 									}
+									V_string.push_back("\tNieznany partner");
 									V_str_[1][id_menu_MenuChoicePartner] = V_string;
 									M_.m_set_str(i_variable, V_str_);
 									M_.m_set_replay(i_variable, id_menu_MenuChoicePartner, searchperson);
 									if (M_.m_view(id_menu_MenuChoicePartner, i_variable, s_str, i_klucz, V_proces, i_choice)) { //potencjalne wybranie z partnerow rodzica 
-										if (i_klucz < (int)V_relationship.size()) {
-											V_relation=(*L_person.begin())->m_content_V_relation(p_relation);
-											for (auto R : V_relation) {
-												switch (R.m_get_typ()) {
-												case r_sibling:
-													R.m_get_id(id_temp);
-													relation_temp.m_active();
-													relation_temp.m_add_typ(r_chlidren);	//ustawienie typu relacji
-													relation_temp.m_add_id(id_temp); //wstawienie id do relacji
-												}
+										i_klucz--;
+										if (i_klucz < (int)V_relationship.size()) { //czy wybrano osobe z listy rodzicow
+											V_relationship[i_klucz].m_get_id(id_temp); //od tego momentu id_temp jest id partera
+											relationII.m_active(); //aktywacja relacji
+											relationII.m_add_typ(r_parents);	//ustawienie typu relacji
+											relationII.m_add_id(id_temp); //wstawienie id do relacji
+											L_Person.clear();
+											e_soft_.m_view(view_search, sort_id, id_temp, L_Person);
+											V_relationship_temp = (*L_Person.begin())->m_content_V_relationship(p_relationship);
+											i_iterator = 0;
+											for (auto R : V_relationship_temp) {
+												R.m_get_id(id_partner);
+													if (id_partner == ID_person) {
+														for (auto ID : V_id) {
+															relation.m_active(); //aktywacja relacji
+															relation.m_add_typ(r_chlidren);	//ustawienie typu relacji
+															relation.m_add_id(ID); //wstawienie id do relacji
+															V_relationship[i_klucz].m_set_baby(relation);
+															V_relationship_temp[i_iterator].m_set_baby(relation);
+															e_soft_.m_add_relation(relationII, ID);
+															e_soft_.m_add_relation(relation_temp, ID);
+															break;
+														}
+													}
+													i_iterator++;
 											}
-											for (it_relation = V_relation_temp.begin(); it_relation != V_relation_temp.end(); it_relation++)
-												V_relationship[i_klucz].m_set_baby(*it_relation);
-											V_relationship[i_klucz].m_get_id(id_temp);
-											relation.m_active(); //aktywacja relacji
-											relation.m_add_typ(r_parents); //dodanie typu do relacji
-											relation.m_add_id(id); //wstaweinie id do relacji
-																   //e_soft_.m_view(view_search, sort_id, ID_person, L_Person_temp);//dostaie sie do zawartosci persona
-											V_relation_temp = (*L_Person.begin())->m_content_V_relation(p_relation);
-											for (auto X : V_relation_temp) {
-												X.m_get_typ(i_typ);
-												switch (i_typ) {
-												case r_sibling: //dodanie relacji rodzica do rodzenstwa pobranego ze zwiazku dodanego rodzica
-													X.m_get_id(id_temp);
-													e_soft_.m_add_relation(relation, id_temp);	break;
-												}
-											}
+											e_soft_.m_add_V_relationship(V_relationship, id_temp);
+											e_soft_.m_add_V_relationship(V_relationship, ID_person);
 										}
 										else {//stworzenie nowego zwiazku 
 											relationship_temp.m_active();
 											relationship_temp.m_add_typ(r_partner); //okreslenie typu relationship 
-											for (it_relation = V_relation_temp.begin(); it_relation != V_relation_temp.end(); it_relation++)
-												relationship_temp.m_set_baby(*it_relation); //wstaweinie wczesniej stworzonej relacji do vectora relacji
-											V_relationship.push_back(relationship_temp); //wstawienie relationship do vectora relationship
+											for (auto ID : V_id) {
+												relation.m_active(); //aktywacja relacji
+												relation.m_add_typ(r_chlidren);	//ustawienie typu relacji
+												relation.m_add_id(ID); //wstawienie id do relacji
+												relationship_temp.m_set_baby(relation);
+												e_soft_.m_add_relation(relation_temp, ID);
+											}
+											e_soft_.m_add_relationship(relationship_temp, ID_person); //mam nadzieje ze bedzie to kombo dzialac..
 										}
-										e_soft_.m_add_V_relationship(V_relationship, id); //mam nadzieje ze bedzie to kombo dzialac...
 									}
 								}
+							
 							}
 							default: break;
 							}
