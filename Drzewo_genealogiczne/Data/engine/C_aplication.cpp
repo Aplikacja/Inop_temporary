@@ -867,8 +867,7 @@ void C_aplication::m_view() {
 											R.m_get_id(id_temp);
 											V_id.push_back(id_temp); //wpisanie wszystkich id braci
 											break;
-										}
-											
+										}	
 									}
 								}
 								e_soft_.m_view(view_search, sort_id, ID_person, L_Person);
@@ -916,7 +915,7 @@ void C_aplication::m_view() {
 													}
 													i_iterator++;
 											}
-											e_soft_.m_add_V_relationship(V_relationship, id_temp);
+											e_soft_.m_add_V_relationship(V_relationship_temp, id_temp);
 											e_soft_.m_add_V_relationship(V_relationship, ID_person);
 										}
 										else {//stworzenie nowego zwiazku 
@@ -970,12 +969,13 @@ void C_aplication::m_view() {
 							date_death.m_active();
 							date_brith.m_apped(V_dane[2]);
 							date_death.m_apped(V_dane[3]);
+							
 							f_good_day(date_brith, date_death, i_what);
 							switch (V_dane[4][0]) {
 							case 'W':	b_gender = true; break;
 							case 'M':	b_gender = false; break;
 							}
-							if (i_what_1&&i_what_2&&i_what<2) {
+							if (i_what_1&&i_what_2&&i_what<=2) {
 								e_soft_.m_add_person(b_gender, V_dane[0], V_dane[1], date_brith, date_death);
 								i_what = 0;
 							}
