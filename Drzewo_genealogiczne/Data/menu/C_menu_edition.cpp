@@ -87,6 +87,7 @@ bool C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result
 	return false;
 }
 C_menu_edition::~C_menu_edition() {}
+bool C_menu_edition::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long long>& V_proces, int& i_choice, std::vector<std::vector<C_id>>& V_id) { return false; }
 bool C_menu_edition::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>& V_procedur, int& i_choice) {return false;}
 bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) {
 	int i_x = i_start_;

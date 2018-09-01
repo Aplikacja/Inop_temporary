@@ -959,7 +959,7 @@ void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k
 				x = i_start;
 			return;
 		case vkreturn:
-			i_klucz = v_k[x];
+			i_klucz = v_k[x-1];
 			return;
 		case vkescape:
 			i_klucz = -2;

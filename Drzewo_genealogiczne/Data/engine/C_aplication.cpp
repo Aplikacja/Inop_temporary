@@ -484,14 +484,6 @@ void C_aplication::m_view() {
 								}
 							}
 						}
-						if (b_first_father&&b_secend_father || b_first_mather && b_secend_mather) {
-							if (&Fisrt_father != &Secend_father || &Fisrt_mather != &Secend_mather) {
-								f_delete_krotka(V_string, "Brat");
-								f_delete_krotka(V_string, "Siostra");
-								f_delete_krotka(V_string, "Mama");
-								f_delete_krotka(V_string, "Tata");
-							}
-						}
 						if (!b_gender) {
 							f_delete_krotka(V_string, "Zona");
 							f_delete_krotka(V_string, "Siostra");
@@ -504,36 +496,93 @@ void C_aplication::m_view() {
 							f_delete_krotka(V_string, "Syn");
 							f_delete_krotka(V_string, "Brat");
 						}
+						if (first_death.m_what() && first_brith.m_what() && secend_death.m_what() && secend_brith.m_what()) {
+						if (b_first_father&&b_secend_father || b_first_mather && b_secend_mather) {
+							if (&Fisrt_father != &Secend_father || &Fisrt_mather != &Secend_mather) {
+								f_delete_krotka(V_string, "Brat");
+								f_delete_krotka(V_string, "Siostra");
+								f_delete_krotka(V_string, "Mama");
+								f_delete_krotka(V_string, "Tata");
+							}
+						}
 						//analiza wieku i emilinacja relacji do przemyslenia
-						int i =  first_death - first_brith;
-						int j = first_brith + Min_old;
-						if (first_death - first_brith > Min_old) {
-							if (secend_brith < first_brith + Min_old) { //powinno byc prawidlowo
+						
+							//int i = first_death - first_brith;
+							//int j = first_brith + Min_old;
+							if (first_death - first_brith > Min_old) {
+								if (secend_brith < first_brith + Min_old) { //powinno byc prawidlowo
+									f_delete_krotka(V_string, "Syn");
+									f_delete_krotka(V_string, "Corka");
+								}
+							}
+							else {
 								f_delete_krotka(V_string, "Syn");
 								f_delete_krotka(V_string, "Corka");
 							}
-						}
-						else {
-							f_delete_krotka(V_string, "Syn");
-							f_delete_krotka(V_string, "Corka");
-						}
-						if (secend_death - secend_brith > Min_old) {
-							if (secend_death < (first_brith-1)) { //powinno byc prawidlowo - zalorzenie to mowi ze osoba dodawana wczesniej umarla niz sie pierwsza osoba urodzila
+							if (secend_death - secend_brith > Min_old) {
+								if (secend_death < (first_brith - 1)) { //powinno byc prawidlowo - zalorzenie to mowi ze osoba dodawana wczesniej umarla niz sie pierwsza osoba urodzila
+									f_delete_krotka(V_string, "Mama");
+									f_delete_krotka(V_string, "Tata");
+									f_delete_krotka(V_string, "Maz");
+									f_delete_krotka(V_string, "Zona");
+								}
+								if (first_brith - secend_brith < Min_old) {
+									f_delete_krotka(V_string, "Mama");
+									f_delete_krotka(V_string, "Tata");
+								}
+							}
+							else
+							{
 								f_delete_krotka(V_string, "Mama");
 								f_delete_krotka(V_string, "Tata");
-								f_delete_krotka(V_string, "Maz");
-								f_delete_krotka(V_string, "Zona");
-							}
-							if ( first_brith -secend_brith<Min_old) {
-								f_delete_krotka(V_string, "Mama");
-								f_delete_krotka(V_string, "Tata");
 							}
 						}
-						else
-						{
-							f_delete_krotka(V_string, "Mama");
-							f_delete_krotka(V_string, "Tata");
-						}
+						/*else {
+							if (first_death.m_what()==true && first_brith.m_what()==true) {
+									if (secend_death.m_what() == true && secend_brith.m_what() == false) {
+
+									}
+									else if (secend_death.m_what() == false && secend_brith.m_what() == true) {
+
+									}
+									else if (secend_death.m_what() == false && secend_brith.m_what() == false) {
+
+									}
+							}
+							else if (first_death.m_what() == true && first_brith.m_what() == false) {
+									if (secend_death.m_what() == true && secend_brith.m_what() == false) {
+
+									}
+									else if (secend_death.m_what() == false && secend_brith.m_what() == true) {
+
+									}
+									else if (secend_death.m_what() == false && secend_brith.m_what() == false) {
+
+									}
+							}
+							else if (first_death.m_what() == false && first_brith.m_what() == true) {
+									if (secend_death.m_what() == true && secend_brith.m_what() == false) {
+
+									}
+									else if (secend_death.m_what() == false && secend_brith.m_what() == true) {
+
+									}
+									else if (secend_death.m_what() == false && secend_brith.m_what() == false) {
+
+									}
+							}
+							else if (first_death.m_what() == false && first_brith.m_what() == false) {
+									if (secend_death.m_what() == true && secend_brith.m_what() == false) {
+
+									}
+									else if (secend_death.m_what() == false && secend_brith.m_what() == true) {
+
+									}
+									else if (secend_death.m_what() == false && secend_brith.m_what() == false) {
+
+									}
+							}
+						}*/
 
 //-------------------------
 //---------scalanie dzewa---------------------------------------
@@ -955,8 +1004,8 @@ void C_aplication::m_view() {
 						if (M_.m_view(id_menu_MenuAddPerson, i_variable, V_dane, i_klucz, V_proces, i_choice, i_what)) { //lacze dziala wyciaga dane z interface trzeba zrobic funkcje zabezpieczajace
 							f_break(V_dane[2]);
 							f_break(V_dane[3]);
-							f_clera_data(V_dane[2]);
-							f_clera_data(V_dane[3]);
+						//	f_clera_data(V_dane[2]);
+						//	f_clera_data(V_dane[3]);
 							i_what = 1;
 							i_what_1 = 0;
 							i_what_2 = 0;
@@ -969,7 +1018,6 @@ void C_aplication::m_view() {
 							date_death.m_active();
 							date_brith.m_apped(V_dane[2]);
 							date_death.m_apped(V_dane[3]);
-							
 							f_good_day(date_brith, date_death, i_what);
 							switch (V_dane[4][0]) {
 							case 'W':	b_gender = true; break;
@@ -1121,7 +1169,6 @@ void C_aplication::m_view() {
 					std::string s_str;
 					C_person_base *person;
 					std::vector<std::list<C_person_base*>> V_lista;
-					V_lista.resize(4);
 					std::list<C_person_base*> lista_temp;
 					std::list<C_person_base*> lista_t;
 					C_fabric_person Fabric;
@@ -1134,67 +1181,48 @@ void C_aplication::m_view() {
 					C_date d_brith;
 					C_date d_death;
 					bool b_sex;
+					bool loop;
 					int i_typ;
-					std::vector<int> V_k;
+					std::vector<long long> V_k;
 					std::vector<C_relation> V_relation;
 					std::vector<C_relationship> V_relationship;
 					std::vector<C_relation> V_relation_temp;
 					std::vector<C_relationship> V_relationship_temp;
-					data = ID_person;
-					e_soft_.m_view(view_search, sort_id, data, lista_t);
-					person = *lista_t.begin();
-			/*		for (auto& x : lista_temp) {
-						delete x;
-					}*/
-					V_lista.clear();
-					V_lista.push_back(lista_t);
-					person->m_get_V_relation(V_relation);
-					person->m_get_V_relationship(V_relationship);
-					person->m_get_id(ID);
-					for (auto& x_relation : V_relation) {
-						x_relation.m_get_id(id);
-						//->V_k.push_back(id.m_return_value());
-						x_relation.m_get_typ(i_typ);
-						e_soft_.m_view(view_search, sort_id, id, lista_temp);
-						//rozkladanie danmych persona na poszczegolne wartosci
-						person = *lista_temp.begin();
-						person->m_get_first_name(s_first_name);
-						person->m_get_last_name(s_last_name);
-						person->m_get_date(D_brith, d_brith);
-						person->m_get_date(D_death, d_brith);
-						person->m_get_sex(b_sex);
-						person->m_get_V_relation(V_relation_temp);
-						person->m_get_V_relationship(V_relationship_temp);
-						//na razie wszystko jest do jednej listy trzeba to ulepszyc
-						if (i_typ == r_parents)
-							V_lista[0].push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
-						else
-							V_lista[1].push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
-
-					}
-					//->V_k.push_back(ID_person.m_return_value());
-					for (auto& x_relationship : V_relationship) {
-						std::list<C_person_base*> lista;
-						x_relationship.m_get_id(id);
-						//->V_k.push_back(id.m_return_value());
-						x_relationship.m_get_typ(i_typ);
-						e_soft_.m_view(view_search, sort_id, id, lista_temp);
-						//rozkladanie danmych persona na poszczegolne wartosci
-						person = *lista_temp.begin();
-						person->m_get_first_name(s_first_name);
-						person->m_get_last_name(s_last_name);
-						person->m_get_date(D_brith, d_brith);
-						person->m_get_date(D_death, d_brith);
-						person->m_get_sex(b_sex);
-						person->m_get_V_relation(V_relation_temp);
-						person->m_get_V_relationship(V_relationship_temp);
-						//na razie wszystko jest do jednej listy trzeba to ulepszyc
-						V_lista[3].push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
-						x_relationship.m_get_baby(V_relation_temp);
+					std::vector<std::vector<C_id>> V_id;
+					do {
+						V_k.clear();
+						V_id.clear();
+						V_id.resize(5);
+						V_relation.clear();
+						V_relationship.clear();
+						V_relation_temp.clear();
+						V_relationship_temp.clear();
+						lista_t.clear();
+						lista_temp.clear();
+						V_lista.clear();
+						V_lista.resize(5);
+						if (data.m_what()) {
+							e_soft_.m_view(view_search, sort_id, data, lista_t);
+							V_id[2].push_back(data);
+						}
+						else {
+							e_soft_.m_view(view_search, sort_id, ID_person, lista_t);
+							V_id[2].push_back(ID_person);
+						}
+						person = *lista_t.begin();
+						/*		for (auto& x : lista_temp) {
+									delete x;
+								}*/
+								//	V_lista.clear();
+						V_lista[2] = lista_t;
+						person->m_get_V_relation(V_relation);
+						person->m_get_V_relationship(V_relationship);
+						person->m_get_id(ID);
 						for (auto& x_relation : V_relation) {
 							x_relation.m_get_id(id);
 							//->V_k.push_back(id.m_return_value());
 							x_relation.m_get_typ(i_typ);
+							lista_temp.clear();
 							e_soft_.m_view(view_search, sort_id, id, lista_temp);
 							//rozkladanie danmych persona na poszczegolne wartosci
 							person = *lista_temp.begin();
@@ -1206,12 +1234,74 @@ void C_aplication::m_view() {
 							person->m_get_V_relation(V_relation_temp);
 							person->m_get_V_relationship(V_relationship_temp);
 							//na razie wszystko jest do jednej listy trzeba to ulepszyc
-							lista.push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
+							if (i_typ == r_parents) {
+								V_lista[0].push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
+								V_id[0].push_back(id);
+							}
+							else {
+								V_lista[1].push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
+								V_id[1].push_back(id);
+							}
 						}
-						V_lista.push_back(lista);
-					}
-					M_.m_set_content_person(id_menu_MenuViewTree, V_lista); // numer wskazuje na odpowiednie menu!!!
-					M_.m_view(id_menu_MenuViewTree, i_variable, i_klucz, V_k, i_choice);
+						//->V_k.push_back(ID_person.m_return_value());
+						for (auto& x_relationship : V_relationship) {
+							std::list<C_person_base*> lista;
+							x_relationship.m_get_id(id);
+							//->V_k.push_back(id.m_return_value());
+							x_relationship.m_get_typ(i_typ);
+							lista_temp.clear();
+							e_soft_.m_view(view_search, sort_id, id, lista_temp);
+							//rozkladanie danmych persona na poszczegolne wartosci
+							person = *lista_temp.begin();
+							person->m_get_first_name(s_first_name);
+							person->m_get_last_name(s_last_name);
+							person->m_get_date(D_brith, d_brith);
+							person->m_get_date(D_death, d_brith);
+							person->m_get_sex(b_sex);
+							person->m_get_V_relation(V_relation_temp);
+							person->m_get_V_relationship(V_relationship_temp);
+							//na razie wszystko jest do jednej listy trzeba to ulepszyc
+							V_lista[3].push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation_temp, V_relationship)); //tworzenie nowego persona
+							V_id[3].push_back(id);
+							x_relationship.m_get_baby(V_relation_temp);
+							for (auto& x_relation : V_relation_temp) {
+								x_relation.m_get_id(id);
+								//->V_k.push_back(id.m_return_value());
+								x_relation.m_get_typ(i_typ);
+								lista_temp.clear();
+								e_soft_.m_view(view_search, sort_id, id, lista_temp);
+								//rozkladanie danmych persona na poszczegolne wartosci
+								person = *lista_temp.begin();
+								person->m_get_first_name(s_first_name);
+								person->m_get_last_name(s_last_name);
+								person->m_get_date(D_brith, d_brith);
+								person->m_get_date(D_death, d_brith);
+								person->m_get_sex(b_sex);
+								person->m_get_V_relation(V_relation);
+								person->m_get_V_relationship(V_relationship_temp);
+								//na razie wszystko jest do jednej listy trzeba to ulepszyc
+								lista.push_back(Fabric.m_create_peron(i_typ, id, b_sex, s_first_name, s_last_name, d_brith, d_death, V_relation, V_relationship)); //tworzenie nowego persona
+								V_id[4].push_back(id);
+							}
+							V_lista[4] = lista;
+						}
+						M_.m_set_replay(i_variable, id_menu_MenuViewTree, searchperson);
+						M_.m_set_content_person(id_menu_MenuViewTree, V_lista); // numer wskazuje na odpowiednie menu!!!
+						if (M_.m_view(id_menu_MenuViewTree, i_variable, i_klucz, V_k, i_choice, V_id)) {
+							if (V_k.size() > 0) {
+								data.m_active();
+								data.m_update(*V_k.begin());
+								loop = true;
+							}
+						}
+						else {
+							if (V_k.size() > 0) {
+								V_proces.clear();
+								V_proces.push_back(*V_k.begin());
+								loop = false;
+							}
+						}
+					}while (loop);
 				}break;
 				case searchperson: {
 					//	case search: {
@@ -1292,7 +1382,6 @@ void f_werification_date(std::string& s_data, int& b_what) {
 	i_year = atoi(s_year.c_str());
 	i_month = atoi(s_month.c_str());
 	i_day = atoi(s_day.c_str());
-	//dalsza analiza
 	if (i_year % 4 == 0) b_przestepny = true;
 	f_what_good_day(i_month, i_day, b_what, b_przestepny);
 }
@@ -1390,10 +1479,10 @@ void f_break(std::string& data) {
 	case 2:
 	case 3:
 	case 4:
-		data = "0000-00-00";
+		data = "0000/00/00";
 		break;
 	case 5:
-		data += "00-00";
+		data += "00/00";
 		break;
 	case 6:
 		char a;
@@ -1401,10 +1490,10 @@ void f_break(std::string& data) {
 		data.pop_back();
 		data += '0';
 		data += a;
-		data+= "-00";
+		data+= "/00";
 		break;
 	case 7:
-		data += "-00";
+		data += "/00";
 		break;
 	case 8:
 		data += "00";

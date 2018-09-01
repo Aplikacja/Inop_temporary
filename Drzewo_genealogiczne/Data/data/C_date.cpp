@@ -44,10 +44,15 @@ void C_date::m_sidle(std::string& s_date) {
 			switch (i_cykl) {
 			case 5:
 			case 3:
-				s_date += '-';
+				s_date += '//';
 			}
 			if (i_cykl_1 >= 1)
 				i_cykl_1--;
+		}
+		if (s_date=="0000/00/00") {
+			s_date.clear();
+			s_date = "- / - / -";
+			return;
 		}
 		if (s_date[9] == '0'&&s_date[8] == '0'&&s_date[6] == '0'&& s_date[5] == '0') {
 			s_date.pop_back();
@@ -55,13 +60,14 @@ void C_date::m_sidle(std::string& s_date) {
 			s_date.pop_back();
 			s_date.pop_back();
 			s_date.pop_back();
-			s_date += " - - -";
+			s_date += " - / -";
+			return;
 		}
 		if (s_date[9] == '0'&&s_date[8] == '0')
 		{
 			s_date.pop_back();
 			s_date.pop_back();
-			s_date += " -";
+			s_date += " / - ";
 		}
 	
 	}
@@ -120,7 +126,7 @@ void f_conversion(std::string& s_date, long long& ll_value) {
 	int i_iterator;
 	int i_cykl=0;
 	for (i_iterator = (int)s_date.size() - 1; i_iterator >= 0; i_iterator--) {
-		if (s_date[i_iterator] == '-') {
+		if (s_date[i_iterator] == '/') {
 			continue;
 		}
 		ll_value += ((int)(s_date[i_iterator]) - (int)'0')*(int)pow(10, i_cykl);
