@@ -32,6 +32,7 @@ public:
 	void m_ruch(void(*f)(int& x, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k), int& i_klawisz, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k);
 	void m_ruch(void(*f)(int& x, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k, bool& b_search, int i_position), int& i_klawisz, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k, bool& b_search, int i_position);
 	void m_ruch(void(*f)(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k), int& i_klawisz, int& i_klucz, int& i_start, std::vector<int>& v_k); //metoda umozliwiajaca ruch w menu
+	void m_ruch(void(*f)(int& x, int& i_y, int& i_klucz, int& i_start, std::vector<int>& v_k, std::vector<int>& v_size, std::vector<std::vector<C_id>>& V_id), int& i_klawisz, int& i_y, int& i_klucz, int& i_start, std::vector<int>& v_k, std::vector<int>& V_size, std::vector<std::vector<C_id>>& V_id);
 	void m_ruch(void(*f)(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k, bool& b_search, int i_position), int& i_klawisz, int& i_klucz, int& i_start, std::vector<int>& v_k, bool& b_search, int i_position); //metoda umozliwiajaca ruch w menu
 	void m_ruch(void(*f)(int& x, std::string& i_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_size, int i_start_), int& i_klawisz, std::string& i_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_size, int i_start_);
 	void m_get_content( std::vector<std::vector<std::vector<std::string>>>& V_CONTENT); //metoda do wyciagania vektor typu string
@@ -46,7 +47,7 @@ public:
 	virtual ~C_menu_base(); //destruktor
 };
 void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k, bool& b_search, int i_position);
-void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k);
+void f_sterowanie_tree(int& x, int& i_y, int& i_klucz, int& i_start, std::vector<int>& v_k, std::vector<int>& v_size, std::vector<std::vector<C_id>>& V_id);
 void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::string>& v_k, bool& b_search, int i_position);
 void f_option_clear(HANDLE& h, COORD& pos, DWORD& Written);
 void f_clear(HANDLE& h, COORD& pos, DWORD& Written);
