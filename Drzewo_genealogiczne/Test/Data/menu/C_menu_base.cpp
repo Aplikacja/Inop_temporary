@@ -5,7 +5,7 @@
 #include "C_menu_base.hpp"
 void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k, bool& b_search, int i_position);
 void f_obsluga_zdarzen_vk_tree(int& i_message);
-void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k);
+void f_sterowanie_tree(int& x, int& i_y, int& i_klucz, int& i_start, std::vector<int>& v_k, std::vector<int>& v_size, std::vector<std::vector<C_id>>& V_id);
 void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
 void f_option_clear(HANDLE& h, COORD& pos, DWORD& Written);
 void f_clear(HANDLE& h, COORD& pos, DWORD& Written);
@@ -34,6 +34,10 @@ void C_menu_base::m_load( std::vector<std::vector<std::vector<std::string>>> V) 
 void C_menu_base::m_ruch(void(*f)(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k), int& i_klawisz, int& i_klucz, int& i_start, std::vector<int>& v_k) {
 
 	f(i_klawisz, i_klucz, i_start, v_k);
+}
+void C_menu_base::m_ruch(void(*f)(int& x,int& i_y, int& i_klucz, int& i_start, std::vector<int>& v_k, std::vector<int>& v_size, std::vector<std::vector<C_id>>& V_id), int& i_klawisz,int& i_y, int& i_klucz, int& i_start, std::vector<int>& v_k, std::vector<int>& V_size, std::vector<std::vector<C_id>>& V_id) {
+
+	f(i_klawisz,i_y, i_klucz, i_start, v_k, V_size, V_id);
 }
 void C_menu_base::m_ruch(void(*f)(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k, bool& b_search, int i_position), int& i_klawisz, int& i_klucz, int& i_start, std::vector<int>& v_k, bool& b_search, int i_position) {
 
@@ -939,8 +943,8 @@ void f_discripsion_keys(int i_choice, std::string& data) {
 
 	}
 }
-void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k) {
-	int i_size = (int)v_k.size();
+void f_sterowanie_tree(int& x,int& i_y, int& i_klucz, int& i_start, std::vector<int>& v_k, std::vector<int>& v_size, std::vector<std::vector<C_id>>& V_id) {
+	int i_size = (int)v_size[i_y-1];
 	int i_message;
 	Stan = GetForegroundWindow();
 	while (Active == Stan)
@@ -950,16 +954,16 @@ void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k
 		switch (i_message) {
 		case vkup:
 			x--;
-			if (x <= i_start-1)      // gdy wykracza wraca na koniec
-				x = i_size;
+			if (x < 0)      // gdy wykracza wraca na koniec
+				x = i_size-1;
 			return;
 		case vkdown:
 			x++;
-			if (x >= i_size)       // gdy wykracza poza menu, znow wraca na poczatek
-				x = i_start;
+			if (x >=i_size)       // gdy wykracza poza menu, znow wraca na poczatek
+				x = 0;
 			return;
 		case vkreturn:
-			i_klucz = v_k[x];
+			i_klucz = 20;
 			return;
 		case vkescape:
 			i_klucz = -2;
@@ -1208,3 +1212,4 @@ void C_menu_base::m_get_data(C_engine_software& e_soft) {
 void C_menu_base::m_elimination(std::vector<int>& V_position) {
 	this->E_soft.m_elimination_person(V_position);
 }
+void C_menu_base::m_configuration(int i) { is_color = i;}

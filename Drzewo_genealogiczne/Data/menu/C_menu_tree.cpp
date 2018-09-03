@@ -45,7 +45,7 @@ bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long l
 				ptr = 0;
 				for (auto x : Y) {
 					if (ptr == i_x&& i_level == i_y) {
-						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 						printf(x.c_str()); printf("\n");
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 						ptr++;
@@ -102,7 +102,7 @@ bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long l
 			for (auto& Y : V_str) {
 				for (auto x : Y) {
 					if (ptr == i_x) {
-						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 						printf(x.c_str()); printf("\n");
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 						ptr++;

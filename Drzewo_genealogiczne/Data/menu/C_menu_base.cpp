@@ -1212,3 +1212,4 @@ void C_menu_base::m_get_data(C_engine_software& e_soft) {
 void C_menu_base::m_elimination(std::vector<int>& V_position) {
 	this->E_soft.m_elimination_person(V_position);
 }
+void C_menu_base::m_configuration(int i) { is_color = i;}

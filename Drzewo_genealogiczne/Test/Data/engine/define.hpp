@@ -42,10 +42,28 @@
 #define Min_old					12 //wartosc lat minimalna dla zrobienia dziecka i zawarcia malzenstwa
 #define Max_old_woman			55 //maksymany wiek pozwalajacy urodzic dziecko przez kobiete
 #define Max_size_names			24 //maksymalna wartosc imienia i nazwiska
+#define Color_base				15
+//nazwy kolorow w menu:
+#define colorCiemnoniebielski		1
+#define colorCiemnozielony			2
+#define colorCiemnoseledynowy		3
+#define colorCiemnoczerwony			4
+#define colorCiemnorozowy			5
+#define colorCiemnozulty			6
+#define colorCiemnoszary			8
+#define colorszary					7
+#define colorniebieski				9
+#define colorzielony				10
+#define colorseledynowy				11
+#define colorczerwony				12
+#define colorrozowy					13
+#define colorzulty					14
+#define clorbezkoloru				15
 //nazwa pliku do zapisu
 #define file_save "plik2.txt"
 #define file_load "plik1.txt"
 #define file_list_tree "plik3.txt"
+#define file_confing "config.ini"
 //stale typow relacji
 #define r_parents				1
 #define r_sibling				2

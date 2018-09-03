@@ -28,6 +28,7 @@ public:
 	void m_set_content_person(int i_choice,std::vector<std::list<C_person_base*>>& lista);
 	void m_set_data_base(int i_choice, C_engine_software& E_SOFT);
 	void m_elimination(int i_choice, std::vector<int>& V_position);
+	void m_cofiguration(int i); //do pliku inicjalizacyjnego
 	~C_menu(); //destruktor
 };
 #endif // !C_MENU_HPP

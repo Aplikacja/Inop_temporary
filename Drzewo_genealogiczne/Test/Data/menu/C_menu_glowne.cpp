@@ -23,7 +23,7 @@ bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 				ptr = 0;
 				for (auto& x : V_str_[0][i_id_menu]) {
 					if (ptr == i_x) {
-						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 						printf(x.c_str()); printf("\n");
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 						ptr++;
@@ -58,7 +58,7 @@ bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 				ptr = i_start_;
 				for (auto& x : V_str_[0][i_id_menu]) {
 					if (ptr == i_x) {
-						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 						printf(x.c_str()); printf("\n");
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 						ptr++;
@@ -92,4 +92,5 @@ bool C_menu_glowne::m_view(int i_id_menu,int& i, int& i_klucz, std::vector<int>&
 bool C_menu_glowne::m_view(int i_id_menu, int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { return false; }
 bool C_menu_glowne::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) { return false; }
 bool C_menu_glowne::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice, int& b_replay) { return false; }
+bool C_menu_glowne::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long long>& V_proces, int& i_choice, std::vector<std::vector<C_id>>& V_id) { return false; }
 C_menu_glowne::~C_menu_glowne() {};

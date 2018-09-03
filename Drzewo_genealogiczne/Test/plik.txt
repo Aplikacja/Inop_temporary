@@ -59,14 +59,4 @@
 2 1 0 1
 0 0 Wzbierz partnera:
 4 1 0 1
-0 0 Projekcja drzewa:Main.cpp
-Microsoft (R) Incremental Linker Version 14.14.26433.0
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-/out:Main.exe 
-Main.obj 
-Main.obj : error LNK2019: unresolved external symbol __imp__GetForegroundWindow@0 referenced in function "void __cdecl `dynamic initializer for 'Active''(void)" (??__EActive@@YAXXZ)
-Main.obj : error LNK2019: unresolved external symbol "public: __thiscall C_aplication::C_aplication(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool &)" (??0C_aplication@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AA_N@Z) referenced in function _main
-Main.obj : error LNK2019: unresolved external symbol "public: void __thiscall C_aplication::m_view(void)" (?m_view@C_aplication@@QAEXXZ) referenced in function _main
-Main.obj : error LNK2019: unresolved external symbol "public: __thiscall C_aplication::~C_aplication(void)" (??1C_aplication@@QAE@XZ) referenced in function _main
-Main.exe : fatal error LNK1120: 4 unresolved externals
+0 0 Projekcja drzewa:

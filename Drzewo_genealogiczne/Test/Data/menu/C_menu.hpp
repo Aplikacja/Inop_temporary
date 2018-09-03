@@ -18,6 +18,7 @@ public:
 	bool m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice, int& b_replay);
 	bool m_view(int i_id_menu,int& i_variable, std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice);
 	bool m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice);
+	bool m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long long>& V_proces, int& i_choice, std::vector<std::vector<C_id>>& V_id);
 	void m_set_content(int i_choice,std::vector<std::list<C_person_base*>>& Lista, std::vector<C_id>& V_id);
 	void m_set_content(int i_choice, std::list<C_person_base*>& Lista, std::vector<C_id>& V_id);
 	void m_set_str(int i_variable,std::vector<std::vector<std::vector<std::string>>>& v_str);
@@ -27,6 +28,7 @@ public:
 	void m_set_content_person(int i_choice,std::vector<std::list<C_person_base*>>& lista);
 	void m_set_data_base(int i_choice, C_engine_software& E_SOFT);
 	void m_elimination(int i_choice, std::vector<int>& V_position);
+	void m_cofiguration(int i); //do pliku inicjalizacyjnego
 	~C_menu(); //destruktor
 };
 #endif // !C_MENU_HPP

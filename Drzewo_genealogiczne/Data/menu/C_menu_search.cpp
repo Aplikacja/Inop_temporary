@@ -80,7 +80,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 						else if (ptr < (int)i_iter_down) { ptr++; continue; }
 						else if (ptr >= (int)i_iter_up) break;
 						if (ptr == i_x) {
-							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 							printf(x.c_str()); printf("\n");
 							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 							ptr++;
@@ -285,7 +285,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 					else if (ptr < (int)i_iter_down) { ptr++; continue; }
 					else if (ptr >= (int)i_iter_up) break;
 					if (ptr == i_x) {
-						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 						printf(x.c_str()); printf("\n");
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 						ptr++;
@@ -412,7 +412,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 				else if (ptr < (int)i_iter_down) { ptr++; continue; }
 				else if (ptr >= (int)i_iter_up) { break; }
 				if (ptr == i_x) {
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 					printf(x.c_str()); printf("\n");
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 					ptr++;
@@ -491,7 +491,7 @@ bool C_menu_search::m_view(int i_id_menu,int& i_variable, std::string& s_result,
 						else if (ptr < (int)i_iter_down) { ptr++; continue; }
 						else if (ptr >= (int)i_iter_up) break;
 						if (ptr == i_x) {
-							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 							printf(x.c_str()); printf("\n");
 							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 							ptr++;

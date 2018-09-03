@@ -37,7 +37,7 @@ bool C_menu_edition::m_view(int i_id_menu,int& i_variable, std::string& s_result
 			ptr = 0;
 			for (i = 0; i < i_size;i++) {
 				if (ptr == i_x) {
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 					printf(V_string[ptr].c_str()); printf("\n");
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 					ptr++;
@@ -140,7 +140,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 			ptr = 0;
 			for (i = 0; i < i_size; i++) {
 				if (ptr == i_x) {
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 					printf(V_string[ptr].c_str()); printf("\n");
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 					ptr++;
@@ -325,7 +325,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 			ptr = 0;
 			for (i = 0; i < i_size; i++) {
 				if (ptr == i_x) {
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 					printf(V_string[ptr].c_str()); printf("\n");
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 					ptr++;
@@ -452,7 +452,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 			ptr = 0;
 			for (i = 0; i < i_size; i++) {
 				if (ptr == i_x) {
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 					printf(V_string[ptr].c_str()); printf("\n");
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 					ptr++;
@@ -547,7 +547,7 @@ bool C_menu_edition::m_view(int i_id_menu, int& i_variable, std::vector<std::str
 			ptr = 0;
 			for (i = 0; i < i_size; i++) {
 				if (ptr == i_x) {
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 					printf(V_string[ptr].c_str()); printf("\n");
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 					ptr++;
@@ -688,7 +688,7 @@ void f_protected_data(int i_choice, std::string& s_data, std::string& s_message)
 					switch (s_message.size()) {
 					case 4:
 					case 7:
-						s_message += '-';
+						s_message += '/';
 					}
 					s_data = s_message;
 					break;

@@ -138,3 +138,8 @@ void C_menu::m_elimination(int i_choice, std::vector<int>& L_person) {
 	if (i_choice >= 0 && i_choice < i_size)
 		Tab_menu_[i_choice]->m_elimination(L_person);
 }
+void C_menu::m_cofiguration(int i) {
+	int i_choice;
+	for (i_choice = 0; i_choice < i_size; i_choice++)
+		Tab_menu_[i_choice]->m_configuration(i);
+}

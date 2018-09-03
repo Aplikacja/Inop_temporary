@@ -20,6 +20,7 @@ protected:
 	std::vector<int> V_replay_;
 	int i_start_;
 	bool b_dinamic_;
+	short is_color;
 	C_engine_tree E_soft;
 public:
 	C_menu_base( std::vector<std::vector<std::string>>& v, bool b_value,  std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person); //konstruktor parametrowy
@@ -27,10 +28,12 @@ public:
 	virtual bool m_view(int i_id_menu,int& i_variable,std::string& s_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) = 0; //metoda powodujaca ze klasa C_menu_base jest klasa abstrakcyjna
 	virtual bool m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice) = 0; //metoda powodujaca ze klasa C_menu_base jest klasa abstrakcyjna
 	virtual bool m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_result, int& i_klucz, std::vector<int>& V_proces, int& i_choice, int& b_replay) = 0;
+	virtual bool m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long long>& V_proces, int& i_choice, std::vector<std::vector<C_id>>& V_id) = 0;
 	void m_load( std::vector<std::vector<std::vector<std::string>>> v); //metoda lafujaca danych
 	void m_ruch(void(*f)(int& x, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k), int& i_klawisz, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k);
 	void m_ruch(void(*f)(int& x, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k, bool& b_search, int i_position), int& i_klawisz, std::string& i_klucz, int& i_start, std::vector<std::string>& v_k, bool& b_search, int i_position);
 	void m_ruch(void(*f)(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k), int& i_klawisz, int& i_klucz, int& i_start, std::vector<int>& v_k); //metoda umozliwiajaca ruch w menu
+	void m_ruch(void(*f)(int& x, int& i_y, int& i_klucz, int& i_start, std::vector<int>& v_k, std::vector<int>& v_size, std::vector<std::vector<C_id>>& V_id), int& i_klawisz, int& i_y, int& i_klucz, int& i_start, std::vector<int>& v_k, std::vector<int>& V_size, std::vector<std::vector<C_id>>& V_id);
 	void m_ruch(void(*f)(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k, bool& b_search, int i_position), int& i_klawisz, int& i_klucz, int& i_start, std::vector<int>& v_k, bool& b_search, int i_position); //metoda umozliwiajaca ruch w menu
 	void m_ruch(void(*f)(int& x, std::string& i_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_size, int i_start_), int& i_klawisz, std::string& i_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_size, int i_start_);
 	void m_get_content( std::vector<std::vector<std::vector<std::string>>>& V_CONTENT); //metoda do wyciagania vektor typu string
@@ -42,10 +45,11 @@ public:
 	void m_get_data(C_engine_software& e_soft);
 	void m_add_perosons(std::vector<std::list<C_person_base*>>& L_person);
 	void m_elimination(std::vector<int>& L_person);
+	void m_configuration(int i);
 	virtual ~C_menu_base(); //destruktor
 };
 void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k, bool& b_search, int i_position);
-void f_sterowanie_tree(int& x, int& i_klucz, int& i_start, std::vector<int>& v_k);
+void f_sterowanie_tree(int& x, int& i_y, int& i_klucz, int& i_start, std::vector<int>& v_k, std::vector<int>& v_size, std::vector<std::vector<C_id>>& V_id);
 void f_sterowanie(int& x, std::string& s_klucz, int& i_start, std::vector<std::string>& v_k, bool& b_search, int i_position);
 void f_option_clear(HANDLE& h, COORD& pos, DWORD& Written);
 void f_clear(HANDLE& h, COORD& pos, DWORD& Written);

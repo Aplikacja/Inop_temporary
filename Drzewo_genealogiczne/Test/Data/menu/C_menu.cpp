@@ -58,6 +58,12 @@ bool C_menu::m_view(int i_id_menu, int& i_variable, std::vector<std::string>& V_
 	}
 	return false;
 }
+bool C_menu::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long long>& V_proces, int& i_choice, std::vector<std::vector<C_id>>& V_id) {
+	if (i >= 0 && i < i_size) {
+		return Tab_menu_[i]->m_view(i_id_menu, i, i_klucz, V_proces, i_choice, V_id); //do rozwoju trza zaprojektowac lejalt menu
+	}
+	return false;
+}
 void C_menu::m_set_content(int i_choice,std::vector<std::list<C_person_base*>>& Lista, std::vector<C_id>& V_id) {
 	std::string s_data;
 	C_id id;
@@ -131,4 +137,9 @@ void C_menu::m_set_data_base(int i_choice, C_engine_software& E_SOFT) {
 void C_menu::m_elimination(int i_choice, std::vector<int>& L_person) {
 	if (i_choice >= 0 && i_choice < i_size)
 		Tab_menu_[i_choice]->m_elimination(L_person);
+}
+void C_menu::m_cofiguration(int i) {
+	int i_choice;
+	for (i_choice = 0; i_choice < i_size; i_choice++)
+		Tab_menu_[i_choice]->m_configuration(i);
 }

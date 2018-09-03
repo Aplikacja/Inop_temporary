@@ -15,7 +15,22 @@ void f_clera_data(std::string& data);
 void f_break(std::string& data);
 bool f_powtorzenia(std::vector<C_id>& left, std::vector<C_id>& right, std::vector<C_relation>& Rleft, std::vector<C_relation>& Rright);
 C_aplication::C_aplication(std::string what, bool& b_mistacke) {
-	m_load_file(what,b_mistacke);
+	M_init["dblue"] = 1;
+	M_init["dgreen"] = 2;
+	M_init["daquamarine"] = 3;
+	M_init["dred"] = 4;
+	M_init["dpig"] = 5;
+	M_init["dyelow"] = 6;
+	M_init["dgreey"] = 8;
+	M_init["greey"] = 7;
+	M_init["blue"] = 9;
+	M_init["green"] = 10;
+	M_init["aquamarine"] = 11;
+	M_init["red"] = 12;
+	M_init["pig"] = 13;
+	M_init["yelow"] = 14;
+	M_init["white"] = 15;
+	m_configuration(b_mistacke);
 };
 void C_aplication::m_load_file(std::string s_file, bool& b_mistacke) {
 
@@ -1528,4 +1543,16 @@ bool f_powtorzenia(std::vector<C_id>& left, std::vector<C_id>& right, std::vecto
 		i++;
 	}
 	return false;
+}
+void C_aplication::m_configuration(bool& b_mistacke) {
+	std::string s_data;
+	std::ifstream file;
+	file.open(file_confing);
+	if (file.good()) {
+		file >> s_data;
+		m_load_file(s_data, b_mistacke);
+		file >> s_data;
+		M_.m_cofiguration(M_init[s_data]);
+		file.close();
+	}
 }
