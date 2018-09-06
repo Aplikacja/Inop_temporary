@@ -9,8 +9,9 @@ C_menu_tree::~C_menu_tree() {}
 bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<int>& V_prosec, int& i_choice) { return false; };
 bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long long>& V_proces, int& i_choice, std::vector<std::vector<C_id>>& V_id) {
 	int i_x = 0;
-	int i_y = 1;
-	int ptr;
+	int i_y;
+	int i_ptr;
+	int i_i;
 	int i_replay;
 	int i_level;
 	int i_sizes;
@@ -18,6 +19,7 @@ bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long l
 	std::vector<std::string> V_str_temp;
 	std::vector<int> V_input = { 0, 1, 2, 3,4, 5, 6 }; //0,3,1,2,4,5,6
 	std::vector<int> V_size;
+	std::vector<bool> V_b;
 	std::vector<int>::iterator it = V_input.begin();
 	V_str.resize(7);
 		V_str[*it] = V_str_[0][i_id_menu];
@@ -35,6 +37,14 @@ bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long l
 	}
 	std::vector<int> V_k;
 	V_k = *V_klucz_.begin();
+	for (auto& X : V_L_person_) {
+			V_b.push_back((bool)X.size());
+	}
+	for (i_i = 0; i_i < V_b.size(); i_i++) {
+		if (V_b[i_i]) {
+			i_y = i_i+1; break;
+		}
+	}
 	switch (i_choice) {
 	case 1: {
 		f_option_clear(h, pos, Written);
@@ -42,17 +52,17 @@ bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long l
 			i_klucz = -1;
 			i_level = 0;
 			for (auto& Y : V_str) {
-				ptr = 0;
+				i_ptr = 0;
 				for (auto x : Y) {
-					if (ptr == i_x&& i_level == i_y) {
+					if (i_ptr == i_x&& i_level == i_y) {
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 						printf(x.c_str()); printf("\n");
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-						ptr++;
+						i_ptr++;
 						continue;
 					}
 					printf(x.c_str()); printf("\n");
-					ptr++;
+					i_ptr++;
 				}
 				i_level++;
 			}
@@ -68,17 +78,83 @@ bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long l
 			case -10: { //strzalka w lewo
 				i_y--;
 				i_x = 0;
-				if (i_y < 1) 
-					i_y = V_L_person_.size() - 1;
-				else if (i_y == 3) i_y--;
+				if (i_y < 1) {
+					i_y = V_L_person_.size();
+					while (true) {
+						if (i_y < 1) {
+							i_y = V_L_person_.size();
+							while (true) {
+								if (!V_b[i_y - 1]) {
+									i_y--;
+									if (i_y == 3) {
+										i_y--;
+										while (true) {
+											if (!V_b[i_y - 1]) {
+												i_y--;
+											}
+											else break;
+										}
+									}
+								}
+								else break;
+							}
+						}
+						if (!V_b[i_y - 1]) {
+							i_y--;
+						}
+						else break;
+					}
+				}
+				else if (i_y == 3) {
+					i_y--;
+					while (true) {
+						if (i_y < 1) {
+							i_y = V_L_person_.size();
+							while (true) {
+								if (!V_b[i_y - 1]) {
+									i_y--;
+									if (i_y == 3) {
+										i_y--;
+										while (true) {
+											if (!V_b[i_y - 1]) {
+												i_y--;
+											}
+											else break;
+										}
+									}
+								}
+								else break;
+							}
+						}
+						if (!V_b[i_y - 1]) {
+							i_y--;
+						}
+						else break;
+					}
+				}
 				break;
 			}
 			case -11: { //stralka w prawo
 				i_y++;
 				i_x = 0;
-				if (i_y >= V_L_person_.size())
+				if (i_y >= V_L_person_.size()) {
 					i_y = 1;
-				else if (i_y == 3) i_y++;
+					while (true) {
+						if (!V_b[i_y - 1]) {
+							i_y++;
+						}
+						else break;
+					}
+				}
+				else if (i_y == 3) {
+					i_y++;
+					while (true) {
+						if (!V_b[i_y - 1]) {
+							i_y++;
+						}
+						else break;
+					}
+				}
 				break;
 			}
 			case -12: { //spacja
@@ -98,18 +174,18 @@ bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long l
 		f_option_clear(h, pos, Written);
 		while (true) {
 			i_klucz = -1;
-			ptr = i_start_;
+			i_ptr = i_start_;
 			for (auto& Y : V_str) {
 				for (auto x : Y) {
-					if (ptr == i_x) {
+					if (i_ptr == i_x) {
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), is_color);
 						printf(x.c_str()); printf("\n");
 						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-						ptr++;
+						i_ptr++;
 						continue;
 					}
 					printf(x.c_str()); printf("\n");
-					ptr++;
+					i_ptr++;
 				}
 			}
 			f_clear(h, pos, Written);
@@ -124,17 +200,106 @@ bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long l
 			case -10: { //strzalka w lewo
 				i_y--;
 				i_x = 0;
-				if (i_y < 1)
-					i_y = V_L_person_.size() - 1;
-				else if (i_y == 3) i_y--;
+				if (i_y < 1) {
+					i_y = V_L_person_.size();
+					while (true) {
+						if (i_y < 1) {
+							i_y = V_L_person_.size();
+							while (true) {
+								if (!V_b[i_y - 1]) {
+									i_y--;
+								 if (i_y == 3) {
+									i_y--;
+									while (true) {
+										if (!V_b[i_y - 1]) {
+											i_y--;
+										}
+										else break;
+									}
+								}
+								}
+								else break;
+							}
+						}
+						if (!V_b[i_y - 1]) {
+							i_y--;
+						}
+						else break;
+					}
+				}
+				else if (i_y == 3) { i_y--; 
+				while (true) {
+					if (i_y < 1) {
+						i_y = V_L_person_.size();
+						while (true) {
+							if (!V_b[i_y - 1]) {
+								i_y--;
+								if (i_y == 3) {
+									i_y--;
+									while (true) {
+										if (!V_b[i_y - 1]) {
+											i_y--;
+										}
+										else break;
+									}
+								}
+							}
+							else break;
+						}
+					}
+					if (!V_b[i_y - 1]) {
+						i_y--;
+					}
+					else break;
+				}
+				}
 				break;
 			}
 			case -11: { //stralka w prawo
 				i_y++;
 				i_x = 0;
-				if (i_y >= V_L_person_.size())
+				if (i_y >= V_L_person_.size()) {
 					i_y = 1;
-				else if (i_y == 3) i_y++;
+					while (true) {
+						if (i_y >= V_L_person_.size()) {
+							i_y = 1;
+						}
+						if (!V_b[i_y - 1]) {
+							i_y++;
+						if (i_y == 3) {
+							i_y++;
+							while (true) {
+								if (!V_b[i_y - 1]) {
+									i_y++;
+								}
+								else break;
+							}
+						}
+						}
+						else break;
+					}
+				}
+				else if (i_y == 3) {
+					i_y++;
+					while (true) {
+						if (!V_b[i_y - 1]) {
+							i_y++;
+							if (i_y >= V_L_person_.size()) {
+								i_y = 1;
+							}
+							if (i_y == 3) {
+								i_y++;
+								while (true) {
+									if (!V_b[i_y - 1]) {
+										i_y++;
+									}
+									else break;
+								}
+							}
+						}
+						else break;
+					}
+				}
 				break;
 			}
 			case -12: { //spacja

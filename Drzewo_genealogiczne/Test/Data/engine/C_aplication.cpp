@@ -391,6 +391,7 @@ void C_aplication::m_view() {
 						C_date secend_brith;
 						C_date secend_death;
 						id.m_active();
+
 						id.m_update(i_id_pointer_temp);
 						//int i_value;
 						V_string.clear();
@@ -1106,9 +1107,10 @@ void C_aplication::m_view() {
 							case 'M':
 								b_gender = false; break;
 							}
-							if (i_what_1&&i_what_2&&i_what<2) {
+							if (i_what_1&&i_what_2&&i_what <= 2) {
 								e_soft_.m_update_person(b_gender, V_dane[0], V_dane[1], date_brith, date_death, i_id_pointer);
 								i_what = 0;
+								V_proces.insert(V_proces.begin(),11);
 							}
 						}
 					} while (i_what != 0); 
