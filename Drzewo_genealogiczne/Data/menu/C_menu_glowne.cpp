@@ -1,9 +1,9 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_menu_glowne.cpp																									Data_utworzenia: 13-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
-//	15-03-2018				Lukasz			Uporzadkowanie kodu i wrzucenie czyszczenia ekranu do dwochfunkcji typu void (f_option_clear() i f_clear);		//
-//											Przebudowa metody m_view() o dodatkowy argument int& i_klucz, umozliwiajacy waczenie opcji silnika w klasie		//	
-//											C_aplikation.																									//
+//	15-03-2018	Lukasz Witek vel Witkowski	Rozbudowa metody m_view() o dodatkowy argument int& i_klucz														//
+//	27-03-2018	Lukasz Witek vel Witkowski	Naprawa metody																									//
+//	10-04-2018	Lukasz Witek vel Witkowski	Naprawa metody																									//
 //**********************************************************************************************************************************************************//
 #include "C_menu_glowne.hpp"
 C_menu_glowne::C_menu_glowne(std::vector<std::vector<std::string>>& V, bool& b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) :C_menu_base(V, b, v_k,V_procedur, i_iterator, L_person) {}

@@ -1,9 +1,13 @@
-//#pragma once
+#pragma once
 //**********************************************************************************************************************************************************//
 //	Plik: C_menu_glowne.hpp																									Data_utworzenia: 13-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
-//	15-03-2018				Lukasz			Rozbudowa metody m_view() o dodatkowy argument int& i_klucz														//
-//**********************************************************************************************************************************************************//
+//	22-03-2018		Lukasz Witek vel Witkowski			Dodanie metod m_view() umo¿liwiajace wybieranie Persona												//
+//	10-04-2015		Lukasz Witek vel Witkowski			Naprawa metod																						//
+//	25-04-2015		Lukasz Witek vel Witkowski			Naprawa metod																						//
+//	15-06-2015		Lukasz Witek vel Witkowski			Rozbudowanie metody o nowe cechy																	//
+//	05-07-2015		Lukasz Witek vel Witkowski			Rozbudowanie metody o nowe cechy i naprawa metod													//									//
+//----------------------------------------------------------------------------------------------------------------------------------------------------------//
 #ifndef C_MENU_SEARCH_HPP
 #define C_MENU_SEARCH_HPP
 #include <iostream>

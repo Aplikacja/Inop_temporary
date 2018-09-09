@@ -1,10 +1,27 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_engine_software.hpp																								Data_utworzenia: 12-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
-//	15-03-2018				Lukasz			Dodanie metody:																									//
+//	15-03-2018				Lukasz			Dodanie metod:																									//
 //											- void m_add_person() <- do dodawania nowych osob do drzewa														//
 //											- void m_delete_person() <- do usuwania osob z drzewa															//
 //											- void m_update_person() <- do edycji danych osob z drzewa														//
+//	21-03-2018				Lukasz			Dodanie metod:																									//
+//											- void m_view																									//
+//											- void m_clean																									//
+//											- void m_copy																									//
+//	24-03-2018				Lukasz			Dodanie metod:																									//
+//											- void m_add_relation																							//
+//											- void m_add_relationship																						//
+//											- void m_delete_relation																						//
+//											- void m_delete_relationship																					//
+//											- void m_update_relation																						//
+//											- void m_update_relationship																					//
+//	28-03-2018				Lukasz			Dodanie metod:																									//	
+//											- void m_add_V_relation																							//
+//											- void m_add_V_relationship																						//
+//											- void m_get_list_person_orginal																				//
+//											- C_db m_db																										//
+//	02-04-2018				Lukasz			Naprawa metod 																									//
 //**********************************************************************************************************************************************************//
 #ifndef C_ENGINE_SOFTWARE_HPP
 #define C_ENGINE_SOFTWARE_HPP

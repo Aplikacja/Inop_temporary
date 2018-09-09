@@ -1,6 +1,19 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_relation.cpp																									Data_utworzenia: 12-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
+//	13-03-2018		Lukasz Witek vel Witkowski			Dodanie metod:																						//
+//														-	m_view																							//
+//														-	m_ative																							//
+//														-	m_deactive																						//
+//														-	operator==																						//
+//	16-03-2018		Lukasz Witek vel Witkowski			Dodanie metod:																						//
+//														-	operator<<																						//
+//														-	operator>>																						//
+//														-	m_add_typ																						//
+//														-	m_get_typ																						//
+//	18-03-2018		Lukasz Witek vel Witkowski			Dodanie metod:																						//
+//														-	m_add_id																						//
+//														-	m_get_id																						//
 //**********************************************************************************************************************************************************//
 #include "C_relation.hpp"
 

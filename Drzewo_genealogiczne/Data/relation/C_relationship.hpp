@@ -1,6 +1,22 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_relationship.hpp																								Data_utworzenia: 12-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
+//	13-03-2018		Lukasz Witek vel Witkowski			Dodanie metod:																						//
+//														-	m_view																							//
+//														-	m_ative																							//
+//														-	m_deactive																						//
+//														-	operator==																						//
+//	16-03-2018		Lukasz Witek vel Witkowski			Dodanie metod:																						//
+//														-	operator<<																						//
+//														-	operator>>																						//
+//														-	m_add_typ																						//
+//														-	m_get_typ																						//
+//														-	m_set_baby																						//
+//														-	m_get_baby																						//
+//														-	m_return																						//
+//	18-03-2018		Lukasz Witek vel Witkowski			Dodanie metod:																						//
+//														-	m_add_id																						//
+//														-	m_get_id																						//
 //**********************************************************************************************************************************************************//
 #ifndef C_RELATIONSHIP_HPP
 #define C_RELATIONSHIP_HPP

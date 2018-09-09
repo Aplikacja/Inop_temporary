@@ -1,3 +1,12 @@
+//**********************************************************************************************************************************************************//
+//	Plik: C_menu_glowne.hpp																									Data_utworzenia: 13-03-2018		//
+//	data_aktualizacji: |	Autor:		|					Opis:																							//
+//	22-03-2018		Lukasz Witek vel Witkowski			Dodanie metod m_view() umo¿liwiajace wybieranie Persona												//
+//	10-04-2015		Lukasz Witek vel Witkowski			Naprawa metod																						//
+//	25-04-2015		Lukasz Witek vel Witkowski			Naprawa metod																						//
+//	15-06-2015		Lukasz Witek vel Witkowski			Rozbudowanie metody o nowe cechy																	//
+//	05-07-2015		Lukasz Witek vel Witkowski			Rozbudowanie metody o nowe cechy i naprawa metod													//									//
+//----------------------------------------------------------------------------------------------------------------------------------------------------------//
 #include "C_menu_search.hpp"
 void f_edge(unsigned int& i_iter_down, unsigned int& i_iter_up, int i_x, int i_size, int i_start);
 void f_search(std::list<std::string>& L_string, std::string& s_szukana, std::list<std::string>& L_orginal);

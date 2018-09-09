@@ -1,6 +1,33 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_menu_base.cpp																									Data_utworzenia: 13-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
+//	13-03-2018		Lukasz Witek vel Witkowski			Dodanie metody m_view()																				//
+//	15-03-2018		Lukasz Witek vel Witkowski			Dodanie metody m_view(), o dodatkowy argument int& i_klucz											//
+//	18-03-2018		Lukasz Witek vel Witkowski			Dodanie metod:																						//										//
+//																	- m_load																				//
+//																	- m_ruch umozliwiajacy ruch w menu														//
+//														Dodanie funkcji:																					//
+//																	- f_sterowanie																			//
+//																	- f_option_clear																		//
+//																	- f_clear																				//
+//	22-03-2018		Lukasz Witek vel Witkowski			Dodanie metod:																						//
+//																	- m_view() umo¿liwiajace wybieranie Persona												//
+//																	- m_ruch umozliwiajacy wybranie Persona													//
+//																	- m_get_content																			//
+//																	- m_set_content																			//
+//																	- m_set_str																				//
+//																	- m_get_str																				//
+//																	- m_set_replay																			//
+//																	- m_get_replay																			//
+//	28-03-2018		Lukasz Witek vel Witkowski			Dodanie metod:																						//
+//																	- m_view() umo¿liwiajace edycje Persona	i nazwy drzewa									//
+//																	- m_ruch umozliwiajacy edycje Persona i drzewo											//
+//																	- m_get_data																			//
+//																	- m_add_perosons																		//
+//	15-04-2018		Lukasz Witek vel Witkowski			Dodanie metod:																						//
+//																	- m_view pobierajacego stringa															//
+//																	- m_view pobierajacego vector id														//
+//	15-04-2018		Lukasz Witek vel Witkowski			Naprava metod																						//
 //**********************************************************************************************************************************************************//
 #include "C_menu_base.hpp"
 void f_sterowanie(int& x, int& i_klucz,int& i_start, std::vector<int>& v_k, bool& b_search, int i_position);

@@ -1,11 +1,17 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_date.cpp																										Data_utworzenia: 11-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
-//		21-03-2018			Marcin				Dodanie i rozwiniecie metod:																				//
+//	22-03-2018			Marcin Jezionek				Dodanie i rozwiniecie metod:																			//
 //												-	void C_date::m_apped(int& i_day, int& i_month, int& i_year);											//
 //												-	void C_date::m_sidle(int& i_day, int& i_month, int& i_year);											//
 //												-	void C_date::m_apped(std::string& s_date);																//
 //												-	void C_date::m_sidle(std::string& s_date);																//
+//	02-04-2018 Lukasz Witek vel Witkowski	Dodanie i rozbudowanie metody m_old																				//
+//	26-04-2018 Lukasz Witek vel Witkowski	Dodanie operatorow:																								//
+//												-> operator +																								//
+//												-> operator -																								//
+//												-> operator <																								//
+//												-> operator >																								//
 //**********************************************************************************************************************************************************//
 #include "C_date.hpp"
 void f_conversion(std::string& s_data, long long& ll_value);

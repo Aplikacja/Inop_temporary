@@ -1,6 +1,13 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_person_base.hpp																									Data_utworzenia: 11-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
+//	 23.03.2018			 Damian Gwozdz						Utworzenie konstruktorow klasy																	//
+//   24.03.2018			 Damian Gwozdz						Utworzenie metody pomocniczych - sortowanie														//
+//   15.04.2018			 Damian Gwozdz						Utworzenie metody get																			//
+//   30.04.2018			 Damian Gwozdz						Utworzenie metody set																			//
+//   07.05.2018			 Damian Gwozdz						Poprawki wizualne kodu																			//
+//   10.05.2018			 Damian Gwozdz						Utworzenie relacji																				//
+//   11.05.2018			 Damian Gwozdz						Poprawki wizualne kodu																			//
 //**********************************************************************************************************************************************************//
 #ifndef C_PERSON_BASE_HPP
 #define C_PERSON_BASE_HPP

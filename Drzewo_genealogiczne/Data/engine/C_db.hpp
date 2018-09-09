@@ -1,6 +1,48 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_db.hpp																											Data_utworzenia: 12-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
+//	15-03-2018 Lukasz Witek vel Witkowski	Dodanie i rozbudowa metod:																						//
+//																-> m_add_person																				//
+//																-> m_get																					//
+//																-> m_load																					//
+//																-> m_clear																					//
+//	20-03-2018 Lukasz Witek vel Witkowski	Dodanie i rozbudowa metod:																						//
+//																-> m_add_person																				//
+//																-> m_update_person																			//
+//																-> m_delete_protected																		//
+//	28-03-2018 Lukasz Witek vel Witkowski	Dodanie i rozbudowa metod:																						//
+//																-> m_giving																					//
+//																-> m_sort																					//
+//																-> m_search																					//
+//	30-03-2018		Damian Gwozdz			Dodanie funkcji:																								//
+//																-> f_sort_first_name																		//
+//																-> f_sort_last_name																			//
+//																-> f_sort_date_brith																		//
+//																-> f_sort_date_death																		//
+//																-> f_sort_id																				//
+//	30-03-2018 Lukasz Witek vel Witkowski	Dodanie funkcji:																								//
+//																-> f_comparison																				//
+//																-> f_szukaj																					//
+//																-> f_typ																					//
+//																-> f_sprawdzanie_gopra																		//
+//																-> f_sprawdzanie_dol																		//
+//																-> f_sprawdzanie																			//
+//	31-03-2018		Damian Gwozdz			Naprawa bledow																									//
+//	01-04-2018 Lukasz Witek vel Witkowski	Naprawa bledow																									//
+//	10-04-2018 Lukasz Witek vel Witkowski	Dodanie i rozbudowa metod:																						//
+//																-> m_add_relation																			//
+//																-> m_add_relationship																		//
+//																-> m_update_relation																		//
+//																-> m_update_relationship																	//
+//	12-04-2018 Lukasz Witek vel Witkowski Naprawa bledow																									//
+//	15-04-2018 Lukasz Witek vel Witkowski Dodanie i rozbudowa metod:																						//
+//																-> m_add_V_relation																			//
+//																-> m_add_V_relationship																		//
+//																-> m_delete_relation																		//
+//																-> m_delete_relationship																	//
+//																-> m_search_specjal																			//
+//	25-04-2018 Lukasz Witek vel Witkowski Naprawa bledow																									//
+//	02-06-2018 Lukasz Witek vel Witkowski Naprawa bledow																									//
 //**********************************************************************************************************************************************************//
 #ifndef C_DB_HPP
 #define C_DB_HPP

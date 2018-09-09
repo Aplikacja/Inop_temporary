@@ -1,7 +1,9 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_menu_glowne.hpp																									Data_utworzenia: 13-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
-//	15-03-2018				Lukasz			Rozbudowa metody m_view() o dodatkowy argument int& i_klucz														//
+//	15-03-2018	Lukasz Witek vel Witkowski	Rozbudowa metody m_view() o dodatkowy argument int& i_klucz														//
+//	27-03-2018	Lukasz Witek vel Witkowski	Naprawa metody																									//
+//	10-04-2018	Lukasz Witek vel Witkowski	Naprawa metody																									//
 //**********************************************************************************************************************************************************//
 #ifndef C_MENU_GLOWNE_HPP
 #define C_MENU_GLOWNE_HPP

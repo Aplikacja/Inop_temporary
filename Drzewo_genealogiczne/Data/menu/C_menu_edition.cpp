@@ -1,7 +1,18 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_menu_edition.hpp																								Data_utworzenia: 13-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
-//**********************************************************************************************************************************************************//
+//	28-03-2018		Lukasz Witek vel Witkowski			Dodanie metod m_view() umo¿liwiajace edycje Persona	i nazwy drzewa									//
+//	29-03-2018		Lukasz Witek vel Witkowski			Dodanie funkcji void f_sterowanie																	//
+//														Rozbudowanie metody o nowe cechy																	//
+//	05-03-2018		Lukasz Witek vel Witkowski			Dodanie funkcji void f_sterowanie_add_person														//
+//														Rozbudowanie metody o nowe cechy																	//
+//	15-03-2018		Lukasz Witek vel Witkowski			Dodanie funkcji:																					//
+//																	- void f_sterowanie_edit_tree															//
+//																	- void f_protected_data																	//
+//														Rozbudowanie metody o nowe cechy																	//
+//	21-04-2015		Lukasz Witek vel Witkowski			Naprawa metod																						//
+//	10-06-2015		Lukasz Witek vel Witkowski			Rozbudowanie metody o nowe cechy																	//
+//----------------------------------------------------------------------------------------------------------------------------------------------------------//
 #include "C_menu_edition.hpp"
 void f_sterowanie(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);
 void f_sterowanie_add_person(int& x, std::string& s_klucz, std::string& s_message, int& i_start, std::vector<std::string>& v_k, int i_Size, int i_start_);

@@ -1,6 +1,14 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_date_base.cpp																									Data_utworzenia: 11-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
+//  11.03.2018          Marcin Jezionek                       -> Dodanie i przetestowanie opperatorów wejscia/wyjœcia										//
+//  12.03.2018          Marcin Jezionek                       -> Dodanie metody virtual void m_virtual														//
+//  20.03.2018          Marcin Jezionek                       -> Dodanie m_return_value																		//
+//                                                            -> Dodanie m_what																				//
+//                                                            -> Dodanie m_active, m_deactivation															//
+//                                                            -> Dodanie zmiennej boolowskiej																//
+//	21.03.2018	Lukasz Witek vel Witkowski	Dodanie operatorow << i >>																						//
+//	23.03.2018	Lukasz Witek vel Witkowski Naprawa bledow																									//
 //**********************************************************************************************************************************************************//
 #include "C_data_base.hpp"
 

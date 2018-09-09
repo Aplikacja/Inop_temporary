@@ -1,6 +1,21 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_menu.hpp																										Data_utworzenia: 13-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
+// 15-03-2018 Lukasz Witek vel Witkowski	Dodanie i rozbudowa metod:																						//
+//														-> Konstruktor																						//
+//														-> m_loader																							//
+// 24-03-2018 Lukasz Witek vel Witkowski	Dodanie i rozbudowa metod:																						//
+//														-> m_view																							//
+//														-> m_set_content																					//
+//														-> m_set_str																						//
+//														-> m_get_replay																						//
+//														-> m_set_replay																						//
+//														-> m_set_content_person																				//
+//														-> m_set_data_base																					//
+//														-> m_elimination																					//
+// 02-04-2018 Lukasz Witek vel Witkowski	Naprawa metod																									//
+// 22-04-2018 Lukasz Witek vel Witkowski	Naprawa metod																									//
+// 05-09-2018 Lukasz Witek vel Witkowski	Dodanie i rozbudowa metody m_cofiguration																		//
 //**********************************************************************************************************************************************************//
 #ifndef C_MENU_HPP
 #define C_MENU_HPP

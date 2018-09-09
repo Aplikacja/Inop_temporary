@@ -1,7 +1,12 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_menu_tree.cpp																									Data_utworzenia: 13-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
-//**********************************************************************************************************************************************************//
+//	15-04-2018		Lukasz Witek vel Witkowski			Dodanie metody m_view pobierajacego vector id														//
+//	10-07-2018		Lukasz Witek vel Witkowski			Naprawa metody																						//
+//	18-08-2018		Lukasz Witek vel Witkowski			Naprawa metody																						//
+//	22-08-2018		Lukasz Witek vel Witkowski			Naprawa metody																						//
+//	05-08-2018		Lukasz Witek vel Witkowski			Naprawa metody																						//
+//----------------------------------------------------------------------------------------------------------------------------------------------------------//
 #include "C_menu_tree.hpp"
 
 C_menu_tree::C_menu_tree(std::vector<std::vector<std::string>>& V, bool b, std::vector<std::vector<int>>& v_k, std::vector<std::vector<int>>& V_procedur, int& i_iterator, std::vector<std::list<C_person_base*>>& L_person) :C_menu_base(V, b, v_k,V_procedur, i_iterator,L_person) {}

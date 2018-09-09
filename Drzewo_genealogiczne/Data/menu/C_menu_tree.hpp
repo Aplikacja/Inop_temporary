@@ -1,7 +1,12 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_menu_tree.hpp																									Data_utworzenia: 13-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
-//**********************************************************************************************************************************************************//
+//	15-04-2018		Lukasz Witek vel Witkowski			Dodanie metody m_view pobierajacego vector id														//
+//	10-07-2018		Lukasz Witek vel Witkowski			Naprawa metody																						//
+//	18-08-2018		Lukasz Witek vel Witkowski			Naprawa metody																						//
+//	22-08-2018		Lukasz Witek vel Witkowski			Naprawa metody																						//
+//	05-08-2018		Lukasz Witek vel Witkowski			Naprawa metody																						//
+//----------------------------------------------------------------------------------------------------------------------------------------------------------//
 #ifndef C_MENU_TREE_HPP
 #define C_MENU_TREE_HPP
 #include "C_menu_base.hpp"

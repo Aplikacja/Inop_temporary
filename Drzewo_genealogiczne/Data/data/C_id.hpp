@@ -1,6 +1,13 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_id.hpp																											Data_utworzenia: 11-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
+//	23-03-2018 Lukasz Witek vel Witkowski	Dodanie i rozbudowa metod:																						//
+//														-> m_giving																							//
+//														-> m_virtual																						//
+//														-> m_down																							//
+//	10-04-2018 Lukasz Witek vel Witkowski	Dodanie i rozbudowa operatorow:																					//
+//														-> operator ==																						//
+//														-> operator !=																						//
 //**********************************************************************************************************************************************************//
 
 #ifndef C_ID_HPP

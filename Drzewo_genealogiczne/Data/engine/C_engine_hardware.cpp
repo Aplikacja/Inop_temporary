@@ -1,9 +1,26 @@
 //**********************************************************************************************************************************************************//
 //	Plik: C_engine_hardware.cpp																								Data_utworzenia: 12-03-2018		//
 //	data_aktualizacji: |	Autor:		|					Opis:																							//
-//	15-03-2018				Lukasz			Dodanie metody:																									//
-//											- void m_load_files() <- do wczytywania drzewa z pliku															//
-//											- void m_save_files() <- do zapisywania drzewa do pliku															//
+//	15-03-2018	Lukasz Witek vel Witkowski	Dodanie metod:																									//
+//														-> void m_load_files() <- do wczytywania drzewa z pliku												//
+//														-> void m_save_files() <- do zapisywania drzewa do pliku											//
+//	18-03-2018 Lukasz Witek vel Witkowski	Dodanie metod:																									//
+//														-> m_sort																							//
+//														-> m_add_tree																						//
+//														-> m_get_tree																						//
+//														-> m_load_tree																						//
+//														-> m_edit_name_tree																					//
+//														-> m_save_tree																						//
+//														-> m_delete_tree																					//
+//	22-03-2018 Lukasz Witek vel Witkowski Rozbudowa metod																									//
+//	28-03-2018 Lukasz Witek vel Witkowski Naprawa bledow																									//
+//  10-04-2018 Lukasz Witek vel Witkowski Rozbudowa metod																									//
+//	24-04-2018		Damian Gwozdz			Doadanie zabezpieczenia w metodach:																				//
+//														-> m_load_file																						//
+//														-> m_save_file																						//
+//														-> m_load_tree																						//
+//														-> m_save_tree																						//
+//														-> f_creative_file_tree																				//
 //**********************************************************************************************************************************************************//
 #include "C_engine_hardware.hpp"
 
