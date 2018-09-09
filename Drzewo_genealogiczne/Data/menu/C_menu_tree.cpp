@@ -19,7 +19,7 @@ bool C_menu_tree::m_view(int i_id_menu, int& i, int& i_klucz, std::vector<long l
 	int i_i;
 	int i_replay;
 	int i_level;
-	int i_sizes;
+	int i_sizes; 
 	std::vector<std::vector<std::string>> V_str;
 	std::vector<std::string> V_str_temp;
 	std::vector<int> V_input = { 0, 1, 2, 3,4, 5, 6 }; //0,3,1,2,4,5,6
